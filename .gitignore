@@ -30,9 +30,10 @@
 *.exe
 *.out
 *.app
-
-Don't Peek/.vs/
-Don't Peek/x64/
 *.db
 Don't Peek/.vs/Don't Peek/v16/Browse.VC.db
 Don't Peek/.vs/Don't Peek/v16/.suo
+
+Don't Peek/.vs/
+Don't Peek/x64/
+
