@@ -13,27 +13,27 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Objects">
+      <UniqueIdentifier>{ebd4b5cf-9dbf-4c49-953f-da738fe577b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Interaction">
+      <UniqueIdentifier>{1d456847-7a49-4cc7-a232-ea7798d4de4d}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\Environment">
-      <UniqueIdentifier>{a559542f-c995-4b80-8a5b-1d17b1ce195e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Object">
-      <UniqueIdentifier>{4d52ad85-b694-4494-bde6-83f20f06f212}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Interactions">
-      <UniqueIdentifier>{a8b36d68-2e36-4b9e-b0d5-10a5c8f074e1}</UniqueIdentifier>
+      <UniqueIdentifier>{58528bc4-3748-45b5-974e-42462378cd11}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Levels">
-      <UniqueIdentifier>{bbdd7b45-6831-4b17-88dc-c15c49ec2e01}</UniqueIdentifier>
+      <UniqueIdentifier>{145f7333-551f-4722-9788-59b3964cf770}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Main.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\Collision.cpp">
+      <Filter>Source Files\Interaction</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Main.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="src\Collision.h">
+      <Filter>Source Files\Interaction</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
