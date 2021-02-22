@@ -20,5 +20,5 @@ Technology is prohibited.
 */
 /* End Header **************************************************************************/
 
-#include "main.h"
 #include "Collision.h"
+#include <iostream>
