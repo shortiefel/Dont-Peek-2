@@ -20,3 +20,5 @@ Technology is prohibited.
 */
 /* End Header **************************************************************************/
 #pragma once
+
+#include <AEEngine.h>

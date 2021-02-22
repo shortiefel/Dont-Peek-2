@@ -26,4 +26,14 @@
       <UniqueIdentifier>{145f7333-551f-4722-9788-59b3964cf770}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Collision.cpp">
+      <Filter>Source Files\Interaction</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Collision.h">
+      <Filter>Source Files\Interaction</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>
