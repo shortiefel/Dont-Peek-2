@@ -20,10 +20,5 @@ Technology is prohibited.
 */
 /* End Header **************************************************************************/
 
-<<<<<<< HEAD
 #include "main.h"
 #include "Collision.h"
-=======
-#include "Collision.h"
-#include <iostream>
->>>>>>> Margaret
