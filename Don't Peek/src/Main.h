@@ -1,17 +1,21 @@
 #pragma once
-#pragma once
 
-#ifndef DONTPEEK_MAIN_H_
-#define DONTPEEK_MAIN_H_
+#ifndef GAME_MAIN_H
+#define GAME_MAIN_H
 
-//----------GLOBALS---------
+//-------GLOBALS----------
 
-extern float g_dt; //delta time
+extern float g_dt;
+extern double g_appTime;
 
-//----------INPUTS----------
+///-------INCLUDES-----------
 
 #include <AEEngine.h>
+#include <AEMath.h>
 
+#include "GameStateMgr.h"
+#include "GameStateList.h"
 
+///everyone add your headers here!
 
-#endif // !DONTPEEK_MAIN_H_
+#endif //GAME_MAIN_H
