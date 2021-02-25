@@ -1,0 +1,70 @@
+#include "Main.h"
+
+//-----------GLOBALs-----------
+float g_dt;
+double g_appTime;
+
+/******************************************************************************/
+/*!
+	STARTING POINT OF THE APPLICATION
+*/
+/******************************************************************************/
+int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_line, int show)
+{
+	UNREFERENCED_PARAMETER(prevInstanceH);
+	UNREFERENCED_PARAMETER(command_line);
+
+	//------------INITILIZATION----------------
+	AESysInit(instanceH, show, 1080, 1920, 1, 60, false, NULL);
+	AESysSetWindowTitle("Don't Peek");
+	AEGfxSetBackgroundColor(0.0f, 0.0f, 0.0f);
+
+	//MISSING GAME TIME LOOP----
+
+	GameStateMgrInit(GS_DONT_PEEK);
+	
+	while (gGameStateCurr != GS_QUIT)
+	{
+		//reset system modules
+		AESysReset();
+
+		//if game is not restarting, load gamestate
+		if (gGameStateCurr != GS_RESTART)
+		{
+			GameStateMgrUpdate();
+			GameStateLoad();
+		}
+		else
+			gGameStateNext = gGameStateCurr = gGameStatePrev;
+
+		//Initialize gamestate
+		GameStateInit();
+
+		while (gGameStateCurr == gGameStateNext)
+		{
+			AESysFrameStart();
+			AEInputUpdate();
+			GameStateUpdate();
+			GameStateDraw();
+			AESysFrameEnd();
+
+			//checking if application is being forced to quit
+			if ((AESysDoesWindowExist() == false || AEInputCheckTriggered(AEVK_ESCAPE)))
+			{
+				g_dt = (f32)AEFrameRateControllerGetFrameTime();
+				g_appTime += g_dt;
+			}
+		}
+
+		GameStateFree();
+
+		if (gGameStateNext != GS_RESTART)
+			GameStateUnload();
+
+		gGameStatePrev = gGameStateCurr;
+		gGameStateCurr = gGameStateNext;
+	}
+
+	//freeing the system
+	AESysExit();
+}
