@@ -15,6 +15,7 @@ extern double g_appTime;
 
 #include "GameStateMgr.h"
 #include "GameStateList.h"
+#include "GameState_DontPeek.h"
 
 ///everyone add your headers here!
 

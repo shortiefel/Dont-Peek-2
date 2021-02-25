@@ -25,15 +25,42 @@
     <Filter Include="Source Files\Levels">
       <UniqueIdentifier>{145f7333-551f-4722-9788-59b3964cf770}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Levels\Header">
+      <UniqueIdentifier>{a6025cff-6807-448f-acd3-2d154ee3d800}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Levels\Code">
+      <UniqueIdentifier>{05a23283-a572-408d-b7dd-5d2ae49350b6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Collision.cpp">
       <Filter>Source Files\Interaction</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameStateMgr.cpp">
+      <Filter>Source Files\Levels\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameState_DontPeek.cpp">
+      <Filter>Source Files\Levels\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Collision.h">
       <Filter>Source Files\Interaction</Filter>
+    </ClInclude>
+    <ClInclude Include="Main.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameStateMgr.h">
+      <Filter>Source Files\Levels\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameStateList.h">
+      <Filter>Source Files\Levels\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameState_DontPeek.h">
+      <Filter>Source Files\Levels\Header</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
