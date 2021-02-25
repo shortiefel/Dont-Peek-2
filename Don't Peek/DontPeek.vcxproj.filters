@@ -30,10 +30,25 @@
     <ClCompile Include="src\Collision.cpp">
       <Filter>Source Files\Interaction</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameStateMgr.cpp">
+      <Filter>Source Files\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Collision.h">
       <Filter>Source Files\Interaction</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameStateList.h">
+      <Filter>Source Files\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameStateMgr.h">
+      <Filter>Source Files\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Main.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

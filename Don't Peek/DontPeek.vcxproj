@@ -83,9 +83,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Collision.cpp" />
+    <ClCompile Include="src\GameStateMgr.cpp" />
+    <ClCompile Include="src\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Collision.h" />
+    <ClInclude Include="src\GameStateList.h" />
+    <ClInclude Include="src\GameStateMgr.h" />
+    <ClInclude Include="src\Main.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
