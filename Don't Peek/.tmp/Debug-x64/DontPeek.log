@@ -1,2 +1,9 @@
-﻿  Main.cpp
-  DontPeek.vcxproj -> C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe
+﻿  GameStateMgr.cpp
+  Main.cpp
+C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.h(27,18): error C3646: 'boundingBox': unknown override specifier
+C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.h(27,18): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  Sharpener.cpp
+C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.h(27,18): error C3646: 'boundingBox': unknown override specifier
+C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.h(27,18): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  Generating Code...
+  DontPeek.vcxproj -> C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\\bin\Debug-x64\DontPeek.exe

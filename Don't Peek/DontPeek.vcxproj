@@ -92,12 +92,17 @@
     <ClCompile Include="src\GameStateMgr.cpp" />
     <ClCompile Include="src\GameState_DontPeek.cpp" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\Sharpener.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Collision.h" />
     <ClInclude Include="src\GameStateList.h" />
     <ClInclude Include="src\GameStateMgr.h" />
     <ClInclude Include="src\GameState_DontPeek.h" />
+    <ClInclude Include="src\Sharpener.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\Desktop\drawings\Sharpener_Animation.png" />
     <ClInclude Include="src\Main.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
