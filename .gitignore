@@ -31,6 +31,7 @@
 *.out
 *.app
 *.db
+*.log
 Don't Peek/.vs/Don't Peek/v16/Browse.VC.db
 Don't Peek/.vs/Don't Peek/v16/.suo
 
