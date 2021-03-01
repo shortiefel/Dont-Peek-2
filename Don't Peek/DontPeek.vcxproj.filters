@@ -50,9 +50,6 @@
     <ClInclude Include="src\Collision.h">
       <Filter>Source Files\Interaction</Filter>
     </ClInclude>
-    <ClInclude Include="Main.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\GameStateMgr.h">
       <Filter>Source Files\Levels\Header</Filter>
     </ClInclude>
@@ -61,6 +58,9 @@
     </ClInclude>
     <ClInclude Include="src\GameState_DontPeek.h">
       <Filter>Source Files\Levels\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Main.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

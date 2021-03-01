@@ -94,11 +94,11 @@
     <ClCompile Include="src\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Main.h" />
     <ClInclude Include="src\Collision.h" />
     <ClInclude Include="src\GameStateList.h" />
     <ClInclude Include="src\GameStateMgr.h" />
     <ClInclude Include="src\GameState_DontPeek.h" />
+    <ClInclude Include="src\Main.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,5 +1,4 @@
-#include "Main.h"
-#include "Collision.h"
+#include "GameState_DontPeek.h"
 
 
 /******************************************************************************/

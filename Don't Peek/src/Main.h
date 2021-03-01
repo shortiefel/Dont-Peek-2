@@ -13,10 +13,7 @@ extern double g_appTime;
 #include <AEEngine.h>
 #include <AEMath.h>
 
-#include "GameStateMgr.h"
-#include "GameStateList.h"
-#include "GameState_DontPeek.h"
 
-///everyone add your headers here!
+///pls no add headers
 
 #endif //GAME_MAIN_H
