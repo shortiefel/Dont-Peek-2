@@ -31,6 +31,15 @@
     <Filter Include="Source Files\Levels\Code">
       <UniqueIdentifier>{05a23283-a572-408d-b7dd-5d2ae49350b6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Objects\Sharpener">
+      <UniqueIdentifier>{40642724-69bd-46f4-883f-f5bbf62dbb19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects\Sharpener\Code">
+      <UniqueIdentifier>{083cbbc8-657f-45b9-a57a-345081a62340}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects\Sharpener\Header">
+      <UniqueIdentifier>{8f5d031a-1682-4324-8366-582ec0db37f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Collision.cpp">
@@ -44,6 +53,9 @@
     </ClCompile>
     <ClCompile Include="src\Main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Sharpener.cpp">
+      <Filter>Source Files\Objects\Sharpener\Code</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -62,5 +74,13 @@
     <ClInclude Include="src\GameState_DontPeek.h">
       <Filter>Source Files\Levels\Header</Filter>
     </ClInclude>
+    <ClInclude Include="src\Sharpener.h">
+      <Filter>Source Files\Objects\Sharpener\Header</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\Desktop\drawings\Sharpener_Animation.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
