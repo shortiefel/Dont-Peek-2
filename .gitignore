@@ -40,3 +40,5 @@ Don't Peek/.vs/Don't Peek/v16/.suo
 Don't Peek/.vs/
 Don't Peek/x64/
 
+*.tlog
+*.tlog
