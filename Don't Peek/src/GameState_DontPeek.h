@@ -1,7 +1,6 @@
 #pragma once
-
-#ifndef GAME_STATE_PLAY_H
-#define	GAME_STATE_PLAY_H
+#include "Main.h"
+#include "Collision.h"
 
 /******************************************************************************/
 /*!
@@ -50,5 +49,4 @@ void GameStateDontPeekDraw(void);
 void GameStateDontPeekFree(void);
 void GameStateDontPeekUnload(void);
 
-#endif // !GAME_STATE_PLAY_H
 

@@ -1,8 +1,4 @@
 #pragma once
-
-#ifndef GAME_STATE_LIST_H
-#define GAME_STATE_LIST_H
-
 ///----------GAME STATE LIST---------------
 
 enum 
@@ -15,5 +11,4 @@ enum
 	GS_QUIT,
 	GS_NONE
 };
-#endif // !GAME_STATE_LIST_H
 

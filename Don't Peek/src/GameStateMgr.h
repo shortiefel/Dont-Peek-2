@@ -1,12 +1,10 @@
 #pragma once
 
-#ifndef GAME_STATE_MGR_H
-#define GAME_STATE_MGR_H
-
 //---------HEADERS--------
 
-#include "AEEngine.h"
 #include "GameStateList.h"
+#include "GameState_DontPeek.h"
+#include "Main.h"
 
 
 ///-------------------EXTERNS----------------
@@ -32,5 +30,3 @@ void GameStateMgrInit(unsigned int gameStateInit);
 
 // update is used to set the function pointers
 void GameStateMgrUpdate();
-
-#endif

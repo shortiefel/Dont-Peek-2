@@ -95,7 +95,6 @@
     <ClCompile Include="src\Sharpener.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Main.h" />
     <ClInclude Include="src\Collision.h" />
     <ClInclude Include="src\GameStateList.h" />
     <ClInclude Include="src\GameStateMgr.h" />
@@ -104,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\Desktop\drawings\Sharpener_Animation.png" />
+    <ClInclude Include="src\Main.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

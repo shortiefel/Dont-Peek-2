@@ -1,20 +1,4 @@
-﻿  Collision.cpp
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.h(27,18): error C3646: 'boundingBox': unknown override specifier
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.h(27,18): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-  GameStateMgr.cpp
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.h(27,18): error C3646: 'boundingBox': unknown override specifier
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.h(27,18): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-  GameState_DontPeek.cpp
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.h(27,18): error C3646: 'boundingBox': unknown override specifier
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.h(27,18): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.cpp(42,10): error C2039: 'boundingBox': is not a member of 'GameObjInst'
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.h(25): message : see declaration of 'GameObjInst'
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.cpp(43,10): error C2039: 'boundingBox': is not a member of 'GameObjInst'
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.h(25): message : see declaration of 'GameObjInst'
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.cpp(45,10): error C2039: 'boundingBox': is not a member of 'GameObjInst'
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.h(25): message : see declaration of 'GameObjInst'
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.cpp(46,10): error C2039: 'boundingBox': is not a member of 'GameObjInst'
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.h(25): message : see declaration of 'GameObjInst'
+﻿  GameStateMgr.cpp
   Main.cpp
 C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.h(27,18): error C3646: 'boundingBox': unknown override specifier
 C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.h(27,18): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
@@ -22,3 +6,4 @@ C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_Do
 C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.h(27,18): error C3646: 'boundingBox': unknown override specifier
 C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.h(27,18): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
   Generating Code...
+  DontPeek.vcxproj -> C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\\bin\Debug-x64\DontPeek.exe

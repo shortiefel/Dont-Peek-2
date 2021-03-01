@@ -1,4 +1,6 @@
 #include "Main.h"
+#include "GameState_DontPeek.h"
+#include "GameStateMgr.h"
 
 //-----------GLOBALs-----------
 float g_dt;
