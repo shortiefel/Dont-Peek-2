@@ -1,4 +1,6 @@
 
+#include "Wall.h"
+
 void Tutorial(void)
 {
 	//TODO: code the wall you want
