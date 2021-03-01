@@ -57,6 +57,9 @@
     <ClCompile Include="src\Sharpener.cpp">
       <Filter>Source Files\Objects\Sharpener\Code</Filter>
     </ClCompile>
+    <ClCompile Include="src\Wall.cpp">
+      <Filter>Source Files\Environment</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Collision.h">
@@ -73,6 +76,9 @@
     </ClInclude>
     <ClInclude Include="src\Sharpener.h">
       <Filter>Source Files\Objects\Sharpener\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Wall.h">
+      <Filter>Source Files\Environment</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

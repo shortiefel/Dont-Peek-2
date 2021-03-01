@@ -40,15 +40,6 @@ struct Vec
 	float x, y;
 };
 
-/*
-//Game object structure
-struct GameObj
-{
-	unsigned long		type;		// object type
-	AEGfxVertexList* pMesh;		// This will hold the triangles which will form the shape of the object
-};
-*/
-
 //things needed for walls
 class Wall
 {
@@ -69,7 +60,7 @@ public:
 	bool GetActive();
 	void CreateWall(int count, Wall wallArr[], Vec direction, Vec pos, int type); // creates wall based on how many ya wan
 
-	void Wall_Load(void);
+	//void Wall_Load(void);
 	void Wall_Init(void);
 	void Wall_Render(void);
 	void Wall_Update(void);

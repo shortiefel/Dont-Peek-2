@@ -1,5 +1,6 @@
 
 #include "Wall.h"
+#include "Main.h"
 
 void Tutorial(void)
 {
@@ -28,7 +29,7 @@ void Wall::Wall_Render(void)
 
 void Wall::Wall_Update(void)
 {
-	Wall* wallPointer = NULL;
+	Wall* wallPointer = nullptr;
 	int size = 0;
 
 
@@ -38,8 +39,8 @@ void Wall::Wall_Update(void)
 
 	for (int i = 0; i < size; ++i)
 	{
-		if (wallPointer[i].GetActive() == false)
-			continue;
+		//if (wallPointer[i].GetActive() == false)
+			//continue;
 		wallPointer[i].Wall_Render();
 	}
 }
