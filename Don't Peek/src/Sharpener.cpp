@@ -33,6 +33,7 @@ void sharpener::loadSharpener() {
 	sharpenerObj = sGameObjList + sGameObjNum++;
 	sharpenerObj->type = TYPE_SHARPENER;
 	sharpenerObj->texture = AEGfxTextureLoad("Sharpener_Animation.png"); */
+
 	sharpeners = AEGfxTextureLoad("Sharpener_Animation.png");
 
 	AEGfxVertexList* sharpener = 0;
@@ -49,26 +50,18 @@ void sharpener::loadSharpener() {
 
 	sharpener = AEGfxMeshEnd();
 
+	Position.x = 1.0f * AEGetWindowWidth() / 2;
+	Position.y = 1.0f * AEGetWindowHeight() / 2;
 
 }
 
 
 void sharpener::initSharpener() {
 
-	Position.x = 1.0f * AEGetWindowWidth() / 2;
-	Position.y = 1.0f * AEGetWindowHeight() / 2;
 	Velocity.x = SPEED;
-
-	AEGfxSetPosition(Position.x, Position.y);
-	AEGfxMeshDraw(0, AE_GFX_MDM_TRIANGLES);
 }
 
 void sharpener::updateSharpener() {
-
-	if (AEInputCheckCurr(AEVK_UP))
-	{
-		//?????
-	}
 
 	if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) &&
 		AEInputCheckCurr(AEVK_LEFT)) //[]o player pushing left
@@ -81,6 +74,9 @@ void sharpener::updateSharpener() {
 	{
 		Position.x += Velocity.x;
 	}
+
+	AEGfxSetPosition(Position.x, Position.y);
+	AEGfxMeshDraw(0, AE_GFX_MDM_TRIANGLES);
 
 }
 

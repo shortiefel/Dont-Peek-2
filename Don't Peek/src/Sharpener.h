@@ -25,7 +25,6 @@ struct Sharpener
 {
 	AEVec2 currPos;
 	AEVec2 currVelocity;
-
 };
 
 class sharpener
