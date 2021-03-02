@@ -36,5 +36,5 @@ public:
 	void loadSharpener();
 	void initSharpener();
 	void updateSharpener();
-
+	void unloadSHarpener();
 };
