@@ -21,6 +21,9 @@ Technology is prohibited.
 /* End Header **************************************************************************/
 
 #include "Highlighter.h"
+#include "Sharpener.h"
+
+
 
 void highlighter::loadHighlighter() {
 
@@ -30,6 +33,10 @@ void highlighter::initHighlighter() {
 
 }
 
-void highlighter::updateHighlighter() {
+void highlighter::updateHighlighter() 
+{
+	//IF sharpener has collided
+	//    IF on the left []____
+	velocity.x = SPEED;
 
 }

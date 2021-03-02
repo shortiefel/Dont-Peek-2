@@ -22,13 +22,10 @@ Technology is prohibited.
 
 #include "Sharpener.h"
 
-const float	SPEED = 50.0f;
-AEVec2 sharpenerPos;
-AEVec2 velocity;
+
 
 void sharpener::loadSharpener() {
 
-	AEGfxTexture* image;
 	image = AEGfxTextureLoad("Sharpener_Animation.png");
 
 	AEGfxVertexList* sharpener = 0;

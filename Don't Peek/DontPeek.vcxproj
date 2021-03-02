@@ -91,6 +91,7 @@
     <ClCompile Include="src\Collision.cpp" />
     <ClCompile Include="src\GameStateMgr.cpp" />
     <ClCompile Include="src\GameState_DontPeek.cpp" />
+    <ClCompile Include="src\Highlighter.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Sharpener.cpp" />
     <ClCompile Include="src\Wall.cpp" />
@@ -100,6 +101,7 @@
     <ClInclude Include="src\GameStateList.h" />
     <ClInclude Include="src\GameStateMgr.h" />
     <ClInclude Include="src\GameState_DontPeek.h" />
+    <ClInclude Include="src\Highlighter.h" />
     <ClInclude Include="src\Sharpener.h" />
     <ClInclude Include="src\Wall.h" />
   </ItemGroup>

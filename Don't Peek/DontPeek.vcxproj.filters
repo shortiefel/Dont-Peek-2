@@ -40,6 +40,9 @@
     <Filter Include="Source Files\Objects\Sharpener\Header">
       <UniqueIdentifier>{8f5d031a-1682-4324-8366-582ec0db37f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Objects\Highlighter">
+      <UniqueIdentifier>{31dbd2b4-7f49-48a3-963d-ecef8ffc6700}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Collision.cpp">
@@ -54,11 +57,14 @@
     <ClCompile Include="src\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Wall.cpp">
+      <Filter>Source Files\Environment</Filter>
+    </ClCompile>
     <ClCompile Include="src\Sharpener.cpp">
       <Filter>Source Files\Objects\Sharpener\Code</Filter>
     </ClCompile>
-    <ClCompile Include="src\Wall.cpp">
-      <Filter>Source Files\Environment</Filter>
+    <ClCompile Include="src\Highlighter.cpp">
+      <Filter>Source Files\Objects\Highlighter</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +85,9 @@
     </ClInclude>
     <ClInclude Include="src\Wall.h">
       <Filter>Source Files\Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Highlighter.h">
+      <Filter>Source Files\Objects\Highlighter</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

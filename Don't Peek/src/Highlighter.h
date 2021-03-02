@@ -25,7 +25,7 @@ Technology is prohibited.
 class highlighter
 {
 private:
-
+	const float	SPEED = 100.0f;
 public:
 	void loadHighlighter();
 	void initHighlighter();

@@ -28,13 +28,17 @@ struct Sharpener
 
 };
 
+AEVec2 sharpenerPos;
+AEVec2 velocity;
+AEGfxTexture* image;
+
 class sharpener
 {
 private:
-
+	const float	SPEED = 50.0f;
 public:
 	void loadSharpener();
 	void initSharpener();
 	void updateSharpener();
-	void unloadSHarpener();
+	void unloadSharpener();
 };
