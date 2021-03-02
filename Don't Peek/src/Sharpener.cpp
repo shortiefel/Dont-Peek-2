@@ -46,7 +46,6 @@ void sharpener::loadSharpener() {
 		-30.0f, 30.0f, 0x00000000, 0.0f, 0.0f);
 
 	sharpener = AEGfxMeshEnd();
-	AEGfxTextureUnload(image);
 }
 
 void sharpener::initSharpener() {
@@ -75,4 +74,9 @@ void sharpener::updateSharpener() {
 		sharpenerPos.x += velocity.x;
 	}
 
+}
+
+void sharpener::unloadSharpener() {
+
+	AEGfxTextureUnload(image);
 }
