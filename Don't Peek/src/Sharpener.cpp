@@ -21,20 +21,22 @@ Technology is prohibited.
 /* End Header **************************************************************************/
 
 #include "Sharpener.h"
+#include "GameState_DontPeek.h"
 
-const float	SPEED = 50.0f;
-AEVec2 sharpenerPos;
-AEVec2 velocity;
+AEGfxTexture* sharpeners;
+//GameObj* sharpenerObj;
 
 void sharpener::loadSharpener() {
 
-	AEGfxTexture* image;
-	image = AEGfxTextureLoad("Sharpener_Animation.png");
+	/*memset(sGameObjList, 0, sizeof(GameObj) * GAME_OBJ_NUM_MAX);
+	sGameObjNum = 0;
+	sharpenerObj = sGameObjList + sGameObjNum++;
+	sharpenerObj->type = TYPE_SHARPENER;
+	sharpenerObj->texture = AEGfxTextureLoad("Sharpener_Animation.png"); */
+	sharpeners = AEGfxTextureLoad("Sharpener_Animation.png");
 
 	AEGfxVertexList* sharpener = 0;
 	AEGfxMeshStart();
-
-	//rectangle sharpener (?)
 	AEGfxTriAdd(
 		-30.0f, -30.0f, 0x00000000, 0.0f, 0.0f,
 		45.0f, -30.0f, 0x00000000, 0.0f, 0.0f,
@@ -46,13 +48,19 @@ void sharpener::loadSharpener() {
 		-30.0f, 30.0f, 0x00000000, 0.0f, 0.0f);
 
 	sharpener = AEGfxMeshEnd();
+
+
 }
+
 
 void sharpener::initSharpener() {
 
-	sharpenerPos.x = 1.0f * AEGetWindowWidth() / 2;
-	sharpenerPos.y = 1.0f * AEGetWindowHeight() / 2;
-	velocity.x = SPEED;
+	Position.x = 1.0f * AEGetWindowWidth() / 2;
+	Position.y = 1.0f * AEGetWindowHeight() / 2;
+	Velocity.x = SPEED;
+
+	AEGfxSetPosition(Position.x, Position.y);
+	AEGfxMeshDraw(0, AE_GFX_MDM_TRIANGLES);
 }
 
 void sharpener::updateSharpener() {
@@ -65,18 +73,20 @@ void sharpener::updateSharpener() {
 	if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) &&
 		AEInputCheckCurr(AEVK_LEFT)) //[]o player pushing left
 	{
-		sharpenerPos.x -= velocity.x;
+		Position.x -= Velocity.x;
 	}
 
 	if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) &&
 		AEInputCheckCurr(AEVK_RIGHT)) //o[] player pushing right
 	{
-		sharpenerPos.x += velocity.x;
+		Position.x += Velocity.x;
 	}
 
 }
 
 void sharpener::unloadSharpener() {
 
-	AEGfxTextureUnload(image);
+	/*AEGfxTextureUnload(sharpenerObj->texture);*/
+	AEGfxTextureUnload(sharpeners);
 }
+

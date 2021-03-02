@@ -31,10 +31,15 @@ struct Sharpener
 class sharpener
 {
 private:
+	const float	SPEED = 50.0f;
+	AEVec2 Position;
+	AEVec2 Velocity;
 
 public:
 	void loadSharpener();
 	void initSharpener();
 	void updateSharpener();
-	void unloadSHarpener();
+	void unloadSharpener();
 };
+
+
