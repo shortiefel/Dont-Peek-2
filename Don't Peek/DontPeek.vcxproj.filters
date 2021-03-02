@@ -40,6 +40,15 @@
     <Filter Include="Source Files\Objects\Sharpener\Header">
       <UniqueIdentifier>{8f5d031a-1682-4324-8366-582ec0db37f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Objects\Door">
+      <UniqueIdentifier>{e9278e22-e847-4bfa-bf46-6f01584a80d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects\Door\Code">
+      <UniqueIdentifier>{50dea55d-8c3f-479b-be7a-818e22f75d09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects\Door\Header">
+      <UniqueIdentifier>{1d98fc5e-a70d-482c-94f1-219ef58568da}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Collision.cpp">
@@ -60,6 +69,9 @@
     <ClCompile Include="src\Wall.cpp">
       <Filter>Source Files\Environment</Filter>
     </ClCompile>
+    <ClCompile Include="src\Door.cpp">
+      <Filter>Source Files\Objects\Door\Code</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Collision.h">
@@ -79,6 +91,9 @@
     </ClInclude>
     <ClInclude Include="src\Wall.h">
       <Filter>Source Files\Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Door.h">
+      <Filter>Source Files\Objects\Door\Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

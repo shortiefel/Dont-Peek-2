@@ -12,3 +12,4 @@ enum
 	GS_NONE
 };
 
+
