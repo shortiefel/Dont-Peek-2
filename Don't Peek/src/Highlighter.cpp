@@ -21,3 +21,15 @@ Technology is prohibited.
 /* End Header **************************************************************************/
 
 #include "Highlighter.h"
+
+void highlighter::loadHighlighter() {
+
+}
+
+void highlighter::initHighlighter() {
+
+}
+
+void highlighter::updateHighlighter() {
+
+}

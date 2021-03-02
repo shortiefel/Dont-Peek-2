@@ -21,3 +21,14 @@ Technology is prohibited.
 /* End Header **************************************************************************/
 
 #include "Main.h"
+
+class highlighter
+{
+private:
+
+public:
+	void loadHighlighter();
+	void initHighlighter();
+	void updateHighlighter();
+
+};
