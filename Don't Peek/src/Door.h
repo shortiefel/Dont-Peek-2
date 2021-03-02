@@ -20,12 +20,13 @@ Technology is prohibited.
 */
 /* End Header **************************************************************************/
 #pragma once
-
-class sharpener
+#include "Main.h"
+class Door
 {
 private:
-
+	AEVec2 currPos;
 public:
+	
 	void LoadDoor();
 	void InitDoor();
 	void UpdateDoor();
