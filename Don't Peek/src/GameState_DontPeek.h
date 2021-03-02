@@ -21,12 +21,21 @@ const unsigned long FLAG_ACTIVE = 0x00000001;
 	STRUCTS AND CLASS DEFINITIONS
 */
 /******************************************************************************/
+struct GameObj
+{
+	unsigned long		type;		// object type
+	AEGfxVertexList* pMesh;		// This will hold the triangles which will form the shape of the object
+};
+
 struct GameObjInst
 {
-	AABB boundingBox;// object bouding box that encapsulates the object
+	GameObj*			pObject;	// pointer to the 'original' shape
+	AABB				boundingBox;	// object bouding box that encapsulates the object
 	AEMtx33				transform;	// object transformation matrix: Each frame, 
 	float				scale;		// scaling value of the object instance
 	AEVec2				posCurr;	// object current position
+	AEVec2				velCurr;	// obj velocity
+	float				dirCurr;	// object current direction
 
 };
 
