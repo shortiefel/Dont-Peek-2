@@ -49,6 +49,15 @@
     <Filter Include="Source Files\Objects\Door\Header">
       <UniqueIdentifier>{1d98fc5e-a70d-482c-94f1-219ef58568da}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Objects\Player">
+      <UniqueIdentifier>{c8068fd0-222d-4ef2-b02f-6c2983e39ba6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects\Player\Header">
+      <UniqueIdentifier>{70c17535-70ff-4ff7-99b0-f7ac3195bfee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects\Player\Code">
+      <UniqueIdentifier>{711a7d40-e691-4d4f-85d8-490528ab5b8a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Collision.cpp">
@@ -72,6 +81,9 @@
     <ClCompile Include="src\Door.cpp">
       <Filter>Source Files\Objects\Door\Code</Filter>
     </ClCompile>
+    <ClCompile Include="src\Player.cpp">
+      <Filter>Source Files\Objects\Player\Code</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Collision.h">
@@ -94,6 +106,9 @@
     </ClInclude>
     <ClInclude Include="src\Door.h">
       <Filter>Source Files\Objects\Door\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Player.h">
+      <Filter>Source Files\Objects\Player\Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
