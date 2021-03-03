@@ -36,6 +36,7 @@ struct GameObjInst
 	AEVec2				posCurr;	// object current position
 	AEVec2				velCurr;	// obj velocity
 	float				dirCurr;	// object current direction
+	unsigned long		flag;		// bit flag or-ed together
 
 };
 
@@ -49,6 +50,15 @@ struct GameObjInst
 /******************************************************************************/
 static GameObjInst			sGameObjInstList[GAME_OBJ_INST_NUM_MAX];	// Each element in this array represents a unique game object instance (sprite)
 static unsigned long		sGameObjInstNum;
+
+// list of original object
+static GameObj				sGameObjList[GAME_OBJ_NUM_MAX];				// Each element in this array represents a unique game object (shape)
+static unsigned long		sGameObjNum;								// The number of defined game objects
+
+GameObjInst* gameObjInstCreate(unsigned long type, float scale,
+	AEVec2* pPos, AEVec2* pVel, float dir);
+void				gameObjInstDestroy(GameObjInst* pInst);
+
 
 
 void GameStateDontPeekLoad(void);

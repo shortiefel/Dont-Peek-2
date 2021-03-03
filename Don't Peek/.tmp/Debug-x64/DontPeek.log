@@ -1,7 +1,8 @@
-﻿  GameStateMgr.cpp
-  GameState_DontPeek.cpp
-  Main.cpp
-  Sharpener.cpp
+﻿  GameState_DontPeek.cpp
+C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.cpp(18,2): error C3861: 'Wall_Load': identifier not found
+C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.cpp(28,2): error C3861: 'Wall_Init': identifier not found
+C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.cpp(38,2): error C3861: 'Wall_Update': identifier not found
+C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.cpp(58,2): error C3861: 'Wall_Render': identifier not found
+C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.cpp(68,2): error C3861: 'Wall_Exit': identifier not found
   Wall.cpp
   Generating Code...
-  DontPeek.vcxproj -> C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\\bin\Debug-x64\DontPeek.exe
