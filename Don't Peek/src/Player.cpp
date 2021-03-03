@@ -13,9 +13,7 @@ GameObj* pObj2;
 
 void Player::Player_Character() //drawing of character
 {
-	//memset(sGameObjList, 0, sizeof(GameObj) * GAME_OBJ_INST_NUM_MAX);
-	//no game object at this point
-	sGameObjNum = 0;
+	
 	pObj2 = sGameObjList + sGameObjNum++;
 	pObj2->type = TYPE_PLAYER;
 

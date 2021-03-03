@@ -13,7 +13,7 @@ GameObjInst* gameObjInstCreate(unsigned long type, float scale,
 	AEVec2* pPos, AEVec2* pVel, float dir);
 void gameObjInstDestroy(GameObjInst* pInst);
 Door door;
-
+Player player;
 /******************************************************************************/
 /*!
 	"LOAD" FUNCTION OF THE STATE
@@ -26,7 +26,6 @@ void GameStateDontPeekLoad(void)
 	sGameObjNum = 0;
 	door.LoadDoor();
 
-	Player player;
 	player.Player_Character();
 
 
@@ -92,6 +91,7 @@ void GameStateDontPeekDraw(void)
 		AEGfxMeshDraw(pInst->pObject->pMesh, AE_GFX_MDM_TRIANGLES);
 	}*/
 	door.DrawDoor();
+	player.Player_Draw();
 
 }
 
