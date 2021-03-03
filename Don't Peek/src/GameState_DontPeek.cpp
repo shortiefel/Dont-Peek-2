@@ -12,6 +12,8 @@ GameObjInst* gameObjInstCreate(unsigned long type, float scale,
 	AEVec2* pPos, AEVec2* pVel, float dir);
 void gameObjInstDestroy(GameObjInst* pInst);
 
+Door door;
+
 /******************************************************************************/
 /*!
 	"LOAD" FUNCTION OF THE STATE
@@ -19,7 +21,6 @@ void gameObjInstDestroy(GameObjInst* pInst);
 /******************************************************************************/
 void GameStateDontPeekLoad(void)
 {
-	Door door;
 	door.LoadDoor();
 
 }
@@ -31,7 +32,7 @@ void GameStateDontPeekLoad(void)
 /******************************************************************************/
 void GameStateDontPeekInit(void)
 {
-
+	door.InitDoor();
 }
 
 /******************************************************************************/
@@ -119,6 +120,8 @@ GameObjInst* gameObjInstCreate(unsigned long type,
 			pInst->posCurr = pPos ? *pPos : zero;
 			pInst->velCurr = pVel ? *pVel : zero;
 			pInst->dirCurr = dir;
+
+
 
 			// return the newly created instance
 			return pInst;

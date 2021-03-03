@@ -48,9 +48,10 @@ void Door::LoadDoor()
 	AE_ASSERT_MESG(pObj->pMesh, "fail to create object!!");
 
 }
-void InitDoor()
+void Door::InitDoor()
 {
-	
+	Doorpos.x = 5;
+	Doorpos.y = 5;
 }
 void UpdateDoor()
 {

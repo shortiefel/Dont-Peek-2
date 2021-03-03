@@ -24,7 +24,7 @@ Technology is prohibited.
 class Door
 {
 private:
-	AEVec2 currPos;
+	AEVec2 Doorpos;
 public:
 	
 	void LoadDoor();
