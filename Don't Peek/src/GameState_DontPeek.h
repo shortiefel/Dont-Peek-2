@@ -11,6 +11,19 @@
 const unsigned int	GAME_OBJ_NUM_MAX = 32;			//The total number of different objects (Shapes)
 const unsigned int	GAME_OBJ_INST_NUM_MAX = 2048;			//The total number of different game object instances
 
+
+enum TYPE
+{
+	// list of game object types
+	TYPE_SHARPENER = 0,
+
+	TYPE_HIGHLIGHTER,
+	TYPE_ERASER,
+	TYPE_PENCIL,
+	TYPE_DOOR,
+
+	TYPE_NUM
+};
 // -----------------------------------------------------------------------------
 // object flag definition
 
@@ -25,11 +38,13 @@ struct GameObj
 {
 	unsigned long		type;		// object type
 	AEGfxVertexList* pMesh;		// This will hold the triangles which will form the shape of the object
+	AEGfxTexture* texture;
 };
 
 struct GameObjInst
 {
-	GameObj*			pObject;	// pointer to the 'original' shape
+	GameObj* pObject;	// pointer to the 'original' shape
+	unsigned long		flag;
 	AABB				boundingBox;	// object bouding box that encapsulates the object
 	AEMtx33				transform;	// object transformation matrix: Each frame, 
 	float				scale;		// scaling value of the object instance
@@ -42,11 +57,17 @@ struct GameObjInst
 
 
 
+
+
 /******************************************************************************/
 /*!
 	STATIC VARIABLES
 */
 /******************************************************************************/
+// list of original object
+static GameObj				sGameObjList[GAME_OBJ_NUM_MAX];				// Each element in this array represents a unique game object (shape)
+static unsigned long		sGameObjNum;
+
 static GameObjInst			sGameObjInstList[GAME_OBJ_INST_NUM_MAX];	// Each element in this array represents a unique game object instance (sprite)
 static unsigned long		sGameObjInstNum;
 
@@ -57,5 +78,3 @@ void GameStateDontPeekUpdate(void);
 void GameStateDontPeekDraw(void);
 void GameStateDontPeekFree(void);
 void GameStateDontPeekUnload(void);
-
-

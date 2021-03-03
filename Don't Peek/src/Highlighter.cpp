@@ -37,6 +37,6 @@ void highlighter::updateHighlighter()
 {
 	//IF sharpener has collided
 	//    IF on the left []____
-	velocity.x = SPEED;
+	//velocity.x = SPEED;
 
 }
