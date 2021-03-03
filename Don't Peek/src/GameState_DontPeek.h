@@ -8,7 +8,7 @@
 */
 /******************************************************************************/
 
-const unsigned int	GAME_OBJ_NUM_MAX = 32;			//The total number of different objects (Shapes)
+const unsigned int	GAME_OBJ_NUM_MAX = 32;					//The total number of different objects (Shapes)
 const unsigned int	GAME_OBJ_INST_NUM_MAX = 2048;			//The total number of different game object instances
 
 

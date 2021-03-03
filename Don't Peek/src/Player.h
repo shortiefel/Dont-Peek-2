@@ -24,7 +24,6 @@ class Player
 public:
 	void Player_Character();
 	void Player_Movement();
-	void Player_Collision();
 	void Player_Init();
 	void Player_Update();
 	void Player_Exit();
