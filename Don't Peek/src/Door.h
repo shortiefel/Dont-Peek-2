@@ -29,7 +29,7 @@ public:
 	
 	void LoadDoor();
 	AEVec2 InitDoor();
-	void UpdateDoor();
+	void DrawDoor();
 	void ExitDoor();
 
 };
