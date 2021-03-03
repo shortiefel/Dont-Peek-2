@@ -1,2 +1,10 @@
-﻿  GameState_DontPeek.cpp
+﻿  Collision.cpp
+  Door.cpp
+  GameStateMgr.cpp
+  GameState_DontPeek.cpp
+  Main.cpp
+  Player.cpp
+  Sharpener.cpp
+  Wall.cpp
+  Generating Code...
   DontPeek.vcxproj -> C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe

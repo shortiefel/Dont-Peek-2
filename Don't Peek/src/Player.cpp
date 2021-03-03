@@ -74,6 +74,7 @@ void Player::Player_Draw()
 void Player::Player_Init()
 {
 	Velocity.x = SPEED;
+	Velocity.y = SPEED;
 	Position.x = 40.0f;
 	Position.y = -50.f;
 	
@@ -90,6 +91,15 @@ void Player::Player_Update()
 	{
 		Position.x += Velocity.x;
 	}
+	if (AEInputCheckCurr(AEVK_DOWN))
+	{
+		Position.y -= Velocity.y;
+	}
+	if (AEInputCheckCurr(AEVK_UP))
+	{
+		Position.y += Velocity.y;
+	}
+
 
 
 }
