@@ -9,16 +9,16 @@
 */
 /******************************************************************************/
 
-GameObj* pObj;
+GameObj* pObj2;
 
 void Player::Player_Character() //drawing of character
 {
 	memset(sGameObjList, 0, sizeof(GameObj) * GAME_OBJ_INST_NUM_MAX);
 	//no game object at this point
 	sGameObjNum = 0;
-	pObj = sGameObjList + sGameObjNum++;
-	pObj->type = TYPE_PLAYER;
-	pObj->texture = AEGfxTextureLoad("Player.png");
+	pObj2 = sGameObjList + sGameObjNum++;
+	pObj2->type = TYPE_PLAYER;
+	pObj2->texture = AEGfxTextureLoad("Player.png");
 
 
 	//Drawing of Player
@@ -33,8 +33,8 @@ void Player::Player_Character() //drawing of character
 		45.0f, 30.0f, 0x00000000, 0.0f, 0.0f,
 		-30.0f, 30.0f, 0x00000000, 0.0f, 0.0f);
 
-	pObj->pMesh = AEGfxMeshEnd();
-	AE_ASSERT_MESG(pObj->pMesh, "fail to create object!!");
+	pObj2->pMesh = AEGfxMeshEnd();
+	AE_ASSERT_MESG(pObj2->pMesh, "fail to create object!!");
 
 	
 }
