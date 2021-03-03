@@ -12,6 +12,7 @@
 GameObjInst* gameObjInstCreate(unsigned long type, float scale,
 	AEVec2* pPos, AEVec2* pVel, float dir);
 void gameObjInstDestroy(GameObjInst* pInst);
+Door door;
 
 /******************************************************************************/
 /*!
@@ -20,8 +21,9 @@ void gameObjInstDestroy(GameObjInst* pInst);
 /******************************************************************************/
 void GameStateDontPeekLoad(void)
 {
-	//---------Object Loading---------
-	Door door;
+	memset(sGameObjList, 0, sizeof(GameObj) * GAME_OBJ_NUM_MAX);
+	// No game objects (shapes) at this point
+	sGameObjNum = 0;
 	door.LoadDoor();
 
 	Player player;
@@ -89,7 +91,7 @@ void GameStateDontPeekDraw(void)
 		//drawing of shap using current object instance
 		AEGfxMeshDraw(pInst->pObject->pMesh, AE_GFX_MDM_TRIANGLES);
 	}*/
-
+	door.DrawDoor();
 
 }
 
