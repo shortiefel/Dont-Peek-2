@@ -28,7 +28,7 @@ private:
 public:
 	
 	void LoadDoor();
-	void InitDoor();
+	AEVec2 InitDoor();
 	void UpdateDoor();
 	void ExitDoor();
 

@@ -21,6 +21,9 @@ Door door;
 /******************************************************************************/
 void GameStateDontPeekLoad(void)
 {
+	memset(sGameObjList, 0, sizeof(GameObj) * GAME_OBJ_NUM_MAX);
+	// No game objects (shapes) at this point
+	sGameObjNum = 0;
 	door.LoadDoor();
 
 }
@@ -32,7 +35,8 @@ void GameStateDontPeekLoad(void)
 /******************************************************************************/
 void GameStateDontPeekInit(void)
 {
-	door.InitDoor();
+	AEVec2 a = door.InitDoor();
+	gameObjInstCreate(TYPE_DOOR, 10, &a, 0, 0.0f);
 }
 
 /******************************************************************************/
@@ -52,6 +56,7 @@ void GameStateDontPeekUpdate(void)
 		pInst->boundingBox.max.x = pInst->posCurr.x + pInst->scale * 0.5f;
 		pInst->boundingBox.max.y = pInst->posCurr.y + pInst->scale * 0.5f;
 	}
+
 }
 
 /******************************************************************************/

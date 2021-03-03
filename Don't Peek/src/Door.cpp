@@ -27,9 +27,6 @@ GameObj* pObj;
 
 void Door::LoadDoor()
 {
-	memset(sGameObjList, 0, sizeof(GameObj) * GAME_OBJ_NUM_MAX);
-	// No game objects (shapes) at this point
-	sGameObjNum = 0;
 	pObj = sGameObjList + sGameObjNum++;
 	pObj->type = TYPE_DOOR;
 
@@ -48,10 +45,11 @@ void Door::LoadDoor()
 	AE_ASSERT_MESG(pObj->pMesh, "fail to create object!!");
 
 }
-void Door::InitDoor()
+AEVec2 Door::InitDoor()
 {
 	Doorpos.x = 5;
 	Doorpos.y = 5;
+	return Doorpos;
 }
 void UpdateDoor()
 {
