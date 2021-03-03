@@ -25,7 +25,7 @@ void GameStateDontPeekLoad(void)
 	door.LoadDoor();
 
 	Player player;
-	player.Player_Init();
+	player.Player_Character();
 
 
 
@@ -38,6 +38,8 @@ void GameStateDontPeekLoad(void)
 /******************************************************************************/
 void GameStateDontPeekInit(void)
 {
+	Player player;
+	player.Player_Character();
 
 }
 

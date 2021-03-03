@@ -1,13 +1,2 @@
-﻿  Door.cpp
-  GameStateMgr.cpp
-  GameState_DontPeek.cpp
-  Main.cpp
-  Player.cpp
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Player.cpp(44,19): warning C4127: conditional expression is constant
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Player.cpp(49,24): warning C4127: conditional expression is constant
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Player.cpp(54,24): warning C4127: conditional expression is constant
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Player.cpp(59,25): warning C4127: conditional expression is constant
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Player.cpp(64,43): warning C4127: conditional expression is constant
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Player.cpp(68,41): warning C4127: conditional expression is constant
-  Generating Code...
+﻿  GameState_DontPeek.cpp
   DontPeek.vcxproj -> C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe
