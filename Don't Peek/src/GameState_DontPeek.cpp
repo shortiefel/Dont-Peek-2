@@ -69,7 +69,7 @@ void GameStateDontPeekUpdate(void)
 /******************************************************************************/
 void GameStateDontPeekDraw(void)
 {
-	char strBuffer[1024];
+	/*char strBuffer[1024];
 
 	AEGfxSetRenderMode(AE_GFX_RM_COLOR);
 	AEGfxTextureSet(NULL, 0, 0);
@@ -88,7 +88,9 @@ void GameStateDontPeekDraw(void)
 
 		//drawing of shap using current object instance
 		AEGfxMeshDraw(pInst->pObject->pMesh, AE_GFX_MDM_TRIANGLES);
-	}
+	}*/
+
+
 }
 
 /******************************************************************************/
