@@ -1,5 +1,6 @@
 #include "GameState_DontPeek.h"
 #include "Door.h"
+#include "Sharpener.h"
 
 
 /******************************************************************************/
@@ -12,6 +13,7 @@ GameObjInst* gameObjInstCreate(unsigned long type, float scale,
 	AEVec2* pPos, AEVec2* pVel, float dir);
 void gameObjInstDestroy(GameObjInst* pInst);
 
+Sharpener sharpener;
 /******************************************************************************/
 /*!
 	"LOAD" FUNCTION OF THE STATE
@@ -19,8 +21,13 @@ void gameObjInstDestroy(GameObjInst* pInst);
 /******************************************************************************/
 void GameStateDontPeekLoad(void)
 {
-	Door door;
-	door.LoadDoor();
+	memset(sGameObjList, 0, sizeof(GameObj) * GAME_OBJ_NUM_MAX);
+	// No game objects (shapes) at this point
+	sGameObjNum = 0;
+
+	sharpener.loadSharpener();
+
+
 
 }
 
@@ -31,7 +38,7 @@ void GameStateDontPeekLoad(void)
 /******************************************************************************/
 void GameStateDontPeekInit(void)
 {
-
+	sharpener.initSharpener();
 }
 
 /******************************************************************************/
@@ -51,6 +58,7 @@ void GameStateDontPeekUpdate(void)
 		pInst->boundingBox.max.x = pInst->posCurr.x + pInst->scale * 0.5f;
 		pInst->boundingBox.max.y = pInst->posCurr.y + pInst->scale * 0.5f;
 	}
+	sharpener.updateSharpener();
 }
 
 /******************************************************************************/
@@ -60,7 +68,7 @@ void GameStateDontPeekUpdate(void)
 /******************************************************************************/
 void GameStateDontPeekDraw(void)
 {
-
+	sharpener.drawSharpener();
 }
 
 /******************************************************************************/
@@ -70,6 +78,15 @@ void GameStateDontPeekDraw(void)
 /******************************************************************************/
 void GameStateDontPeekFree(void)
 {
+	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
+	{
+		GameObjInst* pInst = sGameObjInstList + i;
+
+		//ignoring non-active object
+		if ((pInst->flag & FLAG_ACTIVE) == 0)
+			continue;
+		gameObjInstDestroy(pInst);
+	}
 
 }
 
@@ -80,6 +97,12 @@ void GameStateDontPeekFree(void)
 /******************************************************************************/
 void GameStateDontPeekUnload(void)
 {
+	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
+	{
+		GameObj* Objects = sGameObjList + i;
+		if (Objects->pMesh)
+			AEGfxMeshFree(Objects->pMesh);
+	}
 
 }
 

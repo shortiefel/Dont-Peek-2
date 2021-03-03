@@ -23,16 +23,16 @@ Technology is prohibited.
 #include "Main.h"
 #include "AEVec2.h"
 //#include "AEInput.h"
-struct Sharpener
-{
-	AEVec2 currPos;
-	AEVec2 currVelocity;
-};
+//struct Sharpener
+//{
+//	AEVec2 currPos;
+//	AEVec2 currVelocity;
+//};
 
-class sharpener
+class Sharpener
 {
 private:
-	const float	SPEED = 50.0f;
+	const float	SPEED = 10.0f;
 	AEVec2 Position;
 	AEVec2 Velocity;
 
