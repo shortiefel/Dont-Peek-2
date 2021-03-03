@@ -1,3 +1,10 @@
-﻿  GameState_DontPeek.cpp
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.cpp(72,7): warning C4101: 'strBuffer': unreferenced local variable
+﻿  Player.cpp
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Player.cpp(45,19): warning C4127: conditional expression is constant
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Player.cpp(50,24): warning C4127: conditional expression is constant
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Player.cpp(55,24): warning C4127: conditional expression is constant
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Player.cpp(60,25): warning C4127: conditional expression is constant
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Player.cpp(65,43): warning C4127: conditional expression is constant
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Player.cpp(69,41): warning C4127: conditional expression is constant
+  Wall.cpp
+  Generating Code...
   DontPeek.vcxproj -> C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe
