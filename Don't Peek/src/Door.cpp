@@ -27,33 +27,47 @@ GameObj* pObj;
 
 void Door::LoadDoor()
 {
-	memset(sGameObjList, 0, sizeof(GameObj) * GAME_OBJ_NUM_MAX);
-	// No game objects (shapes) at this point
-	sGameObjNum = 0;
 	pObj = sGameObjList + sGameObjNum++;
 	pObj->type = TYPE_DOOR;
 
-	pObj->texture = AEGfxTextureLoad("Door.png");
 	AEGfxMeshStart();
 	AEGfxTriAdd(
-		-30.0f, -30.0f, 0x00000000, 0.0f, 0.0f,
-		45.0f, -30.0f, 0x00000000, 0.0f, 0.0f,
+		-30.0f, -30.0f, 0x00000000, 0.0f, 1.0f,
+		45.0f, -30.0f, 0x00000000, 1.0f, 1.0f,
 		-30.0f, 30.0f, 0x00000000, 0.0f, 0.0f);
 
 	AEGfxTriAdd(
-		45.0f, -30.0f, 0x00000000, 0.0f, 0.0f,
-		45.0f, 30.0f, 0x00000000, 0.0f, 0.0f,
+		45.0f, -30.0f, 0x00000000, 1.0f, 1.0f,
+		45.0f, 30.0f, 0x00000000, 1.0f, 0.0f,
 		-30.0f, 30.0f, 0x00000000, 0.0f, 0.0f);
 	pObj->pMesh = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pObj->pMesh, "fail to create object!!");
 
+	pObj->texture = AEGfxTextureLoad("Resources/Sharpener_Animation.png");
+	AE_ASSERT_MESG(pObj->texture, "Failed to create texture1!!");
+
 }
-void InitDoor()
+AEVec2 Door::InitDoor()
 {
-	
+	Doorpos.x = 5;
+	Doorpos.y = 5;
+	return Doorpos;
 }
-void UpdateDoor()
+void Door::DrawDoor()
 {
+	// Drawing object 2 - (first) - No tint
+	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
+	// Set position for object 2
+	AEGfxSetPosition(100.0f, -60.0f);
+	// No tint
+	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
+
+	AEGfxTextureSet(pObj->texture, 0, 0);		// Same object, different texture
+
+	// Drawing the mesh (list of triangles)
+	AEGfxMeshDraw(pObj->pMesh, AE_GFX_MDM_TRIANGLES);
+	// Set Transparency
+	AEGfxSetTransparency(1.0f);
 
 }
 void ExitDoor()
