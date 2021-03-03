@@ -1,12 +1,10 @@
-﻿  GameState_DontPeek.cpp
-C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.cpp(42,15): warning C4459: declaration of 'player' hides global declaration
-C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.cpp(16,8): message : see declaration of 'player'
+﻿  Door.cpp
+  GameStateMgr.cpp
+  GameState_DontPeek.cpp
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.cpp(45,15): warning C4459: declaration of 'player' hides global declaration
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.cpp(19,8): message : see declaration of 'player'
+  Main.cpp
   Player.cpp
-C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Player.cpp(43,19): warning C4127: conditional expression is constant
-C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Player.cpp(48,24): warning C4127: conditional expression is constant
-C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Player.cpp(53,24): warning C4127: conditional expression is constant
-C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Player.cpp(58,25): warning C4127: conditional expression is constant
-C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Player.cpp(63,43): warning C4127: conditional expression is constant
-C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Player.cpp(67,41): warning C4127: conditional expression is constant
+  Wall.cpp
   Generating Code...
-  DontPeek.vcxproj -> C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe
+  DontPeek.vcxproj -> C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe

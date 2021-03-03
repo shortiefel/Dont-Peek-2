@@ -9,7 +9,10 @@
 */
 /******************************************************************************/
 
+
+
 GameObj* pObj2;
+static GameObjInst* player;
 
 void Player::Player_Character() //drawing of character
 {
@@ -21,14 +24,14 @@ void Player::Player_Character() //drawing of character
 	//Drawing of Player
 	AEGfxMeshStart();
 	AEGfxTriAdd(
-		-30.0f, -30.0f, 0x00000000, 0.0f, 1.0f,
-		45.0f, -30.0f, 0x00000000, 1.0f, 1.0f,
-		-30.0f, 30.0f, 0x00000000, 0.0f, 0.0f);
+		-60.0f, -60.0f, 0x00000000, 0.0f, 1.0f,
+		100.0f, -60.0f, 0x00000000, 1.0f, 1.0f,
+		-60.0f, 60.0f, 0x00000000, 0.0f, 0.0f);
 
 	AEGfxTriAdd(
-		45.0f, -30.0f, 0x00000000, 1.0f, 1.0f,
-		45.0f, 30.0f, 0x00000000, 1.0f, 0.0f,
-		-30.0f, 30.0f, 0x00000000, 0.0f, 0.0f);
+		100.0f, -60.0f, 0x00000000, 1.0f, 1.0f,
+		100.0f, 60.0f, 0x00000000, 1.0f, 0.0f,
+		-60.0f, 60.0f, 0x00000000, 0.0f, 0.0f);
 	pObj2->pMesh = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pObj2->pMesh, "fail to create object!!");
 
@@ -38,38 +41,17 @@ void Player::Player_Character() //drawing of character
 	
 }
 
-void Player::Player_Movement()
-{
-	if (Movement_Down)
-	{
-		Velocity.x = 0;
-		Velocity.y = 1;
-	}
-	else if (Movement_Jump)
-	{
-		Velocity.x = 0;
-		Velocity.y = -1;
-	}
-	else if (Movement_Left)
-	{
-		Velocity.x = -1;
-		Velocity.y = 0;
-	}
-	else if (Movement_Right)
-	{
-		Velocity.x = 1;
-		Velocity.y = 0;
-	}
-	else if (Movement_Slide && Movement_Right)
-	{
-		//call for shaperner
-	}
-	else if (Movement_Slide & Movement_Left)
-	{
-		//call for sharpner
-	}
+//void Player::Player_Movement()
+//{
+//	if (isPlayerAlive == TRUE && isPlayerWin == FALSE)
+//	{
+//		player->velCurr.y += 3.0f * g_dt; //constant gravity for falling 
+//		player->velCurr.x = player->velCurr.x * Speed * 1.25f * 100.0f;
+//		player->velCurr.y = player->velCurr.y * Speed * 1.25f * 100.f;
+//		Speed_Overall = (player->velCurr.x, player->velCurr.y);
+//	}
+//}
 
-}
 
 void Player::Player_Draw()
 {
@@ -91,17 +73,25 @@ void Player::Player_Draw()
 
 void Player::Player_Init()
 {
+	Velocity.x = SPEED;
+	Position.x = 40.0f;
+	Position.y = -50.f;
 	
-	//setting player position, velocity
-	Position.x = 10;
-	Position.y = 10;
-	Velocity.x = 0;
-	Velocity.y = 0;
 	
 }
 
 void Player::Player_Update()
 {
+	if (AEInputCheckCurr(Movement_Left))
+	{
+		Position.x -= Velocity.x;
+	}
+	if (AEInputCheckCurr(Movement_Right))
+	{
+		Position.x += Velocity.x;
+	}
+
+
 }
 
 void Player::Player_Exit()

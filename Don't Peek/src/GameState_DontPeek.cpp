@@ -9,9 +9,12 @@
 */
 /******************************************************************************/
 
+
 GameObjInst* gameObjInstCreate(unsigned long type, float scale,
 	AEVec2* pPos, AEVec2* pVel, float dir);
 void gameObjInstDestroy(GameObjInst* pInst);
+
+//individual classes
 Door door;
 Player player;
 /******************************************************************************/
@@ -61,6 +64,8 @@ void GameStateDontPeekUpdate(void)
 		pInst->boundingBox.max.x = pInst->posCurr.x + pInst->scale * 0.5f;
 		pInst->boundingBox.max.y = pInst->posCurr.y + pInst->scale * 0.5f;
 	}
+
+	player.Player_Update();
 }
 
 /******************************************************************************/
