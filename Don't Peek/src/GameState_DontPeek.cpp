@@ -69,7 +69,26 @@ void GameStateDontPeekUpdate(void)
 /******************************************************************************/
 void GameStateDontPeekDraw(void)
 {
+	char strBuffer[1024];
 
+	AEGfxSetRenderMode(AE_GFX_RM_COLOR);
+	AEGfxTextureSet(NULL, 0, 0);
+
+	//draw all object instances in the list
+	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
+	{
+		GameObjInst* pInst = sGameObjInstList + i;
+
+		//skipping of non-active object
+		if ((pInst->flag & FLAG_ACTIVE) == 0)
+			continue;
+
+		//Setting current object instance's transform matrix 
+		AEGfxSetTransform(pInst->transform.m);
+
+		//drawing of shap using current object instance
+		AEGfxMeshDraw(pInst->pObject->pMesh, AE_GFX_MDM_TRIANGLES);
+	}
 }
 
 /******************************************************************************/
@@ -79,7 +98,16 @@ void GameStateDontPeekDraw(void)
 /******************************************************************************/
 void GameStateDontPeekFree(void)
 {
+	//killing all object instances in the array 
+	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
+	{
+		GameObjInst* pInst = sGameObjInstList + i;
 
+		//ignoring non-active object
+		if ((pInst->flag & FLAG_ACTIVE) == 0)
+			continue;
+		gameObjInstDestroy(pInst);
+	}
 }
 
 /******************************************************************************/
@@ -89,7 +117,13 @@ void GameStateDontPeekFree(void)
 /******************************************************************************/
 void GameStateDontPeekUnload(void)
 {
-
+	//freeing all mesh data of each object
+	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
+	{
+		GameObj* Objects = sGameObjList + i;
+		if (Objects->pMesh)
+			AEGfxMeshFree(Objects->pMesh);
+	}
 }
 
 void gameObjInstDestroy(GameObjInst* pInst)
