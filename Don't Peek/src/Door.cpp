@@ -32,18 +32,18 @@ void Door::LoadDoor()
 
 	AEGfxMeshStart();
 	AEGfxTriAdd(
-		-30.0f, -30.0f, 0x00000000, 0.0f, 0.0f,
-		45.0f, -30.0f, 0x00000000, 0.0f, 0.0f,
+		-30.0f, -30.0f, 0x00000000, 0.0f, 1.0f,
+		45.0f, -30.0f, 0x00000000, 1.0f, 1.0f,
 		-30.0f, 30.0f, 0x00000000, 0.0f, 0.0f);
 
 	AEGfxTriAdd(
-		45.0f, -30.0f, 0x00000000, 0.0f, 0.0f,
-		45.0f, 30.0f, 0x00000000, 0.0f, 0.0f,
+		45.0f, -30.0f, 0x00000000, 1.0f, 1.0f,
+		45.0f, 30.0f, 0x00000000, 1.0f, 0.0f,
 		-30.0f, 30.0f, 0x00000000, 0.0f, 0.0f);
 	pObj->pMesh = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pObj->pMesh, "fail to create object!!");
 
-	pObj->texture = AEGfxTextureLoad("Resources/Door.png");
+	pObj->texture = AEGfxTextureLoad("Resources/Sharpener_Animation.png");
 	AE_ASSERT_MESG(pObj->texture, "Failed to create texture1!!");
 
 }
