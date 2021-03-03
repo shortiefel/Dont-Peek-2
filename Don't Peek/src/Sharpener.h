@@ -21,6 +21,8 @@ Technology is prohibited.
 /* End Header **************************************************************************/
 
 #include "Main.h"
+#include "AEVec2.h"
+//#include "AEInput.h"
 struct Sharpener
 {
 	AEVec2 currPos;
@@ -36,9 +38,11 @@ private:
 
 public:
 	void loadSharpener();
+	void drawSharpener();
 	void initSharpener();
 	void updateSharpener();
 	void unloadSharpener();
 };
+
 
 

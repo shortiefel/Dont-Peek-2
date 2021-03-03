@@ -23,20 +23,21 @@ Technology is prohibited.
 #include "Sharpener.h"
 #include "GameState_DontPeek.h"
 
-AEGfxTexture* sharpeners;
-//GameObj* sharpenerObj;
+//AEGfxTexture* sharpeners;
+GameObj* sharpenerObj;
 
 void sharpener::loadSharpener() {
 
-	/*memset(sGameObjList, 0, sizeof(GameObj) * GAME_OBJ_NUM_MAX);
-	sGameObjNum = 0;
+	//memset(sGameObjList, 0, sizeof(GameObj) * GAME_OBJ_NUM_MAX);
+	//sGameObjNum = 0;
 	sharpenerObj = sGameObjList + sGameObjNum++;
 	sharpenerObj->type = TYPE_SHARPENER;
-	sharpenerObj->texture = AEGfxTextureLoad("Sharpener_Animation.png"); */
+	sharpenerObj->texture = AEGfxTextureLoad("Sharpener_Animation.png");
+	AE_ASSERT_MESG(sharpenerObj->texture, "Failed to create sharpener!!");
 
-	sharpeners = AEGfxTextureLoad("Sharpener_Animation.png");
+	//sharpeners = AEGfxTextureLoad("Sharpener_Animation.png");
 
-	AEGfxVertexList* sharpener = 0;
+	//AEGfxVertexList* sharpener = 0;
 	AEGfxMeshStart();
 	AEGfxTriAdd(
 		-30.0f, -30.0f, 0x00000000, 0.0f, 0.0f,
@@ -48,17 +49,25 @@ void sharpener::loadSharpener() {
 		45.0f, 30.0f, 0x00000000, 0.0f, 0.0f,
 		-30.0f, 30.0f, 0x00000000, 0.0f, 0.0f);
 
-	sharpener = AEGfxMeshEnd();
-
-	Position.x = 1.0f * AEGetWindowWidth() / 2;
-	Position.y = 1.0f * AEGetWindowHeight() / 2;
+	sharpenerObj->pMesh = AEGfxMeshEnd();
+	AE_ASSERT_MESG(sharpenerObj->pMesh, "fail to create object!!");
 
 }
 
+void sharpener::drawSharpener() {
+
+	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
+	AEGfxSetPosition(50.0f, -60.0f);
+	AEGfxTextureSet(sharpenerObj->texture, 0, 0);
+	AEGfxMeshDraw(sharpenerObj->pMesh, AE_GFX_MDM_TRIANGLES);
+	AEGfxSetTransparency(1.0f);
+}
 
 void sharpener::initSharpener() {
 
 	Velocity.x = SPEED;
+	Position.x = 1.0f * AEGetWindowWidth() / 2;
+	Position.y = 1.0f * AEGetWindowHeight() / 2;
 }
 
 void sharpener::updateSharpener() {
@@ -82,7 +91,8 @@ void sharpener::updateSharpener() {
 
 void sharpener::unloadSharpener() {
 
-	/*AEGfxTextureUnload(sharpenerObj->texture);*/
-	AEGfxTextureUnload(sharpeners);
+	AEGfxTextureUnload(sharpenerObj->texture);
+	//AEGfxTextureUnload(sharpeners);
 }
+
 
