@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿  GameState_DontPeek.cpp
 C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.cpp(18,2): error C3861: 'Wall_Load': identifier not found
 C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.cpp(28,2): error C3861: 'Wall_Init': identifier not found
@@ -6,3 +7,7 @@ C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.cp
 C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.cpp(68,2): error C3861: 'Wall_Exit': identifier not found
   Wall.cpp
   Generating Code...
+=======
+﻿  Door.cpp
+  DontPeek.vcxproj -> C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe
+>>>>>>> origin/Margaret
