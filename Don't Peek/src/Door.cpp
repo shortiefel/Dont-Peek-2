@@ -51,8 +51,12 @@ AEVec2 Door::InitDoor()
 	Doorpos.y = 5;
 	return Doorpos;
 }
-void UpdateDoor()
+void DrawDoor()
 {
+	char strBuffer[1024];
+
+	AEGfxSetRenderMode(AE_GFX_RM_COLOR);
+	AEGfxTextureSet(NULL, 0, 0);
 
 }
 void ExitDoor()

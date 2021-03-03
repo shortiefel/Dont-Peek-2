@@ -35,8 +35,8 @@ void GameStateDontPeekLoad(void)
 /******************************************************************************/
 void GameStateDontPeekInit(void)
 {
-	AEVec2 a = door.InitDoor();
-	gameObjInstCreate(TYPE_DOOR, 10, &a, 0, 0.0f);
+	//AEVec2 a = door.InitDoor();
+	gameObjInstCreate(TYPE_DOOR, 10.0f, nullptr, nullptr, 0.0f);
 }
 
 /******************************************************************************/
@@ -49,6 +49,8 @@ void GameStateDontPeekUpdate(void)
 	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
 	{
 		GameObjInst* pInst = sGameObjInstList + i;
+		if ((pInst->flag & FLAG_ACTIVE) == 0)
+			continue;
 
 		pInst->boundingBox.min.x = pInst->posCurr.x - pInst->scale * 0.5f;
 		pInst->boundingBox.min.y = pInst->posCurr.y - pInst->scale * 0.5f;
@@ -56,6 +58,7 @@ void GameStateDontPeekUpdate(void)
 		pInst->boundingBox.max.x = pInst->posCurr.x + pInst->scale * 0.5f;
 		pInst->boundingBox.max.y = pInst->posCurr.y + pInst->scale * 0.5f;
 	}
+	
 
 }
 
@@ -66,7 +69,25 @@ void GameStateDontPeekUpdate(void)
 /******************************************************************************/
 void GameStateDontPeekDraw(void)
 {
+	char strBuffer[1024];
 
+	AEGfxSetRenderMode(AE_GFX_RM_COLOR);
+	AEGfxTextureSet(NULL, 0, 0);
+
+	// draw all object instances in the list
+	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
+	{
+		GameObjInst* pInst = sGameObjInstList + i;
+
+		// skip non-active object
+		if ((pInst->flag & FLAG_ACTIVE) == 0)
+			continue;
+
+		// Set the current object instance's transform matrix using "AEGfxSetTransform"
+		AEGfxSetTransform(pInst->transform.m);
+		// Draw the shape used by the current object instance using "AEGfxMeshDraw"
+		AEGfxMeshDraw(pInst->pObject->pMesh, AE_GFX_MDM_TRIANGLES);
+	}
 }
 
 /******************************************************************************/

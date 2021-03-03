@@ -1,4 +1,3 @@
-﻿  Door.cpp
-  GameState_DontPeek.cpp
-  Generating Code...
+﻿  GameState_DontPeek.cpp
+C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.cpp(72,7): warning C4101: 'strBuffer': unreferenced local variable
   DontPeek.vcxproj -> C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe
