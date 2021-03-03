@@ -11,14 +11,14 @@
 
 
 
-GameObj* pObj2;
+static GameObj* pObj;
 static GameObjInst* player;
 
 void Player::Player_Character() //drawing of character
 {
 	
-	pObj2 = sGameObjList + sGameObjNum++;
-	pObj2->type = TYPE_PLAYER;
+	pObj = sGameObjList + sGameObjNum++;
+	pObj->type = TYPE_PLAYER;
 
 
 	//Drawing of Player
@@ -32,11 +32,11 @@ void Player::Player_Character() //drawing of character
 		100.0f, -60.0f, 0x00000000, 1.0f, 1.0f,
 		100.0f, 60.0f, 0x00000000, 1.0f, 0.0f,
 		-60.0f, 60.0f, 0x00000000, 0.0f, 0.0f);
-	pObj2->pMesh = AEGfxMeshEnd();
-	AE_ASSERT_MESG(pObj2->pMesh, "fail to create object!!");
+	pObj->pMesh = AEGfxMeshEnd();
+	AE_ASSERT_MESG(pObj->pMesh, "fail to create object!!");
 
-	pObj2->texture = AEGfxTextureLoad("Resources/Player.png");
-	AE_ASSERT_MESG(pObj2->texture, "Failed to create texture1!!");
+	pObj->texture = AEGfxTextureLoad("Resources/Player.png");
+	AE_ASSERT_MESG(pObj->texture, "Failed to create texture1!!");
 
 	
 }
@@ -62,10 +62,10 @@ void Player::Player_Draw()
 	// No tint
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-	AEGfxTextureSet(pObj2->texture, 0, 0);		// Same object, different texture
+	AEGfxTextureSet(pObj->texture, 0, 0);		// Same object, different texture
 
 	// Drawing the mesh (list of triangles)
-	AEGfxMeshDraw(pObj2->pMesh, AE_GFX_MDM_TRIANGLES);
+	AEGfxMeshDraw(pObj->pMesh, AE_GFX_MDM_TRIANGLES);
 	// Set Transparency
 	AEGfxSetTransparency(1.0f);
 }
@@ -91,13 +91,13 @@ void Player::Player_Update()
 	{
 		Position.x += Velocity.x;
 	}
-	if (AEInputCheckCurr(AEVK_DOWN))
-	{
-		Position.y -= Velocity.y;
-	}
-	if (AEInputCheckCurr(AEVK_UP))
+	if (AEInputCheckTriggered(AEVK_UP))
 	{
 		Position.y += Velocity.y;
+	}
+	if (AEInputCheckReleased(AEVK_UP))
+	{
+		Position.y -= Velocity.y;
 	}
 
 
