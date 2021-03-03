@@ -42,9 +42,7 @@ void GameStateDontPeekLoad(void)
 /******************************************************************************/
 void GameStateDontPeekInit(void)
 {
-	Player player;
-	player.Player_Character();
-
+	player.Player_Init();
 }
 
 /******************************************************************************/
@@ -64,6 +62,7 @@ void GameStateDontPeekUpdate(void)
 		pInst->boundingBox.max.x = pInst->posCurr.x + pInst->scale * 0.5f;
 		pInst->boundingBox.max.y = pInst->posCurr.y + pInst->scale * 0.5f;
 	}
+
 
 	player.Player_Update();
 }

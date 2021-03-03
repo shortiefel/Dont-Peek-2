@@ -8,26 +8,14 @@
 
 
 
-enum MOVEMENT
-{
-	Movement_Jump = AEVK_UP,
-	Movement_Down = AEVK_DOWN,
-	Movement_Left = AEVK_LEFT,
-	Movement_Right = AEVK_RIGHT,
-	Movement_Slide = AEVK_LSHIFT
-};
-
-enum DIRECTIONS
-{
-	JUMP = 4,
-	LEFT = -1,
-	RIGHT = 1,
-	DOWN = 1,
-	NOACTION = 0
-};
-
-
-
+//enum MOVEMENT
+//{
+//	Movement_Jump = AEVK_UP,
+//	Movement_Down = AEVK_DOWN,
+//	Movement_Left = AEVK_LEFT,
+//	Movement_Right = AEVK_RIGHT,
+//	Movement_Slide = AEVK_LSHIFT
+//};
 
 
 class Player

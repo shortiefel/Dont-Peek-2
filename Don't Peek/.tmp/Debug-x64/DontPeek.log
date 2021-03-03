@@ -1,10 +1,2 @@
-﻿  Door.cpp
-  GameStateMgr.cpp
-  GameState_DontPeek.cpp
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.cpp(45,15): warning C4459: declaration of 'player' hides global declaration
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\GameState_DontPeek.cpp(19,8): message : see declaration of 'player'
-  Main.cpp
-  Player.cpp
-  Wall.cpp
-  Generating Code...
+﻿  GameState_DontPeek.cpp
   DontPeek.vcxproj -> C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe

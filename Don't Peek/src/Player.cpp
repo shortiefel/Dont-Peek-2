@@ -82,11 +82,11 @@ void Player::Player_Init()
 
 void Player::Player_Update()
 {
-	if (AEInputCheckCurr(Movement_Left))
+	if (AEInputCheckCurr(AEVK_LEFT))
 	{
 		Position.x -= Velocity.x;
 	}
-	if (AEInputCheckCurr(Movement_Right))
+	if (AEInputCheckCurr(AEVK_RIGHT))
 	{
 		Position.x += Velocity.x;
 	}
