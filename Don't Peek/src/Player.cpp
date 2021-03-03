@@ -1,37 +1,42 @@
 #include "Player.h"
+#include "GameState_DontPeek.h"
 
 
 
 /******************************************************************************/
 /*!
-
+	Game Object 
 */
 /******************************************************************************/
 
+GameObj* pObj;
+
 void Player::Player_Character() //drawing of character
 {
-	static GameObjInst* player;
+	memset(sGameObjList, 0, sizeof(GameObj) * GAME_OBJ_INST_NUM_MAX);
+	//no game object at this point
+	sGameObjNum = 0;
+	pObj = sGameObjList + sGameObjNum++;
+	pObj->type = TYPE_PLAYER;
+	pObj->texture = AEGfxTextureLoad("Player.png");
 
-	//setting player position, velocity
-	Position.x = 100;
-	Position.y = 100;
-	Velocity.x = 0;
-	Velocity.y = 0;
 
 	//Drawing of Player
 	AEGfxMeshStart();
 	AEGfxTriAdd(
-		-0.5f, 0.5f, 0xbbbbbb, 0.0f, 0.0f,
-		-0.5f, -0.5f, 0xbbbbbb, 0.0f, 0.0f,
-		0.5f, -0.5f, 0xbbbbbb, 0.0f, 0.0f);
+		-30.0f, -30.0f, 0x00000000, 0.0f, 0.0f,
+		45.0f, -30.0f, 0x00000000, 0.0f, 0.0f,
+		-30.0f, 30.0f, 0x00000000, 0.0f, 0.0f);
 
 	AEGfxTriAdd(
-		-0.5f, 0.5f, 0xbbbbbb, 0.0f, 0.0f,
-		0.5f, 0.5f, 0xbbbbbb, 0.0f, 0.0f,
-		0.5f, -0.5f, 0xbbbbbb, 0.0f, 0.0f);
+		45.0f, -30.0f, 0x00000000, 0.0f, 0.0f,
+		45.0f, 30.0f, 0x00000000, 0.0f, 0.0f,
+		-30.0f, 30.0f, 0x00000000, 0.0f, 0.0f);
 
-	AEGfxTexture* Player_Image;
-	Player_Image = AEGfxTextureLoad("Resource\Player.png");
+	pObj->pMesh = AEGfxMeshEnd();
+	AE_ASSERT_MESG(pObj->pMesh, "fail to create object!!");
+
+	
 }
 
 void Player::Player_Movement()
@@ -75,6 +80,11 @@ void Player::Player_Collision()
 void Player::Player_Init()
 {
 	Player_Character();
+	//setting player position, velocity
+	Position.x = 100;
+	Position.y = 100;
+	Velocity.x = 0;
+	Velocity.y = 0;
 }
 
 void Player::Player_Update()

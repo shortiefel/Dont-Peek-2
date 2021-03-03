@@ -1,5 +1,6 @@
 #include "GameState_DontPeek.h"
 #include "Door.h"
+#include "Player.h"
 
 
 /******************************************************************************/
@@ -19,8 +20,14 @@ void gameObjInstDestroy(GameObjInst* pInst);
 /******************************************************************************/
 void GameStateDontPeekLoad(void)
 {
+	//---------Object Loading---------
 	Door door;
 	door.LoadDoor();
+
+	Player player;
+	player.Player_Init();
+
+
 
 }
 
