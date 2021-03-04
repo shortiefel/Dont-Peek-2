@@ -1,4 +1,11 @@
-﻿  Door.cpp
+﻿  Collision.cpp
+  Door.cpp
+  GameStateMgr.cpp
   GameState_DontPeek.cpp
+  Main.cpp
+  Player.cpp
+  Sharpener.cpp
   Generating Code...
+  LINK : C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\\bin\Debug-x64\DontPeek.exe not found or not built by the last incremental link; performing full link
+Wall.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'Wall.obj' or at 'C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\bin\Debug-x64\vc142.pdb'; linking object as if no debug info
   DontPeek.vcxproj -> C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe
