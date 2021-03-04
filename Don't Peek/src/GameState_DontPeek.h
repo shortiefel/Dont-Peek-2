@@ -15,7 +15,7 @@ const unsigned int	GAME_OBJ_INST_NUM_MAX = 2048;			//The total number of differe
 //const float			PLAYER_ACCEL_BACKWARD = 40.f;
 //const float			PLAYER_SPEED = 100.0f;
 //const float			MAX_SPEED = 60.0f;
-const float			SPEED = 20.0f;
+const float			SPEED = 8.0f;
 
 
 enum TYPE

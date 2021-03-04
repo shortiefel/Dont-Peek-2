@@ -14,8 +14,9 @@
 static GameObj* pObj;
 static GameObjInst* player;
 const int Player_Gravity = 8;
-bool Gravity = TRUE;
+bool Gravity = true;
 float GROUND = 0.f;
+bool CanJump = false;
 
 
 
@@ -56,8 +57,7 @@ void Player::Player_Character() //drawing of character
 void Player::SetGravity()
 {
 	//printf("you shit");
-	if (Position.y > GROUND)
-		Position.y -= 2;
+	Position.y -= 2;
 		//Velocity.y = sqrt((2 * Player_Gravity) * (Position.y - Position.x));
 
 }
@@ -108,8 +108,8 @@ void Player::Player_Init()
 	Velocity.y = SPEED;
 	Position.x = 40.0f;
 	Position.y = -50.f;
-	
-	
+
+
 }
 
 /******************************************************************************/
@@ -129,8 +129,9 @@ void Player::Player_Update()
 	{
 		Position.x += Velocity.x;
 	}
-	if (AEInputCheckTriggered(AEVK_UP))
+	if (AEInputCheckTriggered(AEVK_UP) && CanJump == true)
 	{
+		CanJump = false;
 		Position.y += Velocity.y * 4;
 		printf("PosY: %f, %f\n", Position.x, Position.y);
 	}
@@ -143,6 +144,7 @@ void Player::Player_Update()
 	if (Position.y < GROUND)
 	{
 		Position.y = GROUND;
+		CanJump = true;
 	}
 	
 	
