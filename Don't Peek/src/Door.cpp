@@ -47,11 +47,9 @@ void Door::LoadDoor()
 	AE_ASSERT_MESG(pObj->texture, "Failed to create texture1!!");
 
 }
-AEVec2 Door::InitDoor()
+void Door::CreateDoor()
 {
-	Doorpos.x = 5;
-	Doorpos.y = 5;
-	return Doorpos;
+	
 }
 void Door::DrawDoor()
 {
@@ -70,7 +68,11 @@ void Door::DrawDoor()
 	AEGfxSetTransparency(0.0f);
 
 }
-void ExitDoor()
+void Door::FreeDoor()
+{
+
+}
+void Door::UnloadDoor()
 {
 
 }
