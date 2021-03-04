@@ -10,7 +10,7 @@ Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 
 \date 22/01/2021
-\brief <give a brief description of this file>
+\brief This file is contains all the functions required to create door.
 
 
 Copyright (C) 2021 DigiPen Institute of Technology.
@@ -23,8 +23,8 @@ Technology is prohibited.
 #include "Door.h"
 #include "GameState_DontPeek.h"
 
-GameObj* pObj;
-
+static GameObj* pObj;
+//This function is responsible for creating Mesh and loading texture for door.
 void Door::LoadDoor()
 {
 	pObj = sGameObjList + sGameObjNum++;
@@ -49,14 +49,33 @@ void Door::LoadDoor()
 }
 void Door::CreateDoor()
 {
-	
+	AEVec2Set(&Doorpos, -100, -100);
+	// loop through the object instance list to find a non-used object instance
+	AEVec2 zero;
+	AEVec2Zero(&zero);
+	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
+	{
+		GameObjInst* pInst = sGameObjInstList + i;
+
+		// check if current instance is not used
+		if (pInst->flag == 0)
+		{
+			// it is not used => use it to create the new instance
+			pInst->pObject = sGameObjList + TYPE_DOOR;
+			pInst->flag = FLAG_ACTIVE;
+			pInst->scale = 1.0f;
+			pInst->posCurr = Doorpos;
+			pInst->velCurr = zero;
+			pInst->dirCurr = 0;
+		}
+	}
 }
 void Door::DrawDoor()
 {
 	// Drawing object 2 - (first) - No tint
 	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 	// Set position for object 2
-	AEGfxSetPosition(100.0f, -60.0f);
+	AEGfxSetPosition(Doorpos.x, Doorpos.y);
 	// No tint
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
 
@@ -66,13 +85,5 @@ void Door::DrawDoor()
 	AEGfxMeshDraw(pObj->pMesh, AE_GFX_MDM_TRIANGLES);
 	// Set Transparency
 	AEGfxSetTransparency(0.0f);
-
-}
-void Door::FreeDoor()
-{
-
-}
-void Door::UnloadDoor()
-{
 
 }

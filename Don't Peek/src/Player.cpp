@@ -60,14 +60,14 @@ void Player::Player_Draw()
 	// Set position for object 2
 	AEGfxSetPosition(Position.x, Position.y);
 	// No tint
-	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
+	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 0.0f);
 
 	AEGfxTextureSet(pObj->texture, 0, 0);		// Same object, different texture
 
 	// Drawing the mesh (list of triangles)
 	AEGfxMeshDraw(pObj->pMesh, AE_GFX_MDM_TRIANGLES);
 	// Set Transparency
-	AEGfxSetTransparency(0.0f);
+	AEGfxSetTransparency(1.0f);
 }
 
 

@@ -25,12 +25,10 @@ class Door
 {
 private:
 	AEVec2 Doorpos;
+
 public:
 
 	void LoadDoor();
 	void CreateDoor();
 	void DrawDoor();
-	void FreeDoor();
-	void UnloadDoor();
-
 };

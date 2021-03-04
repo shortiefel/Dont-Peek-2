@@ -1,3 +1,25 @@
+/* Start Header ************************************************************************/
+/*!
+\file GameState_DontPeek.cpp
+\team name Don't Peak
+\software name I don't want to do homework
+\authors
+Tan Wei Ling Felicia	weilingfelicia.tan@digipen.edu
+Margaret Teo Boon See	Teo.b@digipen.edu
+Loh Yun Yi Tessa	tessa.loh@digipen.edu
+Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
+
+\date 22/01/2021
+\brief <give a brief description of this file>
+
+
+Copyright (C) 2021 DigiPen Institute of Technology.
+Reproduction or disclosure of this file or its contents
+without the prior written consent of DigiPen Institute of
+Technology is prohibited.
+*/
+/* End Header **************************************************************************/
+
 #include "GameState_DontPeek.h"
 #include "Door.h"
 #include "Player.h"
@@ -17,6 +39,8 @@ void gameObjInstDestroy(GameObjInst* pInst);
 //individual classes
 Door door;
 Player player;
+
+
 /******************************************************************************/
 /*!
 	"LOAD" FUNCTION OF THE STATE
@@ -27,12 +51,12 @@ void GameStateDontPeekLoad(void)
 	memset(sGameObjList, 0, sizeof(GameObj) * GAME_OBJ_NUM_MAX);
 	// No game objects (shapes) at this point
 	sGameObjNum = 0;
+	memset(sGameObjInstList, 0, sizeof(GameObjInst) * GAME_OBJ_INST_NUM_MAX);
+	// No game object instances (sprites) at this point
+	sGameObjInstNum = 0;
 	door.LoadDoor();
 
 	player.Player_Character();
-
-
-
 }
 
 /******************************************************************************/
@@ -42,6 +66,7 @@ void GameStateDontPeekLoad(void)
 /******************************************************************************/
 void GameStateDontPeekInit(void)
 {
+	door.CreateDoor();
 	player.Player_Init();
 }
 
