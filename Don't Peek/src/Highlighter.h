@@ -22,13 +22,18 @@ Technology is prohibited.
 
 #include "Main.h"
 
-class highlighter
+class Highlighter
 {
 private:
-	const float	SPEED = 100.0f;
+	//const float	SPEED = 100.0f;
+	AEVec2 SPEED;
+	AEVec2 Position;
+
 public:
 	void loadHighlighter();
+	void drawHighlighter();
 	void initHighlighter();
 	void updateHighlighter();
+	void unloadHighlighter();
 
 };

@@ -22,21 +22,73 @@ Technology is prohibited.
 
 #include "Highlighter.h"
 #include "Sharpener.h"
+#include "GameState_DontPeek.h"
 
+GameObj* highlighterObj;
 
+void Highlighter::loadHighlighter() {
 
-void highlighter::loadHighlighter() {
+	highlighterObj= sGameObjList + sGameObjNum++;
+	highlighterObj->type = TYPE_HIGHLIGHTER;
+
+	AEGfxMeshStart();
+	AEGfxTriAdd(
+		-30.0f, -30.0f, 0x00FFFF00, 0.0f, 0.0f,
+		120.0f, -30.0f, 0x00FFFF00, 0.0f, 0.0f,
+		-30.0f, 0.0f, 0x00FFFF00, 0.0f, 0.0f);
+
+	AEGfxTriAdd(
+		120.0f, -30.0f, 0x00FFFF00, 0.0f, 0.0f,
+		120.0f, 0.0f, 0x00FFFF00, 0.0f, 0.0f,
+		-30.0f, 0.0f, 0x00FFFF00, 0.0f, 0.0f);
+
+	highlighterObj->pMesh = AEGfxMeshEnd();
+	AE_ASSERT_MESG(highlighterObj->pMesh, "Failed to create highlighter!!");
 
 }
 
-void highlighter::initHighlighter() {
+void Highlighter::initHighlighter() {
+	Position.x = 0.0f;
+	AEVec2 zero;
+	AEVec2Zero(&zero);
 
+	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
+	{
+		GameObjInst* pInst = sGameObjInstList + i;
+
+		// check if current instance is not used
+		if (pInst->flag == 0)
+		{
+			// it is not used => use it to create the new instance
+			pInst->pObject = sGameObjList + TYPE_SHARPENER;
+			pInst->flag = FLAG_ACTIVE;
+			pInst->scale = 1.0f;
+			pInst->posCurr = Position;
+			pInst->velCurr = zero;
+			pInst->dirCurr = 0;
+			printf("Highlight Print %lu\n", i);
+			break;
+		}
+
+	}
 }
 
-void highlighter::updateHighlighter() 
+void Highlighter::drawHighlighter() {
+	AEGfxSetRenderMode(AE_GFX_RM_COLOR);
+	AEGfxSetPosition(Position.x, -60.0f);
+	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
+	AEGfxMeshDraw(highlighterObj->pMesh, AE_GFX_MDM_TRIANGLES);
+	AEGfxSetTransparency(1.0f);
+}
+
+void Highlighter::updateHighlighter() 
 {
 	//IF sharpener has collided
 	//    IF on the left []____
 	//velocity.x = SPEED;
+
+}
+
+void Highlighter::unloadHighlighter() {
 
 }

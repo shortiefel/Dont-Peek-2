@@ -1,12 +1,7 @@
-﻿  Collision.cpp
-  GameStateMgr.cpp
+﻿  GameStateMgr.cpp
   GameState_DontPeek.cpp
   Highlighter.cpp
   Main.cpp
   Sharpener.cpp
-  Wall.cpp
   Generating Code...
-Sharpener.obj : error LNK2005: "struct AEVec2 sharpenerPos" (?sharpenerPos@@3UAEVec2@@A) already defined in Highlighter.obj
-Sharpener.obj : error LNK2005: "struct AEVec2 velocity" (?velocity@@3UAEVec2@@A) already defined in Highlighter.obj
-Sharpener.obj : error LNK2005: "struct AEGfxTexture * image" (?image@@3PEAUAEGfxTexture@@EA) already defined in Highlighter.obj
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\\bin\Debug-x64\DontPeek.exe : fatal error LNK1169: one or more multiply defined symbols found
+  DontPeek.vcxproj -> C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe

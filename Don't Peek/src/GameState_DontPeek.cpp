@@ -1,5 +1,6 @@
 #include "GameState_DontPeek.h"
 #include "Sharpener.h"
+#include "Highlighter.h"
 
 
 /******************************************************************************/
@@ -13,6 +14,7 @@ GameObjInst* gameObjInstCreate(unsigned long type, float scale,
 void gameObjInstDestroy(GameObjInst* pInst);
 
 Sharpener sharpener;
+Highlighter highlighter;
 /******************************************************************************/
 /*!
 	"LOAD" FUNCTION OF THE STATE
@@ -25,6 +27,7 @@ void GameStateDontPeekLoad(void)
 	sGameObjNum = 0;
 
 	sharpener.loadSharpener();
+	highlighter.loadHighlighter();
 
 
 
@@ -38,6 +41,7 @@ void GameStateDontPeekLoad(void)
 void GameStateDontPeekInit(void)
 {
 	sharpener.initSharpener();
+	highlighter.initHighlighter();
 }
 
 /******************************************************************************/
@@ -58,6 +62,29 @@ void GameStateDontPeekUpdate(void)
 		pInst->boundingBox.max.y = pInst->posCurr.y + pInst->scale * 0.5f;
 	}
 	sharpener.updateSharpener();
+
+	//for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
+	//{
+	//	GameObjInst* pInst_1 = sGameObjInstList + i;
+	//	if ((pInst_1->pObject->type == TYPE_SHARPENER))
+	//	{
+	//		//setting object instance
+	//		for (unsigned long j = 0; j < GAME_OBJ_INST_NUM_MAX; j++)
+	//		{
+	//			GameObjInst* pInst_2 = sGameObjInstList + j;
+
+	//			if (pInst_2->pObject->type == TYPE_HIGHLIGHTER)
+	//			{
+	//				if (CollisionIntersection_RectRect(pInst_1->boundingBox, pInst_1->velCurr, pInst_2->boundingBox, pInst_2->velCurr))
+	//				{
+	//					printf("test");
+	//				}
+	//			}
+	//		}
+	//	}
+	//}
+
+
 }
 
 /******************************************************************************/
@@ -67,7 +94,9 @@ void GameStateDontPeekUpdate(void)
 /******************************************************************************/
 void GameStateDontPeekDraw(void)
 {
+	highlighter.drawHighlighter();
 	sharpener.drawSharpener();
+
 }
 
 /******************************************************************************/
@@ -102,7 +131,8 @@ void GameStateDontPeekUnload(void)
 		if (Objects->pMesh)
 			AEGfxMeshFree(Objects->pMesh);
 	}
-
+	highlighter.unloadHighlighter();
+	sharpener.unloadSharpener();
 }
 
 void gameObjInstDestroy(GameObjInst* pInst)
