@@ -75,8 +75,9 @@ void Player::Player_Character() //drawing of character
 void Player::SetGravity()
 {
 	//printf("you shit");
-	Position.y -= 2;
-		//Velocity.y = sqrt((2 * Player_Gravity) * (Position.y - Position.x));
+	//Position.y -= 2;
+	//Velocity.y = sqrt((2 * Player_Gravity) * (Position.y - Position.x));
+	Velocity.y -= 0.15f;
 
 }
 
@@ -111,8 +112,8 @@ void Player::Player_Draw()
 
 void Player::Player_Init()
 {
-	Velocity.x = SPEED;
-	Velocity.y = SPEED;
+	Velocity.x = 0;
+	Velocity.y = 0;
 	Position.x = 40.0f;
 	Position.y = -50.f;
 
@@ -130,29 +131,40 @@ void Player::Player_Update()
 	
 	if (AEInputCheckCurr(AEVK_LEFT))
 	{
-		Position.x -= Velocity.x;
+		//Position.x -= Velocity.x;
+		Velocity.x = -SPEED;
 	}
-	if (AEInputCheckCurr(AEVK_RIGHT))
+	else if (AEInputCheckCurr(AEVK_RIGHT))
 	{
-		Position.x += Velocity.x;
-	}
-	if (AEInputCheckTriggered(AEVK_UP) && CanJump == true)
-	{
-		CanJump = false;
-		Position.y += Velocity.y * 4;
-		printf("PosY: %f, %f\n", Position.x, Position.y);
+		Velocity.x = SPEED;
 	}
 	else
 	{
-		Position.x += 0.f;
-		Position.y += 0.f;
+		Velocity.x = 0.f;
 	}
-	SetGravity();
+	if (AEInputCheckTriggered(AEVK_UP) && CanJump == true)
+	{
+		printf( "jumping \n");
+		CanJump = false;
+		//Position.y += Velocity.y * 4;
+		Velocity.y = 5.f;
+		printf("PosY: %f, %f\n", Position.x, Position.y);
+	}
+	
+	
 	if (Position.y < GROUND)
 	{
 		Position.y = GROUND;
 		CanJump = true;
+		Velocity.y = 0;
 	}
+	else {
+		
+		SetGravity();
+	}
+
+	Position.x += Velocity.x;
+	Position.y += Velocity.y;
 	
 	
 }
