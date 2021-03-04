@@ -23,12 +23,12 @@ Technology is prohibited.
 #include "Door.h"
 #include "GameState_DontPeek.h"
 
-static GameObj* pObj;
+GameObj* dObj;
 //This function is responsible for creating Mesh and loading texture for door.
 void Door::LoadDoor()
 {
-	pObj = sGameObjList + sGameObjNum++;
-	pObj->type = TYPE_DOOR;
+	dObj = sGameObjList + sGameObjNum++;
+	dObj->type = TYPE_DOOR;
 
 	AEGfxMeshStart();
 	AEGfxTriAdd(
@@ -40,11 +40,11 @@ void Door::LoadDoor()
 		45.0f, -30.0f, 0x00000000, 1.0f, 1.0f,
 		45.0f, 30.0f, 0x00000000, 1.0f, 0.0f,
 		-30.0f, 30.0f, 0x00000000, 0.0f, 0.0f);
-	pObj->pMesh = AEGfxMeshEnd();
-	AE_ASSERT_MESG(pObj->pMesh, "fail to create object!!");
+	dObj->pMesh = AEGfxMeshEnd();
+	AE_ASSERT_MESG(dObj->pMesh, "fail to create object!!");
 
-	pObj->texture = AEGfxTextureLoad("Resources/Door.png");
-	AE_ASSERT_MESG(pObj->texture, "Failed to create texture1!!");
+	dObj->texture = AEGfxTextureLoad("Resources/Door.png");
+	AE_ASSERT_MESG(dObj->texture, "Failed to create texture1!!");
 
 }
 void Door::CreateDoor()
@@ -81,10 +81,10 @@ void Door::DrawDoor()
 	// No tint
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-	AEGfxTextureSet(pObj->texture, 0, 0);		// Same object, different texture
+	AEGfxTextureSet(dObj->texture, 0, 0);		// Same object, different texture
 
 	// Drawing the mesh (list of triangles)
-	AEGfxMeshDraw(pObj->pMesh, AE_GFX_MDM_TRIANGLES);
+	AEGfxMeshDraw(dObj->pMesh, AE_GFX_MDM_TRIANGLES);
 	// Set Transparency
 	AEGfxSetTransparency(0.0f);
 

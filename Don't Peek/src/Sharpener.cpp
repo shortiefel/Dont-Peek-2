@@ -27,18 +27,18 @@ Technology is prohibited.
 
 
 //AEGfxTexture* sharpeners;
-static GameObj* pObj;
+ GameObj* sObj;
 
 void Sharpener::loadSharpener() {
 
 	//memset(sGameObjList, 0, sizeof(GameObj) * GAME_OBJ_NUM_MAX);
 	//sGameObjNum = 0;
 
-	pObj = sGameObjList + sGameObjNum++;
-	pObj->type = TYPE_SHARPENER;
+	sObj = sGameObjList + sGameObjNum++;
+	sObj->type = TYPE_SHARPENER;
 
-	pObj->texture = AEGfxTextureLoad("Resources/Sharpener_Animation.png");
-	AE_ASSERT_MESG(pObj->texture, "Failed to load sharpener!!");
+	sObj->texture = AEGfxTextureLoad("Resources/Sharpener_Animation.png");
+	AE_ASSERT_MESG(sObj->texture, "Failed to load sharpener!!");
 
 	//sharpeners = AEGfxTextureLoad("Sharpener_Animation.png");
 	//AEGfxVertexList* sharpener = 0;
@@ -53,8 +53,8 @@ void Sharpener::loadSharpener() {
 		45.0f, 30.0f, 0x00000000, 1.0f, 0.0f,
 		-30.0f, 30.0f, 0x00000000, 0.0f, 0.0f);
 
-	pObj->pMesh = AEGfxMeshEnd();
-	AE_ASSERT_MESG(pObj->pMesh, "Failed to create sharpener!!");
+	sObj->pMesh = AEGfxMeshEnd();
+	AE_ASSERT_MESG(sObj->pMesh, "Failed to create sharpener!!");
 
 }
 
@@ -63,18 +63,18 @@ void Sharpener::drawSharpener() {
 	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 	AEGfxSetPosition(Position.x, Position.y);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
-	AEGfxTextureSet(pObj->texture, 0, 0);
-	AEGfxMeshDraw(pObj->pMesh, AE_GFX_MDM_TRIANGLES);
+	AEGfxTextureSet(sObj->texture, 0, 0);
+	AEGfxMeshDraw(sObj->pMesh, AE_GFX_MDM_TRIANGLES);
 	AEGfxSetTransparency(1.0f);
 }
 
 void Sharpener::initSharpener() {
 	//Velocity.x = SPEED;
 	AEVec2Set(&SPEED, 10, 0);
-	AEVec2Set(&Position, -100.0f, -60.0f);
+	AEVec2Set(&Position, -100.0f, 0.0f);
 
 	AEVec2 zero;
-	AEVec2* PP = &Position;
+	//AEVec2* PP = &Position;
 	AEVec2Zero(&zero);
 	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
 	{
@@ -87,7 +87,7 @@ void Sharpener::initSharpener() {
 			pInst->pObject = sGameObjList + TYPE_SHARPENER;
 			pInst->flag = FLAG_ACTIVE;
 			pInst->scale = 1.0f;
-			pInst->posCurr = *PP;
+			pInst->posCurr = Position;
 			pInst->velCurr = SPEED;
 			pInst->dirCurr = 0;
 			printf("Sharpener Slot %lu\n", i);
@@ -103,20 +103,6 @@ void Sharpener::updateSharpener() {
 		Position.x += 5.0f;
 		//printf("Move");
 	}
-	//AEGfxSetPosition(Position.x, Position.y);
-
-	//if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) &&
-	//	AEInputCheckCurr(AEVK_LEFT)) //[]o player pushing left
-	//{
-	//	Position.x -= Velocity.x;
-	//}
-
-	//if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) &&
-	//	AEInputCheckCurr(AEVK_RIGHT)) //o[] player pushing right
-	//{
-	//	Position.x += Velocity.x;
-	//}
-
 		for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
 		{
 			GameObjInst* pInst_1 = sGameObjInstList + i;
@@ -131,14 +117,15 @@ void Sharpener::updateSharpener() {
 				{
 					GameObjInst* pInst_2 = sGameObjInstList + j;
 
-					if ((pInst_2->flag && FLAG_ACTIVE) == 0)
+					if ((pInst_2->flag && FLAG_ACTIVE) == 0 )
 						continue;
-
+					
 					if (pInst_2->pObject->type == TYPE_HIGHLIGHTER)
 					{
-						while (CollisionIntersection_RectRect(pInst_1->boundingBox, pInst_1->velCurr, pInst_2->boundingBox, pInst_2->velCurr))
+						printf("Area2");
+						if (CollisionIntersection_RectRect(pInst_1->boundingBox, pInst_1->velCurr, pInst_2->boundingBox, pInst_2->velCurr))
 						{
-							pInst_1->posCurr.x += 50;
+							Position.x += 50;
 							printf("Colliding");
 						}
 
@@ -150,6 +137,6 @@ void Sharpener::updateSharpener() {
 
 void Sharpener::unloadSharpener() {
 
-	AEGfxTextureUnload(pObj->texture);
+	AEGfxTextureUnload(sObj->texture);
 	//AEGfxTextureUnload(sharpeners);
 }

@@ -9,7 +9,7 @@
 */
 /******************************************************************************/
 
-static GameObj* pObj;
+ GameObj* pObj;
 static GameObjInst* player;
 const int Player_Gravity = 8;
 bool Gravity = true;

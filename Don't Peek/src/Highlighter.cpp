@@ -24,12 +24,12 @@ Technology is prohibited.
 #include "Sharpener.h"
 #include "GameState_DontPeek.h"
 
-static GameObj* pObj;
+ GameObj* hObj;
 
 void Highlighter::loadHighlighter() {
 
-	pObj= sGameObjList + sGameObjNum++;
-	pObj->type = TYPE_HIGHLIGHTER;
+	hObj= sGameObjList + sGameObjNum++;
+	hObj->type = TYPE_HIGHLIGHTER;
 
 	AEGfxMeshStart();
 	AEGfxTriAdd(
@@ -42,13 +42,13 @@ void Highlighter::loadHighlighter() {
 		120.0f, 0.0f, 0x00FFFF00, 0.0f, 0.0f,
 		-30.0f, 0.0f, 0x00FFFF00, 0.0f, 0.0f);
 
-	pObj->pMesh = AEGfxMeshEnd();
-	AE_ASSERT_MESG(pObj->pMesh, "Failed to create highlighter!!");
+	hObj->pMesh = AEGfxMeshEnd();
+	AE_ASSERT_MESG(hObj->pMesh, "Failed to create highlighter!!");
 
 }
 
 void Highlighter::initHighlighter() {
-	Position.x = 0.0f;
+	AEVec2Set(&Position, 50, 0);
 	AEVec2 zero;
 	AEVec2Zero(&zero);
 
@@ -75,9 +75,10 @@ void Highlighter::initHighlighter() {
 
 void Highlighter::drawHighlighter() {
 	AEGfxSetRenderMode(AE_GFX_RM_COLOR);
-	AEGfxSetPosition(Position.x, -60.0f);
+	AEGfxSetPosition(Position.x, Position.y);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
-	AEGfxMeshDraw(pObj->pMesh, AE_GFX_MDM_TRIANGLES);
+	AEGfxTextureSet(hObj->texture, 0, 0);
+	AEGfxMeshDraw(hObj->pMesh, AE_GFX_MDM_TRIANGLES);
 	AEGfxSetTransparency(1.0f);
 }
 

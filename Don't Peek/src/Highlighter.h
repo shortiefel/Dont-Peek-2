@@ -26,7 +26,7 @@ class Highlighter
 {
 private:
 	//const float	SPEED = 100.0f;
-	AEVec2 SPEED;
+
 	AEVec2 Position;
 
 public:
