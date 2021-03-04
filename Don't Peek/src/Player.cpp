@@ -1,3 +1,25 @@
+/* Start Header ************************************************************************/
+/*!
+\file Player.cpp
+\team name Don't Peak
+\software name I don't want to do homework
+\authors
+Tan Wei Ling Felicia	weilingfelicia.tan@digipen.edu
+Margaret Teo Boon See	Teo.b@digipen.edu
+Loh Yun Yi Tessa	tessa.loh@digipen.edu
+Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
+
+\date 04/03/2021
+\brief <give a brief description of this file>
+
+
+Copyright (C) 2021 DigiPen Institute of Technology.
+Reproduction or disclosure of this file or its contents
+without the prior written consent of DigiPen Institute of
+Technology is prohibited.
+*/
+/* End Header **************************************************************************/
+
 #include "Player.h"
 #include "GameState_DontPeek.h"
 
@@ -9,16 +31,12 @@
 */
 /******************************************************************************/
 
-
-
 static GameObj* pObj;
 static GameObjInst* player;
 const int Player_Gravity = 8;
 bool Gravity = true;
 float GROUND = 0.f;
 bool CanJump = false;
-
-
 
 /******************************************************************************/
 /*!
@@ -61,17 +79,6 @@ void Player::SetGravity()
 		//Velocity.y = sqrt((2 * Player_Gravity) * (Position.y - Position.x));
 
 }
-
-//void Player::Player_Movement()
-//{
-//	if (isPlayerAlive == TRUE && isPlayerWin == FALSE)
-//	{
-//		player->velCurr.y += 3.0f * g_dt; //constant gravity for falling 
-//		player->velCurr.x = player->velCurr.x * Speed * 1.25f * 100.0f;
-//		player->velCurr.y = player->velCurr.y * Speed * 1.25f * 100.f;
-//		Speed_Overall = (player->velCurr.x, player->velCurr.y);
-//	}
-//}
 
 /******************************************************************************/
 /*!
@@ -148,10 +155,6 @@ void Player::Player_Update()
 	}
 	
 	
-
-
-
-
 }
 
 /******************************************************************************/
