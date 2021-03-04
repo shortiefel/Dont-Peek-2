@@ -15,11 +15,7 @@ const unsigned int	GAME_OBJ_INST_NUM_MAX = 2048;			//The total number of differe
 //const float			PLAYER_ACCEL_BACKWARD = 40.f;
 //const float			PLAYER_SPEED = 100.0f;
 //const float			MAX_SPEED = 60.0f;
-<<<<<<< HEAD
 const float				SPEED = 10.0f;
-=======
-const float			SPEED = 10.0f;
->>>>>>> Player-2
 
 
 enum TYPE
@@ -73,11 +69,11 @@ struct GameObjInst
 */
 /******************************************************************************/
 // list of original object
-extern GameObj				sGameObjList[GAME_OBJ_NUM_MAX];				// Each element in this array represents a unique game object (shape)
-extern unsigned long		sGameObjNum;
+static GameObj				sGameObjList[GAME_OBJ_NUM_MAX];				// Each element in this array represents a unique game object (shape)
+static unsigned long		sGameObjNum;
 
-extern GameObjInst			sGameObjInstList[GAME_OBJ_INST_NUM_MAX];	// Each element in this array represents a unique game object instance (sprite)
-extern unsigned long		sGameObjInstNum;
+static GameObjInst			sGameObjInstList[GAME_OBJ_INST_NUM_MAX];	// Each element in this array represents a unique game object instance (sprite)
+static unsigned long		sGameObjInstNum;
 
 
 

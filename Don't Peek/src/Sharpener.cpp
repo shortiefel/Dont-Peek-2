@@ -29,7 +29,7 @@ AEVec2 velocity;
 void sharpener::loadSharpener() {
 
 	AEGfxTexture* image;
-	image = AEGfxTextureLoad("Resource/Sharpener_Animation.png");
+	image = AEGfxTextureLoad("Sharpener_Animation.png");
 
 	AEGfxVertexList* sharpener = 0;
 	AEGfxMeshStart();

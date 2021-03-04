@@ -27,7 +27,7 @@ private:
 	AEVec2 Doorpos;
 public:
 
-	Door* LoadDoor();
+	void LoadDoor();
 	AEVec2 InitDoor();
 	void DrawDoor();
 	void ExitDoor();
