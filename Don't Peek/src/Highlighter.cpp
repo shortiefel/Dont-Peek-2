@@ -66,7 +66,7 @@ void Highlighter::initHighlighter() {
 			pInst->posCurr = Position;
 			pInst->velCurr = zero;
 			pInst->dirCurr = 0;
-			printf("Highlight Print %lu\n", i);
+			printf("Highlight Slot %lu\n", i);
 			break;
 		}
 

@@ -73,11 +73,31 @@ void Player::Player_Draw()
 
 void Player::Player_Init()
 {
-	Velocity.x = SPEED;
-	Velocity.y = SPEED;
-	Position.x = 40.0f;
-	Position.y = -50.f;
-	
+
+	AEVec2Set(&Velocity, SPEED, SPEED);
+	AEVec2Set(&Position, 40.f, -50.f);
+	AEVec2 zero;
+	AEVec2Zero(&zero);
+
+	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
+	{
+		GameObjInst* pInst = sGameObjInstList + i;
+
+		// check if current instance is not used
+		if (pInst->flag == 0)
+		{
+			// it is not used => use it to create the new instance
+			pInst->pObject = sGameObjList + TYPE_HIGHLIGHTER;
+			pInst->flag = FLAG_ACTIVE;
+			pInst->scale = 1.0f;
+			pInst->posCurr = Position;
+			pInst->velCurr = Velocity;
+			pInst->dirCurr = 0;
+			printf("Player Slot %lu\n", i);
+			break;
+		}
+
+	}
 	
 }
 

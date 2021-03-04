@@ -90,7 +90,7 @@ void Sharpener::initSharpener() {
 			pInst->posCurr = *PP;
 			pInst->velCurr = SPEED;
 			pInst->dirCurr = 0;
-			printf("Sharpener Check %lu\n", i);
+			printf("Sharpener Slot %lu\n", i);
 			break;
 		}
 	}
@@ -102,7 +102,7 @@ void Sharpener::updateSharpener() {
 	{
 		Position.x += 5.0f;
 		//printf("Move");
-
+	}
 	//AEGfxSetPosition(Position.x, Position.y);
 
 	//if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) &&
@@ -146,7 +146,6 @@ void Sharpener::updateSharpener() {
 				}
 			}
 		}
-	}
 }
 
 void Sharpener::unloadSharpener() {

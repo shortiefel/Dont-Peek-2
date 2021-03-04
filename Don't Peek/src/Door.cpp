@@ -67,6 +67,8 @@ void Door::CreateDoor()
 			pInst->posCurr = Doorpos;
 			pInst->velCurr = zero;
 			pInst->dirCurr = 0;
+			printf("Door Slot %lu\n", i);
+			break;
 		}
 	}
 }
