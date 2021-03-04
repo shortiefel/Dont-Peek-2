@@ -43,7 +43,7 @@ void Door::LoadDoor()
 	pObj->pMesh = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pObj->pMesh, "fail to create object!!");
 
-	pObj->texture = AEGfxTextureLoad("Resources/Sharpener_Animation.png");
+	pObj->texture = AEGfxTextureLoad("Resources/Door.png");
 	AE_ASSERT_MESG(pObj->texture, "Failed to create texture1!!");
 
 }
@@ -67,7 +67,7 @@ void Door::DrawDoor()
 	// Drawing the mesh (list of triangles)
 	AEGfxMeshDraw(pObj->pMesh, AE_GFX_MDM_TRIANGLES);
 	// Set Transparency
-	AEGfxSetTransparency(1.0f);
+	AEGfxSetTransparency(0.0f);
 
 }
 void ExitDoor()

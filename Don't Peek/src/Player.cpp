@@ -67,7 +67,7 @@ void Player::Player_Draw()
 	// Drawing the mesh (list of triangles)
 	AEGfxMeshDraw(pObj->pMesh, AE_GFX_MDM_TRIANGLES);
 	// Set Transparency
-	AEGfxSetTransparency(1.0f);
+	AEGfxSetTransparency(0.0f);
 }
 
 
