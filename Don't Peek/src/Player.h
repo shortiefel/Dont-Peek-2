@@ -15,6 +15,7 @@ public:
 	void Player_Init();
 	void Player_Update();
 	void Player_Exit();
+	void SetGravity();
 private:
 	AEVec2 Position;
 	AEVec2 Velocity;
