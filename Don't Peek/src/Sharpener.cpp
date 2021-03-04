@@ -27,18 +27,18 @@ Technology is prohibited.
 
 
 //AEGfxTexture* sharpeners;
-GameObj* sharpenerObj;
+static GameObj* pObj;
 
 void Sharpener::loadSharpener() {
 
 	//memset(sGameObjList, 0, sizeof(GameObj) * GAME_OBJ_NUM_MAX);
 	//sGameObjNum = 0;
 
-	sharpenerObj = sGameObjList + sGameObjNum++;
-	sharpenerObj->type = TYPE_SHARPENER;
+	pObj = sGameObjList + sGameObjNum++;
+	pObj->type = TYPE_SHARPENER;
 
-	sharpenerObj->texture = AEGfxTextureLoad("Resources/Sharpener_Animation.png");
-	AE_ASSERT_MESG(sharpenerObj->texture, "Failed to load sharpener!!");
+	pObj->texture = AEGfxTextureLoad("Resources/Sharpener_Animation.png");
+	AE_ASSERT_MESG(pObj->texture, "Failed to load sharpener!!");
 
 	//sharpeners = AEGfxTextureLoad("Sharpener_Animation.png");
 	//AEGfxVertexList* sharpener = 0;
@@ -53,8 +53,8 @@ void Sharpener::loadSharpener() {
 		45.0f, 30.0f, 0x00000000, 1.0f, 0.0f,
 		-30.0f, 30.0f, 0x00000000, 0.0f, 0.0f);
 
-	sharpenerObj->pMesh = AEGfxMeshEnd();
-	AE_ASSERT_MESG(sharpenerObj->pMesh, "Failed to create sharpener!!");
+	pObj->pMesh = AEGfxMeshEnd();
+	AE_ASSERT_MESG(pObj->pMesh, "Failed to create sharpener!!");
 
 }
 
@@ -63,8 +63,8 @@ void Sharpener::drawSharpener() {
 	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 	AEGfxSetPosition(Position.x, Position.y);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
-	AEGfxTextureSet(sharpenerObj->texture, 0, 0);
-	AEGfxMeshDraw(sharpenerObj->pMesh, AE_GFX_MDM_TRIANGLES);
+	AEGfxTextureSet(pObj->texture, 0, 0);
+	AEGfxMeshDraw(pObj->pMesh, AE_GFX_MDM_TRIANGLES);
 	AEGfxSetTransparency(1.0f);
 }
 
@@ -80,7 +80,6 @@ void Sharpener::initSharpener() {
 	{
 		GameObjInst* pInst = sGameObjInstList + i;
 
-		printf("Sharpener flag %lu\n", pInst->flag);
 		// check if current instance is not used
 		if (pInst->flag == 0)
 		{
@@ -152,6 +151,6 @@ void Sharpener::updateSharpener() {
 
 void Sharpener::unloadSharpener() {
 
-	AEGfxTextureUnload(sharpenerObj->texture);
+	AEGfxTextureUnload(pObj->texture);
 	//AEGfxTextureUnload(sharpeners);
 }

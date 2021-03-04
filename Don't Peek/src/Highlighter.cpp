@@ -24,12 +24,12 @@ Technology is prohibited.
 #include "Sharpener.h"
 #include "GameState_DontPeek.h"
 
-GameObj* highlighterObj;
+static GameObj* pObj;
 
 void Highlighter::loadHighlighter() {
 
-	highlighterObj= sGameObjList + sGameObjNum++;
-	highlighterObj->type = TYPE_HIGHLIGHTER;
+	pObj= sGameObjList + sGameObjNum++;
+	pObj->type = TYPE_HIGHLIGHTER;
 
 	AEGfxMeshStart();
 	AEGfxTriAdd(
@@ -42,8 +42,8 @@ void Highlighter::loadHighlighter() {
 		120.0f, 0.0f, 0x00FFFF00, 0.0f, 0.0f,
 		-30.0f, 0.0f, 0x00FFFF00, 0.0f, 0.0f);
 
-	highlighterObj->pMesh = AEGfxMeshEnd();
-	AE_ASSERT_MESG(highlighterObj->pMesh, "Failed to create highlighter!!");
+	pObj->pMesh = AEGfxMeshEnd();
+	AE_ASSERT_MESG(pObj->pMesh, "Failed to create highlighter!!");
 
 }
 
@@ -77,7 +77,7 @@ void Highlighter::drawHighlighter() {
 	AEGfxSetRenderMode(AE_GFX_RM_COLOR);
 	AEGfxSetPosition(Position.x, -60.0f);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
-	AEGfxMeshDraw(highlighterObj->pMesh, AE_GFX_MDM_TRIANGLES);
+	AEGfxMeshDraw(pObj->pMesh, AE_GFX_MDM_TRIANGLES);
 	AEGfxSetTransparency(1.0f);
 }
 

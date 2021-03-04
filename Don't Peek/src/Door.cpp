@@ -49,7 +49,7 @@ void Door::LoadDoor()
 }
 void Door::CreateDoor()
 {
-	AEVec2Set(&Doorpos, -100, -100);
+	AEVec2Set(&Doorpos, 0, 100);
 	// loop through the object instance list to find a non-used object instance
 	AEVec2 zero;
 	AEVec2Zero(&zero);

@@ -24,7 +24,7 @@ Technology is prohibited.
 #include "Door.h"
 #include "Player.h"
 #include "Sharpener.h"
-//#include "Highlighter.h"
+#include "Highlighter.h"
 
 
 
@@ -45,10 +45,11 @@ GameObjInst* gameObjInstCreate(unsigned long type, float scale,
 void gameObjInstDestroy(GameObjInst* pInst);
 
 //individual classes
+
 Door door;
 Player player;
 Sharpener sharpener;
-//Highlighter highlighter;
+Highlighter highlighter;
 
 
 /******************************************************************************/
@@ -67,7 +68,7 @@ void GameStateDontPeekLoad(void)
 
 	door.LoadDoor();
 	sharpener.loadSharpener();
-	//highlighter.loadHighlighter();
+	highlighter.loadHighlighter();
 	player.Player_Character();
 }
 
@@ -80,7 +81,7 @@ void GameStateDontPeekInit(void)
 {
 	door.CreateDoor();
 	sharpener.initSharpener();
-	//highlighter.initHighlighter();
+	highlighter.initHighlighter();
 	player.Player_Init();
 }
 
