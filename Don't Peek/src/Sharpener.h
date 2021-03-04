@@ -21,20 +21,21 @@ Technology is prohibited.
 /* End Header **************************************************************************/
 
 #include "Main.h"
-struct Sharpener
-{
-	AEVec2 currPos;
-	AEVec2 currVelocity;
+#include "AEVec2.h"
 
-};
-
-class sharpener
+class Sharpener
 {
 private:
+	//const float	SPEED = 10.0f;
+	AEVec2 SPEED;
+	AEVec2 Position;
+	AEVec2 Velocity;
 
 public:
 	void loadSharpener();
+	void drawSharpener();
 	void initSharpener();
 	void updateSharpener();
-
+	void unloadSharpener();
 };
+

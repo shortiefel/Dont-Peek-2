@@ -23,6 +23,9 @@ Technology is prohibited.
 #include "GameState_DontPeek.h"
 #include "Door.h"
 #include "Player.h"
+#include "Sharpener.h"
+//#include "Highlighter.h"
+
 
 
 /******************************************************************************/
@@ -30,6 +33,11 @@ Technology is prohibited.
 	DEFINES
 */
 /******************************************************************************/
+GameObj				sGameObjList[GAME_OBJ_NUM_MAX];				// Each element in this array represents a unique game object (shape)
+unsigned long		sGameObjNum;
+
+GameObjInst			sGameObjInstList[GAME_OBJ_INST_NUM_MAX];	// Each element in this array represents a unique game object instance (sprite)
+unsigned long		sGameObjInstNum;
 
 
 GameObjInst* gameObjInstCreate(unsigned long type, float scale,
@@ -39,6 +47,8 @@ void gameObjInstDestroy(GameObjInst* pInst);
 //individual classes
 Door door;
 Player player;
+Sharpener sharpener;
+//Highlighter highlighter;
 
 
 /******************************************************************************/
@@ -54,8 +64,10 @@ void GameStateDontPeekLoad(void)
 	memset(sGameObjInstList, 0, sizeof(GameObjInst) * GAME_OBJ_INST_NUM_MAX);
 	// No game object instances (sprites) at this point
 	sGameObjInstNum = 0;
-	door.LoadDoor();
 
+	door.LoadDoor();
+	sharpener.loadSharpener();
+	//highlighter.loadHighlighter();
 	player.Player_Character();
 }
 
@@ -67,6 +79,8 @@ void GameStateDontPeekLoad(void)
 void GameStateDontPeekInit(void)
 {
 	door.CreateDoor();
+	sharpener.initSharpener();
+	//highlighter.initHighlighter();
 	player.Player_Init();
 }
 
@@ -77,18 +91,8 @@ void GameStateDontPeekInit(void)
 /******************************************************************************/
 void GameStateDontPeekUpdate(void)
 {
-	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
-	{
-		GameObjInst* pInst = sGameObjInstList + i;
-
-		pInst->boundingBox.min.x = pInst->posCurr.x - pInst->scale * 0.5f;
-		pInst->boundingBox.min.y = pInst->posCurr.y - pInst->scale * 0.5f;
-
-		pInst->boundingBox.max.x = pInst->posCurr.x + pInst->scale * 0.5f;
-		pInst->boundingBox.max.y = pInst->posCurr.y + pInst->scale * 0.5f;
-	}
-
-
+	BoundingBox();
+	sharpener.updateSharpener();
 	player.Player_Update();
 }
 
@@ -99,26 +103,8 @@ void GameStateDontPeekUpdate(void)
 /******************************************************************************/
 void GameStateDontPeekDraw(void)
 {
-	/*char strBuffer[1024];
-
-	AEGfxSetRenderMode(AE_GFX_RM_COLOR);
-	AEGfxTextureSet(NULL, 0, 0);
-
-	//draw all object instances in the list
-	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
-	{
-		GameObjInst* pInst = sGameObjInstList + i;
-
-		//skipping of non-active object
-		if ((pInst->flag & FLAG_ACTIVE) == 0)
-			continue;
-
-		//Setting current object instance's transform matrix 
-		AEGfxSetTransform(pInst->transform.m);
-
-		//drawing of shap using current object instance
-		AEGfxMeshDraw(pInst->pObject->pMesh, AE_GFX_MDM_TRIANGLES);
-	}*/
+	highlighter.drawHighlighter();
+	sharpener.drawSharpener();
 	door.DrawDoor();
 	player.Player_Draw();
 

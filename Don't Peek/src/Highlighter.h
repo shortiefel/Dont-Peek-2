@@ -1,6 +1,7 @@
+#pragma once
 /* Start Header ************************************************************************/
 /*!
-\file Collision.h
+\file Highlighter.h
 \team name Don't Peak
 \software name I don't want to do homework
 \authors
@@ -13,23 +14,27 @@ Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 \brief <give a brief description of this file>
 
 
-Copyright (C) 20xx DigiPen Institute of Technology.
+Copyright (C) 2021 DigiPen Institute of Technology.
 Reproduction or disclosure of this file or its contents
 without the prior written consent of DigiPen Institute of
 Technology is prohibited.
 */
 /* End Header **************************************************************************/
-#pragma once
 
 #include "Main.h"
 
-
-struct AABB
+class Highlighter
 {
-	AEVec2	min;
-	AEVec2	max;
-};
+private:
+	//const float	SPEED = 100.0f;
+	AEVec2 SPEED;
+	AEVec2 Position;
 
-bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1,
-	const AABB& aabb2, const AEVec2& vel2);
-void BoundingBox();
+public:
+	void loadHighlighter();
+	void drawHighlighter();
+	void initHighlighter();
+	void updateHighlighter();
+	void unloadHighlighter();
+
+};
