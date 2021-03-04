@@ -8,7 +8,11 @@
 	DEFINES
 */
 /******************************************************************************/
+GameObj				sGameObjList[GAME_OBJ_NUM_MAX];				// Each element in this array represents a unique game object (shape)
+unsigned long		sGameObjNum;
 
+GameObjInst			sGameObjInstList[GAME_OBJ_INST_NUM_MAX];	// Each element in this array represents a unique game object instance (sprite)
+unsigned long		sGameObjInstNum;
 
 GameObjInst* gameObjInstCreate(unsigned long type, float scale,
 	AEVec2* pPos, AEVec2* pVel, float dir);
@@ -52,6 +56,7 @@ void GameStateDontPeekInit(void)
 /******************************************************************************/
 void GameStateDontPeekUpdate(void)
 {
+	player.Player_Update();
 	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
 	{
 		GameObjInst* pInst = sGameObjInstList + i;
@@ -64,7 +69,7 @@ void GameStateDontPeekUpdate(void)
 	}
 
 
-	player.Player_Update();
+	
 }
 
 /******************************************************************************/
