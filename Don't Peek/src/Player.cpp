@@ -13,6 +13,18 @@
 
 static GameObj* pObj;
 static GameObjInst* player;
+const int Player_Gravity = 8;
+bool Gravity = TRUE;
+float GROUND = 0.f;
+
+
+
+/******************************************************************************/
+/*!
+	Player Character
+*/
+/******************************************************************************/
+
 
 void Player::Player_Character() //drawing of character
 {
@@ -41,6 +53,15 @@ void Player::Player_Character() //drawing of character
 	
 }
 
+void Player::SetGravity()
+{
+	//printf("you shit");
+	if (Position.y > GROUND)
+		Position.y -= 2;
+		//Velocity.y = sqrt((2 * Player_Gravity) * (Position.y - Position.x));
+
+}
+
 //void Player::Player_Movement()
 //{
 //	if (isPlayerAlive == TRUE && isPlayerWin == FALSE)
@@ -52,6 +73,11 @@ void Player::Player_Character() //drawing of character
 //	}
 //}
 
+/******************************************************************************/
+/*!
+	Player Draw
+*/
+/******************************************************************************/
 
 void Player::Player_Draw()
 {
@@ -70,6 +96,11 @@ void Player::Player_Draw()
 	AEGfxSetTransparency(1.0f);
 }
 
+/******************************************************************************/
+/*!
+	Player Init
+*/
+/******************************************************************************/
 
 void Player::Player_Init()
 {
@@ -81,8 +112,15 @@ void Player::Player_Init()
 	
 }
 
+/******************************************************************************/
+/*!
+	Player Update
+*/
+/******************************************************************************/
+
 void Player::Player_Update()
 {
+	
 	if (AEInputCheckCurr(AEVK_LEFT))
 	{
 		Position.x -= Velocity.x;
@@ -93,17 +131,32 @@ void Player::Player_Update()
 	}
 	if (AEInputCheckTriggered(AEVK_UP))
 	{
-		Position.y += Velocity.y;
+		Position.y += Velocity.y * 4;
+		printf("PosY: %f, %f\n", Position.x, Position.y);
 	}
-	if (AEInputCheckReleased(AEVK_UP))
+	else
 	{
-		Position.y -= Velocity.y;
+		Position.x += 0.f;
+		Position.y += 0.f;
 	}
+	SetGravity();
+	if (Position.y < GROUND)
+	{
+		Position.y = GROUND;
+	}
+	
+	
+
 
 
 
 }
 
+/******************************************************************************/
+/*!
+	Player Exit
+*/
+/******************************************************************************/
 void Player::Player_Exit()
 {
 }
