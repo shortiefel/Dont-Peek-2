@@ -49,9 +49,10 @@ void Highlighter::loadHighlighter() {
 
 void Highlighter::initHighlighter() {
 
+			flag = FLAG_ACTIVE;
 			AEVec2Set(&pos, 100, 100);
 			AEVec2Set(&vel, 0, 0);
-			flag = FLAG_ACTIVE;
+			
 			//printf("Init Highlighter %lu \n", i);
 }
 
@@ -60,15 +61,14 @@ void Highlighter::drawHighlighter() {
 	AEGfxSetPosition(pos.x, pos.y);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
 	AEGfxTextureSet(pHighlighter->texture, 0, 0);
+	AEGfxSetBlendMode(AE_GFX_BM_NONE);
 	AEGfxMeshDraw(pHighlighter->pMesh, AE_GFX_MDM_TRIANGLES);
 	AEGfxSetTransparency(1.0f);
 }
 
 void Highlighter::updateHighlighter() 
 {
-	//IF sharpener has collided
-	//    IF on the left []____
-	//velocity.x = SPEED;
+	BoundingBox();
 
 }
 
@@ -78,11 +78,8 @@ void Highlighter::unloadHighlighter() {
 
 void Highlighter::BoundingBox()
 {
-
-
-		boundingBox.min.x = pos.x - 1 / 2;
-		boundingBox.min.y = pos.y - 1 / 2;
-		boundingBox.max.x = pos.x + 1 / 2;
-		boundingBox.max.y = pos.y + 1 / 2;
-
+		boundingBox.min.x = pos.x - 10 / 2;
+		boundingBox.min.y = pos.y - 10 / 2;
+		boundingBox.max.x = pos.x + 10 / 2;
+		boundingBox.max.y = pos.y + 10 / 2;
 }

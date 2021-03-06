@@ -25,7 +25,7 @@ Technology is prohibited.
 #include "Highlighter.h"
 
 //Sharpener SharpenerArray[MAX];
-static Highlighter highlighter;
+
 void Sharpener::loadSharpener() {
 
 	//memset(sGameObjList, 0, sizeof(GameObj) * GAME_OBJ_NUM_MAX);
@@ -68,9 +68,10 @@ void Sharpener::drawSharpener() {
 
 void Sharpener::initSharpener() {
 	//Velocity.x = SPEED;
-	AEVec2Set(&vel, SPEED, 0);
-	AEVec2Set(&pos, -100.0f, 0.0f);
 	flag = FLAG_ACTIVE;
+	AEVec2Set(&vel, SPEED, 0);
+	AEVec2Set(&pos, -100.0f, 100.0f);
+	
 	//printf("Init Sharpener %lu \n", i);
 
 }
@@ -87,16 +88,31 @@ void Sharpener::updateSharpener() {
 		pos.x -= 5.0f;
 		//printf("Move");
 	}
-
+	if (AEInputCheckCurr(AEVK_UP))
+	{
+		pos.y += 5.0f;
+		//printf("Move");
+	}
+	if (AEInputCheckCurr(AEVK_DOWN))
+	{
+		pos.y -= 5.0f;
+		//printf("Move");
+	}
+	BoundingBox();
 	if (CollisionIntersection_RectRect(boundingBox, vel, highlighter.boundingBox, highlighter.vel))
 	{
-		pos.x += 50;
+		pos.x += 5;
 		printf("Collision True");
+		printf("BB2 min x %f \n", boundingBox.min.x);
+		printf("BB2 min y %f \n", boundingBox.min.y);
+		printf("BB2 maX x %f \n", boundingBox.max.x);
+		printf("BB2 max y %f \n", boundingBox.max.y);
+		printf("BB min x %f \n", highlighter.boundingBox.min.x);
+		printf("BB min y %f \n", highlighter.boundingBox.min.y);
+		printf("BB maX x %f \n", highlighter.boundingBox.max.x);
+		printf("BB max y %f \n", highlighter.boundingBox.max.y);
 	}
-	else
-	{
-		printf("No Collision");
-	}
+
 	/*
 	for (unsigned long i = 0; i < MAX; i++)
 	{
@@ -166,10 +182,9 @@ void Sharpener::unloadSharpener() {
 void Sharpener::BoundingBox()
 {
 
-
-		boundingBox.min.x = pos.x - 1 / 2;
-		boundingBox.min.y = pos.y - 1 / 2;
-		boundingBox.max.x = pos.x + 1 / 2;
-		boundingBox.max.y = pos.y + 1 / 2;
+	boundingBox.min.x = pos.x - 10 / 2;
+	boundingBox.min.y = pos.y - 10 / 2;
+	boundingBox.max.x = pos.x + 10 / 2;
+	boundingBox.max.y = pos.y + 10 / 2;
 
 }

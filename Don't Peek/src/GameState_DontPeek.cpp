@@ -49,7 +49,7 @@ void gameObjInstDestroy(GameObjInst* pInst);
 Door door;
 Player player;
 Sharpener sharpener;
-static Highlighter highlighter;
+Highlighter highlighter;
 
 
 /******************************************************************************/
@@ -92,10 +92,11 @@ void GameStateDontPeekInit(void)
 /******************************************************************************/
 void GameStateDontPeekUpdate(void)
 {
-	sharpener.BoundingBox();
-	highlighter.BoundingBox();
+	
 	sharpener.updateSharpener();
+	highlighter.updateHighlighter();
 	player.Player_Update();
+	printf("%f", highlighter.vel.x);
 }
 
 /******************************************************************************/

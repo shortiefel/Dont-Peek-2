@@ -49,10 +49,11 @@ void Door::LoadDoor()
 
 }
 void Door::initDoor()
-{
+{	
+	flag = FLAG_ACTIVE;
 	AEVec2Set(&pos, 0, 200);
 	AEVec2Set(&vel, 0, 0);
-	flag = FLAG_ACTIVE;
+
 	//printf("Init Door %lu \n", i);
 	
 	/*
