@@ -1,9 +1,6 @@
-﻿  Door.cpp
-C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Door.cpp(55,9): warning C4189: 'Doorinst': local variable is initialized but not referenced
-  Highlighter.cpp
+﻿  Highlighter.cpp
 C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Highlighter.cpp(53,16): warning C4189: 'Highlighterinst': local variable is initialized but not referenced
+C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Highlighter.cpp(91,16): warning C4189: 'Highlighterinst': local variable is initialized but not referenced
   Player.cpp
-  Sharpener.cpp
-C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(76,14): warning C4189: 'Sharpenerinst': local variable is initialized but not referenced
   Generating Code...
   DontPeek.vcxproj -> C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe

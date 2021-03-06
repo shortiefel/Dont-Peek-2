@@ -27,11 +27,8 @@ class Highlighter
 {
 private:
 	GameObj* pHighlighter;
-	//unsigned long flag;
-	//AABB boundingBox;
 	AEVec2 pos;
-	//AEVec2 vel;
-	//void BoundingBox();
+
 
 public:
 	void loadHighlighter();
@@ -39,6 +36,7 @@ public:
 	void initHighlighter();
 	void updateHighlighter();
 	void unloadHighlighter();
+	void BoundingBox();
 
 	unsigned long flag;
 	AABB boundingBox;

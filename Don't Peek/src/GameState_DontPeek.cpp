@@ -92,6 +92,8 @@ void GameStateDontPeekInit(void)
 /******************************************************************************/
 void GameStateDontPeekUpdate(void)
 {
+	sharpener.BoundingBox();
+	highlighter.BoundingBox();
 	sharpener.updateSharpener();
 	player.Player_Update();
 }

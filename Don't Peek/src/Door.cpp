@@ -58,8 +58,9 @@ void Door::initDoor()
 			AEVec2Set(&pos, 0, 200);
 			AEVec2Set(&vel, 0, 0);
 			flag = FLAG_ACTIVE;
+			printf("Init Door %lu \n", i);
+			break;
 		}
-		printf("Init Door %lu \n", i);
 	}
 	/*
 	// loop through the object instance list to find a non-used object instance
@@ -95,6 +96,7 @@ void Door::DrawDoor()
 
 	AEGfxTextureSet(pDoor->texture, 0, 0);		// Same object, different texture
 
+	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 	// Drawing the mesh (list of triangles)
 	AEGfxMeshDraw(pDoor->pMesh, AE_GFX_MDM_TRIANGLES);
 	// Set Transparency

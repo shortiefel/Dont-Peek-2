@@ -21,7 +21,6 @@ Technology is prohibited.
 /* End Header **************************************************************************/
 #include "GameState_DontPeek.h"
 #include "Sharpener.h"
-//#include "Highlighter.h"
 #include "Collision.h"
 #include "Highlighter.h"
 
@@ -62,6 +61,7 @@ void Sharpener::drawSharpener() {
 	AEGfxSetPosition(pos.x, pos.y);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
 	AEGfxTextureSet(pSharpener->texture, 0, 0);
+	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 	AEGfxMeshDraw(pSharpener->pMesh, AE_GFX_MDM_TRIANGLES);
 	AEGfxSetTransparency(1.0f);
 }
@@ -79,8 +79,9 @@ void Sharpener::initSharpener() {
 			AEVec2Set(&pos, 0, 100);
 			AEVec2Set(&vel, 0, 0);
 			flag = FLAG_ACTIVE;
+			printf("Init Sharpener %lu \n", i);
+			break;
 		}
-		printf("Init Sharpener %lu \n", i);
 	}
 }
 
@@ -94,24 +95,27 @@ void Sharpener::updateSharpener() {
 	for (unsigned long i = 0; i < MAX; i++)
 	{
 		Sharpener* SharpenerInst = SharpenerArray + i;
-			if ((SharpenerInst->flag && FLAG_ACTIVE) == 0)
+		//printf("SharpenerInst %lu", i);
+		for (unsigned long j = 0; j < MAX; j++)
+		{
+			//printf("Check SharpenerInst %lu", i);
+			Highlighter* HighlighterInst = HighlighterArray + j;
+			//printf("HighlighterInst %lu", j);
+			if ((flag && HighlighterInst->flag) == 0)
 			{
 				continue;
 			}
-
-			for (unsigned long j = 0; j < MAX; j++)
+			//printf(" Check HighlighterInst %lu",j);
+			if (CollisionIntersection_RectRect(boundingBox, vel, HighlighterInst->boundingBox, HighlighterInst->vel))
 			{
-				Highlighter* HighlighterInst = HighlighterArray + i;
-				if ((HighlighterInst->flag && FLAG_ACTIVE) == 0)
-				{
-					continue;
-				}
-				if (CollisionIntersection_RectRect(SharpenerInst->boundingBox, SharpenerInst->vel, HighlighterInst->boundingBox, HighlighterInst->vel))
-				{
-					pos.x += 50;
-					printf("Collision True");
-				}
+				pos.x += 50;
+				printf("Collision True");
 			}
+			else
+			{
+				printf("No Collision");
+			}
+		}
 	}
 	/*
 		for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
@@ -151,4 +155,22 @@ void Sharpener::unloadSharpener() {
 
 	AEGfxTextureUnload(pSharpener->texture);
 	//AEGfxTextureUnload(sharpeners);
+}
+
+void Sharpener::BoundingBox()
+{
+	for (unsigned long i = 0; i < MAX; i++)
+	{
+		Sharpener* Sharpenerinst = SharpenerArray + i;
+
+		if ((flag & FLAG_ACTIVE) == 0)
+			continue;
+
+		boundingBox.min.x = pos.x - 1 / 2;
+		boundingBox.min.y = pos.y - 1 / 2;
+		boundingBox.max.x = pos.x + 1 / 2;
+		boundingBox.max.y = pos.y + 1 / 2;
+		break;
+		//printf("Create %lu", i);
+	}
 }
