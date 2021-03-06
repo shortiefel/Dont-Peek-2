@@ -31,7 +31,7 @@ void Sharpener::loadSharpener() {
 	//memset(sGameObjList, 0, sizeof(GameObj) * GAME_OBJ_NUM_MAX);
 	//sGameObjNum = 0;
 
-	pSharpener = (sGameObjList + sGameObjNum++) - 1;
+	pSharpener = sGameObjList + sGameObjNum++ ;
 	pSharpener->type = TYPE_SHARPENER;
 
 	pSharpener->texture = AEGfxTextureLoad("Resources/Sharpener_Animation.png");

@@ -28,7 +28,7 @@ unsigned long ObjNum;
 //This function is responsible for creating Mesh and loading texture for door.
 void Door::LoadDoor()
 {
-	pDoor = (sGameObjList + sGameObjNum++) - 1;
+	pDoor = sGameObjList + sGameObjNum++ ;
 	pDoor->type = TYPE_DOOR;
 
 	AEGfxMeshStart();

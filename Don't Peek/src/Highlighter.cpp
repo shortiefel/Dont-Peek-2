@@ -28,7 +28,7 @@ Highlighter HighlighterArray[MAX];
 
 void Highlighter::loadHighlighter() {
 
-	pHighlighter = (sGameObjList + sGameObjNum++) - 1;
+	pHighlighter = sGameObjList + sGameObjNum++ ;
 	pHighlighter->type = TYPE_HIGHLIGHTER;
 
 	AEGfxMeshStart();

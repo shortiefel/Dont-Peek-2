@@ -18,7 +18,7 @@ float GROUND = 0.f;
 void Player::Player_Character() //drawing of character
 {
 	
-	pPlayer = (sGameObjList + sGameObjNum++) - 1;
+	pPlayer = (sGameObjList + sGameObjNum++) ;
 	pPlayer->type = TYPE_PLAYER;
 
 

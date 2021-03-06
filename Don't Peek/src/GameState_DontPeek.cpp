@@ -66,9 +66,9 @@ void GameStateDontPeekLoad(void)
 	// No game object instances (sprites) at this point
 	sGameObjInstNum = 0;
 
-	door.LoadDoor();
 	sharpener.loadSharpener();
 	highlighter.loadHighlighter();
+	door.LoadDoor();
 	player.Player_Character();
 }
 
@@ -79,9 +79,9 @@ void GameStateDontPeekLoad(void)
 /******************************************************************************/
 void GameStateDontPeekInit(void)
 {
-	door.initDoor();
 	sharpener.initSharpener();
 	highlighter.initHighlighter();
+	door.initDoor();
 	player.Player_Init();
 }
 
