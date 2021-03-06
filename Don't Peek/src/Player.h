@@ -3,12 +3,19 @@
 #pragma once
 
 #include "Main.h"
-#include "AEVec2.h"
 #include "AEInput.h"
 
 
 class Player
 {
+private:
+	GameObj* pPlayer;
+	unsigned long flag;
+	AABB boundingBox;
+	AEVec2 pos;
+	AEVec2 vel;
+	bool CanJump = false;
+
 public:
 	void Player_Character();
 	void Player_Draw();
@@ -16,9 +23,6 @@ public:
 	void Player_Update();
 	void Player_Exit();
 	void SetGravity();
-private:
-	AEVec2 Position;
-	AEVec2 Velocity;
 };
 
 

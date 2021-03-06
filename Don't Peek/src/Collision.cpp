@@ -103,9 +103,10 @@ bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1,
 
 	return 1;
 }
+
 void BoundingBox()
 {
-	for (unsigned int i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
+	for (unsigned int i = 0; i < MAX; i++)
 	{
 		GameObjInst* pInst = sGameObjInstList + i;
 
@@ -116,6 +117,6 @@ void BoundingBox()
 		pInst->boundingBox.min.y = pInst->posCurr.y - pInst->scale / 2;
 		pInst->boundingBox.max.x = pInst->posCurr.x + pInst->scale / 2;
 		pInst->boundingBox.max.y = pInst->posCurr.y + pInst->scale / 2;
-		//printf("Create %lu", i);
+		printf("Create %lu", i);
 	}
 }

@@ -79,7 +79,7 @@ void GameStateDontPeekLoad(void)
 /******************************************************************************/
 void GameStateDontPeekInit(void)
 {
-	door.CreateDoor();
+	door.initDoor();
 	sharpener.initSharpener();
 	highlighter.initHighlighter();
 	player.Player_Init();
@@ -92,7 +92,6 @@ void GameStateDontPeekInit(void)
 /******************************************************************************/
 void GameStateDontPeekUpdate(void)
 {
-	BoundingBox();
 	sharpener.updateSharpener();
 	player.Player_Update();
 }

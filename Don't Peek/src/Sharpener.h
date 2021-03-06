@@ -21,15 +21,14 @@ Technology is prohibited.
 /* End Header **************************************************************************/
 
 #include "Main.h"
-#include "AEVec2.h"
+
 
 class Sharpener
 {
 private:
-	//const float	SPEED = 10.0f;
-	AEVec2 SPEED;
-	AEVec2 Position;
-	AEVec2 Velocity;
+	GameObj* pSharpener;
+	AEVec2 pos;
+	//void BoundingBox();
 
 public:
 	void loadSharpener();
@@ -37,5 +36,12 @@ public:
 	void initSharpener();
 	void updateSharpener();
 	void unloadSharpener();
+
+	AABB boundingBox;
+	unsigned long flag;
+	AEVec2 vel;
+
 };
+
+extern Sharpener SharpenerArray[MAX];
 

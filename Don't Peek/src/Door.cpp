@@ -22,13 +22,14 @@ Technology is prohibited.
 
 #include "Door.h"
 #include "GameState_DontPeek.h"
+Door DoorArray[MAX];
+unsigned long ObjNum;
 
-GameObj* dObj;
 //This function is responsible for creating Mesh and loading texture for door.
 void Door::LoadDoor()
 {
-	dObj = sGameObjList + sGameObjNum++;
-	dObj->type = TYPE_DOOR;
+	pDoor = (sGameObjList + sGameObjNum++) - 1;
+	pDoor->type = TYPE_DOOR;
 
 	AEGfxMeshStart();
 	AEGfxTriAdd(
@@ -40,19 +41,31 @@ void Door::LoadDoor()
 		45.0f, -30.0f, 0x00000000, 1.0f, 1.0f,
 		45.0f, 30.0f, 0x00000000, 1.0f, 0.0f,
 		-30.0f, 30.0f, 0x00000000, 0.0f, 0.0f);
-	dObj->pMesh = AEGfxMeshEnd();
-	AE_ASSERT_MESG(dObj->pMesh, "fail to create object!!");
+	pDoor->pMesh = AEGfxMeshEnd();
+	AE_ASSERT_MESG(pDoor->pMesh, "fail to create object!!");
 
-	dObj->texture = AEGfxTextureLoad("Resources/Door.png");
-	AE_ASSERT_MESG(dObj->texture, "Failed to create texture1!!");
+	pDoor->texture = AEGfxTextureLoad("Resources/Door.png");
+	AE_ASSERT_MESG(pDoor->texture, "Failed to create texture1!!");
 
 }
-void Door::CreateDoor()
+void Door::initDoor()
 {
-	AEVec2Set(&Doorpos, 0, 100);
+	for (unsigned long i = 0; i < MAX; i++)
+	{	
+		Door* Doorinst = DoorArray + i;
+		if (flag == 0)
+		{
+			AEVec2Set(&pos, 0, 200);
+			AEVec2Set(&vel, 0, 0);
+			flag = FLAG_ACTIVE;
+		}
+		printf("Init Door %lu \n", i);
+	}
+	/*
 	// loop through the object instance list to find a non-used object instance
 	AEVec2 zero;
 	AEVec2Zero(&zero);
+	
 	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
 	{
 		GameObjInst* pInst = sGameObjInstList + i;
@@ -69,22 +82,21 @@ void Door::CreateDoor()
 			pInst->dirCurr = 0;
 			printf("Door Slot %lu\n", i);
 			break;
-		}
-	}
+		}*/
 }
 void Door::DrawDoor()
 {
 	// Drawing object 2 - (first) - No tint
 	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 	// Set position for object 2
-	AEGfxSetPosition(Doorpos.x, Doorpos.y);
+	AEGfxSetPosition(pos.x, pos.y);
 	// No tint
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-	AEGfxTextureSet(dObj->texture, 0, 0);		// Same object, different texture
+	AEGfxTextureSet(pDoor->texture, 0, 0);		// Same object, different texture
 
 	// Drawing the mesh (list of triangles)
-	AEGfxMeshDraw(dObj->pMesh, AE_GFX_MDM_TRIANGLES);
+	AEGfxMeshDraw(pDoor->pMesh, AE_GFX_MDM_TRIANGLES);
 	// Set Transparency
 	AEGfxSetTransparency(0.0f);
 

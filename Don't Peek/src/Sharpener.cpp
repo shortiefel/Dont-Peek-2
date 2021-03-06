@@ -19,26 +19,24 @@ without the prior written consent of DigiPen Institute of
 Technology is prohibited.
 */
 /* End Header **************************************************************************/
-
+#include "GameState_DontPeek.h"
 #include "Sharpener.h"
 //#include "Highlighter.h"
-#include "GameState_DontPeek.h"
 #include "Collision.h"
+#include "Highlighter.h"
 
-
-//AEGfxTexture* sharpeners;
- GameObj* sObj;
+Sharpener SharpenerArray[MAX];
 
 void Sharpener::loadSharpener() {
 
 	//memset(sGameObjList, 0, sizeof(GameObj) * GAME_OBJ_NUM_MAX);
 	//sGameObjNum = 0;
 
-	sObj = sGameObjList + sGameObjNum++;
-	sObj->type = TYPE_SHARPENER;
+	pSharpener = (sGameObjList + sGameObjNum++) - 1;
+	pSharpener->type = TYPE_SHARPENER;
 
-	sObj->texture = AEGfxTextureLoad("Resources/Sharpener_Animation.png");
-	AE_ASSERT_MESG(sObj->texture, "Failed to load sharpener!!");
+	pSharpener->texture = AEGfxTextureLoad("Resources/Sharpener_Animation.png");
+	AE_ASSERT_MESG(pSharpener->texture, "Failed to load sharpener!!");
 
 	//sharpeners = AEGfxTextureLoad("Sharpener_Animation.png");
 	//AEGfxVertexList* sharpener = 0;
@@ -53,46 +51,36 @@ void Sharpener::loadSharpener() {
 		45.0f, 30.0f, 0x00000000, 1.0f, 0.0f,
 		-30.0f, 30.0f, 0x00000000, 0.0f, 0.0f);
 
-	sObj->pMesh = AEGfxMeshEnd();
-	AE_ASSERT_MESG(sObj->pMesh, "Failed to create sharpener!!");
+	pSharpener->pMesh = AEGfxMeshEnd();
+	AE_ASSERT_MESG(pSharpener->pMesh, "Failed to create sharpener!!");
 
 }
 
 void Sharpener::drawSharpener() {
 
 	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
-	AEGfxSetPosition(Position.x, Position.y);
+	AEGfxSetPosition(pos.x, pos.y);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
-	AEGfxTextureSet(sObj->texture, 0, 0);
-	AEGfxMeshDraw(sObj->pMesh, AE_GFX_MDM_TRIANGLES);
+	AEGfxTextureSet(pSharpener->texture, 0, 0);
+	AEGfxMeshDraw(pSharpener->pMesh, AE_GFX_MDM_TRIANGLES);
 	AEGfxSetTransparency(1.0f);
 }
 
 void Sharpener::initSharpener() {
 	//Velocity.x = SPEED;
-	AEVec2Set(&SPEED, 10, 0);
-	AEVec2Set(&Position, -100.0f, 0.0f);
+	AEVec2Set(&vel, SPEED, 0);
+	AEVec2Set(&pos, -100.0f, 0.0f);
 
-	AEVec2 zero;
-	//AEVec2* PP = &Position;
-	AEVec2Zero(&zero);
-	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
+	for (unsigned long i = 0; i < MAX; i++)
 	{
-		GameObjInst* pInst = sGameObjInstList + i;
-
-		// check if current instance is not used
-		if (pInst->flag == 0)
+		Sharpener* Sharpenerinst = SharpenerArray + i;
+		if (flag == 0)
 		{
-			// it is not used => use it to create the new instance
-			pInst->pObject = sGameObjList + TYPE_SHARPENER;
-			pInst->flag = FLAG_ACTIVE;
-			pInst->scale = 1.0f;
-			pInst->posCurr = Position;
-			pInst->velCurr = SPEED;
-			pInst->dirCurr = 0;
-			printf("Sharpener Slot %lu\n", i);
-			break;
+			AEVec2Set(&pos, 0, 100);
+			AEVec2Set(&vel, 0, 0);
+			flag = FLAG_ACTIVE;
 		}
+		printf("Init Sharpener %lu \n", i);
 	}
 }
 
@@ -100,9 +88,32 @@ void Sharpener::updateSharpener() {
 
 	if (AEInputCheckCurr(AEVK_RIGHT))
 	{
-		Position.x += 5.0f;
+		pos.x += 5.0f;
 		//printf("Move");
 	}
+	for (unsigned long i = 0; i < MAX; i++)
+	{
+		Sharpener* SharpenerInst = SharpenerArray + i;
+			if ((SharpenerInst->flag && FLAG_ACTIVE) == 0)
+			{
+				continue;
+			}
+
+			for (unsigned long j = 0; j < MAX; j++)
+			{
+				Highlighter* HighlighterInst = HighlighterArray + i;
+				if ((HighlighterInst->flag && FLAG_ACTIVE) == 0)
+				{
+					continue;
+				}
+				if (CollisionIntersection_RectRect(SharpenerInst->boundingBox, SharpenerInst->vel, HighlighterInst->boundingBox, HighlighterInst->vel))
+				{
+					pos.x += 50;
+					printf("Collision True");
+				}
+			}
+	}
+	/*
 		for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
 		{
 			GameObjInst* pInst_1 = sGameObjInstList + i;
@@ -125,7 +136,7 @@ void Sharpener::updateSharpener() {
 						printf("Area2");
 						if (CollisionIntersection_RectRect(pInst_1->boundingBox, pInst_1->velCurr, pInst_2->boundingBox, pInst_2->velCurr))
 						{
-							Position.x += 50;
+							pos.x += 50;
 							printf("Colliding");
 						}
 
@@ -133,10 +144,11 @@ void Sharpener::updateSharpener() {
 				}
 			}
 		}
+		*/
 }
 
 void Sharpener::unloadSharpener() {
 
-	AEGfxTextureUnload(sObj->texture);
+	AEGfxTextureUnload(pSharpener->texture);
 	//AEGfxTextureUnload(sharpeners);
 }

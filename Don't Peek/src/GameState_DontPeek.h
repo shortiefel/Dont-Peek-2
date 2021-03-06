@@ -10,7 +10,7 @@
 
 const unsigned int	GAME_OBJ_NUM_MAX = 32;					//The total number of different objects (Shapes)
 const unsigned int	GAME_OBJ_INST_NUM_MAX = 2048;			//The total number of different game object instances
-
+const unsigned int	MAX = 10;
 //const float			PLAYER_ACCEL_FORWARD = 40.f;
 //const float			PLAYER_ACCEL_BACKWARD = 40.f;
 //const float			PLAYER_SPEED = 100.0f;

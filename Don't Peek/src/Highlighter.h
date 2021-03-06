@@ -22,12 +22,16 @@ Technology is prohibited.
 
 #include "Main.h"
 
+
 class Highlighter
 {
 private:
-	//const float	SPEED = 100.0f;
-
-	AEVec2 Position;
+	GameObj* pHighlighter;
+	//unsigned long flag;
+	//AABB boundingBox;
+	AEVec2 pos;
+	//AEVec2 vel;
+	//void BoundingBox();
 
 public:
 	void loadHighlighter();
@@ -36,4 +40,9 @@ public:
 	void updateHighlighter();
 	void unloadHighlighter();
 
+	unsigned long flag;
+	AABB boundingBox;
+	AEVec2 vel;
+
 };
+extern Highlighter HighlighterArray[MAX];

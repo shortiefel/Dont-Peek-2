@@ -19,17 +19,17 @@ without the prior written consent of DigiPen Institute of
 Technology is prohibited.
 */
 /* End Header **************************************************************************/
-
+#include "GameState_DontPeek.h"
 #include "Highlighter.h"
 #include "Sharpener.h"
-#include "GameState_DontPeek.h"
 
- GameObj* hObj;
+
+Highlighter HighlighterArray[MAX];
 
 void Highlighter::loadHighlighter() {
 
-	hObj= sGameObjList + sGameObjNum++;
-	hObj->type = TYPE_HIGHLIGHTER;
+	pHighlighter = (sGameObjList + sGameObjNum++) - 1;
+	pHighlighter->type = TYPE_HIGHLIGHTER;
 
 	AEGfxMeshStart();
 	AEGfxTriAdd(
@@ -42,43 +42,32 @@ void Highlighter::loadHighlighter() {
 		120.0f, 0.0f, 0x00FFFF00, 0.0f, 0.0f,
 		-30.0f, 0.0f, 0x00FFFF00, 0.0f, 0.0f);
 
-	hObj->pMesh = AEGfxMeshEnd();
-	AE_ASSERT_MESG(hObj->pMesh, "Failed to create highlighter!!");
+	pHighlighter->pMesh = AEGfxMeshEnd();
+	AE_ASSERT_MESG(pHighlighter->pMesh, "Failed to create highlighter!!");
 
 }
 
 void Highlighter::initHighlighter() {
-	AEVec2Set(&Position, 50, 0);
-	AEVec2 zero;
-	AEVec2Zero(&zero);
-
-	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
+	for (unsigned long i = 0; i < MAX; i++)
 	{
-		GameObjInst* pInst = sGameObjInstList + i;
-
-		// check if current instance is not used
-		if (pInst->flag == 0)
+		Highlighter* Highlighterinst = HighlighterArray + i;
+		if (flag == 0)
 		{
-			// it is not used => use it to create the new instance
-			pInst->pObject = sGameObjList + TYPE_HIGHLIGHTER;
-			pInst->flag = FLAG_ACTIVE;
-			pInst->scale = 1.0f;
-			pInst->posCurr = Position;
-			pInst->velCurr = zero;
-			pInst->dirCurr = 0;
-			printf("Highlight Slot %lu\n", i);
-			break;
+			AEVec2Set(&pos, 0, 100);
+			AEVec2Set(&vel, 0, 0);
+			flag = FLAG_ACTIVE;
 		}
-
+		printf("Init Highlighter %lu", i);
 	}
+
 }
 
 void Highlighter::drawHighlighter() {
 	AEGfxSetRenderMode(AE_GFX_RM_COLOR);
-	AEGfxSetPosition(Position.x, Position.y);
+	AEGfxSetPosition(pos.x, pos.y);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
-	AEGfxTextureSet(hObj->texture, 0, 0);
-	AEGfxMeshDraw(hObj->pMesh, AE_GFX_MDM_TRIANGLES);
+	AEGfxTextureSet(pHighlighter->texture, 0, 0);
+	AEGfxMeshDraw(pHighlighter->pMesh, AE_GFX_MDM_TRIANGLES);
 	AEGfxSetTransparency(1.0f);
 }
 
