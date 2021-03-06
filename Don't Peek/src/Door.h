@@ -41,4 +41,4 @@ public:
 	AEVec2 vel;
 };
 
-extern Door DoorArray[MAX];
+//extern Door DoorArray[MAX];

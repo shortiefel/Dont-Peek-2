@@ -24,8 +24,8 @@ Technology is prohibited.
 #include "Collision.h"
 #include "Highlighter.h"
 
-Sharpener SharpenerArray[MAX];
-
+//Sharpener SharpenerArray[MAX];
+static Highlighter highlighter;
 void Sharpener::loadSharpener() {
 
 	//memset(sGameObjList, 0, sizeof(GameObj) * GAME_OBJ_NUM_MAX);
@@ -70,19 +70,9 @@ void Sharpener::initSharpener() {
 	//Velocity.x = SPEED;
 	AEVec2Set(&vel, SPEED, 0);
 	AEVec2Set(&pos, -100.0f, 0.0f);
+	flag = FLAG_ACTIVE;
+	//printf("Init Sharpener %lu \n", i);
 
-	for (unsigned long i = 0; i < MAX; i++)
-	{
-		Sharpener* Sharpenerinst = SharpenerArray + i;
-		if (flag == 0)
-		{
-			AEVec2Set(&pos, 0, 100);
-			AEVec2Set(&vel, 0, 0);
-			flag = FLAG_ACTIVE;
-			printf("Init Sharpener %lu \n", i);
-			break;
-		}
-	}
 }
 
 void Sharpener::updateSharpener() {
@@ -92,6 +82,22 @@ void Sharpener::updateSharpener() {
 		pos.x += 5.0f;
 		//printf("Move");
 	}
+	if (AEInputCheckCurr(AEVK_LEFT))
+	{
+		pos.x -= 5.0f;
+		//printf("Move");
+	}
+
+	if (CollisionIntersection_RectRect(boundingBox, vel, highlighter.boundingBox, highlighter.vel))
+	{
+		pos.x += 50;
+		printf("Collision True");
+	}
+	else
+	{
+		printf("No Collision");
+	}
+	/*
 	for (unsigned long i = 0; i < MAX; i++)
 	{
 		Sharpener* SharpenerInst = SharpenerArray + i;
@@ -117,7 +123,7 @@ void Sharpener::updateSharpener() {
 			}
 		}
 	}
-	/*
+	
 		for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
 		{
 			GameObjInst* pInst_1 = sGameObjInstList + i;
@@ -159,18 +165,11 @@ void Sharpener::unloadSharpener() {
 
 void Sharpener::BoundingBox()
 {
-	for (unsigned long i = 0; i < MAX; i++)
-	{
-		Sharpener* Sharpenerinst = SharpenerArray + i;
 
-		if ((flag & FLAG_ACTIVE) == 0)
-			continue;
 
 		boundingBox.min.x = pos.x - 1 / 2;
 		boundingBox.min.y = pos.y - 1 / 2;
 		boundingBox.max.x = pos.x + 1 / 2;
 		boundingBox.max.y = pos.y + 1 / 2;
-		break;
-		//printf("Create %lu", i);
-	}
+
 }

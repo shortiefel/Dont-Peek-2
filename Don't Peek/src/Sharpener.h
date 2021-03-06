@@ -44,5 +44,5 @@ public:
 
 };
 
-extern Sharpener SharpenerArray[MAX];
+//extern Sharpener SharpenerArray[MAX];
 

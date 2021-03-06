@@ -50,6 +50,12 @@ void Door::LoadDoor()
 }
 void Door::initDoor()
 {
+	AEVec2Set(&pos, 0, 200);
+	AEVec2Set(&vel, 0, 0);
+	flag = FLAG_ACTIVE;
+	//printf("Init Door %lu \n", i);
+	
+	/*
 	for (unsigned long i = 0; i < MAX; i++)
 	{	
 		Door* Doorinst = DoorArray + i;
@@ -62,7 +68,7 @@ void Door::initDoor()
 			break;
 		}
 	}
-	/*
+	
 	// loop through the object instance list to find a non-used object instance
 	AEVec2 zero;
 	AEVec2Zero(&zero);

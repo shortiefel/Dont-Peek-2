@@ -49,7 +49,7 @@ void gameObjInstDestroy(GameObjInst* pInst);
 Door door;
 Player player;
 Sharpener sharpener;
-Highlighter highlighter;
+static Highlighter highlighter;
 
 
 /******************************************************************************/
