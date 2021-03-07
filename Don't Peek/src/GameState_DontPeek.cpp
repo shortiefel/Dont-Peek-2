@@ -1,4 +1,7 @@
 #include "GameState_DontPeek.h"
+
+#include "Wall.h"
+
 #include "Door.h"
 #include "Player.h"
 
@@ -19,6 +22,8 @@ Door door;
 Player player;
 
 
+Door door;
+Wall wall;
 
 /******************************************************************************/
 /*!
@@ -27,10 +32,12 @@ Player player;
 /******************************************************************************/
 void GameStateDontPeekLoad(void)
 {
+
 	memset(sGameObjList, 0, sizeof(GameObj) * GAME_OBJ_NUM_MAX);
 	// No game objects (shapes) at this point
 	sGameObjNum = 0;
 	door.LoadDoor();
+	wall.LoadWall();
 
 	player.Player_Character();
 
@@ -46,6 +53,10 @@ void GameStateDontPeekLoad(void)
 void GameStateDontPeekInit(void)
 {
 	player.Player_Init();
+	//AEVec2 a = door.InitDoor();
+	//gameObjInstCreate(TYPE_DOOR, 10.0f, nullptr, nullptr, 0.0f);
+	wall.InitWall();
+
 }
 
 /******************************************************************************/
@@ -55,9 +66,12 @@ void GameStateDontPeekInit(void)
 /******************************************************************************/
 void GameStateDontPeekUpdate(void)
 {
+	
 	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
 	{
 		GameObjInst* pInst = sGameObjInstList + i;
+		if ((pInst->flag & FLAG_ACTIVE) == 0)
+			continue;
 
 		pInst->boundingBox.min.x = pInst->posCurr.x - pInst->scale * 0.5f;
 		pInst->boundingBox.min.y = pInst->posCurr.y - pInst->scale * 0.5f;
@@ -68,6 +82,8 @@ void GameStateDontPeekUpdate(void)
 
 
 	player.Player_Update();
+	
+
 }
 
 /******************************************************************************/
@@ -100,6 +116,9 @@ void GameStateDontPeekDraw(void)
 	door.DrawDoor();
 	player.Player_Draw();
 
+	door.DrawDoor();
+	wall.DrawWall();
+
 }
 
 /******************************************************************************/
@@ -119,6 +138,7 @@ void GameStateDontPeekFree(void)
 			continue;
 		gameObjInstDestroy(pInst);
 	}
+	wall.FreeWall();
 }
 
 /******************************************************************************/
@@ -135,17 +155,27 @@ void GameStateDontPeekUnload(void)
 		if (Objects->pMesh)
 			AEGfxMeshFree(Objects->pMesh);
 	}
+	wall.UnloadWall();
 }
 
-void gameObjInstDestroy(GameObjInst* pInst)
-{
-	// if instance is destroyed before, just return
-	if (pInst->flag == 0)
-		return;
 
-	// zero out the flag
-	pInst->flag = 0;
-}
+/******************************************************************************/
+/*!
+	\brief creates a new instance in the object instance list with paramaters
+		   given
+	\param type
+		   type of object from enum TYPE
+	\param scale
+		   size of object.
+	\param pPos
+		   position of object
+	\param pVel
+		   velocity of object
+	\param dir
+		   direction of object
+*/
+/******************************************************************************/
+
 
 GameObjInst* gameObjInstCreate(unsigned long type,
 	float scale,
@@ -182,3 +212,22 @@ GameObjInst* gameObjInstCreate(unsigned long type,
 	// cannot find empty slot => return 0
 	return 0;
 }
+
+
+/******************************************************************************/
+/*!
+	\brief destroys a new instance in the object instance list
+	\param pInst
+		   pointer to object to destroy.
+*/
+/******************************************************************************/
+void gameObjInstDestroy(GameObjInst* pInst)
+{
+	// if instance is destroyed before, just return
+	if (pInst->flag == 0)
+		return;
+
+	// zero out the flag
+	pInst->flag = 0;
+}
+
