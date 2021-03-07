@@ -105,8 +105,9 @@ void Door::DrawDoor()
 
 	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 	// Drawing the mesh (list of triangles)
+	AEGfxSetTransparency(1.0f);
 	AEGfxMeshDraw(pDoor->pMesh, AE_GFX_MDM_TRIANGLES);
 	// Set Transparency
-	AEGfxSetTransparency(0.0f);
+	
 
 }
