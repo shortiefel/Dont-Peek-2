@@ -23,7 +23,7 @@ Technology is prohibited.
 #include "Door.h"
 #include "GameState_DontPeek.h"
 
-GameObj* pObj;
+static GameObj* pObj;
 
 void Door::LoadDoor()
 {

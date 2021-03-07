@@ -1,9 +1,8 @@
 #include "GameState_DontPeek.h"
-<<<<<<< HEAD
+
 #include "Wall.h"
-=======
+
 #include "Door.h"
->>>>>>> origin/Margaret
 
 
 /******************************************************************************/
@@ -17,6 +16,7 @@ GameObjInst* gameObjInstCreate(unsigned long type, float scale,
 void gameObjInstDestroy(GameObjInst* pInst);
 
 Door door;
+Wall wall;
 
 /******************************************************************************/
 /*!
@@ -25,15 +25,13 @@ Door door;
 /******************************************************************************/
 void GameStateDontPeekLoad(void)
 {
-<<<<<<< HEAD
-	
-=======
+
 	memset(sGameObjList, 0, sizeof(GameObj) * GAME_OBJ_NUM_MAX);
 	// No game objects (shapes) at this point
 	sGameObjNum = 0;
 	door.LoadDoor();
+	wall.LoadWall();
 
->>>>>>> origin/Margaret
 }
 
 /******************************************************************************/
@@ -43,12 +41,10 @@ void GameStateDontPeekLoad(void)
 /******************************************************************************/
 void GameStateDontPeekInit(void)
 {
-<<<<<<< HEAD
-	
-=======
 	//AEVec2 a = door.InitDoor();
 	//gameObjInstCreate(TYPE_DOOR, 10.0f, nullptr, nullptr, 0.0f);
->>>>>>> origin/Margaret
+	wall.InitWall();
+
 }
 
 /******************************************************************************/
@@ -82,11 +78,10 @@ void GameStateDontPeekUpdate(void)
 /******************************************************************************/
 void GameStateDontPeekDraw(void)
 {
-<<<<<<< HEAD
-	
-=======
+
 	door.DrawDoor();
->>>>>>> origin/Margaret
+	wall.DrawWall();
+
 }
 
 /******************************************************************************/
@@ -96,7 +91,7 @@ void GameStateDontPeekDraw(void)
 /******************************************************************************/
 void GameStateDontPeekFree(void)
 {
-	
+	wall.FreeWall();
 }
 
 /******************************************************************************/
@@ -106,10 +101,10 @@ void GameStateDontPeekFree(void)
 /******************************************************************************/
 void GameStateDontPeekUnload(void)
 {
-
+	wall.UnloadWall();
 }
 
-<<<<<<< HEAD
+
 /******************************************************************************/
 /*!
 	\brief creates a new instance in the object instance list with paramaters
@@ -126,18 +121,8 @@ void GameStateDontPeekUnload(void)
 		   direction of object
 */
 /******************************************************************************/
-=======
-void gameObjInstDestroy(GameObjInst* pInst)
-{
-	// if instance is destroyed before, just return
-	if (pInst->flag == 0)
-		return;
 
-	// zero out the flag
-	pInst->flag = 0;
-}
 
->>>>>>> origin/Margaret
 GameObjInst* gameObjInstCreate(unsigned long type,
 	float scale,
 	AEVec2* pPos,
@@ -165,11 +150,6 @@ GameObjInst* gameObjInstCreate(unsigned long type,
 			pInst->velCurr = pVel ? *pVel : zero;
 			pInst->dirCurr = dir;
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> origin/Margaret
 			// return the newly created instance
 			return pInst;
 		}
@@ -178,7 +158,7 @@ GameObjInst* gameObjInstCreate(unsigned long type,
 	// cannot find empty slot => return 0
 	return 0;
 }
-<<<<<<< HEAD
+
 
 /******************************************************************************/
 /*!
@@ -196,5 +176,4 @@ void gameObjInstDestroy(GameObjInst* pInst)
 	// zero out the flag
 	pInst->flag = 0;
 }
-=======
->>>>>>> origin/Margaret
+

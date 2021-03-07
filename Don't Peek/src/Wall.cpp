@@ -1,37 +1,16 @@
 
 #include "Wall.h"
 
-/*static WallObj				WallObjList[GAME_OBJ_NUM_MAX];			// Each element in this array represents a unique game object (shape)
-static unsigned long		WallObjNum;								// The number of defined game objects
+static GameObj* pObj;
+static int numberWalls = 0;
+static Wall wall[100];
 
-static Wall					WallObjInstList[GAME_OBJ_NUM_MAX];			// Each element in this array represents a unique game object (shape)
-static unsigned long		WallObjInstNum;								// The number of defined game objects
-
-void Tutorial(void)
+void Wall::LoadWall()
 {
-	//TODO: code the wall you want
-}
-
-void Wall_Load(void)
-{
-	// zero the game object array
-	memset(WallObjList, 0, sizeof(WallObj) * GAME_OBJ_NUM_MAX);
-	// No game objects (shapes) at this point
-	WallObjNum = 0;
-
-	// zero the game object instance array
-	memset(WallObjInstList, 0, sizeof(Wall) * GAME_OBJ_NUM_MAX);
-	// No game object instances (sprites) at this point
-	WallObjInstNum = 0;
-
-	// list of original object
-	WallObj* wObj;
-
-	wObj = WallObjList + WallObjNum ++;
-	wObj->type = WALL;
+	pObj = sGameObjList + sGameObjNum++;
+	pObj->type = TYPE_WALL;
 
 	AEGfxMeshStart();
-
 	AEGfxTriAdd(
 		-0.5f, -0.5f, 0xFFFFFFFF, 0.0f, 0.0f,
 		0.5f, -0.5f, 0xFFFFFFFF, 0.0f, 0.0f,
@@ -42,88 +21,75 @@ void Wall_Load(void)
 		0.5f, 0.5f, 0xFFFFFFFF, 0.0f, 0.0f,
 		-0.5f, 0.5f, 0xFFFFFFFF, 0.0f, 0.0f);
 
-	wObj->wMesh = AEGfxMeshEnd();
+	pObj->pMesh = AEGfxMeshEnd();
 
 }
-
-void Wall_Init(void)
+void Wall::InitWall()
 {
-	Tutorial();
-	//load mesh
-	CreateWall(WALL, 100, nullptr, nullptr, 0.0f);
-}
+	AEVec2 pos{ 5,5 };
+	AEVec2 dir{ 0,1 };
+	CreateWall(pos, dir, 3, wall,30.f);
 
-Wall* Wall::CreateWall(unsigned long tpe, float scale, AEVec2* pPos, float dir)
-{
-	AEVec2 zero;
-	AEVec2Zero(&zero);
+	pos={ 0,10 };
+	dir={ 1,0 };
+	CreateWall(pos, dir, 10, wall, 30.f);
+	printf("drawing\n");
+	printf("number %d \n", numberWalls);
 
-	AE_ASSERT_PARM(tpe < WallObjNum);
-
-	// loop through the object instance list to find a non-used object instance
-	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
+	for (int i = 0; i < numberWalls; i++)
 	{
-		Wall* wInst = WallObjInstList + i;
-
-		// check if current instance is not used
-		if (flag == 0)
-		{
-			// it is not used => use it to create the new instance
-			wInst->wObj = WallObjList + tpe;
-			wInst->flag = FLAG_ACTIVE;
-			wInst->height = scale;
-			wInst->width = scale;
-			wInst->position = pPos ? *pPos : zero;
-			wInst->direction = dir;
-
-			// return the newly created instance
-			return wInst;
-		}
+		printf("wall %d pos = (%f,%f)\n", i, wall[i].Wallpos.x, wall[i].Wallpos.y);
 	}
-
-	// cannot find empty slot => return 0
-	return 0;
 }
 
-void Wall_Render(void)
+void CreateWall(AEVec2 pos, AEVec2 dir, int number, Wall* const WallArr, float scale)
 {
-	//tbc
+	Wall *temp = WallArr + numberWalls;
+	AEMtx33	trans, sc;
+	for (int i = 0; i <number; i++, temp++)
+	{
+		temp->Wallscale = scale;
+		// new pos = old pos + (dir * 1/2 size) * number of walls
+		temp->Wallpos.x = pos.x + temp->Wallscale * i * dir.x;
+		temp->Wallpos.y = pos.y + temp->Wallscale * i * dir.y;
+		numberWalls++;
+
+		// Compute the scaling matrix
+		AEMtx33Scale(&sc, temp->Wallscale, temp->Wallscale);
+		// Compute the translation matrix
+		AEMtx33Trans(&trans, temp->Wallpos.x, temp->Wallpos.y);
+
+		AEMtx33Concat(&(temp->transform), &trans, &sc);
+	}
+}
+
+void Wall::DrawWall()
+{
 	AEGfxSetRenderMode(AE_GFX_RM_COLOR);
 	AEGfxTextureSet(NULL, 0, 0);
 
-	// draw all object instances in the list
-	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
+	for (int i = 0; i < numberWalls; i++)
 	{
-		GameObjInst* pInst = sGameObjInstList + i;
-
-		// skip non-active object
-		if ((pInst->flag & FLAG_ACTIVE) == 0)
-			continue;
-
+		// Drawing object 1
+		AEGfxSetRenderMode(AE_GFX_RM_COLOR);
 		// Set the current object instance's transform matrix using "AEGfxSetTransform"
-		AEGfxSetTransform(pInst->transform.m);
+		AEGfxSetTransform(wall[i].transform.m);
 		// Draw the shape used by the current object instance using "AEGfxMeshDraw"
-		AEGfxMeshDraw(pInst->pObject->pMesh, AE_GFX_MDM_TRIANGLES);
+		AEGfxMeshDraw(pObj->pMesh, AE_GFX_MDM_TRIANGLES);
 	}
 }
 
-void Wall_Update(void)
+void Wall::FreeWall()
 {
-	//Wall* wallPointer = nullptr;
-	int size = 0;
 
-
-	//if (currentStage == TUTORIAL)
-
-	for (int i = 0; i < size; ++i)
+}
+void Wall::UnloadWall()
+{
+	// free all mesh data (shapes) of each object using "AEGfxTriFree"
+	for (unsigned long i = 0; i < numberWalls; i++)
 	{
-		//if (wallPointer[i].GetActive() == false)
-			//continue;
-		//wallPointer[i].Wall_Render();
+		GameObj* Objects = sGameObjList + i;
+		if (Objects->pMesh)
+			AEGfxMeshFree(Objects->pMesh);
 	}
 }
-void Wall_Exit(void)
-{
-	//free mesh
-}
-*/

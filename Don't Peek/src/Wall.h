@@ -73,3 +73,23 @@ void Wall_Render(void);
 void Wall_Update(void);
 void Wall_Exit(void);
 */
+
+class Wall
+{
+private:
+	AEVec2 Wallpos;
+	AEVec2 Walldir;
+	float Wallscale;
+	AEMtx33	transform;	// object transformation matrix
+	//AEGfxVertexList* wMesh;
+public:
+
+	void LoadWall();
+	void InitWall();
+	void DrawWall();
+	void FreeWall();
+	void UnloadWall();
+	friend void CreateWall(AEVec2 pos, AEVec2 dir, int number, Wall* const WallArr, float scale);
+};
+
+void CreateWall(AEVec2 pos, float dir, int number, Wall* const WallArr, float scale);
