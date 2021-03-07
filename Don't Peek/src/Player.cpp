@@ -42,25 +42,13 @@ void Player::Player_Character() //drawing of character
 	
 }
 
-//void Player::Player_Movement()
-//{
-//	if (isPlayerAlive == TRUE && isPlayerWin == FALSE)
-//	{
-//		player->velCurr.y += 3.0f * g_dt; //constant gravity for falling 
-//		player->velCurr.x = player->velCurr.x * Speed * 1.25f * 100.0f;
-//		player->velCurr.y = player->velCurr.y * Speed * 1.25f * 100.f;
-//		Speed_Overall = (player->velCurr.x, player->velCurr.y);
-//	}
-//}
-
-
 void Player::Player_Draw()
 {
 	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 	AEGfxSetPosition(pos.x, pos.y);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
 	AEGfxTextureSet(pPlayer->texture, 0, 0);
-	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
+	AEGfxSetBlendMode(AE_GFX_BM_NONE);
 	AEGfxMeshDraw(pPlayer->pMesh, AE_GFX_MDM_TRIANGLES);
 	AEGfxSetTransparency(1.0f);
 }
@@ -150,6 +138,74 @@ void Player::BoundingBoxPlayer()
 	boundingBox.min.y = pos.y;
 	boundingBox.max.x = pos.x;
 	boundingBox.max.y = pos.y;
+}
+
+/******************************************************************************/
+/*!
+	Player Collision
+*/
+/******************************************************************************/
+
+void Player::Player_Collision()
+{
+	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
+	{
+		//decalre new instance 
+		GameObjInst* pInst_1 = sGameObjInstList + i;
+
+		//if object is instance and not active,skip
+		if ((pInst_1->flag & FLAG_ACTIVE) == 0)
+			continue;
+
+		//if object is sharpner
+		if ((pInst_1->pObject->type == TYPE_SHARPENER))
+		{
+			//setting object instance
+			for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
+			{
+				//declaring variable
+				GameObjInst* pInst_2 = sGameObjInstList + i;
+
+				//if object is instance and not active or is sharpner, skip
+				if (((pInst_2->flag && FLAG_ACTIVE) == 0) || pInst_2->pObject->type == TYPE_SHARPENER)
+					continue;
+
+				if (pInst_2->pObject->type == TYPE_PLAYER)
+				{
+					if (CollisionIntersection_RectRect(pInst_1->boundingBox, pInst_1->velCurr, pInst_2->boundingBox, pInst_2->velCurr))
+					{
+						//i not sure?
+					}
+				}
+
+				else if (pInst_2->pObject->type == TYPE_SHARPENER)
+				{
+					if (CollisionIntersection_RectRect(pInst_1->boundingBox, pInst_1->velCurr, pInst_2->boundingBox, pInst_2->velCurr))
+					{
+						//i not sure?
+					}
+				}
+
+				else if (pInst_2->pObject->type == TYPE_HIGHLIGHTER)
+				{
+					if (CollisionIntersection_RectRect(pInst_1->boundingBox, pInst_1->velCurr, pInst_2->boundingBox, pInst_2->velCurr))
+					{
+						//i not sure?
+					}
+				}
+
+				else if (pInst_2->pObject->type == TYPE_DOOR)
+				{
+					if (CollisionIntersection_RectRect(pInst_1->boundingBox, pInst_1->velCurr, pInst_2->boundingBox, pInst_2->velCurr))
+					{
+						//i not sure?
+					}
+				}
+
+
+			}
+		}
+	}
 }
 
 

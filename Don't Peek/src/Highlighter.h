@@ -31,8 +31,7 @@ private:
 	GameObj* pHighlighter;
 	AEVec2 pos;
 	unsigned long flag;
-	AABB boundingBox;
-	AEVec2 vel;
+
 
 public:
 	void loadHighlighter();
@@ -41,6 +40,8 @@ public:
 	void updateHighlighter();
 	void unloadHighlighter();
 	void BoundingBox();
+	AABB boundingBox;
+	AEVec2 vel;
 
 	
 
