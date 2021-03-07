@@ -25,7 +25,7 @@ Technology is prohibited.
 
 GameObj* pObj;
 
-Door* Door::LoadDoor()
+void Door::LoadDoor()
 {
 	pObj = sGameObjList + sGameObjNum++;
 	pObj->type = TYPE_DOOR;
@@ -45,7 +45,6 @@ Door* Door::LoadDoor()
 
 	pObj->texture = AEGfxTextureLoad("Resources/Sharpener_Animation.png");
 	AE_ASSERT_MESG(pObj->texture, "Failed to create texture1!!");
-	return this;
 
 }
 AEVec2 Door::InitDoor()
