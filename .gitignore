@@ -1,42 +1,6 @@
 # Prerequisites
 *.d
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-
-# Executables
-*.exe
-*.out
-*.app
-*.db
-*.log
-*.log
-*.tlog
-# Prerequisites
-*.d
-
 # Object files
 *.o
 *.ko
@@ -143,9 +107,10 @@ ipch/
 *.db-wal
 *.db-shm
 *.ilk
-Don't Peek/.vs/Don't Peek/v16/Browse.VC.db
-Don't Peek/.vs/Don't Peek/v16/.suo
+
 
 Don't Peek/.vs/
 Don't Peek/x64/
 
+*.tlog
+*.tlog
