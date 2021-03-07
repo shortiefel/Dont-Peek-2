@@ -22,6 +22,7 @@ enum TYPE
 {
 	// list of game object types
 	TYPE_SHARPENER = 1,
+
 	TYPE_HIGHLIGHTER,
 	TYPE_ERASER,
 	TYPE_PENCIL,

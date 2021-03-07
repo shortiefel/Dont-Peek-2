@@ -1,24 +1,74 @@
-﻿  Sharpener.cpp
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(103,3): error C2065: 'Highlighter': undeclared identifier
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(103,16): error C2065: 'temp': undeclared identifier
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(103,23): error C2065: 'HighlighterArray': undeclared identifier
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(104,56): error C2065: 'temp': undeclared identifier
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(104,75): error C2065: 'temp': undeclared identifier
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(104,6): error C2660: 'CollisionIntersection_RectRect': function does not take 2 arguments
+﻿  Collision.cpp
+  Door.cpp
+  GameStateMgr.cpp
+  GameState_DontPeek.cpp
+  Main.cpp
+  Player.cpp
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Player.cpp(106,4): warning C4456: declaration of 'i' hides previous local declaration
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Player.cpp(93,21): message : see declaration of 'i'
+  Sharpener.cpp
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(86,33): error C2084: function 'void Sharpener::drawSharpener(void)' already has a body
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(59): message : see previous definition of 'drawSharpener'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(97,33): error C2084: function 'void Sharpener::initSharpener(void)' already has a body
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(70): message : see previous definition of 'initSharpener'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(116,35): error C2084: function 'void Sharpener::updateSharpener(void)' already has a body
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(80): message : see previous definition of 'updateSharpener'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(141,3): error C2065: 'Highlighter': undeclared identifier
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(141,16): error C2065: 'temp': undeclared identifier
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(141,23): error C2065: 'HighlighterArray': undeclared identifier
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(142,56): error C2065: 'temp': undeclared identifier
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(142,75): error C2065: 'temp': undeclared identifier
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(142,6): error C2660: 'CollisionIntersection_RectRect': function does not take 2 arguments
 C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.h(32,6): message : see declaration of 'CollisionIntersection_RectRect'
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(112,29): error C2065: 'temp': undeclared identifier
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(112,11): warning C4473: 'printf' : not enough arguments passed for format string
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(112,11): message : placeholders and their parameters expect 1 variadic arguments, but 0 were provided
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(112,11): message : the missing variadic argument 1 is required by format string '%f'
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(113,29): error C2065: 'temp': undeclared identifier
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(113,11): warning C4473: 'printf' : not enough arguments passed for format string
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(113,11): message : placeholders and their parameters expect 1 variadic arguments, but 0 were provided
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(113,11): message : the missing variadic argument 1 is required by format string '%f'
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(114,29): error C2065: 'temp': undeclared identifier
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(114,11): warning C4473: 'printf' : not enough arguments passed for format string
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(114,11): message : placeholders and their parameters expect 1 variadic arguments, but 0 were provided
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(114,11): message : the missing variadic argument 1 is required by format string '%f'
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(115,29): error C2065: 'temp': undeclared identifier
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(115,11): warning C4473: 'printf' : not enough arguments passed for format string
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(115,11): message : placeholders and their parameters expect 1 variadic arguments, but 0 were provided
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(115,11): message : the missing variadic argument 1 is required by format string '%f'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(150,29): error C2065: 'temp': undeclared identifier
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(150,11): warning C4473: 'printf' : not enough arguments passed for format string
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(150,11): message : placeholders and their parameters expect 1 variadic arguments, but 0 were provided
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(150,11): message : the missing variadic argument 1 is required by format string '%f'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(151,29): error C2065: 'temp': undeclared identifier
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(151,11): warning C4473: 'printf' : not enough arguments passed for format string
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(151,11): message : placeholders and their parameters expect 1 variadic arguments, but 0 were provided
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(151,11): message : the missing variadic argument 1 is required by format string '%f'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(152,29): error C2065: 'temp': undeclared identifier
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(152,11): warning C4473: 'printf' : not enough arguments passed for format string
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(152,11): message : placeholders and their parameters expect 1 variadic arguments, but 0 were provided
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(152,11): message : the missing variadic argument 1 is required by format string '%f'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(153,29): error C2065: 'temp': undeclared identifier
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(153,11): warning C4473: 'printf' : not enough arguments passed for format string
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(153,11): message : placeholders and their parameters expect 1 variadic arguments, but 0 were provided
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(153,11): message : the missing variadic argument 1 is required by format string '%f'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(161,2): warning C4456: declaration of 'i' hides previous local declaration
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(139,11): message : see declaration of 'i'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(166,4): error C2065: 'Highlighter': undeclared identifier
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(166,17): error C2065: 'highlightertemp': undeclared identifier
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(166,35): error C2065: 'HighlighterArray': undeclared identifier
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(167,87): error C2065: 'highlightertemp': undeclared identifier
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(167,117): error C2065: 'highlightertemp': undeclared identifier
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(167,7): error C2660: 'CollisionIntersection_RectRect': function does not take 2 arguments
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.h(32,6): message : see declaration of 'CollisionIntersection_RectRect'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(175,30): error C2065: 'highlightertemp': undeclared identifier
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(175,12): warning C4473: 'printf' : not enough arguments passed for format string
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(175,12): message : placeholders and their parameters expect 1 variadic arguments, but 0 were provided
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(175,12): message : the missing variadic argument 1 is required by format string '%f'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(176,30): error C2065: 'highlightertemp': undeclared identifier
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(176,12): warning C4473: 'printf' : not enough arguments passed for format string
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(176,12): message : placeholders and their parameters expect 1 variadic arguments, but 0 were provided
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(176,12): message : the missing variadic argument 1 is required by format string '%f'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(177,30): error C2065: 'highlightertemp': undeclared identifier
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(177,12): warning C4473: 'printf' : not enough arguments passed for format string
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(177,12): message : placeholders and their parameters expect 1 variadic arguments, but 0 were provided
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(177,12): message : the missing variadic argument 1 is required by format string '%f'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(178,30): error C2065: 'highlightertemp': undeclared identifier
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(178,12): warning C4473: 'printf' : not enough arguments passed for format string
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(178,12): message : placeholders and their parameters expect 1 variadic arguments, but 0 were provided
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(178,12): message : the missing variadic argument 1 is required by format string '%f'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(243,1): error C2601: 'Sharpener::unloadSharpener': local function definitions are illegal
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(116): message : this line contains a '{' which has not yet been matched
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(250,1): error C2601: 'Sharpener::BoundingBox': local function definitions are illegal
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(116): message : this line contains a '{' which has not yet been matched
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(320,35): error C2601: 'Sharpener::unloadSharpener': local function definitions are illegal
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(116): message : this line contains a '{' which has not yet been matched
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(327,1): error C2601: 'Sharpener::BoundingBox': local function definitions are illegal
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(116): message : this line contains a '{' which has not yet been matched
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(116): fatal error C1075: '{': no matching token found
+  Wall.cpp
+  Generating Code...
