@@ -99,7 +99,7 @@ void Sharpener::updateSharpener() {
 			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, highlightertemp->boundingBox, highlightertemp->vel))
 			{
 				pos.x += 5;
-
+				
 			}
 		}
 	}
