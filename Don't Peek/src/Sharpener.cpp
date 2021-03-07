@@ -87,26 +87,6 @@ void Sharpener::initSharpener() {
 
 void Sharpener::updateSharpener() {
 	
-	if (AEInputCheckCurr(AEVK_RIGHT))
-	{
-		pos.x += 5.0f;
-		//printf("Move");
-	}
-	if (AEInputCheckCurr(AEVK_LEFT))
-	{
-		pos.x -= 5.0f;
-		//printf("Move");
-	}
-	if (AEInputCheckCurr(AEVK_UP))
-	{
-		pos.y += 5.0f;
-		//printf("Move");
-	}
-	if (AEInputCheckCurr(AEVK_DOWN))
-	{
-		pos.y -= 5.0f;
-		//printf("Move");
-	}
 	BoundingBox();
 	for (int i = 0; i < 1; i++)
 	{
@@ -117,15 +97,7 @@ void Sharpener::updateSharpener() {
 			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, highlightertemp->boundingBox, highlightertemp->vel))
 			{
 				pos.x += 5;
-				printf("Collision True");
-				printf("BB2 min x %f \n", Sharpenertemp->boundingBox.min.x);
-				printf("BB2 min y %f \n", Sharpenertemp->boundingBox.min.y);
-				printf("BB2 maX x %f \n", Sharpenertemp->boundingBox.max.x);
-				printf("BB2 max y %f \n", Sharpenertemp->boundingBox.max.y);
-				printf("BB min x %f \n", highlightertemp->boundingBox.min.x);
-				printf("BB min y %f \n", highlightertemp->boundingBox.min.y);
-				printf("BB maX x %f \n", highlightertemp->boundingBox.max.x);
-				printf("BB max y %f \n", highlightertemp->boundingBox.max.y);
+				
 			}
 		}
 	}

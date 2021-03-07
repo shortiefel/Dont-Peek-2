@@ -29,8 +29,7 @@ private:
 	GameObj* pSharpener;
 	AEVec2 pos;
 	unsigned long flag;
-	AEVec2 vel;
-	AABB boundingBox;
+	
 public:
 	void loadSharpener();
 	void drawSharpener();
@@ -38,6 +37,8 @@ public:
 	void updateSharpener();
 	void unloadSharpener();
 	void BoundingBox();
+	AEVec2 vel;
+	AABB boundingBox;
 
 	
 

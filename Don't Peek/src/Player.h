@@ -24,7 +24,7 @@ public:
 	//void Player_Exit();
 	void SetGravity();
 	void BoundingBoxPlayer();
-	void Player_Collision();
+	//void Player_Collision();
 };
 
 
