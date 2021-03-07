@@ -19,60 +19,174 @@ without the prior written consent of DigiPen Institute of
 Technology is prohibited.
 */
 /* End Header **************************************************************************/
-
+#include "GameState_DontPeek.h"
 #include "Sharpener.h"
+#include "Collision.h"
 
-const float	SPEED = 50.0f;
-AEVec2 sharpenerPos;
-AEVec2 velocity;
+//Sharpener SharpenerArray[MAX];
 
-void sharpener::loadSharpener() {
+void Sharpener::loadSharpener() {
 
-	AEGfxTexture* image;
-	image = AEGfxTextureLoad("Sharpener_Animation.png");
+	//memset(sGameObjList, 0, sizeof(GameObj) * GAME_OBJ_NUM_MAX);
+	//sGameObjNum = 0;
 
-	AEGfxVertexList* sharpener = 0;
+	pSharpener = sGameObjList + sGameObjNum++;
+	pSharpener->type = TYPE_SHARPENER;
+
+	pSharpener->texture = AEGfxTextureLoad("Resources/Sharpener_Animation.png");
+	AE_ASSERT_MESG(pSharpener->texture, "Failed to load sharpener!!");
+
+	//sharpeners = AEGfxTextureLoad("Sharpener_Animation.png");
+	//AEGfxVertexList* sharpener = 0;
 	AEGfxMeshStart();
-
-	//rectangle sharpener (?)
 	AEGfxTriAdd(
-		-30.0f, -30.0f, 0x00000000, 0.0f, 0.0f,
-		45.0f, -30.0f, 0x00000000, 0.0f, 0.0f,
+		-30.0f, -30.0f, 0x00000000, 0.0f, 1.0f,
+		45.0f, -30.0f, 0x00000000, 1.0f, 1.0f,
 		-30.0f, 30.0f, 0x00000000, 0.0f, 0.0f);
 
 	AEGfxTriAdd(
-		45.0f, -30.0f, 0x00000000, 0.0f, 0.0f,
-		45.0f, 30.0f, 0x00000000, 0.0f, 0.0f,
+		45.0f, -30.0f, 0x00000000, 1.0f, 1.0f,
+		45.0f, 30.0f, 0x00000000, 1.0f, 0.0f,
 		-30.0f, 30.0f, 0x00000000, 0.0f, 0.0f);
 
-	sharpener = AEGfxMeshEnd();
-	AEGfxTextureUnload(image);
+	pSharpener->pMesh = AEGfxMeshEnd();
+	AE_ASSERT_MESG(pSharpener->pMesh, "Failed to create sharpener!!");
+
 }
 
-void sharpener::initSharpener() {
+void Sharpener::drawSharpener() {
 
-	sharpenerPos.x = 1.0f * AEGetWindowWidth() / 2;
-	sharpenerPos.y = 1.0f * AEGetWindowHeight() / 2;
-	velocity.x = SPEED;
+	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
+	AEGfxSetPosition(pos.x, pos.y);
+	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
+	AEGfxTextureSet(pSharpener->texture, 0, 0);
+	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
+	AEGfxMeshDraw(pSharpener->pMesh, AE_GFX_MDM_TRIANGLES);
+	AEGfxSetTransparency(1.0f);
 }
 
-void sharpener::updateSharpener() {
+void Sharpener::initSharpener() {
+	//Velocity.x = SPEED;
+	flag = FLAG_ACTIVE;
+	AEVec2Set(&vel, SPEED, 0);
+	AEVec2Set(&pos, -100.0f, 100.0f);
 
+	//printf("Init Sharpener %lu \n", i);
+
+}
+
+void Sharpener::updateSharpener() {
+
+	if (AEInputCheckCurr(AEVK_RIGHT))
+	{
+		pos.x += 5.0f;
+		//printf("Move");
+	}
+	if (AEInputCheckCurr(AEVK_LEFT))
+	{
+		pos.x -= 5.0f;
+		//printf("Move");
+	}
 	if (AEInputCheckCurr(AEVK_UP))
 	{
-		//?????
+		pos.y += 5.0f;
+		//printf("Move");
+	}
+	if (AEInputCheckCurr(AEVK_DOWN))
+	{
+		pos.y -= 5.0f;
+		//printf("Move");
+	}
+	BoundingBox();
+	for (int i = 0; i < 1; i++)
+	{
+		Highlighter* temp = HighlighterArray + i;
+		if (CollisionIntersection_RectRect(boundingBox, vel, temp->boundingBox, temp->vel))
+		{
+			pos.x += 5;
+			printf("Collision True");
+			printf("BB2 min x %f \n", boundingBox.min.x);
+			printf("BB2 min y %f \n", boundingBox.min.y);
+			printf("BB2 maX x %f \n", boundingBox.max.x);
+			printf("BB2 max y %f \n", boundingBox.max.y);
+			printf("BB min x %f \n", temp->boundingBox.min.x);
+			printf("BB min y %f \n", temp->boundingBox.min.y);
+			printf("BB maX x %f \n", temp->boundingBox.max.x);
+			printf("BB max y %f \n", temp->boundingBox.max.y);
+		}
+	}
+	/*
+	for (unsigned long i = 0; i < MAX; i++)
+	{
+		Sharpener* SharpenerInst = SharpenerArray + i;
+		//printf("SharpenerInst %lu", i);
+		for (unsigned long j = 0; j < MAX; j++)
+		{
+			//printf("Check SharpenerInst %lu", i);
+			Highlighter* HighlighterInst = HighlighterArray + j;
+			//printf("HighlighterInst %lu", j);
+			if ((flag && HighlighterInst->flag) == 0)
+			{
+				continue;
+			}
+			//printf(" Check HighlighterInst %lu",j);
+			if (CollisionIntersection_RectRect(boundingBox, vel, HighlighterInst->boundingBox, HighlighterInst->vel))
+			{
+				pos.x += 50;
+				printf("Collision True");
+			}
+			else
+			{
+				printf("No Collision");
+			}
+		}
 	}
 
-	if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) &&
-		AEInputCheckCurr(AEVK_LEFT)) //[]o player pushing left
-	{
-		sharpenerPos.x -= velocity.x;
-	}
+		for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
+		{
+			GameObjInst* pInst_1 = sGameObjInstList + i;
+			if ((pInst_1->flag && FLAG_ACTIVE) == 0)
+				continue;
 
-	if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) &&
-		AEInputCheckCurr(AEVK_RIGHT)) //o[] player pushing right
-	{
-		sharpenerPos.x += velocity.x;
-	}
+			//if object is an asteroid
+			if ((pInst_1->pObject->type == TYPE_SHARPENER))
+			{
+				//setting object instance
+				for (unsigned long j = 0; j < GAME_OBJ_INST_NUM_MAX; j++)
+				{
+					GameObjInst* pInst_2 = sGameObjInstList + j;
+
+					if ((pInst_2->flag && FLAG_ACTIVE) == 0 )
+						continue;
+
+					if (pInst_2->pObject->type == TYPE_HIGHLIGHTER)
+					{
+						printf("Area2");
+						if (CollisionIntersection_RectRect(pInst_1->boundingBox, pInst_1->velCurr, pInst_2->boundingBox, pInst_2->velCurr))
+						{
+							pos.x += 50;
+							printf("Colliding");
+						}
+
+					}
+				}
+			}
+		}
+		*/
+}
+
+void Sharpener::unloadSharpener() {
+
+	AEGfxTextureUnload(pSharpener->texture);
+	//AEGfxTextureUnload(sharpeners);
+}
+
+void Sharpener::BoundingBox()
+{
+
+	boundingBox.min.x = pos.x - 10 / 2;
+	boundingBox.min.y = pos.y - 10 / 2;
+	boundingBox.max.x = pos.x + 10 / 2;
+	boundingBox.max.y = pos.y + 10 / 2;
 
 }

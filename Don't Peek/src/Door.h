@@ -21,15 +21,24 @@ Technology is prohibited.
 /* End Header **************************************************************************/
 #pragma once
 #include "Main.h"
+#include "GameState_DontPeek.h"
 class Door
 {
 private:
-	AEVec2 Doorpos;
+
+	GameObj* pDoor;
+	unsigned long flag;
+	//void BoundingBox();
+
 public:
 
 	void LoadDoor();
-	AEVec2 InitDoor();
+	void initDoor();
 	void DrawDoor();
-	void ExitDoor();
 
+	AABB boundingBox;
+	AEVec2 pos;
+	AEVec2 vel;
 };
+
+//extern Door DoorArray[MAX];

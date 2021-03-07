@@ -1,18 +1,16 @@
-#include "Player.h"
 #include "GameState_DontPeek.h"
+#include "Player.h"
+#include "Sharpener.h"
+#include "Collision.h"
 
 
 
 /******************************************************************************/
 /*!
-	Game Object 
+	Game Objects
 */
 /******************************************************************************/
 
-
-
-static GameObj* pObj;
-static GameObjInst* player;
 const int Player_Gravity = 8;
 bool Gravity = true;
 float GROUND = 0.f;
@@ -29,9 +27,11 @@ bool CanJump = false;
 
 void Player::Player_Character() //drawing of character
 {
-	
-	pObj = sGameObjList + sGameObjNum++;
-	pObj->type = TYPE_PLAYER;
+	pPlayer = sGameObjList + sGameObjNum++;
+	pPlayer->type = TYPE_PLAYER;
+
+	pPlayer->texture = AEGfxTextureLoad("Resources/Player.png");
+	AE_ASSERT_MESG(pPlayer->texture, "Failed to load Player!");
 
 
 	//Drawing of Player
@@ -45,13 +45,26 @@ void Player::Player_Character() //drawing of character
 		100.0f, -60.0f, 0x00000000, 1.0f, 1.0f,
 		100.0f, 60.0f, 0x00000000, 1.0f, 0.0f,
 		-60.0f, 60.0f, 0x00000000, 0.0f, 0.0f);
-	pObj->pMesh = AEGfxMeshEnd();
-	AE_ASSERT_MESG(pObj->pMesh, "fail to create object!!");
+	pPlayer->pMesh = AEGfxMeshEnd();
+	AE_ASSERT_MESG(pPlayer->pMesh, "fail to create object!!");
 
-	pObj->texture = AEGfxTextureLoad("Resources/Player.png");
-	AE_ASSERT_MESG(pObj->texture, "Failed to create texture1!!");
+}
 
-	
+/******************************************************************************/
+/*!
+	Player Draw
+*/
+/******************************************************************************/
+
+void Player::Player_Draw()
+{
+	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
+	AEGfxSetPosition(Position.x, Position.y);
+	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
+	AEGfxTextureSet(pPlayer->texture, 0, 0);
+	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
+	AEGfxMeshDraw(pPlayer->pMesh, AE_GFX_MDM_TRIANGLES);
+	AEGfxSetTransparency(1.0f);
 }
 
 void Player::SetGravity()
@@ -73,30 +86,7 @@ void Player::SetGravity()
 //	}
 //}
 
-/******************************************************************************/
-/*!
-	Player Draw
-*/
-/******************************************************************************/
 
-void Player::Player_Draw()
-{
-	// Drawing object 2 - (first) - No tint
-	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
-	// Set position for object 2
-	AEGfxSetPosition(Position.x, Position.y);
-	// No tint
-	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
-
-	AEGfxTextureSet(pObj->texture, 0, 0);		// Same object, different texture
-
-	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
-
-	// Drawing the mesh (list of triangles)
-	AEGfxMeshDraw(pObj->pMesh, AE_GFX_MDM_TRIANGLES);
-	// Set Transparency
-	AEGfxSetTransparency(1.0f);
-}
 
 void Player::Player_Collision()
 {
@@ -160,6 +150,25 @@ void Player::Player_Collision()
 	}
 }
 
+/******************************************************************************/
+/*!
+	Player Bounding Box
+*/
+/******************************************************************************/
+
+void Player::BoundingBoxPlayer()
+{
+	AEMtx33 Transform, Scale, Concat;
+	AEMtx33Scale(&Scale, Position.x, Position.y);
+	AEMtx33Trans(&Transform, Position.x, Position.y);
+	AEMtx33Concat(&Concat, &Transform, &Scale);
+
+	BoundingBox.min.x = Position.x;
+	BoundingBox.min.y = Position.y;
+	BoundingBox.max.x = Position.x;
+	BoundingBox.max.y = Position.y;
+}
+
 
 /******************************************************************************/
 /*!
@@ -167,14 +176,11 @@ void Player::Player_Collision()
 */
 /******************************************************************************/
 
-void Player::Player_Init()
+void Player::InitPlayer()
 {
-	Velocity.x = SPEED;
-	Velocity.y = SPEED;
-	Position.x = 40.0f;
-	Position.y = -50.f;
-
-
+	flag = FLAG_ACTIVE;
+	AEVec2Set(&Velocity, SPEED, SPEED);
+	AEVec2Set(&Position, 40.0f, -50.0f);
 }
 
 
@@ -184,7 +190,7 @@ void Player::Player_Init()
 */
 /******************************************************************************/
 
-void Player::Player_Update()
+void Player::UpdatePlayer()
 {
 	
 	if (AEInputCheckCurr(AEVK_LEFT))
@@ -212,13 +218,8 @@ void Player::Player_Update()
 		Position.y = GROUND;
 		CanJump = true;
 	}
-	
-	
-	
 
-
-
-
+	BoundingBoxPlayer();
 }
 
 /******************************************************************************/
@@ -226,6 +227,6 @@ void Player::Player_Update()
 	Player Exit
 */
 /******************************************************************************/
-void Player::Player_Exit()
+void Player::ExitPlayer()
 {
 }

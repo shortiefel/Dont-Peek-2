@@ -21,8 +21,7 @@ const float			SPEED = 10.0f;
 enum TYPE
 {
 	// list of game object types
-	TYPE_NOTHING = 0,
-	TYPE_SHARPENER,
+	TYPE_SHARPENER = 1,
 	TYPE_HIGHLIGHTER,
 	TYPE_ERASER,
 	TYPE_PENCIL,

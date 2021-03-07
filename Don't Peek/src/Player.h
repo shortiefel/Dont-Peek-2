@@ -14,15 +14,20 @@ public:
 	void Player_Character();
 	void SetGravity();
 	void Player_Draw();
-	void Player_Init();
+	void InitPlayer();
 	void Player_Collision();
-	//void Player_Velocity();
-	void Player_Update();
-	void Player_Exit();
+	void BoundingBoxPlayer();
+	void UpdatePlayer();
+	void ExitPlayer();
+
+	AABB BoundingBox;
+	unsigned long flag;
+	AEVec2 Velocity;
 
 private:
 	AEVec2 Position;
-	AEVec2 Velocity;
+	GameObj* pPlayer;
+	
 };
 
 

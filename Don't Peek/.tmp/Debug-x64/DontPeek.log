@@ -1,3 +1,24 @@
-﻿  Player.cpp
-  LINK : C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\\bin\Debug-x64\DontPeek.exe not found or not built by the last incremental link; performing full link
-  DontPeek.vcxproj -> C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe
+﻿  Sharpener.cpp
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(103,3): error C2065: 'Highlighter': undeclared identifier
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(103,16): error C2065: 'temp': undeclared identifier
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(103,23): error C2065: 'HighlighterArray': undeclared identifier
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(104,56): error C2065: 'temp': undeclared identifier
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(104,75): error C2065: 'temp': undeclared identifier
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(104,6): error C2660: 'CollisionIntersection_RectRect': function does not take 2 arguments
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.h(32,6): message : see declaration of 'CollisionIntersection_RectRect'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(112,29): error C2065: 'temp': undeclared identifier
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(112,11): warning C4473: 'printf' : not enough arguments passed for format string
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(112,11): message : placeholders and their parameters expect 1 variadic arguments, but 0 were provided
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(112,11): message : the missing variadic argument 1 is required by format string '%f'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(113,29): error C2065: 'temp': undeclared identifier
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(113,11): warning C4473: 'printf' : not enough arguments passed for format string
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(113,11): message : placeholders and their parameters expect 1 variadic arguments, but 0 were provided
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(113,11): message : the missing variadic argument 1 is required by format string '%f'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(114,29): error C2065: 'temp': undeclared identifier
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(114,11): warning C4473: 'printf' : not enough arguments passed for format string
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(114,11): message : placeholders and their parameters expect 1 variadic arguments, but 0 were provided
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(114,11): message : the missing variadic argument 1 is required by format string '%f'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(115,29): error C2065: 'temp': undeclared identifier
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(115,11): warning C4473: 'printf' : not enough arguments passed for format string
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(115,11): message : placeholders and their parameters expect 1 variadic arguments, but 0 were provided
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(115,11): message : the missing variadic argument 1 is required by format string '%f'
