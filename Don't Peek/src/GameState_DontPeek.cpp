@@ -81,7 +81,7 @@ void GameStateDontPeekInit(void)
 {
 	sharpener.initSharpener();
 	highlighter.initHighlighter();
-	door.initDoor();
+	door.InitDoor();
 	player.Player_Init();
 }
 
@@ -95,6 +95,7 @@ void GameStateDontPeekUpdate(void)
 	
 	sharpener.updateSharpener();
 	highlighter.updateHighlighter();
+	door.UpdateDoor();
 	player.Player_Update();
 }
 
