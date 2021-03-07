@@ -88,7 +88,7 @@ void Sharpener::initSharpener() {
 }
 
 void Sharpener::updateSharpener() {
-	
+
 	BoundingBox();
 	for (int i = 0; i < 1; i++)
 	{
@@ -99,68 +99,10 @@ void Sharpener::updateSharpener() {
 			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, highlightertemp->boundingBox, highlightertemp->vel))
 			{
 				pos.x += 5;
-				
+
 			}
 		}
 	}
-	/*
-	for (unsigned long i = 0; i < MAX; i++)
-	{
-		Sharpener* SharpenerInst = SharpenerArray + i;
-		//printf("SharpenerInst %lu", i);
-		for (unsigned long j = 0; j < MAX; j++)
-		{
-			//printf("Check SharpenerInst %lu", i);
-			Highlighter* HighlighterInst = HighlighterArray + j;
-			//printf("HighlighterInst %lu", j);
-			if ((flag && HighlighterInst->flag) == 0)
-			{
-				continue;
-			}
-			//printf(" Check HighlighterInst %lu",j);
-			if (CollisionIntersection_RectRect(boundingBox, vel, HighlighterInst->boundingBox, HighlighterInst->vel))
-			{
-				pos.x += 50;
-				printf("Collision True");
-			}
-			else
-			{
-				printf("No Collision");
-			}
-		}
-	}
-	
-		for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
-		{
-			GameObjInst* pInst_1 = sGameObjInstList + i;
-			if ((pInst_1->flag && FLAG_ACTIVE) == 0)
-				continue;
-
-			//if object is an asteroid
-			if ((pInst_1->pObject->type == TYPE_SHARPENER))
-			{
-				//setting object instance
-				for (unsigned long j = 0; j < GAME_OBJ_INST_NUM_MAX; j++)
-				{
-					GameObjInst* pInst_2 = sGameObjInstList + j;
-
-					if ((pInst_2->flag && FLAG_ACTIVE) == 0 )
-						continue;
-					
-					if (pInst_2->pObject->type == TYPE_HIGHLIGHTER)
-					{
-						printf("Area2");
-						if (CollisionIntersection_RectRect(pInst_1->boundingBox, pInst_1->velCurr, pInst_2->boundingBox, pInst_2->velCurr))
-						{
-							pos.x += 50;
-							printf("Colliding");
-						}
-
-					}
-				}
-			}
-		}
-		*/
 }
 
 void Sharpener::unloadSharpener() {
