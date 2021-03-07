@@ -88,9 +88,9 @@ void Highlighter::BoundingBox()
 	{
 		Highlighter* temp = HighlighterArray + i;
 
-		temp->boundingBox.min.x = pos.x - 10 / 2;
+		temp->boundingBox.min.x = pos.x - 100 / 2;
 		temp->boundingBox.min.y = pos.y - 10 / 2;
-		temp->boundingBox.max.x = pos.x + 10 / 2;
+		temp->boundingBox.max.x = pos.x + 100 / 2;
 		temp->boundingBox.max.y = pos.y + 10 / 2;
 	}
 }
