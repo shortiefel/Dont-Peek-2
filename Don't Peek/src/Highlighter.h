@@ -1,6 +1,6 @@
 /* Start Header ************************************************************************/
 /*!
-\file Sharpener.h
+\file Highlighter.h
 \team name Don't Peak
 \software name I don't want to do homework
 \authors
@@ -23,36 +23,24 @@ Technology is prohibited.
 #include "Main.h"
 
 
-class Sharpener
+class Highlighter
 {
 private:
-	GameObj* pSharpener;
+	GameObj* pHighlighter;
 	AEVec2 pos;
-<<<<<<< HEAD
-
-
-=======
 	unsigned long flag;
-	AEVec2 vel;
 	AABB boundingBox;
->>>>>>> origin/DontTouch
+	AEVec2 vel;
+
 public:
-	void loadSharpener();
-	void drawSharpener();
-	void initSharpener();
-	void updateSharpener();
-	void unloadSharpener();
+	void loadHighlighter();
+	void drawHighlighter();
+	void initHighlighter();
+	void updateHighlighter();
+	void unloadHighlighter();
 	void BoundingBox();
 
-<<<<<<< HEAD
-	AABB boundingBox;
-	unsigned long flag;
-	AEVec2 vel;
-=======
 	
->>>>>>> origin/DontTouch
 
 };
-
-extern Sharpener SharpenerArray[1];
-
+extern Highlighter HighlighterArray[1];

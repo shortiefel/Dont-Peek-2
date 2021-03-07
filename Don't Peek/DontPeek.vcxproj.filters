@@ -58,6 +58,15 @@
     <Filter Include="Source Files\Objects\Player\Code">
       <UniqueIdentifier>{711a7d40-e691-4d4f-85d8-490528ab5b8a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Objects\Highlighter">
+      <UniqueIdentifier>{0048c620-3e96-4eaf-b217-1ec9104b6e23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects\Highlighter\Code">
+      <UniqueIdentifier>{8591db35-1f8c-4b80-844d-12c9f08d72ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects\Highlighter\Header">
+      <UniqueIdentifier>{4aa85340-7eb3-4069-9b70-ddb4148c9d32}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Collision.cpp">
@@ -84,6 +93,9 @@
     <ClCompile Include="src\Player.cpp">
       <Filter>Source Files\Objects\Player\Code</Filter>
     </ClCompile>
+    <ClCompile Include="src\Highlighter.cpp">
+      <Filter>Source Files\Objects\Highlighter\Code</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Collision.h">
@@ -109,6 +121,9 @@
     </ClInclude>
     <ClInclude Include="src\Player.h">
       <Filter>Source Files\Objects\Player\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Highlighter.h">
+      <Filter>Source Files\Objects\Highlighter\Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

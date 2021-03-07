@@ -22,13 +22,21 @@ Technology is prohibited.
 
 #include "Door.h"
 #include "GameState_DontPeek.h"
+<<<<<<< HEAD
 //Door DoorArray[MAX];
+=======
+Door DoorArray[MAX];
+>>>>>>> origin/DontTouch
 unsigned long ObjNum;
 
 //This function is responsible for creating Mesh and loading texture for door.
 void Door::LoadDoor()
 {
+<<<<<<< HEAD
 	pDoor = sGameObjList + sGameObjNum++;
+=======
+	pDoor = sGameObjList + sGameObjNum++ ;
+>>>>>>> origin/DontTouch
 	pDoor->type = TYPE_DOOR;
 
 	AEGfxMeshStart();
@@ -49,16 +57,27 @@ void Door::LoadDoor()
 
 }
 void Door::initDoor()
+<<<<<<< HEAD
 {
+=======
+{	
+>>>>>>> origin/DontTouch
 	flag = FLAG_ACTIVE;
 	AEVec2Set(&pos, 0, 200);
 	AEVec2Set(&vel, 0, 0);
 
 	//printf("Init Door %lu \n", i);
+<<<<<<< HEAD
 
 	/*
 	for (unsigned long i = 0; i < MAX; i++)
 	{
+=======
+	
+	/*
+	for (unsigned long i = 0; i < MAX; i++)
+	{	
+>>>>>>> origin/DontTouch
 		Door* Doorinst = DoorArray + i;
 		if (flag == 0)
 		{
@@ -69,11 +88,19 @@ void Door::initDoor()
 			break;
 		}
 	}
+<<<<<<< HEAD
 
 	// loop through the object instance list to find a non-used object instance
 	AEVec2 zero;
 	AEVec2Zero(&zero);
 
+=======
+	
+	// loop through the object instance list to find a non-used object instance
+	AEVec2 zero;
+	AEVec2Zero(&zero);
+	
+>>>>>>> origin/DontTouch
 	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
 	{
 		GameObjInst* pInst = sGameObjInstList + i;

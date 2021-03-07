@@ -1,7 +1,10 @@
 #include "GameState_DontPeek.h"
 #include "Player.h"
+<<<<<<< HEAD
 #include "Sharpener.h"
 #include "Collision.h"
+=======
+>>>>>>> origin/DontTouch
 
 
 
@@ -11,6 +14,7 @@
 */
 /******************************************************************************/
 
+<<<<<<< HEAD
 const int Player_Gravity = 8;
 bool Gravity = true;
 float GROUND = 0.f;
@@ -23,15 +27,27 @@ bool CanJump = false;
 	Player Character
 */
 /******************************************************************************/
+=======
+static GameObjInst* player;
+const int Player_Gravity = 8;
+bool Gravity = true;
+float GROUND = 0.f;
+>>>>>>> origin/DontTouch
 
 
 void Player::Player_Character() //drawing of character
 {
+<<<<<<< HEAD
 	pPlayer = sGameObjList + sGameObjNum++;
 	pPlayer->type = TYPE_PLAYER;
 
 	pPlayer->texture = AEGfxTextureLoad("Resources/Player.png");
 	AE_ASSERT_MESG(pPlayer->texture, "Failed to load Player!");
+=======
+	
+	pPlayer = (sGameObjList + sGameObjNum++) ;
+	pPlayer->type = TYPE_PLAYER;
+>>>>>>> origin/DontTouch
 
 
 	//Drawing of Player
@@ -48,6 +64,7 @@ void Player::Player_Character() //drawing of character
 	pPlayer->pMesh = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pPlayer->pMesh, "fail to create object!!");
 
+<<<<<<< HEAD
 }
 
 /******************************************************************************/
@@ -72,6 +89,10 @@ void Player::SetGravity()
 	//printf("you shit");
 	Position.y -= 2;
 		//Velocity.y = sqrt((2 * Player_Gravity) * (Position.y - Position.x));
+=======
+	pPlayer->texture = AEGfxTextureLoad("Resources/Player.png");
+	AE_ASSERT_MESG(pPlayer->texture, "Failed to create texture1!!");
+>>>>>>> origin/DontTouch
 
 }
 
@@ -90,6 +111,7 @@ void Player::SetGravity()
 
 void Player::Player_Collision()
 {
+<<<<<<< HEAD
 	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
 	{
 		//decalre new instance 
@@ -167,6 +189,22 @@ void Player::BoundingBoxPlayer()
 	BoundingBox.min.y = Position.y;
 	BoundingBox.max.x = Position.x;
 	BoundingBox.max.y = Position.y;
+=======
+	// Drawing object 2 - (first) - No tint
+	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
+	// Set position for object 2
+	AEGfxSetPosition(pos.x, pos.y);
+	// No tint
+	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 0.0f);
+
+	AEGfxTextureSet(pPlayer->texture, 0, 0);		// Same object, different texture
+
+	AEGfxSetBlendMode(AE_GFX_BM_NONE);
+	// Drawing the mesh (list of triangles)
+	AEGfxMeshDraw(pPlayer->pMesh, AE_GFX_MDM_TRIANGLES);
+	// Set Transparency
+	AEGfxSetTransparency(1.0f);
+>>>>>>> origin/DontTouch
 }
 
 
@@ -179,28 +217,45 @@ void Player::BoundingBoxPlayer()
 void Player::InitPlayer()
 {
 	flag = FLAG_ACTIVE;
+<<<<<<< HEAD
 	AEVec2Set(&Velocity, SPEED, SPEED);
 	AEVec2Set(&Position, 40.0f, -50.0f);
 }
 
 
 /******************************************************************************/
+=======
+	AEVec2Set(&vel, SPEED, SPEED);
+	AEVec2Set(&pos, 40.f, -50.f);
+	printf("Init Player \n");
+}
+
+
+>>>>>>> origin/DontTouch
 /*!
 	Player Update
 */
 /******************************************************************************/
 
+<<<<<<< HEAD
 void Player::UpdatePlayer()
 {
 	
+=======
+void Player::Player_Update()
+{
+
+>>>>>>> origin/DontTouch
 	if (AEInputCheckCurr(AEVK_LEFT))
 	{
-		Position.x -= Velocity.x;
+		//Position.x -= Velocity.x;
+		vel.x = -SPEED;
 	}
-	if (AEInputCheckCurr(AEVK_RIGHT))
+	else if (AEInputCheckCurr(AEVK_RIGHT))
 	{
-		Position.x += Velocity.x;
+		vel.x = SPEED;
 	}
+<<<<<<< HEAD
 	if (AEInputCheckTriggered(AEVK_UP) && CanJump == true)
 	{
 		CanJump = false;
@@ -228,5 +283,44 @@ void Player::UpdatePlayer()
 */
 /******************************************************************************/
 void Player::ExitPlayer()
+=======
+	else
+	{
+		vel.x = 0.f;
+	}
+	if (AEInputCheckTriggered(AEVK_UP) && CanJump == true)
+	{
+		printf("jumping \n");
+		CanJump = false;
+		//Position.y += Velocity.y * 4;
+		vel.y = 5.f;
+		printf("PosY: %f, %f\n",pos.x, pos.y);
+	}
+
+
+	if (pos.y < GROUND)
+	{
+		pos.y = GROUND;
+		CanJump = true;
+		vel.y = 0;
+	}
+	else {
+
+		SetGravity();
+	}
+
+	pos.x += vel.x;
+	pos.y +=vel.y;
+
+
+}
+
+void Player::SetGravity()
+>>>>>>> origin/DontTouch
 {
+	//printf("you shit");
+	//Position.y -= 2;
+	//Velocity.y = sqrt((2 * Player_Gravity) * (Position.y - Position.x));
+	vel.y -= 0.15f;
+
 }

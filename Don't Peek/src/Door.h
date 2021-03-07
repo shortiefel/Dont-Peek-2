@@ -35,7 +35,11 @@ public:
 	void LoadDoor();
 	void initDoor();
 	void DrawDoor();
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> origin/DontTouch
 	AABB boundingBox;
 	AEVec2 pos;
 	AEVec2 vel;
