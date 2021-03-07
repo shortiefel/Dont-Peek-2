@@ -19,7 +19,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	//------------INITILIZATION----------------
 	AESysInit(instanceH, show, WINDOW_HEIGHT, WINDOW_WIDTH, 1, 60, false, NULL);
 	AESysSetWindowTitle("Don't Peek");
-	AEGfxSetBackgroundColor(100.0f, 100.0f, 100.0f);
+	AEGfxSetBackgroundColor(0.0f, 0.0f, 0.0f);
 
 	//MISSING GAME TIME LOOP----
 

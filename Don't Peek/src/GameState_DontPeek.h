@@ -10,7 +10,7 @@
 
 const unsigned int	GAME_OBJ_NUM_MAX = 32;					//The total number of different objects (Shapes)
 const unsigned int	GAME_OBJ_INST_NUM_MAX = 2048;			//The total number of different game object instances
-const unsigned int	MAX = 10;
+
 //const float			PLAYER_ACCEL_FORWARD = 40.f;
 //const float			PLAYER_ACCEL_BACKWARD = 40.f;
 //const float			PLAYER_SPEED = 100.0f;
@@ -22,10 +22,6 @@ enum TYPE
 {
 	// list of game object types
 	TYPE_SHARPENER = 1,
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/DontTouch
 	TYPE_HIGHLIGHTER,
 	TYPE_ERASER,
 	TYPE_PENCIL,
@@ -72,11 +68,11 @@ struct GameObjInst
 */
 /******************************************************************************/
 // list of original object
-extern GameObj				sGameObjList[GAME_OBJ_NUM_MAX];				// Each element in this array represents a unique game object (shape)
-extern unsigned long		sGameObjNum;
+static GameObj				sGameObjList[GAME_OBJ_NUM_MAX];				// Each element in this array represents a unique game object (shape)
+static unsigned long		sGameObjNum;
 
-extern GameObjInst			sGameObjInstList[GAME_OBJ_INST_NUM_MAX];	// Each element in this array represents a unique game object instance (sprite)
-extern unsigned long		sGameObjInstNum;
+static GameObjInst			sGameObjInstList[GAME_OBJ_INST_NUM_MAX];	// Each element in this array represents a unique game object instance (sprite)
+static unsigned long		sGameObjInstNum;
 
 
 

@@ -28,14 +28,8 @@ class Sharpener
 private:
 	GameObj* pSharpener;
 	AEVec2 pos;
-<<<<<<< HEAD
 
 
-=======
-	unsigned long flag;
-	AEVec2 vel;
-	AABB boundingBox;
->>>>>>> origin/DontTouch
 public:
 	void loadSharpener();
 	void drawSharpener();
@@ -44,13 +38,9 @@ public:
 	void unloadSharpener();
 	void BoundingBox();
 
-<<<<<<< HEAD
 	AABB boundingBox;
 	unsigned long flag;
 	AEVec2 vel;
-=======
-	
->>>>>>> origin/DontTouch
 
 };
 

@@ -1,34 +1,7 @@
-/* Start Header ************************************************************************/
-/*!
-\file GameState_DontPeek.cpp
-\team name Don't Peak
-\software name I don't want to do homework
-\authors
-Tan Wei Ling Felicia	weilingfelicia.tan@digipen.edu
-Margaret Teo Boon See	Teo.b@digipen.edu
-Loh Yun Yi Tessa	tessa.loh@digipen.edu
-Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
-
-\date 22/01/2021
-\brief <give a brief description of this file>
-
-
-Copyright (C) 2021 DigiPen Institute of Technology.
-Reproduction or disclosure of this file or its contents
-without the prior written consent of DigiPen Institute of
-Technology is prohibited.
-*/
-/* End Header **************************************************************************/
-
 #include "GameState_DontPeek.h"
 #include "Door.h"
 #include "Player.h"
 #include "Sharpener.h"
-<<<<<<< HEAD
-=======
-#include "Highlighter.h"
-
->>>>>>> origin/DontTouch
 
 
 /******************************************************************************/
@@ -36,11 +9,6 @@ Technology is prohibited.
 	DEFINES
 */
 /******************************************************************************/
-GameObj				sGameObjList[GAME_OBJ_NUM_MAX];				// Each element in this array represents a unique game object (shape)
-unsigned long		sGameObjNum;
-
-GameObjInst			sGameObjInstList[GAME_OBJ_INST_NUM_MAX];	// Each element in this array represents a unique game object instance (sprite)
-unsigned long		sGameObjInstNum;
 
 
 GameObjInst* gameObjInstCreate(unsigned long type, float scale,
@@ -48,15 +16,10 @@ GameObjInst* gameObjInstCreate(unsigned long type, float scale,
 void gameObjInstDestroy(GameObjInst* pInst);
 
 //individual classes
-
 Door door;
 Player player;
 Sharpener sharpener;
-<<<<<<< HEAD
 
-=======
-Highlighter highlighter;
->>>>>>> origin/DontTouch
 
 
 /******************************************************************************/
@@ -73,16 +36,14 @@ void GameStateDontPeekLoad(void)
 	// No game object instances (sprites) at this point
 	sGameObjInstNum = 0;
 
-<<<<<<< HEAD
 	//function calls
 	door.LoadDoor();
 	sharpener.loadSharpener();
-=======
-	sharpener.loadSharpener();
-	highlighter.loadHighlighter();
->>>>>>> origin/DontTouch
 	door.LoadDoor();
 	player.Player_Character();
+
+
+
 }
 
 /******************************************************************************/
@@ -93,15 +54,9 @@ void GameStateDontPeekLoad(void)
 void GameStateDontPeekInit(void)
 {
 	sharpener.initSharpener();
-<<<<<<< HEAD
 	door.initDoor();
 	player.InitPlayer();
 	
-=======
-	highlighter.initHighlighter();
-	door.initDoor();
-	player.Player_Init();
->>>>>>> origin/DontTouch
 }
 
 /******************************************************************************/
@@ -111,19 +66,12 @@ void GameStateDontPeekInit(void)
 /******************************************************************************/
 void GameStateDontPeekUpdate(void)
 {
-<<<<<<< HEAD
 
 	//function calls
 	player.UpdatePlayer();
 	sharpener.updateSharpener();
 
 	
-=======
-	
-	sharpener.updateSharpener();
-	highlighter.updateHighlighter();
-	player.Player_Update();
->>>>>>> origin/DontTouch
 }
 
 /******************************************************************************/
@@ -133,12 +81,7 @@ void GameStateDontPeekUpdate(void)
 /******************************************************************************/
 void GameStateDontPeekDraw(void)
 {
-<<<<<<< HEAD
 	
-=======
-	highlighter.drawHighlighter();
-	sharpener.drawSharpener();
->>>>>>> origin/DontTouch
 	door.DrawDoor();
 	player.Player_Draw();
 	sharpener.drawSharpener();
