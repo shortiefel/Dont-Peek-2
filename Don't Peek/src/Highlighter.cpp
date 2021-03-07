@@ -24,7 +24,7 @@ Technology is prohibited.
 #include "Sharpener.h"
 
 
-//Highlighter HighlighterArray[MAX];
+Highlighter HighlighterArray[1];
 
 void Highlighter::loadHighlighter() {
 
@@ -48,11 +48,17 @@ void Highlighter::loadHighlighter() {
 }
 
 void Highlighter::initHighlighter() {
+	AEVec2Set(&pos, 100, 100);
+	AEVec2Set(&vel, 0, 0);
+	for (int i = 0; i < 1; i++)
+	{
+		Highlighter* temp = HighlighterArray + i;
 
-			flag = FLAG_ACTIVE;
-			AEVec2Set(&pos, 100, 100);
-			AEVec2Set(&vel, 0, 0);
-			
+		temp->flag= FLAG_ACTIVE;
+		temp->pos = pos;
+		temp->vel = vel;
+		
+	}
 			//printf("Init Highlighter %lu \n", i);
 }
 
@@ -78,8 +84,14 @@ void Highlighter::unloadHighlighter() {
 
 void Highlighter::BoundingBox()
 {
-		boundingBox.min.x = pos.x - 10 / 2;
-		boundingBox.min.y = pos.y - 10 / 2;
-		boundingBox.max.x = pos.x + 10 / 2;
-		boundingBox.max.y = pos.y + 10 / 2;
+	for (int i = 0; i < 1; i++)
+	{
+		Highlighter* temp = HighlighterArray + i;
+
+		temp->boundingBox.min.x = pos.x - 10 / 2;
+		temp->boundingBox.min.y = pos.y - 10 / 2;
+		temp->boundingBox.max.x = pos.x + 10 / 2;
+		temp->boundingBox.max.y = pos.y + 10 / 2;
+	}
 }
+

@@ -96,7 +96,6 @@ void GameStateDontPeekUpdate(void)
 	sharpener.updateSharpener();
 	highlighter.updateHighlighter();
 	player.Player_Update();
-	printf("%f", highlighter.vel.x);
 }
 
 /******************************************************************************/

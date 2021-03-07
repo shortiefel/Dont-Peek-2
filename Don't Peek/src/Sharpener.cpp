@@ -77,7 +77,7 @@ void Sharpener::initSharpener() {
 }
 
 void Sharpener::updateSharpener() {
-
+	
 	if (AEInputCheckCurr(AEVK_RIGHT))
 	{
 		pos.x += 5.0f;
@@ -99,20 +99,23 @@ void Sharpener::updateSharpener() {
 		//printf("Move");
 	}
 	BoundingBox();
-	if (CollisionIntersection_RectRect(boundingBox, vel, highlighter.boundingBox, highlighter.vel))
+	for (int i = 0; i < 1; i++)
 	{
-		pos.x += 5;
-		printf("Collision True");
-		printf("BB2 min x %f \n", boundingBox.min.x);
-		printf("BB2 min y %f \n", boundingBox.min.y);
-		printf("BB2 maX x %f \n", boundingBox.max.x);
-		printf("BB2 max y %f \n", boundingBox.max.y);
-		printf("BB min x %f \n", highlighter.boundingBox.min.x);
-		printf("BB min y %f \n", highlighter.boundingBox.min.y);
-		printf("BB maX x %f \n", highlighter.boundingBox.max.x);
-		printf("BB max y %f \n", highlighter.boundingBox.max.y);
+		Highlighter* temp = HighlighterArray + i;
+		if (CollisionIntersection_RectRect(boundingBox, vel, temp->boundingBox, temp->vel))
+		{
+			pos.x += 5;
+			printf("Collision True");
+			printf("BB2 min x %f \n", boundingBox.min.x);
+			printf("BB2 min y %f \n", boundingBox.min.y);
+			printf("BB2 maX x %f \n", boundingBox.max.x);
+			printf("BB2 max y %f \n", boundingBox.max.y);
+			printf("BB min x %f \n", temp->boundingBox.min.x);
+			printf("BB min y %f \n", temp->boundingBox.min.y);
+			printf("BB maX x %f \n", temp->boundingBox.max.x);
+			printf("BB max y %f \n", temp->boundingBox.max.y);
+		}
 	}
-
 	/*
 	for (unsigned long i = 0; i < MAX; i++)
 	{

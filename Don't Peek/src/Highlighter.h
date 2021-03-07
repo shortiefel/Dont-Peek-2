@@ -43,4 +43,4 @@ public:
 	AEVec2 vel;
 
 };
-//extern Highlighter HighlighterArray[MAX];
+extern Highlighter HighlighterArray[1];
