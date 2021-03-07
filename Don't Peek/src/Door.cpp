@@ -22,8 +22,7 @@ Technology is prohibited.
 
 #include "Door.h"
 #include "GameState_DontPeek.h"
-Door DoorArray[MAX];
-unsigned long ObjNum;
+Door DoorArray[1];
 
 //This function is responsible for creating Mesh and loading texture for door.
 void Door::LoadDoor()
@@ -33,14 +32,14 @@ void Door::LoadDoor()
 
 	AEGfxMeshStart();
 	AEGfxTriAdd(
-		-30.0f, -30.0f, 0x00000000, 0.0f, 1.0f,
-		45.0f, -30.0f, 0x00000000, 1.0f, 1.0f,
-		-30.0f, 30.0f, 0x00000000, 0.0f, 0.0f);
+		-0.5f, -0.5f, 0x00000000, 0.0f, 1.0f,
+		0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
+		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 
 	AEGfxTriAdd(
-		45.0f, -30.0f, 0x00000000, 1.0f, 1.0f,
-		45.0f, 30.0f, 0x00000000, 1.0f, 0.0f,
-		-30.0f, 30.0f, 0x00000000, 0.0f, 0.0f);
+		0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
+		0.5f, 0.5f, 0x00000000, 1.0f, 0.0f,
+		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 	pDoor->pMesh = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pDoor->pMesh, "fail to create object!!");
 
@@ -48,65 +47,55 @@ void Door::LoadDoor()
 	AE_ASSERT_MESG(pDoor->texture, "Failed to create texture1!!");
 
 }
-void Door::initDoor()
+void Door::InitDoor()
 {	
-	flag = FLAG_ACTIVE;
+	Scale = 20.0f;
 	AEVec2Set(&pos, 0, 200);
 	AEVec2Set(&vel, 0, 0);
-
-	//printf("Init Door %lu \n", i);
-	
-	/*
-	for (unsigned long i = 0; i < MAX; i++)
-	{	
-		Door* Doorinst = DoorArray + i;
-		if (flag == 0)
-		{
-			AEVec2Set(&pos, 0, 200);
-			AEVec2Set(&vel, 0, 0);
-			flag = FLAG_ACTIVE;
-			printf("Init Door %lu \n", i);
-			break;
-		}
-	}
-	
-	// loop through the object instance list to find a non-used object instance
-	AEVec2 zero;
-	AEVec2Zero(&zero);
-	
-	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
+	AEVec2* pPos = &pos;
+	AEVec2* pVel = &vel;
+	for (int i = 0; i < 1; i++)
 	{
-		GameObjInst* pInst = sGameObjInstList + i;
-
-		// check if current instance is not used
-		if (pInst->flag == 0)
-		{
-			// it is not used => use it to create the new instance
-			pInst->pObject = sGameObjList + TYPE_DOOR;
-			pInst->flag = FLAG_ACTIVE;
-			pInst->scale = 1.0f;
-			pInst->posCurr = Doorpos;
-			pInst->velCurr = zero;
-			pInst->dirCurr = 0;
-			printf("Door Slot %lu\n", i);
-			break;
-		}*/
+		Door* Doortemp = DoorArray + i;
+		Doortemp->flag = FLAG_ACTIVE;
+		Doortemp->pos = *pPos;
+		Doortemp->vel = *pVel;
+	}
 }
+
+void Door::UpdateDoor()
+{
+	BoundingBox();
+}
+
 void Door::DrawDoor()
 {
-	// Drawing object 2 - (first) - No tint
 	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
-	// Set position for object 2
 	AEGfxSetPosition(pos.x, pos.y);
-	// No tint
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
-
-	AEGfxTextureSet(pDoor->texture, 0, 0);		// Same object, different texture
-
+	AEGfxTextureSet(pDoor->texture, 0, 0);
+	AEGfxSetTransform(Transform.m);
 	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
-	// Drawing the mesh (list of triangles)
+	AEGfxSetTransparency(1.0f);
 	AEGfxMeshDraw(pDoor->pMesh, AE_GFX_MDM_TRIANGLES);
-	// Set Transparency
-	AEGfxSetTransparency(0.0f);
+	
+}
+
+void Door::BoundingBox()
+{
+	AEMtx33 Transform2, Size;
+	for (int i = 0; i < 1; i++)
+	{
+		Door* Doortemp = DoorArray + i;
+		AEMtx33Scale(&Size, Scale, Scale);
+		AEMtx33Trans(&Transform2, pos.x, pos.y);
+		AEMtx33Concat(&Transform, &Transform2, &Size);
+
+		Doortemp->boundingBox.min.x = pos.x - Scale / 2;
+		Doortemp->boundingBox.min.y = pos.y - Scale / 2;
+		Doortemp->boundingBox.max.x = pos.x + Scale / 2;
+		Doortemp->boundingBox.max.y = pos.y + Scale / 2;
+	}
 
 }
+
