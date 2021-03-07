@@ -49,7 +49,7 @@ void Door::LoadDoor()
 }
 void Door::InitDoor()
 {	
-	Scale = 50.0f;
+	Scale = 20.0f;
 	AEVec2Set(&pos, 0, 10);
 	AEVec2Set(&vel, 0, 0);
 	AEVec2* pPos = &pos;
