@@ -24,7 +24,7 @@ Technology is prohibited.
 #include "Collision.h"
 #include "Highlighter.h"
 
-//Sharpener SharpenerArray[MAX];
+Sharpener SharpenerArray[1];
 
 void Sharpener::loadSharpener() {
 
@@ -71,6 +71,15 @@ void Sharpener::initSharpener() {
 	flag = FLAG_ACTIVE;
 	AEVec2Set(&vel, SPEED, 0);
 	AEVec2Set(&pos, -100.0f, 100.0f);
+	AEVec2* pPos = &pos;
+	AEVec2* pVel = &vel;
+	for (int i = 0; i < 1; i++)
+	{
+		Sharpener* Sharpenertemp = SharpenerArray + i;
+		Sharpenertemp->flag = FLAG_ACTIVE;
+		Sharpenertemp->pos = *pPos;
+		Sharpenertemp->vel = *pVel;
+	}
 	
 	//printf("Init Sharpener %lu \n", i);
 
@@ -101,19 +110,23 @@ void Sharpener::updateSharpener() {
 	BoundingBox();
 	for (int i = 0; i < 1; i++)
 	{
-		Highlighter* temp = HighlighterArray + i;
-		if (CollisionIntersection_RectRect(boundingBox, vel, temp->boundingBox, temp->vel))
+		Sharpener* Sharpenertemp = SharpenerArray + i;
+		for (int j = 0; j < 1; j++)
 		{
-			pos.x += 5;
-			printf("Collision True");
-			printf("BB2 min x %f \n", boundingBox.min.x);
-			printf("BB2 min y %f \n", boundingBox.min.y);
-			printf("BB2 maX x %f \n", boundingBox.max.x);
-			printf("BB2 max y %f \n", boundingBox.max.y);
-			printf("BB min x %f \n", temp->boundingBox.min.x);
-			printf("BB min y %f \n", temp->boundingBox.min.y);
-			printf("BB maX x %f \n", temp->boundingBox.max.x);
-			printf("BB max y %f \n", temp->boundingBox.max.y);
+			Highlighter* highlightertemp = HighlighterArray + j;
+			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, highlightertemp->boundingBox, highlightertemp->vel))
+			{
+				pos.x += 5;
+				printf("Collision True");
+				printf("BB2 min x %f \n", Sharpenertemp->boundingBox.min.x);
+				printf("BB2 min y %f \n", Sharpenertemp->boundingBox.min.y);
+				printf("BB2 maX x %f \n", Sharpenertemp->boundingBox.max.x);
+				printf("BB2 max y %f \n", Sharpenertemp->boundingBox.max.y);
+				printf("BB min x %f \n", highlightertemp->boundingBox.min.x);
+				printf("BB min y %f \n", highlightertemp->boundingBox.min.y);
+				printf("BB maX x %f \n", highlightertemp->boundingBox.max.x);
+				printf("BB max y %f \n", highlightertemp->boundingBox.max.y);
+			}
 		}
 	}
 	/*
@@ -184,10 +197,14 @@ void Sharpener::unloadSharpener() {
 
 void Sharpener::BoundingBox()
 {
+	for (int i = 0; i < 1; i++)
+	{
+		Sharpener* Sharpenertemp = SharpenerArray + i;
 
-	boundingBox.min.x = pos.x - 10 / 2;
-	boundingBox.min.y = pos.y - 10 / 2;
-	boundingBox.max.x = pos.x + 10 / 2;
-	boundingBox.max.y = pos.y + 10 / 2;
+		Sharpenertemp->boundingBox.min.x = pos.x - 10 / 2;
+		Sharpenertemp->boundingBox.min.y = pos.y - 10 / 2;
+		Sharpenertemp->boundingBox.max.x = pos.x + 10 / 2;
+		Sharpenertemp->boundingBox.max.y = pos.y + 10 / 2;
+	}
 
 }
