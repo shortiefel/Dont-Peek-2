@@ -44,8 +44,5 @@ public:
 	AEVec2 vel;
 
 
-	AABB boundingBox;
-	AEVec2 vel;
-
 };
 extern Highlighter HighlighterArray[1];

@@ -1,6 +1,7 @@
 #include "GameState_DontPeek.h"
 #include "Player.h"
 #include "Sharpener.h"
+#include "Door.h"
 
 
 
@@ -15,7 +16,6 @@ const int Player_Gravity = 8;
 bool Gravity = true;
 float GROUND = 0.f;
 
-//Sharpener sharpener2;
 
 void Player::Player_Character() //drawing of character
 {
@@ -121,18 +121,24 @@ void Player::Player_Update()
 		Sharpener* Sharpenertemp = SharpenerArray + i;
 		if (CollisionIntersection_RectRect(boundingBox, vel, Sharpenertemp->boundingBox, Sharpenertemp->vel))
 		{
-			printf("Collision True");
-			printf("BB2 min x %f \n", Sharpenertemp->boundingBox.min.x);
-			printf("BB2 min y %f \n", Sharpenertemp->boundingBox.min.y);
-			printf("BB2 maX x %f \n", Sharpenertemp->boundingBox.max.x);
-			printf("BB2 max y %f \n", Sharpenertemp->boundingBox.max.y);
+			printf("Collision True \n");
+			
 
 		}
 	}
 
-	for (int j = 0; j < 1; j++)
+	for (int i = 0; i < 1; i++)
 	{
+		Door* Doortemp = DoorArray + i;
+		if (CollisionIntersection_RectRect(boundingBox, vel, Doortemp->boundingBox, Doortemp->vel))
+		{
+			printf("Collision True DOOR \n");
+			printf("BB2 Door min x %f \n", Doortemp->boundingBox.min.x);
+			printf("BB2 Door min y %f \n", Doortemp->boundingBox.min.y);
+			printf("BB2 Door maX x %f \n", Doortemp->boundingBox.max.x);
+			printf("BB2 Door max y %f \n", Doortemp->boundingBox.max.y);
 
+		}
 	}
 
 	
