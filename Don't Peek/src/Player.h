@@ -15,7 +15,8 @@ public:
 	void SetGravity();
 	void Player_Draw();
 	void Player_Init();
-	void Player_Velocity();
+	void Player_Collision();
+	//void Player_Velocity();
 	void Player_Update();
 	void Player_Exit();
 

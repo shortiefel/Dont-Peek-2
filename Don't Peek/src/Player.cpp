@@ -98,6 +98,69 @@ void Player::Player_Draw()
 	AEGfxSetTransparency(1.0f);
 }
 
+void Player::Player_Collision()
+{
+	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
+	{
+		//decalre new instance 
+		GameObjInst* pInst_1 = sGameObjInstList + i;
+
+		//if object is instance and not active,skip
+		if ((pInst_1->flag & FLAG_ACTIVE) == 0)
+			continue;
+
+		//if object is sharpner
+		if ((pInst_1->pObject->type == TYPE_SHARPENER))
+		{
+			//setting object instance
+			for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
+			{
+				//declaring variable
+				GameObjInst* pInst_2 = sGameObjInstList + i;
+
+				//if object is instance and not active or is sharpner, skip
+				if (((pInst_2->flag && FLAG_ACTIVE) == 0) || pInst_2->pObject->type == TYPE_SHARPENER)
+					continue;
+
+				if (pInst_2->pObject->type == TYPE_PLAYER)
+				{
+					if (CollisionIntersection_RectRect(pInst_1->boundingBox, pInst_1->velCurr, pInst_2->boundingBox, pInst_2->velCurr))
+					{
+						//i not sure?
+					}
+				}
+
+				else if (pInst_2->pObject->type == TYPE_SHARPENER)
+				{
+					if (CollisionIntersection_RectRect(pInst_1->boundingBox, pInst_1->velCurr, pInst_2->boundingBox, pInst_2->velCurr))
+					{
+						//i not sure?
+					}
+				}
+
+				else if (pInst_2->pObject->type == TYPE_HIGHLIGHTER)
+				{
+					if (CollisionIntersection_RectRect(pInst_1->boundingBox, pInst_1->velCurr, pInst_2->boundingBox, pInst_2->velCurr))
+					{
+						//i not sure?
+					}
+				}
+
+				else if (pInst_2->pObject->type == TYPE_DOOR)
+				{
+					if (CollisionIntersection_RectRect(pInst_1->boundingBox, pInst_1->velCurr, pInst_2->boundingBox, pInst_2->velCurr))
+					{
+						//i not sure?
+					}
+				}
+
+
+			}
+		}
+	}
+}
+
+
 /******************************************************************************/
 /*!
 	Player Init
@@ -113,6 +176,7 @@ void Player::Player_Init()
 
 
 }
+
 
 /******************************************************************************/
 /*!
@@ -148,6 +212,7 @@ void Player::Player_Update()
 		Position.y = GROUND;
 		CanJump = true;
 	}
+	
 	
 	
 

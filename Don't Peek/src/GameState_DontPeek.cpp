@@ -55,6 +55,12 @@ void GameStateDontPeekInit(void)
 /******************************************************************************/
 void GameStateDontPeekUpdate(void)
 {
+
+	//function calls
+	player.Player_Update();
+
+
+	//setting bounding box
 	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
 	{
 		GameObjInst* pInst = sGameObjInstList + i;
@@ -67,7 +73,7 @@ void GameStateDontPeekUpdate(void)
 	}
 
 
-	player.Player_Update();
+	
 }
 
 /******************************************************************************/
