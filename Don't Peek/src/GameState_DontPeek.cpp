@@ -20,9 +20,6 @@ void gameObjInstDestroy(GameObjInst* pInst);
 //individual classes
 Door door;
 Player player;
-
-
-Door door;
 Wall wall;
 
 /******************************************************************************/

@@ -86,10 +86,10 @@ void Wall::FreeWall()
 void Wall::UnloadWall()
 {
 	// free all mesh data (shapes) of each object using "AEGfxTriFree"
-	for (unsigned long i = 0; i < numberWalls; i++)
+	/*for (unsigned long i = 0; i < numberWalls; i++)
 	{
 		GameObj* Objects = sGameObjList + i;
 		if (Objects->pMesh)
 			AEGfxMeshFree(Objects->pMesh);
-	}
+	}*/
 }
