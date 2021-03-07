@@ -15,7 +15,7 @@ const int Player_Gravity = 8;
 bool Gravity = true;
 float GROUND = 0.f;
 
-Sharpener sharpener2;
+//Sharpener sharpener2;
 
 void Player::Player_Character() //drawing of character
 {
@@ -30,14 +30,14 @@ void Player::Player_Character() //drawing of character
 	//Drawing of Player
 	AEGfxMeshStart();
 	AEGfxTriAdd(
-		-60.0f, -60.0f, 0x00000000, 0.0f, 1.0f,
-		100.0f, -60.0f, 0x00000000, 1.0f, 1.0f,
-		-60.0f, 60.0f, 0x00000000, 0.0f, 0.0f);
+		-0.5f, -0.5f, 0x00000000, 0.0f, 1.0f,
+		0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
+		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 
 	AEGfxTriAdd(
-		100.0f, -60.0f, 0x00000000, 1.0f, 1.0f,
-		100.0f, 60.0f, 0x00000000, 1.0f, 0.0f,
-		-60.0f, 60.0f, 0x00000000, 0.0f, 0.0f);
+		0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
+		0.5f, 0.5f, 0x00000000, 1.0f, 0.0f,
+		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 	pPlayer->pMesh = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pPlayer->pMesh, "fail to create object!!");
 
@@ -50,6 +50,7 @@ void Player::Player_Draw()
 	AEGfxSetPosition(pos.x, pos.y);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
 	AEGfxTextureSet(pPlayer->texture, 0, 0);
+	AEGfxSetTransform(Transform.m);
 	AEGfxSetBlendMode(AE_GFX_BM_NONE);
 	AEGfxMeshDraw(pPlayer->pMesh, AE_GFX_MDM_TRIANGLES);
 	AEGfxSetTransparency(1.0f);
@@ -58,6 +59,7 @@ void Player::Player_Draw()
 
 void Player::Player_Init()
 {
+	Scale = 100.0f;
 	flag = FLAG_ACTIVE;
 	AEVec2Set(&vel, SPEED, SPEED);
 	AEVec2Set(&pos, 100.0f, -100.f);
@@ -112,17 +114,20 @@ void Player::Player_Update()
 
 	BoundingBoxPlayer();
 	
-
-	if (CollisionIntersection_RectRect(boundingBox, vel, sharpener2.boundingBox, sharpener2.vel))
+	for (int i = 0; i < 1; i++)
 	{
-		
-		printf("Collision True");
-		printf("BB2 min x %f \n", sharpener2.boundingBox.min.x);
-		printf("BB2 min y %f \n", sharpener2.boundingBox.min.y);
-		printf("BB2 maX x %f \n", sharpener2.boundingBox.max.x);
-		printf("BB2 max y %f \n", sharpener2.boundingBox.max.y);
-		
+		Sharpener* Sharpenertemp = SharpenerArray + i;
+		if (CollisionIntersection_RectRect(boundingBox, vel, Sharpenertemp->boundingBox, Sharpenertemp->vel))
+		{
+			printf("Collision True");
+			printf("BB2 min x %f \n", Sharpenertemp->boundingBox.min.x);
+			printf("BB2 min y %f \n", Sharpenertemp->boundingBox.min.y);
+			printf("BB2 maX x %f \n", Sharpenertemp->boundingBox.max.x);
+			printf("BB2 max y %f \n", Sharpenertemp->boundingBox.max.y);
+
+		}
 	}
+	
 
 	
 	
@@ -147,16 +152,18 @@ void Player::SetGravity()
 
 void Player::BoundingBoxPlayer()
 {
-	AEMtx33 Transform, Scale, Concat;
-	AEMtx33Scale(&Scale, pos.x, pos.y);
-	AEMtx33Trans(&Transform, pos.x, pos.y);
-	AEMtx33Concat(&Concat, &Transform, &Scale);
+	AEMtx33 Transform2, Size;
+	AEMtx33Scale(&Size, Scale, Scale);
+	AEMtx33Trans(&Transform2, pos.x, pos.y);
+	AEMtx33Concat(&Transform, &Transform2, &Size);
 
-	boundingBox.min.x = pos.x;
-	boundingBox.min.y = pos.y;
-	boundingBox.max.x = pos.x;
-	boundingBox.max.y = pos.y;
+	boundingBox.min.x = pos.x - Scale/2;
+	boundingBox.min.y = pos.y - Scale/2;
+	boundingBox.max.x = pos.x + Scale/2;
+	boundingBox.max.y = pos.y + Scale/2;
 }
+
+
 
 
 

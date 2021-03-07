@@ -43,6 +43,7 @@ public:
 	AABB boundingBox;
 	AEVec2 vel;
 
+
 	
 
 };

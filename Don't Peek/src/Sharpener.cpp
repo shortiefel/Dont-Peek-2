@@ -41,14 +41,14 @@ void Sharpener::loadSharpener() {
 	//AEGfxVertexList* sharpener = 0;
 	AEGfxMeshStart();
 	AEGfxTriAdd(
-		-30.0f, -30.0f, 0x00000000, 0.0f, 1.0f,
-		45.0f, -30.0f, 0x00000000, 1.0f, 1.0f,
-		-30.0f, 30.0f, 0x00000000, 0.0f, 0.0f);
+		-0.5f, -0.5f, 0x00000000, 0.0f, 1.0f,
+		0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
+		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 
 	AEGfxTriAdd(
-		45.0f, -30.0f, 0x00000000, 1.0f, 1.0f,
-		45.0f, 30.0f, 0x00000000, 1.0f, 0.0f,
-		-30.0f, 30.0f, 0x00000000, 0.0f, 0.0f);
+		0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
+		0.5f, 0.5f, 0x00000000, 1.0f, 0.0f,
+		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 
 	pSharpener->pMesh = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pSharpener->pMesh, "Failed to create sharpener!!");
@@ -61,6 +61,7 @@ void Sharpener::drawSharpener() {
 	AEGfxSetPosition(pos.x, pos.y);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
 	AEGfxTextureSet(pSharpener->texture, 0, 0);
+	AEGfxSetTransform(Transform.m);
 	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 	AEGfxMeshDraw(pSharpener->pMesh, AE_GFX_MDM_TRIANGLES);
 	AEGfxSetTransparency(1.0f);
@@ -68,6 +69,7 @@ void Sharpener::drawSharpener() {
 
 void Sharpener::initSharpener() {
 	//Velocity.x = SPEED;
+	Scale = 80.0f;
 	flag = FLAG_ACTIVE;
 	AEVec2Set(&vel, SPEED, 0);
 	AEVec2Set(&pos, -100.0f, 100.0f);
@@ -169,14 +171,18 @@ void Sharpener::unloadSharpener() {
 
 void Sharpener::BoundingBox()
 {
+	AEMtx33 Transform2, Size;
 	for (int i = 0; i < 1; i++)
 	{
 		Sharpener* Sharpenertemp = SharpenerArray + i;
-
-		Sharpenertemp->boundingBox.min.x = pos.x - 10 / 2;
-		Sharpenertemp->boundingBox.min.y = pos.y - 10 / 2;
-		Sharpenertemp->boundingBox.max.x = pos.x + 10 / 2;
-		Sharpenertemp->boundingBox.max.y = pos.y + 10 / 2;
+		AEMtx33Scale(&Size, Scale, Scale);
+		AEMtx33Trans(&Transform2, pos.x, pos.y);
+		AEMtx33Concat(&Transform, &Transform2, &Size);
+		
+		Sharpenertemp->boundingBox.min.x = pos.x - Scale / 2;
+		Sharpenertemp->boundingBox.min.y = pos.y - Scale / 2;
+		Sharpenertemp->boundingBox.max.x = pos.x + Scale / 2;
+		Sharpenertemp->boundingBox.max.y = pos.y + Scale / 2;
 	}
 
 }

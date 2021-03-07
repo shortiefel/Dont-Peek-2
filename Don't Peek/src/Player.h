@@ -15,6 +15,8 @@ private:
 	AEVec2 pos;
 	AEVec2 vel;
 	bool CanJump = false;
+	float Scale;
+	AEMtx33	Transform;
 
 public:
 	void Player_Character();
@@ -25,6 +27,7 @@ public:
 	void SetGravity();
 	void BoundingBoxPlayer();
 	//void Player_Collision();
+	//AEVec2 GetPosition(void) const;
 };
 
 

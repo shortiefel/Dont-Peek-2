@@ -29,6 +29,8 @@ private:
 	GameObj* pSharpener;
 	AEVec2 pos;
 	unsigned long flag;
+	float Scale;
+	AEMtx33	Transform;
 	
 public:
 	void loadSharpener();
