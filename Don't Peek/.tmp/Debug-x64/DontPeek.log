@@ -2,11 +2,13 @@
   Door.cpp
   GameStateMgr.cpp
   GameState_DontPeek.cpp
+  Highlighter.cpp
   Main.cpp
   Player.cpp
 C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Player.cpp(106,4): warning C4456: declaration of 'i' hides previous local declaration
 C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Player.cpp(93,21): message : see declaration of 'i'
   Sharpener.cpp
+<<<<<<< HEAD
 C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(86,33): error C2084: function 'void Sharpener::drawSharpener(void)' already has a body
 C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(59): message : see previous definition of 'drawSharpener'
 C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(97,33): error C2084: function 'void Sharpener::initSharpener(void)' already has a body
@@ -72,3 +74,7 @@ C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(116): me
 C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(116): fatal error C1075: '{': no matching token found
   Wall.cpp
   Generating Code...
+=======
+  Generating Code...
+  DontPeek.vcxproj -> C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe
+>>>>>>> origin/Highlighter

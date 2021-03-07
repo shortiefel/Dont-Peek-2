@@ -21,6 +21,7 @@ Technology is prohibited.
 /* End Header **************************************************************************/
 #include "GameState_DontPeek.h"
 #include "Sharpener.h"
+<<<<<<< HEAD
 #include "Collision.h"
 
 
@@ -36,6 +37,25 @@ void Sharpener::loadSharpener() {
 
 	pSharpener->texture = AEGfxTextureLoad("Resources/Sharpener_Animation.png");
 	AE_ASSERT_MESG(pSharpener->texture, "Failed to load sharpener!!");
+=======
+#include "Highlighter.h"
+#include "GameState_DontPeek.h"
+#include "Collision.h"
+
+//AEGfxTexture* sharpeners;
+GameObj* sharpenerObj;
+
+void Sharpener::loadSharpener() {
+
+	//memset(sGameObjList, 0, sizeof(GameObj) * GAME_OBJ_NUM_MAX);
+	//sGameObjNum = 0;
+
+	sharpenerObj = sGameObjList + sGameObjNum++;
+	sharpenerObj->type = TYPE_SHARPENER;
+	
+	sharpenerObj->texture = AEGfxTextureLoad("Resources/Sharpener_Animation.png");
+	AE_ASSERT_MESG(sharpenerObj->texture, "Failed to load sharpener!!");
+>>>>>>> origin/Highlighter
 
 	//sharpeners = AEGfxTextureLoad("Sharpener_Animation.png");
 	//AEGfxVertexList* sharpener = 0;
@@ -50,6 +70,7 @@ void Sharpener::loadSharpener() {
 		45.0f, 30.0f, 0x00000000, 1.0f, 0.0f,
 		-30.0f, 30.0f, 0x00000000, 0.0f, 0.0f);
 
+<<<<<<< HEAD
 	pSharpener->pMesh = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pSharpener->pMesh, "Failed to create sharpener!!");
 
@@ -330,5 +351,107 @@ void Sharpener::BoundingBox()
 	boundingBox.min.y = pos.y - 10 / 2;
 	boundingBox.max.x = pos.x + 10 / 2;
 	boundingBox.max.y = pos.y + 10 / 2;
+=======
+	sharpenerObj->pMesh = AEGfxMeshEnd();
+	AE_ASSERT_MESG(sharpenerObj->pMesh, "Failed to create sharpener!!");
 
+}
+
+void Sharpener::drawSharpener() {
+
+	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
+	AEGfxSetPosition(Position.x, Position.y);
+	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
+	AEGfxTextureSet(sharpenerObj->texture, 0, 0);
+	AEGfxMeshDraw(sharpenerObj->pMesh, AE_GFX_MDM_TRIANGLES);
+	AEGfxSetTransparency(1.0f);
+}
+
+void Sharpener::initSharpener() {
+	//Velocity.x = SPEED;
+	AEVec2Set(&SPEED, 10, 0);
+	AEVec2Set(&Position, -100.0f, -60.0f);
+
+	AEVec2 zero;
+	AEVec2Zero(&zero);
+	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
+	{
+		GameObjInst* pInst = sGameObjInstList + i;
+
+		printf("Sharpener flag %lu\n", pInst->flag);
+		// check if current instance is not used
+		if (pInst->flag == 0)
+		{
+			// it is not used => use it to create the new instance
+			pInst->pObject = sGameObjList + TYPE_SHARPENER;
+			pInst->flag = FLAG_ACTIVE;
+			pInst->scale = 1.0f;
+			pInst->posCurr = Position;
+			pInst->velCurr = SPEED;
+			pInst->dirCurr = 0;
+			printf("Sharpener Check %lu\n", i);
+			break;
+		}
+	}
+}
+
+void Sharpener::updateSharpener() {
+
+
+	//AEGfxSetPosition(Position.x, Position.y);
+
+	//if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) &&
+	//	AEInputCheckCurr(AEVK_LEFT)) //[]o player pushing left
+	//{
+	//	Position.x -= Velocity.x;
+	//}
+
+	//if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) &&
+	//	AEInputCheckCurr(AEVK_RIGHT)) //o[] player pushing right
+	//{
+	//	Position.x += Velocity.x;
+	//}
+
+	if (AEInputCheckCurr(AEVK_RIGHT))
+	{
+		Position.x += 1.0f;
+		printf("Move");
+	}
+	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
+	{
+		GameObjInst* pInst_1 = sGameObjInstList + i;
+		if ((pInst_1->flag && FLAG_ACTIVE) == 0)
+			continue;
+
+		//if object is an asteroid
+		if ((pInst_1->pObject->type == TYPE_SHARPENER))
+		{
+			//setting object instance
+			for (unsigned long j = 0; j < GAME_OBJ_INST_NUM_MAX; j++)
+			{
+				GameObjInst* pInst_2 = sGameObjInstList + j;
+
+				//if (oi2 is not active or oi2 is an asteroid), skip
+				if (((pInst_2->flag && FLAG_ACTIVE) == 0) || pInst_2->pObject->type == TYPE_SHARPENER)
+					continue;
+
+				//if (oi2 is the ship)
+				if (pInst_2->pObject->type == TYPE_HIGHLIGHTER)
+				{
+					if (CollisionIntersection_RectRect(pInst_1->boundingBox, pInst_1->velCurr, pInst_2->boundingBox, pInst_2->velCurr))
+					{
+						pInst_1->posCurr.x += 1.0f;
+						printf("Colliding");
+					}
+				}
+			}
+		}
+	}
+}
+
+void Sharpener::unloadSharpener() {
+>>>>>>> origin/Highlighter
+
+	AEGfxTextureUnload(sharpenerObj->texture);
+	//AEGfxTextureUnload(sharpeners);
 }

@@ -40,6 +40,7 @@
     <Filter Include="Source Files\Objects\Sharpener\Header">
       <UniqueIdentifier>{8f5d031a-1682-4324-8366-582ec0db37f1}</UniqueIdentifier>
     </Filter>
+<<<<<<< HEAD
     <Filter Include="Source Files\Objects\Door">
       <UniqueIdentifier>{e9278e22-e847-4bfa-bf46-6f01584a80d3}</UniqueIdentifier>
     </Filter>
@@ -57,6 +58,16 @@
     </Filter>
     <Filter Include="Source Files\Objects\Player\Code">
       <UniqueIdentifier>{711a7d40-e691-4d4f-85d8-490528ab5b8a}</UniqueIdentifier>
+=======
+    <Filter Include="Source Files\Objects\Highlighter">
+      <UniqueIdentifier>{31dbd2b4-7f49-48a3-963d-ecef8ffc6700}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects\Highlighter\Code">
+      <UniqueIdentifier>{f53f86a3-ae67-4ea4-a710-be625c9571a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects\Highlighter\Header">
+      <UniqueIdentifier>{e7c1de2e-2aa2-440e-8b01-f660c2674d21}</UniqueIdentifier>
+>>>>>>> origin/Highlighter
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -72,11 +83,14 @@
     <ClCompile Include="src\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Wall.cpp">
+      <Filter>Source Files\Environment</Filter>
+    </ClCompile>
     <ClCompile Include="src\Sharpener.cpp">
       <Filter>Source Files\Objects\Sharpener\Code</Filter>
     </ClCompile>
-    <ClCompile Include="src\Wall.cpp">
-      <Filter>Source Files\Environment</Filter>
+    <ClCompile Include="src\Highlighter.cpp">
+      <Filter>Source Files\Objects\Highlighter\Code</Filter>
     </ClCompile>
     <ClCompile Include="src\Door.cpp">
       <Filter>Source Files\Objects\Door\Code</Filter>
@@ -104,11 +118,16 @@
     <ClInclude Include="src\Wall.h">
       <Filter>Source Files\Environment</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="src\Door.h">
       <Filter>Source Files\Objects\Door\Header</Filter>
     </ClInclude>
     <ClInclude Include="src\Player.h">
       <Filter>Source Files\Objects\Player\Header</Filter>
+=======
+    <ClInclude Include="src\Highlighter.h">
+      <Filter>Source Files\Objects\Highlighter\Header</Filter>
+>>>>>>> origin/Highlighter
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,6 @@
 /* Start Header ************************************************************************/
 /*!
-\file Sharpener.h
+\file Highlighter.h
 \team name Don't Peak
 \software name I don't want to do homework
 \authors
@@ -21,45 +21,19 @@ Technology is prohibited.
 /* End Header **************************************************************************/
 
 #include "Main.h"
-<<<<<<< HEAD
 
-=======
-#include "AEVec2.h"
->>>>>>> origin/Highlighter
-
-class Sharpener
+class Highlighter
 {
 private:
-<<<<<<< HEAD
-	GameObj* pSharpener;
-	AEVec2 pos;
-=======
-	//const float	SPEED = 10.0f;
-	AEVec2 SPEED; 
+	//const float	SPEED = 100.0f;
+	AEVec2 SPEED;
 	AEVec2 Position;
-	AEVec2 Velocity;
->>>>>>> origin/Highlighter
 
 public:
-	void loadSharpener();
-	void drawSharpener();
-	void initSharpener();
-	void updateSharpener();
-	void unloadSharpener();
-<<<<<<< HEAD
-	void BoundingBox();
-
-
-	AABB boundingBox;
-	unsigned long flag;
-	AEVec2 vel;
-
-
+	void loadHighlighter();
+	void drawHighlighter();
+	void initHighlighter();
+	void updateHighlighter();
+	void unloadHighlighter();
 
 };
-
-extern Sharpener SharpenerArray[1];
-
-=======
-};
->>>>>>> origin/Highlighter
