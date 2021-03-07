@@ -98,6 +98,8 @@ void Player::Player_Draw()
 
 	AEGfxTextureSet(pObj->texture, 0, 0);		// Same object, different texture
 
+	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
+
 	// Drawing the mesh (list of triangles)
 	AEGfxMeshDraw(pObj->pMesh, AE_GFX_MDM_TRIANGLES);
 	// Set Transparency
