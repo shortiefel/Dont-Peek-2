@@ -21,6 +21,8 @@ Technology is prohibited.
 /* End Header **************************************************************************/
 
 #include "Main.h"
+#include "AEVec2.h"
+#include "AEInput.h"
 
 
 class Highlighter

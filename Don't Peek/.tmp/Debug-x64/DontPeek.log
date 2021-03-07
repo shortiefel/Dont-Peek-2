@@ -1,5 +1,23 @@
 ﻿  GameState_DontPeek.cpp
   Highlighter.cpp
   Sharpener.cpp
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(117,102): error C2248: 'Highlighter::boundingBox': cannot access private member declared in class 'Highlighter'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Highlighter.h(34): message : see declaration of 'Highlighter::boundingBox'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Highlighter.h(28): message : see declaration of 'Highlighter'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(117,132): error C2248: 'Highlighter::vel': cannot access private member declared in class 'Highlighter'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Highlighter.h(35): message : see declaration of 'Highlighter::vel'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Highlighter.h(28): message : see declaration of 'Highlighter'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(125,45): error C2248: 'Highlighter::boundingBox': cannot access private member declared in class 'Highlighter'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Highlighter.h(34): message : see declaration of 'Highlighter::boundingBox'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Highlighter.h(28): message : see declaration of 'Highlighter'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(126,45): error C2248: 'Highlighter::boundingBox': cannot access private member declared in class 'Highlighter'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Highlighter.h(34): message : see declaration of 'Highlighter::boundingBox'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Highlighter.h(28): message : see declaration of 'Highlighter'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(127,45): error C2248: 'Highlighter::boundingBox': cannot access private member declared in class 'Highlighter'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Highlighter.h(34): message : see declaration of 'Highlighter::boundingBox'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Highlighter.h(28): message : see declaration of 'Highlighter'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(128,45): error C2248: 'Highlighter::boundingBox': cannot access private member declared in class 'Highlighter'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Highlighter.h(34): message : see declaration of 'Highlighter::boundingBox'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Highlighter.h(28): message : see declaration of 'Highlighter'
+  Wall.cpp
   Generating Code...
-  DontPeek.vcxproj -> C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe

@@ -18,8 +18,11 @@ float GROUND = 0.f;
 void Player::Player_Character() //drawing of character
 {
 	
-	pPlayer = (sGameObjList + sGameObjNum++) ;
+	pPlayer = sGameObjList + sGameObjNum++;
 	pPlayer->type = TYPE_PLAYER;
+
+	pPlayer->texture = AEGfxTextureLoad("Resources/Player.png");
+	AE_ASSERT_MESG(pPlayer->texture, "Failed to load Player!");
 
 
 	//Drawing of Player
@@ -35,9 +38,6 @@ void Player::Player_Character() //drawing of character
 		-60.0f, 60.0f, 0x00000000, 0.0f, 0.0f);
 	pPlayer->pMesh = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pPlayer->pMesh, "fail to create object!!");
-
-	pPlayer->texture = AEGfxTextureLoad("Resources/Player.png");
-	AE_ASSERT_MESG(pPlayer->texture, "Failed to create texture1!!");
 
 	
 }
@@ -56,19 +56,12 @@ void Player::Player_Character() //drawing of character
 
 void Player::Player_Draw()
 {
-	// Drawing object 2 - (first) - No tint
 	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
-	// Set position for object 2
 	AEGfxSetPosition(pos.x, pos.y);
-	// No tint
-	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 0.0f);
-
-	AEGfxTextureSet(pPlayer->texture, 0, 0);		// Same object, different texture
-
-	AEGfxSetBlendMode(AE_GFX_BM_NONE);
-	// Drawing the mesh (list of triangles)
+	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
+	AEGfxTextureSet(pPlayer->texture, 0, 0);
+	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 	AEGfxMeshDraw(pPlayer->pMesh, AE_GFX_MDM_TRIANGLES);
-	// Set Transparency
 	AEGfxSetTransparency(1.0f);
 }
 
@@ -81,7 +74,7 @@ void Player::Player_Init()
 	printf("Init Player \n");
 }
 
-
+/******************************************************************************/
 /*!
 	Player Update
 */
@@ -127,6 +120,7 @@ void Player::Player_Update()
 	pos.x += vel.x;
 	pos.y +=vel.y;
 
+	BoundingBoxPlayer();
 
 }
 
@@ -138,3 +132,26 @@ void Player::SetGravity()
 	vel.y -= 0.15f;
 
 }
+
+/******************************************************************************/
+/*!
+	Player Bounding Box
+*/
+/******************************************************************************/
+
+void Player::BoundingBoxPlayer()
+{
+	AEMtx33 Transform, Scale, Concat;
+	AEMtx33Scale(&Scale, pos.x, pos.y);
+	AEMtx33Trans(&Transform, pos.x, pos.y);
+	AEMtx33Concat(&Concat, &Transform, &Scale);
+
+	boundingBox.min.x = pos.x;
+	boundingBox.min.y = pos.y;
+	boundingBox.max.x = pos.x;
+	boundingBox.max.y = pos.y;
+}
+
+
+
+
