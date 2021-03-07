@@ -17,6 +17,9 @@ void gameObjInstDestroy(GameObjInst* pInst);
 //individual classes
 Door door;
 Player player;
+
+
+
 /******************************************************************************/
 /*!
 	"LOAD" FUNCTION OF THE STATE
