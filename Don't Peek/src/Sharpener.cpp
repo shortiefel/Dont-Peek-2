@@ -21,6 +21,7 @@ Technology is prohibited.
 #include "Collision.h"
 #include "Highlighter.h"
 #include "Player.h"
+#include "Door.h"
 
 Sharpener SharpenerArray[1];
 int right, left;
@@ -78,43 +79,35 @@ void Sharpener::updateSharpener() {
 
 	BoundingBox();
 
-	//Player player;
-
-	/******************************************************************************/
-	/*!
-		PLAYER
-	*/
-	///******************************************************************************/
-	//if (AEInputCheckCurr(AEVK_LEFT))
-	//{
-	//	left = 1;
-	//	right = 0;
-	//	pos.x -= 5;
-	//}
-	//if (AEInputCheckCurr(AEVK_RIGHT))
-	//{
-	//	right = 1;
-	//	left = 0;
-	//	pos.x += 5;
-	//}
-
-
-
-	/******************************************************************************/
-	/*!
-		HIGHLIGHTER
-	*/
-	/******************************************************************************/
 	for (int i = 0; i < 1; i++)
 	{
 		Sharpener* Sharpenertemp = SharpenerArray + i;
 
-		//player
+
+		/******************************************************************************/
+		/*!
+			DOOR
+		*/
+		/******************************************************************************/
+		for (int s = 0; s < 1; s++)
+		{
+			Door* Doortemp = DoorArray + s;
+			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, Doortemp->boundingBox, Doortemp->vel))
+			{
+				AEVec2Set(&pos, -300, 0);
+			}
+		}
+
+		/******************************************************************************/
+		/*!
+			PLAYER
+		*/
+		/******************************************************************************/
 		if (CollisionIntersection_RectRect(player.GetBoundingBoxPlayer(), player.GetVelPlayer(), Sharpenertemp->boundingBox, Sharpenertemp->vel))
 		{
 			//printf("PLAYER COLLIDE WITH Sharpener\n");
 
-			if ((AEInputCheckCurr(AEVK_LSHIFT)|| AEInputCheckCurr(AEVK_RSHIFT)) && AEInputCheckCurr(AEVK_RIGHT))
+			if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) && AEInputCheckCurr(AEVK_RIGHT))
 			{
 				pos.x += 5;
 				right = 1;
@@ -122,13 +115,17 @@ void Sharpener::updateSharpener() {
 			}
 			if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) && AEInputCheckCurr(AEVK_LEFT))
 			{
-				pos.x-=5;
+				pos.x -= 5;
 				left = 1;
 				right = 0;
 			}
 		}
 
-
+		/******************************************************************************/
+		/*!
+			HIGHLIGHTER
+		*/
+		/******************************************************************************/
 		for (int j = 0; j < 1; j++)
 		{
 			Highlighter* highlightertemp = HighlighterArray + j;
@@ -158,6 +155,8 @@ void Sharpener::updateSharpener() {
 			}
 		}
 	}
+
+
 
 }
 
