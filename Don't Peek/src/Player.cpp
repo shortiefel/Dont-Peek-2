@@ -1,5 +1,7 @@
 #include "GameState_DontPeek.h"
 #include "Player.h"
+#include "Sharpener.h"
+#include "Door.h"
 
 
 
@@ -18,70 +20,55 @@ float GROUND = 0.f;
 void Player::Player_Character() //drawing of character
 {
 	
-	pPlayer = (sGameObjList + sGameObjNum++) ;
+	pPlayer = sGameObjList + sGameObjNum++;
 	pPlayer->type = TYPE_PLAYER;
+
+	pPlayer->texture = AEGfxTextureLoad("Resources/Player.png");
+	AE_ASSERT_MESG(pPlayer->texture, "Failed to load Player!");
 
 
 	//Drawing of Player
 	AEGfxMeshStart();
 	AEGfxTriAdd(
-		-60.0f, -60.0f, 0x00000000, 0.0f, 1.0f,
-		100.0f, -60.0f, 0x00000000, 1.0f, 1.0f,
-		-60.0f, 60.0f, 0x00000000, 0.0f, 0.0f);
+		-0.5f, -0.5f, 0x00000000, 0.0f, 1.0f,
+		0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
+		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 
 	AEGfxTriAdd(
-		100.0f, -60.0f, 0x00000000, 1.0f, 1.0f,
-		100.0f, 60.0f, 0x00000000, 1.0f, 0.0f,
-		-60.0f, 60.0f, 0x00000000, 0.0f, 0.0f);
+		0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
+		0.5f, 0.5f, 0x00000000, 1.0f, 0.0f,
+		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 	pPlayer->pMesh = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pPlayer->pMesh, "fail to create object!!");
-
-	pPlayer->texture = AEGfxTextureLoad("Resources/Player.png");
-	AE_ASSERT_MESG(pPlayer->texture, "Failed to create texture1!!");
 
 	
 }
 
-//void Player::Player_Movement()
-//{
-//	if (isPlayerAlive == TRUE && isPlayerWin == FALSE)
-//	{
-//		player->velCurr.y += 3.0f * g_dt; //constant gravity for falling 
-//		player->velCurr.x = player->velCurr.x * Speed * 1.25f * 100.0f;
-//		player->velCurr.y = player->velCurr.y * Speed * 1.25f * 100.f;
-//		Speed_Overall = (player->velCurr.x, player->velCurr.y);
-//	}
-//}
-
-
 void Player::Player_Draw()
 {
-	// Drawing object 2 - (first) - No tint
+	
 	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
-	// Set position for object 2
 	AEGfxSetPosition(pos.x, pos.y);
-	// No tint
-	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 0.0f);
-
-	AEGfxTextureSet(pPlayer->texture, 0, 0);		// Same object, different texture
-
-	AEGfxSetBlendMode(AE_GFX_BM_NONE);
-	// Drawing the mesh (list of triangles)
-	AEGfxMeshDraw(pPlayer->pMesh, AE_GFX_MDM_TRIANGLES);
-	// Set Transparency
+	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
+	AEGfxTextureSet(pPlayer->texture, 0, 0);
+	AEGfxSetTransform(Transform.m);
+	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 	AEGfxSetTransparency(1.0f);
+	AEGfxMeshDraw(pPlayer->pMesh, AE_GFX_MDM_TRIANGLES);
+	
 }
 
 
 void Player::Player_Init()
 {
+	Scale = 100.0f;
 	flag = FLAG_ACTIVE;
 	AEVec2Set(&vel, SPEED, SPEED);
-	AEVec2Set(&pos, 40.f, -50.f);
+	AEVec2Set(&pos, 100.0f, -100.f);
 	printf("Init Player \n");
 }
 
-
+/******************************************************************************/
 /*!
 	Player Update
 */
@@ -127,6 +114,38 @@ void Player::Player_Update()
 	pos.x += vel.x;
 	pos.y +=vel.y;
 
+	BoundingBoxPlayer();
+	
+	for (int i = 0; i < 1; i++)
+	{
+		Sharpener* Sharpenertemp = SharpenerArray + i;
+		if (CollisionIntersection_RectRect(boundingBox, vel, Sharpenertemp->boundingBox, Sharpenertemp->vel))
+		{
+			printf("Collision True \n");
+			
+
+		}
+	}
+
+	for (int i = 0; i < 1; i++)
+	{
+		Door* Doortemp = DoorArray + i;
+		if (CollisionIntersection_RectRect(boundingBox, vel, Doortemp->boundingBox, Doortemp->vel))
+		{
+			printf("Collision True DOOR \n");
+			printf("BB2 Door min x %f \n", Doortemp->boundingBox.min.x);
+			printf("BB2 Door min y %f \n", Doortemp->boundingBox.min.y);
+			printf("BB2 Door maX x %f \n", Doortemp->boundingBox.max.x);
+			printf("BB2 Door max y %f \n", Doortemp->boundingBox.max.y);
+
+		}
+	}
+
+	
+
+	
+	
+	
 
 }
 
@@ -138,3 +157,29 @@ void Player::SetGravity()
 	vel.y -= 0.15f;
 
 }
+
+/******************************************************************************/
+/*!
+	Player Bounding Box
+*/
+/******************************************************************************/
+
+void Player::BoundingBoxPlayer()
+{
+	AEMtx33 Transform2, Size;
+	AEMtx33Scale(&Size, Scale, Scale);
+	AEMtx33Trans(&Transform2, pos.x, pos.y);
+	AEMtx33Concat(&Transform, &Transform2, &Size);
+
+	boundingBox.min.x = pos.x - Scale/2;
+	boundingBox.min.y = pos.y - Scale/2;
+	boundingBox.max.x = pos.x + Scale/2;
+	boundingBox.max.y = pos.y + Scale/2;
+}
+
+
+
+
+
+
+

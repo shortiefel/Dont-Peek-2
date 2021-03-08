@@ -21,6 +21,8 @@ Technology is prohibited.
 /* End Header **************************************************************************/
 
 #include "Main.h"
+#include "AEVec2.h"
+#include "AEInput.h"
 
 
 class Highlighter
@@ -38,9 +40,9 @@ public:
 	void updateHighlighter();
 	void unloadHighlighter();
 	void BoundingBox();
-
 	AABB boundingBox;
 	AEVec2 vel;
+
 
 };
 extern Highlighter HighlighterArray[1];

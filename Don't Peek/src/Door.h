@@ -45,4 +45,4 @@ public:
 	void BoundingBox();
 };
 
-//extern Door DoorArray[MAX];
+extern Door DoorArray[1];
