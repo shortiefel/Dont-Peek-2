@@ -67,6 +67,12 @@
     <Filter Include="Source Files\Objects\Highlighter\Header">
       <UniqueIdentifier>{4aa85340-7eb3-4069-9b70-ddb4148c9d32}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Environment\Level 1">
+      <UniqueIdentifier>{088c583b-9c2d-4453-bd9b-996e986ca006}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Testing">
+      <UniqueIdentifier>{809b6a90-8818-40db-91ac-32d68bd38d9a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Collision.cpp">
@@ -96,6 +102,12 @@
     <ClCompile Include="src\Highlighter.cpp">
       <Filter>Source Files\Objects\Highlighter\Code</Filter>
     </ClCompile>
+    <ClCompile Include="src\Level 1.cpp">
+      <Filter>Source Files\Environment\Level 1</Filter>
+    </ClCompile>
+    <ClCompile Include="src\test AABB.cpp">
+      <Filter>Source Files\Testing</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Collision.h">
@@ -124,6 +136,12 @@
     </ClInclude>
     <ClInclude Include="src\Highlighter.h">
       <Filter>Source Files\Objects\Highlighter\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Level 1.h">
+      <Filter>Source Files\Environment\Level 1</Filter>
+    </ClInclude>
+    <ClInclude Include="src\test AABB.h">
+      <Filter>Source Files\Testing</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

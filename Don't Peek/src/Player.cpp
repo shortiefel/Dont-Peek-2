@@ -7,7 +7,7 @@
 
 /******************************************************************************/
 /*!
-	Game Object 
+	Game Object
 */
 /******************************************************************************/
 
@@ -19,7 +19,7 @@ float GROUND = 0.f;
 
 void Player::Player_Character() //drawing of character
 {
-	
+
 	pPlayer = sGameObjList + sGameObjNum++;
 	pPlayer->type = TYPE_PLAYER;
 
@@ -42,20 +42,22 @@ void Player::Player_Character() //drawing of character
 	AE_ASSERT_MESG(pPlayer->pMesh, "fail to create object!!");
 
 	
+
 }
 
 void Player::Player_Draw()
 {
-	
+	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
+
 	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 	AEGfxSetPosition(pos.x, pos.y);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
 	AEGfxTextureSet(pPlayer->texture, 0, 0);
 	AEGfxSetTransform(Transform.m);
-	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
+	
 	AEGfxSetTransparency(1.0f);
 	AEGfxMeshDraw(pPlayer->pMesh, AE_GFX_MDM_TRIANGLES);
-	
+
 }
 
 
@@ -98,7 +100,7 @@ void Player::Player_Update()
 		CanJump = false;
 		//Position.y += Velocity.y * 4;
 		vel.y = 5.f;
-		printf("PosY: %f, %f\n",pos.x, pos.y);
+		printf("PosY: %f, %f\n", pos.x, pos.y);
 	}
 
 
@@ -117,7 +119,7 @@ void Player::Player_Update()
 	pos.y += vel.y;
 
 	BoundingBoxPlayer();
-	
+
 	for (int i = 0; i < 1; i++)
 	{
 		Sharpener* Sharpenertemp = SharpenerArray + i;
@@ -138,18 +140,19 @@ void Player::Player_Update()
 
 	}
 
-	
+
 
 	for (int i = 0; i < 1; i++)
 	{
 		Door* Doortemp = DoorArray + i;
 		if (CollisionIntersection_RectRect(boundingBox, vel, Doortemp->boundingBox, Doortemp->vel))
 		{
+			/*printf("Collision True DOOR \n");
 			printf("Collision True----------------------------------------------- \n");
 			printf("BB2 Door min x %f \n", Doortemp->boundingBox.min.x);
 			printf("BB2 Door min y %f \n", Doortemp->boundingBox.min.y);
 			printf("BB2 Door maX x %f \n", Doortemp->boundingBox.max.x);
-			printf("BB2 Door max y %f \n", Doortemp->boundingBox.max.y);
+			printf("BB2 Door max y %f \n", Doortemp->boundingBox.max.y);*/
 
 			printf("|| \n");
 			printf("BBP min x %f \n", boundingBox.min.x);
@@ -159,13 +162,13 @@ void Player::Player_Update()
 
 		}
 	}
-	
 
-	
 
-	
-	
-	
+
+
+
+
+
 
 }
 
@@ -191,15 +194,8 @@ void Player::BoundingBoxPlayer()
 	AEMtx33Trans(&Transform2, pos.x, pos.y);
 	AEMtx33Concat(&Transform, &Transform2, &Size);
 
-	boundingBox.min.x = pos.x - Scale/2;
-	boundingBox.min.y = pos.y - Scale/2;
-	boundingBox.max.x = pos.x + Scale/2;
-	boundingBox.max.y = pos.y + Scale/2;
+	boundingBox.min.x = pos.x - Scale / 2;
+	boundingBox.min.y = pos.y - Scale / 2;
+	boundingBox.max.x = pos.x + Scale / 2;
+	boundingBox.max.y = pos.y + Scale / 2;
 }
-
-
-
-
-
-
-

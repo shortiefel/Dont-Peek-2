@@ -26,8 +26,6 @@ public:
 	//void Player_Exit();
 	void SetGravity();
 	void BoundingBoxPlayer();
-	void Player_TestDoor();
+	//void Player_TestDoor();
 	//AEVec2 GetPosition(void) const;
 };
-
-

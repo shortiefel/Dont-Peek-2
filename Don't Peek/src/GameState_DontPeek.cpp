@@ -25,7 +25,8 @@ Technology is prohibited.
 #include "Player.h"
 #include "Sharpener.h"
 #include "Highlighter.h"
-
+#include "Wall.h"
+#include "Level 1.h"
 
 
 /******************************************************************************/
@@ -50,6 +51,7 @@ Door door;
 Player player;
 Sharpener sharpener;
 Highlighter highlighter;
+Wall wwall;
 
 
 /******************************************************************************/
@@ -66,10 +68,12 @@ void GameStateDontPeekLoad(void)
 	// No game object instances (sprites) at this point
 	sGameObjInstNum = 0;
 
+	Level1_Load();
 	sharpener.loadSharpener();
 	highlighter.loadHighlighter();
 	door.LoadDoor();
 	player.Player_Character();
+	wwall.LoadWall();
 }
 
 /******************************************************************************/
@@ -79,6 +83,8 @@ void GameStateDontPeekLoad(void)
 /******************************************************************************/
 void GameStateDontPeekInit(void)
 {
+	wwall.InitWall();
+	Level1_Init();
 	sharpener.initSharpener();
 	highlighter.initHighlighter();
 	door.InitDoor();
@@ -92,11 +98,12 @@ void GameStateDontPeekInit(void)
 /******************************************************************************/
 void GameStateDontPeekUpdate(void)
 {
-	
+	Level1_Update();
 	sharpener.updateSharpener();
 	highlighter.updateHighlighter();
 	door.UpdateDoor();
 	player.Player_Update();
+	//wall.UpdateWall();
 }
 
 /******************************************************************************/
@@ -106,11 +113,12 @@ void GameStateDontPeekUpdate(void)
 /******************************************************************************/
 void GameStateDontPeekDraw(void)
 {
+	Level1_Draw();
+	wwall.DrawWall();
 	highlighter.drawHighlighter();
 	sharpener.drawSharpener();
 	door.DrawDoor();
 	player.Player_Draw();
-
 }
 
 /******************************************************************************/
