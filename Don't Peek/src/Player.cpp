@@ -52,7 +52,7 @@ void Player::Player_Draw()
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
 	AEGfxTextureSet(pPlayer->texture, 0, 0);
 	AEGfxSetTransform(Transform.m);
-	AEGfxSetBlendMode(AE_GFX_BM_NONE);
+	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 	AEGfxSetTransparency(1.0f);
 	AEGfxMeshDraw(pPlayer->pMesh, AE_GFX_MDM_TRIANGLES);
 	
