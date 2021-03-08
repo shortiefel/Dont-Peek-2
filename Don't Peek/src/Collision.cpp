@@ -20,12 +20,18 @@ Technology is prohibited.
 */
 /* End Header **************************************************************************/
 
-#include "Collision.h"
 #include "GameState_DontPeek.h"
+#include "Collision.h"
+
+
+bool collideLeft = false;
+bool collideRight = false;
+bool collideTop = false;
+bool collideBtm = false;
 
 
 bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1,
-	const AABB& aabb2, const AEVec2& vel2)
+									const AABB& aabb2, const AEVec2& vel2)
 {
 	UNREFERENCED_PARAMETER(aabb1);
 	UNREFERENCED_PARAMETER(vel1);
@@ -51,7 +57,7 @@ bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1,
 	if (aabb1.max.x < aabb2.min.x || aabb1.max.y < aabb2.min.y ||
 		aabb1.min.x > aabb2.max.x || aabb1.min.y > aabb2.max.y)
 	{
-
+		return 0;
 	}
 	else
 		return 1;

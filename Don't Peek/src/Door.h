@@ -45,4 +45,4 @@ public:
 	void BoundingBox();
 };
 
-extern Door DoorArray[1];
+extern Door DoorArray[2];

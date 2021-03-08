@@ -7,7 +7,7 @@
 
 /******************************************************************************/
 /*!
-	Game Object 
+	Game Object
 */
 /******************************************************************************/
 
@@ -19,7 +19,7 @@ float GROUND = 0.f;
 
 void Player::Player_Character() //drawing of character
 {
-	
+
 	pPlayer = sGameObjList + sGameObjNum++;
 	pPlayer->type = TYPE_PLAYER;
 
@@ -42,11 +42,13 @@ void Player::Player_Character() //drawing of character
 	AE_ASSERT_MESG(pPlayer->pMesh, "fail to create object!!");
 
 	
+
 }
 
 void Player::Player_Draw()
 {
 	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
+
 	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 	AEGfxSetPosition(pos.x, pos.y);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
@@ -55,7 +57,7 @@ void Player::Player_Draw()
 	
 	AEGfxSetTransparency(1.0f);
 	AEGfxMeshDraw(pPlayer->pMesh, AE_GFX_MDM_TRIANGLES);
-	
+
 }
 
 
@@ -64,7 +66,7 @@ void Player::Player_Init()
 	Scale = 100.0f;
 	flag = FLAG_ACTIVE;
 	AEVec2Set(&vel, SPEED, SPEED);
-	AEVec2Set(&pos, 100.0f, -100.f);
+	AEVec2Set(&pos, 80.0f, -10.f);
 	printf("Init Player \n");
 }
 
@@ -76,6 +78,7 @@ void Player::Player_Init()
 
 void Player::Player_Update()
 {
+
 
 	if (AEInputCheckCurr(AEVK_LEFT))
 	{
@@ -90,13 +93,14 @@ void Player::Player_Update()
 	{
 		vel.x = 0.f;
 	}
+
 	if (AEInputCheckTriggered(AEVK_UP) && CanJump == true)
 	{
 		printf("jumping \n");
 		CanJump = false;
 		//Position.y += Velocity.y * 4;
 		vel.y = 5.f;
-		printf("PosY: %f, %f\n",pos.x, pos.y);
+		printf("PosY: %f, %f\n", pos.x, pos.y);
 	}
 
 
@@ -112,20 +116,31 @@ void Player::Player_Update()
 	}
 
 	pos.x += vel.x;
-	pos.y +=vel.y;
+	pos.y += vel.y;
 
 	BoundingBoxPlayer();
-	
+
 	for (int i = 0; i < 1; i++)
 	{
 		Sharpener* Sharpenertemp = SharpenerArray + i;
 		if (CollisionIntersection_RectRect(boundingBox, vel, Sharpenertemp->boundingBox, Sharpenertemp->vel))
 		{
-			printf("Collision True \n");
-			
+			printf("Collision Sharpener\n");
+			printf("BB2 Door min x %f \n", Sharpenertemp->boundingBox.min.x);
+			printf("BB2 Door min y %f \n", Sharpenertemp->boundingBox.min.y);
+			printf("BB2 Door max x %f \n", Sharpenertemp->boundingBox.max.x);
+			printf("BB2 Door max y %f \n", Sharpenertemp->boundingBox.max.y);
 
+			printf("|| \n");
+			printf("BBP min x %f \n", boundingBox.min.x);
+			printf("BBP min y %f \n", boundingBox.min.y);
+			printf("BBP max x %f \n", boundingBox.max.x);
+			printf("BBP max y %f \n", boundingBox.max.y);
 		}
+
 	}
+
+
 
 	for (int i = 0; i < 1; i++)
 	{
@@ -133,19 +148,27 @@ void Player::Player_Update()
 		if (CollisionIntersection_RectRect(boundingBox, vel, Doortemp->boundingBox, Doortemp->vel))
 		{
 			/*printf("Collision True DOOR \n");
+			printf("Collision True----------------------------------------------- \n");
 			printf("BB2 Door min x %f \n", Doortemp->boundingBox.min.x);
 			printf("BB2 Door min y %f \n", Doortemp->boundingBox.min.y);
 			printf("BB2 Door maX x %f \n", Doortemp->boundingBox.max.x);
 			printf("BB2 Door max y %f \n", Doortemp->boundingBox.max.y);*/
 
+			printf("|| \n");
+			printf("BBP min x %f \n", boundingBox.min.x);
+			printf("BBP min y %f \n", boundingBox.min.y);
+			printf("BBP max x %f \n", boundingBox.max.x);
+			printf("BBP max y %f \n", boundingBox.max.y);
+
 		}
 	}
 
-	
 
-	
-	
-	
+
+
+
+
+
 
 }
 
@@ -171,15 +194,8 @@ void Player::BoundingBoxPlayer()
 	AEMtx33Trans(&Transform2, pos.x, pos.y);
 	AEMtx33Concat(&Transform, &Transform2, &Size);
 
-	boundingBox.min.x = pos.x - Scale/2;
-	boundingBox.min.y = pos.y - Scale/2;
-	boundingBox.max.x = pos.x + Scale/2;
-	boundingBox.max.y = pos.y + Scale/2;
+	boundingBox.min.x = pos.x - Scale / 2;
+	boundingBox.min.y = pos.y - Scale / 2;
+	boundingBox.max.x = pos.x + Scale / 2;
+	boundingBox.max.y = pos.y + Scale / 2;
 }
-
-
-
-
-
-
-
