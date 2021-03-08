@@ -1,50 +1,116 @@
+/* Start Header ************************************************************************/
+/*!
+\file Wall.cpp
+\team name Don't Peak
+\software name I don't want to do homework
+\authors
+Tan Wei Ling Felicia	weilingfelicia.tan@digipen.edu
+Margaret Teo Boon See	Teo.b@digipen.edu
+Loh Yun Yi Tessa	tessa.loh@digipen.edu
+Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
+
+\date 22/01/2021
+\brief <give a brief description of this file>
+
+
+Copyright (C) 20xx DigiPen Institute of Technology.
+Reproduction or disclosure of this file or its contents
+without the prior written consent of DigiPen Institute of
+Technology is prohibited.
+*/
+/* End Header **************************************************************************/
 
 #include "Wall.h"
-#include "Main.h"
 
-void Tutorial(void)
+static GameObj* pObj;
+static int numberWalls = 0;
+static Wall wall[100];
+
+void Wall::LoadWall()
 {
-	//TODO: code the wall you want
+	pObj = sGameObjList + sGameObjNum++;
+	pObj->type = TYPE_WALL;
+
+	AEGfxMeshStart();
+	AEGfxTriAdd(
+		-0.5f, -0.5f, 0xFFFFFFFF, 0.0f, 0.0f,
+		0.5f, -0.5f, 0xFFFFFFFF, 0.0f, 0.0f,
+		-0.5f, 0.5f, 0xFFFFFFFF, 0.0f, 0.0f);
+
+	AEGfxTriAdd(
+		0.5f, -0.5f, 0xFFFFFFFF, 0.0f, 0.0f,
+		0.5f, 0.5f, 0xFFFFFFFF, 0.0f, 0.0f,
+		-0.5f, 0.5f, 0xFFFFFFFF, 0.0f, 0.0f);
+
+	pObj->pMesh = AEGfxMeshEnd();
+
 }
-
-void Wall::Wall_Init(void)
+void Wall::InitWall()
 {
-	Tutorial();
+	AEVec2 pos{ 5,5 };
+	AEVec2 dir{ 0,1 };
+	CreateWall(pos, dir, 3, wall,30.f);
 
-	//load mesh
-}
+	pos={ 0,10 };
+	dir={ 1,0 };
+	CreateWall(pos, dir, 10, wall, 30.f);
+	printf("drawing\n");
+	printf("number %d \n", numberWalls);
 
-void Wall::Wall_Render(void)
-{
-	//tbc
-	if (type == WALL)
+	for (int i = 0; i < numberWalls; i++)
 	{
-		//render certain mesh
-	}
-	else if (type == PLATFORM)
-	{
-		// render certain mesh
+		printf("wall %d pos = (%f,%f)\n", i, wall[i].Wallpos.x, wall[i].Wallpos.y);
 	}
 }
 
-void Wall::Wall_Update(void)
+void CreateWall(AEVec2 pos, AEVec2 dir, int number, Wall* const WallArr, float scale)
 {
-	Wall* wallPointer = nullptr;
-	int size = 0;
-
-
-	if (currentStage == TUTORIAL) {
-
-	}
-
-	for (int i = 0; i < size; ++i)
+	Wall *temp = WallArr + numberWalls;
+	AEMtx33	trans, sc;
+	for (int i = 0; i <number; i++, temp++)
 	{
-		//if (wallPointer[i].GetActive() == false)
-			//continue;
-		wallPointer[i].Wall_Render();
+		temp->Wallscale = scale;
+		// new pos = old pos + (dir * 1/2 size) * number of walls
+		temp->Wallpos.x = pos.x + temp->Wallscale * i * dir.x;
+		temp->Wallpos.y = pos.y + temp->Wallscale * i * dir.y;
+		numberWalls++;
+
+		// Compute the scaling matrix
+		AEMtx33Scale(&sc, temp->Wallscale, temp->Wallscale);
+		// Compute the translation matrix
+		AEMtx33Trans(&trans, temp->Wallpos.x, temp->Wallpos.y);
+
+		AEMtx33Concat(&(temp->transform), &trans, &sc);
 	}
 }
-void Wall::Wall_Exit(void)
+
+void Wall::DrawWall()
 {
-	//free mesh
+	AEGfxSetRenderMode(AE_GFX_RM_COLOR);
+	AEGfxTextureSet(NULL, 0, 0);
+
+	for (int i = 0; i < numberWalls; i++)
+	{
+		// Drawing object 1
+		AEGfxSetRenderMode(AE_GFX_RM_COLOR);
+		// Set the current object instance's transform matrix using "AEGfxSetTransform"
+		AEGfxSetTransform(wall[i].transform.m);
+		// Draw the shape used by the current object instance using "AEGfxMeshDraw"
+		AEGfxMeshDraw(pObj->pMesh, AE_GFX_MDM_TRIANGLES);
+	}
+}
+
+void Wall::FreeWall()
+{
+
+}
+void Wall::UnloadWall()
+{
+	// free all mesh data (shapes) of each object using "AEGfxTriFree"
+	/*for (unsigned long i = 0; i < numberWalls; i++)
+	{
+		GameObj* Objects = sGameObjList + i;
+		if (Objects->pMesh)
+			AEGfxMeshFree(Objects->pMesh);
+	}*/
 }

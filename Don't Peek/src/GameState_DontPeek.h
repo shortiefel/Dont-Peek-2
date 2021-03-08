@@ -15,7 +15,7 @@ const unsigned int	MAX = 10;
 //const float			PLAYER_ACCEL_BACKWARD = 40.f;
 //const float			PLAYER_SPEED = 100.0f;
 //const float			MAX_SPEED = 60.0f;
-const float			SPEED = 20.0f;
+const float			SPEED = 10.0f;
 
 
 enum TYPE
@@ -28,6 +28,7 @@ enum TYPE
 	TYPE_PENCIL,
 	TYPE_DOOR,
 	TYPE_PLAYER,
+	TYPE_WALL,
 
 	TYPE_NUM
 };
@@ -51,13 +52,14 @@ struct GameObj
 struct GameObjInst
 {
 	GameObj*			pObject;	// pointer to the 'original' shape
-	unsigned long		flag;
+
 	AABB				boundingBox;	// object bouding box that encapsulates the object
 	AEMtx33				transform;	// object transformation matrix: Each frame, 
 	float				scale;		// scaling value of the object instance
 	AEVec2				posCurr;	// object current position
 	AEVec2				velCurr;	// obj velocity
 	float				dirCurr;	// object current direction
+	unsigned long		flag;		// bit flag or-ed together
 
 };
 
@@ -74,6 +76,11 @@ extern unsigned long		sGameObjNum;
 
 extern GameObjInst			sGameObjInstList[GAME_OBJ_INST_NUM_MAX];	// Each element in this array represents a unique game object instance (sprite)
 extern unsigned long		sGameObjInstNum;
+
+GameObjInst* gameObjInstCreate(unsigned long type, float scale,
+	AEVec2* pPos, AEVec2* pVel, float dir);
+void				gameObjInstDestroy(GameObjInst* pInst);
+
 
 
 
