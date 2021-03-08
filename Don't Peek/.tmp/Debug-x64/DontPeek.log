@@ -1,2 +1,41 @@
-﻿  Sharpener.cpp
+﻿  Collision.cpp
+  Door.cpp
+  GameStateMgr.cpp
+  GameState_DontPeek.cpp
+  Highlighter.cpp
+  Main.cpp
+  Player.cpp
+  Sharpener.cpp
+  Generating Code...
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(66): warning C4702: unreachable code
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(74): warning C4702: unreachable code
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(75): warning C4702: unreachable code
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(77): warning C4702: unreachable code
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(78): warning C4702: unreachable code
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(80): warning C4702: unreachable code
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(81): warning C4702: unreachable code
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(84): warning C4702: unreachable code
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(87): warning C4702: unreachable code
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(88): warning C4702: unreachable code
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(90): warning C4702: unreachable code
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(91): warning C4702: unreachable code
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(93): warning C4702: unreachable code
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(94): warning C4702: unreachable code
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(100): warning C4702: unreachable code
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(105): warning C4702: unreachable code
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(106): warning C4702: unreachable code
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(108): warning C4702: unreachable code
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(109): warning C4702: unreachable code
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(111): warning C4702: unreachable code
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(112): warning C4702: unreachable code
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(115): warning C4702: unreachable code
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(118): warning C4702: unreachable code
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(119): warning C4702: unreachable code
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(121): warning C4702: unreachable code
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(122): warning C4702: unreachable code
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(124): warning C4702: unreachable code
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(125): warning C4702: unreachable code
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(129): warning C4702: unreachable code
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(130): warning C4702: unreachable code
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(132): warning C4702: unreachable code
   DontPeek.vcxproj -> C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe
