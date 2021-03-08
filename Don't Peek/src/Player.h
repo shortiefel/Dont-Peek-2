@@ -28,4 +28,10 @@ public:
 	void BoundingBoxPlayer();
 	//void Player_TestDoor();
 	//AEVec2 GetPosition(void) const;
+
+	AABB GetBoundingBoxPlayer() const;
+	AEVec2 GetVelPlayer() const;
+	const Player* GetPlayerObj() const;
 };
+
+extern Player player;

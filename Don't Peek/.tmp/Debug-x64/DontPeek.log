@@ -1,6 +1,2 @@
-﻿  Door.cpp
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Door.cpp(128,30): warning C4458: declaration of 'pos' hides class member
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Door.h(30,9): message : see declaration of 'Door::pos'
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Door.cpp(84): warning C4706: assignment within conditional expression
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Door.cpp(84): warning C4706: assignment within conditional expression
+﻿  Player.cpp
   DontPeek.vcxproj -> C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe

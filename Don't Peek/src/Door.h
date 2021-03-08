@@ -41,8 +41,8 @@ public:
 	void InitDoor();
 	void UpdateDoor();
 	void DrawDoor();
-	void CreateDoor(AEVec2 pos, int number, Door* const DoorArr);
 	void BoundingBox();
+	
 };
 
 extern Door DoorArray[2];

@@ -26,7 +26,7 @@ Technology is prohibited.
 
 //static GameObj* pObj;
 static int numberWalls = 0;
-static Wall WallArr[100];
+static Wall WallArr[40];
 
 void Wall::LoadWall()
 {

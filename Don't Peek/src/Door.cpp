@@ -20,8 +20,9 @@ Technology is prohibited.
 */
 /* End Header **************************************************************************/
 
-#include "Door.h"
 #include "GameState_DontPeek.h"
+#include "Door.h"
+
 static int numberDoors = 0;
 Door DoorArray[2];
 
@@ -50,43 +51,25 @@ void Door::LoadDoor()
 }
 void Door::InitDoor()
 {	
-	//Scale = 50.0f;
-	AEVec2Set(&pos, 50, 80);
+	Door* doortemp = DoorArray + 0;
+	Scale = 50.0f;
 	AEVec2Set(&vel, 0, 0);
-	//AEVec2* pPos = &pos;
-	//AEVec2* pVel = &vel;
-	//for (int i = 0; i < 2; i++)
-	//{
-	//	Door* Doortemp = DoorArray + i;
-	//	Doortemp->flag = FLAG_ACTIVE;
-	//	Doortemp->pos = *pPos;
-	//	Doortemp->vel = *pVel;
-	//}
+	AEVec2* pvel = &vel;
+	AEVec2Set(&pos, 300, 0);
+	
+	doortemp->flag = FLAG_ACTIVE;
+	doortemp->pos = pos;
+	doortemp->vel = *pvel;
 
-	printf("drawing\n");
-	printf("number %d \n", numberDoors);
+	Door* doortemp2 = DoorArray + 1;
+	Scale = 50.0f;
+	AEVec2Set(&vel, 0, 0);
+	AEVec2Set(&pos, -400, 0);
 
-	for (int i = 0; i < numberDoors; i++)
-	{
-		printf("wall %d pos = (%f,%f)\n", i, DoorArray[i].pos.x, DoorArray[i].pos.y);
-	}
-
-	for (int i = 0; i < numberDoors; i++)
-	{
-		Door* Doortemp = DoorArray + i;
-
-		Doortemp->boundingBox.min.x = pos.x - Scale / 2;
-		Doortemp->boundingBox.min.y = pos.y - Scale / 2;
-
-		Doortemp->boundingBox.max.x = pos.x - Scale / 2;
-		Doortemp->boundingBox.max.y = pos.y - Scale / 2;
-
-		if ((DoorArray[i].pos.x = Doortemp->pos.x) && (DoorArray[i].pos.y = Doortemp->pos.y))
-		{
-			Doortemp->pos.x += 50;
-			Doortemp->pos.y += 50;
-		}
-	}
+	doortemp2->flag = FLAG_ACTIVE;
+	doortemp2->pos = pos;
+	doortemp2->vel = *pvel;
+	
 }
 
 void Door::UpdateDoor()
@@ -96,45 +79,43 @@ void Door::UpdateDoor()
 
 void Door::DrawDoor()
 {
-	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
-	AEGfxSetPosition(pos.x, pos.y);
-	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
-	AEGfxTextureSet(pDoor->texture, 0, 0);
-	AEGfxSetTransform(Transform.m);
 	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 	AEGfxSetTransparency(1.0f);
-	AEGfxMeshDraw(pDoor->pMesh, AE_GFX_MDM_TRIANGLES);
+	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
+	
+	
+	for (int i = 0; i < 2; i++)
+	{
+		Door* Doortemp = DoorArray + i;
+		AEGfxSetPosition(Doortemp->pos.x, Doortemp->pos.y);
+		AEGfxTextureSet(pDoor->texture, 0, 0);
+		AEGfxSetTransform(Doortemp->Transform.m);
+		AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
+		AEGfxMeshDraw(pDoor->pMesh, AE_GFX_MDM_TRIANGLES);
+	}
+	
 	
 }
 
 void Door::BoundingBox()
 {
 	AEMtx33 Transform2, Size;
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < 2; i++)
 	{
 		Door* Doortemp = DoorArray + i;
 		AEMtx33Scale(&Size, Scale, Scale);
-		AEMtx33Trans(&Transform2, pos.x, pos.y);
-		AEMtx33Concat(&Transform, &Transform2, &Size);
+		AEMtx33Trans(&Transform2, Doortemp->pos.x, Doortemp->pos.y);
+		AEMtx33Concat(&(Doortemp->Transform), &Transform2, &Size);
 
-		Doortemp->boundingBox.min.x = pos.x - Scale / 2;
-		Doortemp->boundingBox.min.y = pos.y - Scale / 2;
-		Doortemp->boundingBox.max.x = pos.x + Scale / 2;
-		Doortemp->boundingBox.max.y = pos.y + Scale / 2;
+		Doortemp->boundingBox.min.x = Doortemp->pos.x - Scale / 2;
+		Doortemp->boundingBox.min.y = Doortemp->pos.y - Scale / 2;
+		Doortemp->boundingBox.max.x = Doortemp->pos.x + Scale / 2;
+		Doortemp->boundingBox.max.y = Doortemp->pos.y + Scale / 2;
 	}
 
 }
 
-void Door::CreateDoor(AEVec2 pos, int number, Door* const DoorArr)
-{
-	Door* Doortemp = DoorArr + numberDoors;
-	for (int i = 0; i < number; i++)
-	{
-		Doortemp->Scale = 50.0f;
-		Doortemp->pos.x = pos.x;
-		Doortemp->pos.y = pos.y;
-		numberDoors++;
 
-	}
-}
+
+
 
