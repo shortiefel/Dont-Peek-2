@@ -64,7 +64,7 @@ void Door::InitDoor()
 	Door* doortemp2 = DoorArray + 1;
 	Scale = 50.0f;
 	AEVec2Set(&vel, 0, 0);
-	AEVec2Set(&pos, -400, 0);
+	AEVec2Set(&pos, -300, 0);
 
 	doortemp2->flag = FLAG_ACTIVE;
 	doortemp2->pos = pos;

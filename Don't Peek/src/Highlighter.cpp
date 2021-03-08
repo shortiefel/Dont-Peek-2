@@ -72,7 +72,7 @@ void Highlighter::initHighlighter() {
 
 	scaleX = 150.0f;
 	scaleY = 50.0f;
-	AEVec2Set(&pos, 100, -25);
+	AEVec2Set(&pos, 0, -25);
 	AEVec2Set(&vel, 0, 0);
 	for (int i = 0; i < 1; i++)
 	{

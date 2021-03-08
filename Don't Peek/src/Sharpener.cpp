@@ -59,7 +59,7 @@ void Sharpener::initSharpener() {
 	Scale = 80.0f;
 	flag = FLAG_ACTIVE;
 	AEVec2Set(&vel, SPEED, 0);
-	AEVec2Set(&pos, -50.0f, -15.0f);
+	AEVec2Set(&pos, -150.0f, -15.0f);
 	AEVec2* pPos = &pos;
 	AEVec2* pVel = &vel;
 	for (int i = 0; i < 1; i++)
@@ -112,7 +112,7 @@ void Sharpener::updateSharpener() {
 		//player
 		if (CollisionIntersection_RectRect(player.GetBoundingBoxPlayer(), player.GetVelPlayer(), Sharpenertemp->boundingBox, Sharpenertemp->vel))
 		{
-			printf("PLAYER COLLIDE WITH Sharpener\n");
+			//printf("PLAYER COLLIDE WITH Sharpener\n");
 
 			if ((AEInputCheckCurr(AEVK_LSHIFT)|| AEInputCheckCurr(AEVK_RSHIFT)) && AEInputCheckCurr(AEVK_RIGHT))
 			{
@@ -137,7 +137,7 @@ void Sharpener::updateSharpener() {
 				if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, highlightertemp->boundingBox, highlightertemp->vel))
 				{
 					pos.x += 5;
-					printf("Collision to the right is True-------------------------------------------\n");
+					/*printf("Collision to the right is True-------------------------------------------\n");
 					printf("BB2 min x %f \n", Sharpenertemp->boundingBox.min.x);
 					printf("BB2 min y %f \n", Sharpenertemp->boundingBox.min.y);
 					printf("BB2 maX x %f \n", Sharpenertemp->boundingBox.max.x);
@@ -146,14 +146,14 @@ void Sharpener::updateSharpener() {
 					printf("BBH min x %f \n", highlightertemp->boundingBox.min.x);
 					printf("BBH min y %f \n", highlightertemp->boundingBox.min.y);
 					printf("BBH maX x %f \n", highlightertemp->boundingBox.max.x);
-					printf("BBH max y %f \n", highlightertemp->boundingBox.max.y);
+					printf("BBH max y %f \n", highlightertemp->boundingBox.max.y);*/
 				}
 			}
 			else if (left == 1) {
 				if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, highlightertemp->boundingBox, highlightertemp->vel))
 				{
 					pos.x -= 5;
-					printf("im moving to the lefttttttttt+++++++++++++++++++++++++++++++++++++++++\n");
+					//printf("im moving to the lefttttttttt+++++++++++++++++++++++++++++++++++++++++\n");
 				}
 			}
 		}

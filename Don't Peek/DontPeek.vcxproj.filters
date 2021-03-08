@@ -96,6 +96,9 @@
     <ClCompile Include="src\Highlighter.cpp">
       <Filter>Source Files\Objects\Highlighter\Code</Filter>
     </ClCompile>
+    <ClCompile Include="src\Level 1.cpp">
+      <Filter>Source Files\Environment</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Collision.h">
@@ -124,6 +127,9 @@
     </ClInclude>
     <ClInclude Include="src\Highlighter.h">
       <Filter>Source Files\Objects\Highlighter\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Level 1.h">
+      <Filter>Source Files\Environment</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

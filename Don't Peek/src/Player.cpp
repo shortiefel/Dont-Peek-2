@@ -67,7 +67,7 @@ void Player::Player_Init()
 	flag = FLAG_ACTIVE;
 	AEVec2Set(&vel, SPEED, SPEED);
 	AEVec2Set(&pos, 80.0f, -10.f);
-	printf("Init Player \n");
+	//printf("Init Player \n");
 }
 
 /******************************************************************************/
@@ -87,7 +87,7 @@ void Player::Player_Update()
 		//left = 1;
 		//right = 0;
 		//printf("player left: %d, player right %d\n", left, right);
-		printf("left\n");
+		//printf("left\n");
 	}
 	else if (AEInputCheckCurr(AEVK_RIGHT))
 	{
@@ -95,7 +95,7 @@ void Player::Player_Update()
 		//right = 1;
 		//left = 0;
 		//printf("player left: %d, player right %d\n", left, right);
-		printf("right\n");
+		//printf("right\n");
 	}
 	else
 	{
@@ -104,11 +104,11 @@ void Player::Player_Update()
 
 	if (AEInputCheckTriggered(AEVK_UP) && CanJump == true)
 	{
-		printf("jumping \n");
+		//printf("jumping \n");
 		CanJump = false;
 		//Position.y += Velocity.y * 4;
 		vel.y = 5.f;
-		printf("PosY: %f, %f\n", pos.x, pos.y);
+		//printf("PosY: %f, %f\n", pos.x, pos.y);
 	}
 
 
@@ -133,7 +133,7 @@ void Player::Player_Update()
 		Sharpener* Sharpenertemp = SharpenerArray + i;
 		if (CollisionIntersection_RectRect(boundingBox, vel, Sharpenertemp->boundingBox, Sharpenertemp->vel))
 		{
-			printf("Collision Sharpener\n");
+			/*printf("Collision Sharpener\n");
 			printf("BB2 Door min x %f \n", Sharpenertemp->boundingBox.min.x);
 			printf("BB2 Door min y %f \n", Sharpenertemp->boundingBox.min.y);
 			printf("BB2 Door max x %f \n", Sharpenertemp->boundingBox.max.x);
@@ -143,7 +143,7 @@ void Player::Player_Update()
 			printf("BBP min x %f \n", boundingBox.min.x);
 			printf("BBP min y %f \n", boundingBox.min.y);
 			printf("BBP max x %f \n", boundingBox.max.x);
-			printf("BBP max y %f \n", boundingBox.max.y);
+			printf("BBP max y %f \n", boundingBox.max.y);*/
 		}
 
 	}
@@ -156,8 +156,8 @@ void Player::Player_Update()
 		if (CollisionIntersection_RectRect(boundingBox, vel, Doortemp->boundingBox, Doortemp->vel))
 		{
 			
-			printf("Collision True DOOR \n");
-			AEVec2Set(&pos, -400, 0);
+			//printf("Collision True DOOR \n");
+			AEVec2Set(&pos, -300, 0);
 			
 
 		}

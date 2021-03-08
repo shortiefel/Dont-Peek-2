@@ -1,15 +1,2 @@
-﻿  Collision.cpp
-  Door.cpp
-  GameStateMgr.cpp
-  GameState_DontPeek.cpp
-  Highlighter.cpp
-  Main.cpp
-  Player.cpp
-  Sharpener.cpp
-  Wall.cpp
-  Generating Code...
-GameState_DontPeek.obj : error LNK2019: unresolved external symbol "void __cdecl Level1_Load(void)" (?Level1_Load@@YAXXZ) referenced in function "void __cdecl GameStateDontPeekLoad(void)" (?GameStateDontPeekLoad@@YAXXZ)
-GameState_DontPeek.obj : error LNK2019: unresolved external symbol "void __cdecl Level1_Init(void)" (?Level1_Init@@YAXXZ) referenced in function "void __cdecl GameStateDontPeekInit(void)" (?GameStateDontPeekInit@@YAXXZ)
-GameState_DontPeek.obj : error LNK2019: unresolved external symbol "void __cdecl Level1_Update(void)" (?Level1_Update@@YAXXZ) referenced in function "void __cdecl GameStateDontPeekUpdate(void)" (?GameStateDontPeekUpdate@@YAXXZ)
-GameState_DontPeek.obj : error LNK2019: unresolved external symbol "void __cdecl Level1_Draw(void)" (?Level1_Draw@@YAXXZ) referenced in function "void __cdecl GameStateDontPeekDraw(void)" (?GameStateDontPeekDraw@@YAXXZ)
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\\bin\Debug-x64\DontPeek.exe : fatal error LNK1120: 4 unresolved externals
+﻿  Sharpener.cpp
+  DontPeek.vcxproj -> C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe
