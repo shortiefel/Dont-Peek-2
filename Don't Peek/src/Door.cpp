@@ -22,7 +22,7 @@ Technology is prohibited.
 
 #include "Door.h"
 #include "GameState_DontPeek.h"
-static int numberDoor = 0;
+static int numberDoors = 0;
 Door DoorArray[2];
 
 //This function is responsible for creating Mesh and loading texture for door.
@@ -50,20 +50,43 @@ void Door::LoadDoor()
 }
 void Door::InitDoor()
 {	
-	Scale = 50.0f;
+	//Scale = 50.0f;
 	AEVec2Set(&pos, 50, 80);
-	//AEVec2Set(&vel, 0, 0);
-	AEVec2* pPos = &pos;
-	AEVec2* pVel = &vel;
-	for (int i = 0; i < 2; i++)
+	AEVec2Set(&vel, 0, 0);
+	//AEVec2* pPos = &pos;
+	//AEVec2* pVel = &vel;
+	//for (int i = 0; i < 2; i++)
+	//{
+	//	Door* Doortemp = DoorArray + i;
+	//	Doortemp->flag = FLAG_ACTIVE;
+	//	Doortemp->pos = *pPos;
+	//	Doortemp->vel = *pVel;
+	//}
+
+	printf("drawing\n");
+	printf("number %d \n", numberDoors);
+
+	for (int i = 0; i < numberDoors; i++)
 	{
-		Door* Doortemp = DoorArray + i;
-		Doortemp->flag = FLAG_ACTIVE;
-		Doortemp->pos = *pPos;
-		Doortemp->vel = *pVel;
+		printf("wall %d pos = (%f,%f)\n", i, DoorArray[i].pos.x, DoorArray[i].pos.y);
 	}
 
+	for (int i = 0; i < numberDoors; i++)
+	{
+		Door* Doortemp = DoorArray + i;
 
+		Doortemp->boundingBox.min.x = pos.x - Scale / 2;
+		Doortemp->boundingBox.min.y = pos.y - Scale / 2;
+
+		Doortemp->boundingBox.max.x = pos.x - Scale / 2;
+		Doortemp->boundingBox.max.y = pos.y - Scale / 2;
+
+		if ((DoorArray[i].pos.x = Doortemp->pos.x) && (DoorArray[i].pos.y = Doortemp->pos.y))
+		{
+			Doortemp->pos.x += 50;
+			Doortemp->pos.y += 50;
+		}
+	}
 }
 
 void Door::UpdateDoor()
@@ -102,15 +125,15 @@ void Door::BoundingBox()
 
 }
 
-void Door::CreateWall(AEVec2 pos, int number, Door* const DoorArr)
+void Door::CreateDoor(AEVec2 pos, int number, Door* const DoorArr)
 {
-	Door* Doortemp = DoorArr + numberDoor;
+	Door* Doortemp = DoorArr + numberDoors;
 	for (int i = 0; i < number; i++)
 	{
 		Doortemp->Scale = 50.0f;
 		Doortemp->pos.x = pos.x;
 		Doortemp->pos.y = pos.y;
-		numberDoor++;
+		numberDoors++;
 
 	}
 }
