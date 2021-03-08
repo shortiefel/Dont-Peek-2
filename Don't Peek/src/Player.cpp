@@ -77,7 +77,7 @@ void Player::Player_Init()
 void Player::Player_Update()
 {
 
-	if (AEInputCheckTriggered(AEVK_LEFT))
+	if (AEInputCheckCurr(AEVK_LEFT))
 	{
 		//Position.x -= Velocity.x;
 		vel.x = -SPEED;
@@ -86,7 +86,7 @@ void Player::Player_Update()
 		//printf("player left: %d, player right %d\n", left, right);
 		printf("left\n");
 	}
-	else if (AEInputCheckTriggered(AEVK_RIGHT))
+	else if (AEInputCheckCurr(AEVK_RIGHT))
 	{
 		vel.x = SPEED;
 		//right = 1;
