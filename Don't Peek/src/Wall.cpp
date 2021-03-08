@@ -21,28 +21,30 @@ Technology is prohibited.
 /* End Header **************************************************************************/
 
 #include "Wall.h"
+#include "Collision.h"
+#include "Player.h"
 
-static GameObj* pObj;
+//static GameObj* pObj;
 static int numberWalls = 0;
 static Wall wall[100];
 
 void Wall::LoadWall()
 {
-	pObj = sGameObjList + sGameObjNum++;
-	pObj->type = TYPE_WALL;
+	pWall = sGameObjList + sGameObjNum++;
+	pWall->type = TYPE_WALL;
 
 	AEGfxMeshStart();
 	AEGfxTriAdd(
-		-0.5f, -0.5f, 0xFFFFFFFF, 0.0f, 0.0f,
-		0.5f, -0.5f, 0xFFFFFFFF, 0.0f, 0.0f,
-		-0.5f, 0.5f, 0xFFFFFFFF, 0.0f, 0.0f);
+		-0.5f, -0.5f, 0x00000000, 0.0f, 0.0f,
+		0.5f, -0.5f, 0x00000000, 0.0f, 0.0f,
+		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 
 	AEGfxTriAdd(
-		0.5f, -0.5f, 0xFFFFFFFF, 0.0f, 0.0f,
-		0.5f, 0.5f, 0xFFFFFFFF, 0.0f, 0.0f,
-		-0.5f, 0.5f, 0xFFFFFFFF, 0.0f, 0.0f);
+		0.5f, -0.5f, 0x00000000, 0.0f, 0.0f,
+		0.5f, 0.5f, 0x00000000, 0.0f, 0.0f,
+		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 
-	pObj->pMesh = AEGfxMeshEnd();
+	pWall->pMesh = AEGfxMeshEnd();
 
 }
 void Wall::InitWall()
@@ -60,6 +62,17 @@ void Wall::InitWall()
 	for (int i = 0; i < numberWalls; i++)
 	{
 		printf("wall %d pos = (%f,%f)\n", i, wall[i].Wallpos.x, wall[i].Wallpos.y);
+	}
+
+	for (int i = 0; i < numberWalls; i++)
+	{
+		Wall* Walltemp = wall + i;
+
+		Walltemp->boundingBox.min.x = Wallpos.x - Wallscale / 2;
+		Walltemp->boundingBox.min.y = Wallpos.y - Wallscale / 2;
+		Walltemp->boundingBox.max.x = Wallpos.x + Wallscale / 2;
+		Walltemp->boundingBox.max.y = Wallpos.y + Wallscale / 2;
+		printf("collide with wall");
 	}
 }
 
@@ -96,7 +109,32 @@ void Wall::DrawWall()
 		// Set the current object instance's transform matrix using "AEGfxSetTransform"
 		AEGfxSetTransform(wall[i].transform.m);
 		// Draw the shape used by the current object instance using "AEGfxMeshDraw"
-		AEGfxMeshDraw(pObj->pMesh, AE_GFX_MDM_TRIANGLES);
+		AEGfxMeshDraw(pWall->pMesh, AE_GFX_MDM_TRIANGLES);
+	}
+}
+
+void Wall::UpdateWall()
+{
+	for (int i = 0; i < 1; i++)
+	{
+		Wall* Walltemp = wall + i;
+		for (int j = 0; j < numberWalls; j++)
+		{
+			/*Wall* Walltemp = wall + j;
+			if (CollisionIntersection_RectRect(Walltemp->boundingBox, { 0,0 } , Walltemp->boundingBox, { 0,0 }))
+			{
+				pos.x += 5;
+				printf("Collision True");
+				printf("BB2 min x %f \n", Sharpenertemp->boundingBox.min.x);
+				printf("BB2 min y %f \n", Sharpenertemp->boundingBox.min.y);
+				printf("BB2 maX x %f \n", Sharpenertemp->boundingBox.max.x);
+				printf("BB2 max y %f \n", Sharpenertemp->boundingBox.max.y);
+				printf("BB min x %f \n", highlightertemp->boundingBox.min.x);
+				printf("BB min y %f \n", highlightertemp->boundingBox.min.y);
+				printf("BB maX x %f \n", highlightertemp->boundingBox.max.x);
+				printf("BB max y %f \n", highlightertemp->boundingBox.max.y);
+			}*/
+		}
 	}
 }
 

@@ -31,13 +31,14 @@ private:
 	AEVec2 Walldir;
 	float Wallscale;
 	AEMtx33	transform;	// object transformation matrix
-	AABB BoundingBox;
+	AABB boundingBox;
 	GameObj* pWall;
 	//AEGfxVertexList* wMesh;
 public:
 
 	void LoadWall();
 	void InitWall();
+	void UpdateWall();
 	void DrawWall();
 	void FreeWall();
 	void UnloadWall();

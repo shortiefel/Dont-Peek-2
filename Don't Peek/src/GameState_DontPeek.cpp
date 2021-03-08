@@ -25,6 +25,7 @@ Technology is prohibited.
 #include "Player.h"
 #include "Sharpener.h"
 #include "Highlighter.h"
+#include "Wall.h"
 
 
 
@@ -50,6 +51,7 @@ Door door;
 Player player;
 Sharpener sharpener;
 Highlighter highlighter;
+Wall wall;
 
 
 /******************************************************************************/
@@ -70,6 +72,7 @@ void GameStateDontPeekLoad(void)
 	highlighter.loadHighlighter();
 	door.LoadDoor();
 	player.Player_Character();
+	wall.LoadWall();
 }
 
 /******************************************************************************/
@@ -83,6 +86,7 @@ void GameStateDontPeekInit(void)
 	highlighter.initHighlighter();
 	door.InitDoor();
 	player.Player_Init();
+	wall.InitWall();
 }
 
 /******************************************************************************/
@@ -97,6 +101,7 @@ void GameStateDontPeekUpdate(void)
 	highlighter.updateHighlighter();
 	door.UpdateDoor();
 	player.Player_Update();
+	wall.UpdateWall();
 }
 
 /******************************************************************************/
@@ -110,7 +115,7 @@ void GameStateDontPeekDraw(void)
 	sharpener.drawSharpener();
 	door.DrawDoor();
 	player.Player_Draw();
-
+	wall.DrawWall();
 }
 
 /******************************************************************************/
