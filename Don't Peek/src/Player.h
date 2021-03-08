@@ -28,10 +28,8 @@ public:
 	//void Player_Exit();
 	void SetGravity();
 	void BoundingBoxPlayer();
-	//void Player_Collision();
+	//void Player_TestDoor();
 	//AEVec2 GetPosition(void) const;
-	int right = 0;
-	int left = 0;
 
 	AABB GetBoundingBoxPlayer() const;
 	AEVec2 GetVelPlayer() const;
@@ -39,5 +37,3 @@ public:
 };
 
 extern Player player;
-
-

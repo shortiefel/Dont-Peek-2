@@ -1,6 +1,7 @@
 #include "GameState_DontPeek.h"
 #include "Player.h"
 #include "Sharpener.h"
+#include "Door.h"
 
 
 
@@ -10,12 +11,10 @@
 */
 /******************************************************************************/
 
-//static GameObjInst* player;
 const int Player_Gravity = 8;
 bool Gravity = true;
 float GROUND = 0.f;
 
-//Sharpener sharpener2;
 
 
 void Player::Player_Character() //drawing of character
@@ -42,17 +41,20 @@ void Player::Player_Character() //drawing of character
 	pPlayer->pMesh = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pPlayer->pMesh, "fail to create object!!");
 
+	
 
 }
 
 void Player::Player_Draw()
 {
+	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
+
 	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 	AEGfxSetPosition(pos.x, pos.y);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
 	AEGfxTextureSet(pPlayer->texture, 0, 0);
 	AEGfxSetTransform(Transform.m);
-	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
+	
 	AEGfxSetTransparency(1.0f);
 	AEGfxMeshDraw(pPlayer->pMesh, AE_GFX_MDM_TRIANGLES);
 
@@ -64,7 +66,7 @@ void Player::Player_Init()
 	Scale = 100.0f;
 	flag = FLAG_ACTIVE;
 	AEVec2Set(&vel, SPEED, SPEED);
-	AEVec2Set(&pos, -200.0f, -100.f);
+	AEVec2Set(&pos, 80.0f, -10.f);
 	printf("Init Player \n");
 }
 
@@ -76,6 +78,7 @@ void Player::Player_Init()
 
 void Player::Player_Update()
 {
+
 
 	if (AEInputCheckCurr(AEVK_LEFT))
 	{
@@ -98,6 +101,7 @@ void Player::Player_Update()
 	{
 		vel.x = 0.f;
 	}
+
 	if (AEInputCheckTriggered(AEVK_UP) && CanJump == true)
 	{
 		printf("jumping \n");
@@ -123,6 +127,47 @@ void Player::Player_Update()
 	pos.y += vel.y;
 
 	BoundingBoxPlayer();
+
+	for (int i = 0; i < 1; i++)
+	{
+		Sharpener* Sharpenertemp = SharpenerArray + i;
+		if (CollisionIntersection_RectRect(boundingBox, vel, Sharpenertemp->boundingBox, Sharpenertemp->vel))
+		{
+			printf("Collision Sharpener\n");
+			printf("BB2 Door min x %f \n", Sharpenertemp->boundingBox.min.x);
+			printf("BB2 Door min y %f \n", Sharpenertemp->boundingBox.min.y);
+			printf("BB2 Door max x %f \n", Sharpenertemp->boundingBox.max.x);
+			printf("BB2 Door max y %f \n", Sharpenertemp->boundingBox.max.y);
+
+			printf("|| \n");
+			printf("BBP min x %f \n", boundingBox.min.x);
+			printf("BBP min y %f \n", boundingBox.min.y);
+			printf("BBP max x %f \n", boundingBox.max.x);
+			printf("BBP max y %f \n", boundingBox.max.y);
+		}
+
+	}
+
+
+
+	for (int i = 0; i < 1; i++)
+	{
+		Door* Doortemp = DoorArray + i;
+		if (CollisionIntersection_RectRect(boundingBox, vel, Doortemp->boundingBox, Doortemp->vel))
+		{
+			
+			printf("Collision True DOOR \n");
+			AEVec2Set(&pos, -400, 0);
+			
+
+		}
+	}
+
+
+
+
+
+
 
 
 }

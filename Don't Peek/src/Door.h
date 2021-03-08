@@ -27,18 +27,22 @@ class Door
 private:
 
 	GameObj* pDoor;
+	AEVec2 pos;
 	unsigned long flag;
+	float Scale;
+	AEMtx33	Transform;
 	//void BoundingBox();
 
 public:
+	AABB boundingBox;
+	AEVec2 vel;
 
 	void LoadDoor();
-	void initDoor();
+	void InitDoor();
+	void UpdateDoor();
 	void DrawDoor();
+	void BoundingBox();
 	
-	AABB boundingBox;
-	AEVec2 pos;
-	AEVec2 vel;
 };
 
-//extern Door DoorArray[MAX];
+extern Door DoorArray[2];

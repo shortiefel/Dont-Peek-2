@@ -49,7 +49,6 @@ public:
 	AABB boundingBox;
 
 
-
 };
 extern Highlighter HighlighterArray[1];
 

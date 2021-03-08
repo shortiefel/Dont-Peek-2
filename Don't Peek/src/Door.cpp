@@ -20,10 +20,11 @@ Technology is prohibited.
 */
 /* End Header **************************************************************************/
 
-#include "Door.h"
 #include "GameState_DontPeek.h"
-Door DoorArray[MAX];
-unsigned long ObjNum;
+#include "Door.h"
+
+static int numberDoors = 0;
+Door DoorArray[2];
 
 //This function is responsible for creating Mesh and loading texture for door.
 void Door::LoadDoor()
@@ -33,14 +34,14 @@ void Door::LoadDoor()
 
 	AEGfxMeshStart();
 	AEGfxTriAdd(
-		-30.0f, -30.0f, 0x00000000, 0.0f, 1.0f,
-		45.0f, -30.0f, 0x00000000, 1.0f, 1.0f,
-		-30.0f, 30.0f, 0x00000000, 0.0f, 0.0f);
+		-0.5f, -0.5f, 0x00000000, 0.0f, 1.0f,
+		0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
+		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 
 	AEGfxTriAdd(
-		45.0f, -30.0f, 0x00000000, 1.0f, 1.0f,
-		45.0f, 30.0f, 0x00000000, 1.0f, 0.0f,
-		-30.0f, 30.0f, 0x00000000, 0.0f, 0.0f);
+		0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
+		0.5f, 0.5f, 0x00000000, 1.0f, 0.0f,
+		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 	pDoor->pMesh = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pDoor->pMesh, "fail to create object!!");
 
@@ -48,65 +49,73 @@ void Door::LoadDoor()
 	AE_ASSERT_MESG(pDoor->texture, "Failed to create texture1!!");
 
 }
-void Door::initDoor()
+void Door::InitDoor()
 {	
-	flag = FLAG_ACTIVE;
-	AEVec2Set(&pos, 0, 200);
+	Door* doortemp = DoorArray + 0;
+	Scale = 50.0f;
 	AEVec2Set(&vel, 0, 0);
+	AEVec2* pvel = &vel;
+	AEVec2Set(&pos, 300, 0);
+	
+	doortemp->flag = FLAG_ACTIVE;
+	doortemp->pos = pos;
+	doortemp->vel = *pvel;
 
-	//printf("Init Door %lu \n", i);
-	
-	/*
-	for (unsigned long i = 0; i < MAX; i++)
-	{	
-		Door* Doorinst = DoorArray + i;
-		if (flag == 0)
-		{
-			AEVec2Set(&pos, 0, 200);
-			AEVec2Set(&vel, 0, 0);
-			flag = FLAG_ACTIVE;
-			printf("Init Door %lu \n", i);
-			break;
-		}
-	}
-	
-	// loop through the object instance list to find a non-used object instance
-	AEVec2 zero;
-	AEVec2Zero(&zero);
-	
-	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
-	{
-		GameObjInst* pInst = sGameObjInstList + i;
+	Door* doortemp2 = DoorArray + 1;
+	Scale = 50.0f;
+	AEVec2Set(&vel, 0, 0);
+	AEVec2Set(&pos, -400, 0);
 
-		// check if current instance is not used
-		if (pInst->flag == 0)
-		{
-			// it is not used => use it to create the new instance
-			pInst->pObject = sGameObjList + TYPE_DOOR;
-			pInst->flag = FLAG_ACTIVE;
-			pInst->scale = 1.0f;
-			pInst->posCurr = Doorpos;
-			pInst->velCurr = zero;
-			pInst->dirCurr = 0;
-			printf("Door Slot %lu\n", i);
-			break;
-		}*/
+	doortemp2->flag = FLAG_ACTIVE;
+	doortemp2->pos = pos;
+	doortemp2->vel = *pvel;
+	
 }
+
+void Door::UpdateDoor()
+{
+	BoundingBox();
+}
+
 void Door::DrawDoor()
 {
-	// Drawing object 2 - (first) - No tint
-	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
-	// Set position for object 2
-	AEGfxSetPosition(pos.x, pos.y);
-	// No tint
-	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
-
-	AEGfxTextureSet(pDoor->texture, 0, 0);		// Same object, different texture
-
 	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
-	// Drawing the mesh (list of triangles)
-	AEGfxMeshDraw(pDoor->pMesh, AE_GFX_MDM_TRIANGLES);
-	// Set Transparency
-	AEGfxSetTransparency(0.0f);
+	AEGfxSetTransparency(1.0f);
+	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
+	
+	
+	for (int i = 0; i < 2; i++)
+	{
+		Door* Doortemp = DoorArray + i;
+		AEGfxSetPosition(Doortemp->pos.x, Doortemp->pos.y);
+		AEGfxTextureSet(pDoor->texture, 0, 0);
+		AEGfxSetTransform(Doortemp->Transform.m);
+		AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
+		AEGfxMeshDraw(pDoor->pMesh, AE_GFX_MDM_TRIANGLES);
+	}
+	
+	
+}
+
+void Door::BoundingBox()
+{
+	AEMtx33 Transform2, Size;
+	for (int i = 0; i < 2; i++)
+	{
+		Door* Doortemp = DoorArray + i;
+		AEMtx33Scale(&Size, Scale, Scale);
+		AEMtx33Trans(&Transform2, Doortemp->pos.x, Doortemp->pos.y);
+		AEMtx33Concat(&(Doortemp->Transform), &Transform2, &Size);
+
+		Doortemp->boundingBox.min.x = Doortemp->pos.x - Scale / 2;
+		Doortemp->boundingBox.min.y = Doortemp->pos.y - Scale / 2;
+		Doortemp->boundingBox.max.x = Doortemp->pos.x + Scale / 2;
+		Doortemp->boundingBox.max.y = Doortemp->pos.y + Scale / 2;
+	}
 
 }
+
+
+
+
+
