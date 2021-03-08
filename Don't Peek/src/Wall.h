@@ -42,7 +42,7 @@ public:
 	void DrawWall();
 	void FreeWall();
 	void UnloadWall();
-	friend void CreateWall(AEVec2 pos, AEVec2 dir, int number, Wall* const WallArr, float scale);
+	void CreateWall(AEVec2 pos, AEVec2 dir, int number, float scale);
 };
 
 //void CreateWall(AEVec2 pos, float dir, int number, Wall* const WallArr, float scale);

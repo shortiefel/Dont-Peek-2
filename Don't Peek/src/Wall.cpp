@@ -26,7 +26,7 @@ Technology is prohibited.
 
 //static GameObj* pObj;
 static int numberWalls = 0;
-static Wall wall[100];
+static Wall WallArr[100];
 
 void Wall::LoadWall()
 {
@@ -49,24 +49,24 @@ void Wall::LoadWall()
 }
 void Wall::InitWall()
 {
-	AEVec2 pos{ 5,5 };
+	/*AEVec2 pos{ 5,5 };
 	AEVec2 dir{ 0,1 };
-	CreateWall(pos, dir, 3, wall,30.f);
+	CreateWall(pos, dir, 3, wall,30.f);*/
 
-	pos={ 0,10 };
+	/*pos={ 0,10 };
 	dir={ 1,0 };
-	CreateWall(pos, dir, 10, wall, 30.f);
+	CreateWall(pos, dir, 10, wall, 30.f);*/
 	printf("drawing\n");
 	printf("number %d \n", numberWalls);
 
 	for (int i = 0; i < numberWalls; i++)
 	{
-		printf("wall %d pos = (%f,%f)\n", i, wall[i].Wallpos.x, wall[i].Wallpos.y);
+		printf("wall %d pos = (%f,%f)\n", i, WallArr[i].Wallpos.x, WallArr[i].Wallpos.y);
 	}
 
 	for (int i = 0; i < numberWalls; i++)
 	{
-		Wall* Walltemp = wall + i;
+		Wall* Walltemp = WallArr + i;
 
 		Walltemp->boundingBox.min.x = Wallpos.x - Wallscale / 2;
 		Walltemp->boundingBox.min.y = Wallpos.y - Wallscale / 2;
@@ -75,7 +75,7 @@ void Wall::InitWall()
 	}
 }
 
-void CreateWall(AEVec2 pos, AEVec2 dir, int number, Wall* const WallArr, float scale)
+void Wall::CreateWall(AEVec2 pos, AEVec2 dir, int number, float scale)
 {
 	Wall *temp = WallArr + numberWalls;
 	AEMtx33	trans, sc;
@@ -107,7 +107,7 @@ void Wall::DrawWall()
 		// Drawing object 1
 		AEGfxSetRenderMode(AE_GFX_RM_COLOR);
 		// Set the current object instance's transform matrix using "AEGfxSetTransform"
-		AEGfxSetTransform(wall[i].transform.m);
+		AEGfxSetTransform(WallArr[i].transform.m);
 		// Draw the shape used by the current object instance using "AEGfxMeshDraw"
 		AEGfxMeshDraw(pWall->pMesh, AE_GFX_MDM_TRIANGLES);
 	}
