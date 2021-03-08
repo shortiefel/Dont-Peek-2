@@ -22,6 +22,7 @@ Technology is prohibited.
 
 #include "Door.h"
 #include "GameState_DontPeek.h"
+static int numberDoor = 0;
 Door DoorArray[2];
 
 //This function is responsible for creating Mesh and loading texture for door.
@@ -99,5 +100,18 @@ void Door::BoundingBox()
 		Doortemp->boundingBox.max.y = pos.y + Scale / 2;
 	}
 
+}
+
+void Door::CreateWall(AEVec2 pos, int number, Door* const DoorArr)
+{
+	Door* Doortemp = DoorArr + numberDoor;
+	for (int i = 0; i < number; i++)
+	{
+		Doortemp->Scale = 50.0f;
+		Doortemp->pos.x = pos.x;
+		Doortemp->pos.y = pos.y;
+		numberDoor++;
+
+	}
 }
 
