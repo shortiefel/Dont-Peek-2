@@ -1,12 +1,5 @@
-﻿  Collision.cpp
-  Door.cpp
-  GameStateMgr.cpp
-  GameState_DontPeek.cpp
-  Highlighter.cpp
+﻿  GameState_DontPeek.cpp
   Level 1.cpp
-  Main.cpp
-  Player.cpp
-  Sharpener.cpp
   Wall.cpp
   Generating Code...
 LINK : fatal error LNK1209: program database 'C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.pdb' differs from previous link; relink or rebuild
