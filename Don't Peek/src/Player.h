@@ -18,6 +18,8 @@ private:
 	float Scale;
 	AEMtx33	Transform;
 
+		//AEVec2 Position1;
+
 public:
 	void Player_Character();
 	void Player_Draw();

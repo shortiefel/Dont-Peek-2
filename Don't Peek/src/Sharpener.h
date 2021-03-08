@@ -1,3 +1,4 @@
+
 /* Start Header ************************************************************************/
 /*!
 \file Sharpener.h
@@ -31,18 +32,20 @@ private:
 	unsigned long flag;
 	float Scale;
 	AEMtx33	Transform;
-	
+
+
 public:
 	void loadSharpener();
-	void drawSharpener();
 	void initSharpener();
 	void updateSharpener();
+	void drawSharpener();
 	void unloadSharpener();
 	void BoundingBox();
+
 	AEVec2 vel;
 	AABB boundingBox;
 
-	
+
 
 };
 

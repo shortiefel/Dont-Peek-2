@@ -11,10 +11,10 @@
 */
 /******************************************************************************/
 
-
 const int Player_Gravity = 8;
 bool Gravity = true;
 float GROUND = 0.f;
+
 
 
 void Player::Player_Character() //drawing of character
@@ -84,10 +84,18 @@ void Player::Player_Update()
 	{
 		//Position.x -= Velocity.x;
 		vel.x = -SPEED;
+		//left = 1;
+		//right = 0;
+		//printf("player left: %d, player right %d\n", left, right);
+		printf("left\n");
 	}
 	else if (AEInputCheckCurr(AEVK_RIGHT))
 	{
 		vel.x = SPEED;
+		//right = 1;
+		//left = 0;
+		//printf("player left: %d, player right %d\n", left, right);
+		printf("right\n");
 	}
 	else
 	{

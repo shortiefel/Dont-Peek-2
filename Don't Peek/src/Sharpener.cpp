@@ -114,13 +114,17 @@ void Sharpener::updateSharpener() {
 		{
 			printf("PLAYER COLLIDE WITH Sharpener\n");
 
-			if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) && AEInputCheckCurr(AEVK_RIGHT))
+			if ((AEInputCheckCurr(AEVK_LSHIFT)|| AEInputCheckCurr(AEVK_RSHIFT)) && AEInputCheckCurr(AEVK_RIGHT))
 			{
 				pos.x += 5;
+				right = 1;
+				left = 0;
 			}
 			if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) && AEInputCheckCurr(AEVK_LEFT))
 			{
-				pos.x -= 5;
+				pos.x-=5;
+				left = 1;
+				right = 0;
 			}
 		}
 
