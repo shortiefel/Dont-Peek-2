@@ -22,7 +22,7 @@ Technology is prohibited.
 
 #include "Door.h"
 #include "GameState_DontPeek.h"
-Door DoorArray[1];
+Door DoorArray[2];
 
 //This function is responsible for creating Mesh and loading texture for door.
 void Door::LoadDoor()
@@ -53,13 +53,13 @@ void Door::InitDoor()
 	AEVec2Set(&pos, 50, 80);
 	//AEVec2Set(&vel, 0, 0);
 	AEVec2* pPos = &pos;
-	//AEVec2* pVel = &vel;
+	AEVec2* pVel = &vel;
 	for (int i = 0; i < 2; i++)
 	{
 		Door* Doortemp = DoorArray + i;
 		Doortemp->flag = FLAG_ACTIVE;
 		Doortemp->pos = *pPos;
-		//Doortemp->vel = *pVel;
+		Doortemp->vel = *pVel;
 	}
 
 
