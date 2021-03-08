@@ -125,3 +125,13 @@ void Wall::FreeWall()
 void Wall::UnloadWall()
 {
 }
+
+int Get_NumWalls()
+{
+	return numberWalls;
+}
+
+const Wall* Get_WallArr()
+{
+	return WallArr;
+}

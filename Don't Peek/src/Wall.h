@@ -45,4 +45,7 @@ public:
 	void CreateWall(AEVec2 pos, AEVec2 dir, int number, float scale);
 };
 
-//void CreateWall(AEVec2 pos, float dir, int number, Wall* const WallArr, float scale);
+//functions for other people
+
+int Get_NumWalls();
+const Wall* Get_WallArr();
