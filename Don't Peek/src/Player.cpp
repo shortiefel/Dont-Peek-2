@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Sharpener.h"
 #include "Door.h"
+#include "Wall.h"
 
 
 
@@ -14,7 +15,7 @@
 const int Player_Gravity = 8;
 bool Gravity = true;
 float GROUND = 0.f;
-
+bool Movement = false;
 
 
 void Player::Player_Character() //drawing of character
@@ -83,11 +84,25 @@ void Player::Player_Update()
 	if (AEInputCheckCurr(AEVK_LEFT))
 	{
 		//Position.x -= Velocity.x;
-		vel.x = -SPEED;
+		//vel.x = -SPEED;
 		//left = 1;
 		//right = 0;
 		//printf("player left: %d, player right %d\n", left, right);
 		//printf("left\n");
+
+		for (int i = 0; i < Get_NumWalls(); i++)
+		{
+			Wall* Walltemp = Get_WallArr() + i;
+			if (CollisionIntersection_RectRect(boundingBox, vel, Walltemp->boundingBox, { 0,0 }))
+			{
+				vel.x = 0.f;
+
+			}
+			else
+				vel.x = -SPEED;
+
+		}
+
 	}
 	else if (AEInputCheckCurr(AEVK_RIGHT))
 	{
@@ -96,6 +111,9 @@ void Player::Player_Update()
 		//left = 0;
 		//printf("player left: %d, player right %d\n", left, right);
 		//printf("right\n");
+
+		
+
 	}
 	else
 	{
@@ -163,12 +181,19 @@ void Player::Player_Update()
 		}
 	}
 
+	for (int i = 0; i < Get_NumWalls(); i++)
+	{
+		Wall* Walltemp = Get_WallArr() + i;
+		if (CollisionIntersection_RectRect(boundingBox, vel, Walltemp->boundingBox, { 0,0 }))
+		{
+			if (pos.x < -370)
+			{
+				pos.x = -370;
+			}
 
+		}
 
-
-
-
-
+	}
 
 }
 
