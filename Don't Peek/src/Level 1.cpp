@@ -55,8 +55,10 @@ void Level1_Load()
 }
 void Level1_Init()
 {
-	wall->CreateWall({ 0,0 }, { 1,0 }, 10, 30.f);
-	wall->CreateWall({ 0,0 }, { 0,-1 }, 10, 30.f);
+	wall->CreateWall({ -410,-60 }, { 1,0 }, 26, 30.f);
+	wall->CreateWall({ -410,210 }, { 0,-1 }, 9, 30.f);
+	wall->CreateWall({ -410,210 }, { 1,0 }, 26, 30.f);
+	wall->CreateWall({ 340,210 }, { 0,-1 }, 9, 30.f);
 }
 void Level1_Update()
 {
