@@ -46,13 +46,13 @@ void Player::Player_Character() //drawing of character
 
 void Player::Player_Draw()
 {
-	
+	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 	AEGfxSetPosition(pos.x, pos.y);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
 	AEGfxTextureSet(pPlayer->texture, 0, 0);
 	AEGfxSetTransform(Transform.m);
-	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
+	
 	AEGfxSetTransparency(1.0f);
 	AEGfxMeshDraw(pPlayer->pMesh, AE_GFX_MDM_TRIANGLES);
 	
@@ -132,11 +132,11 @@ void Player::Player_Update()
 		Door* Doortemp = DoorArray + i;
 		if (CollisionIntersection_RectRect(boundingBox, vel, Doortemp->boundingBox, Doortemp->vel))
 		{
-			printf("Collision True DOOR \n");
+			/*printf("Collision True DOOR \n");
 			printf("BB2 Door min x %f \n", Doortemp->boundingBox.min.x);
 			printf("BB2 Door min y %f \n", Doortemp->boundingBox.min.y);
 			printf("BB2 Door maX x %f \n", Doortemp->boundingBox.max.x);
-			printf("BB2 Door max y %f \n", Doortemp->boundingBox.max.y);
+			printf("BB2 Door max y %f \n", Doortemp->boundingBox.max.y);*/
 
 		}
 	}

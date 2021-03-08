@@ -51,7 +51,7 @@ Door door;
 Player player;
 Sharpener sharpener;
 Highlighter highlighter;
-Wall wall;
+Wall wwall;
 
 
 /******************************************************************************/
@@ -72,7 +72,7 @@ void GameStateDontPeekLoad(void)
 	highlighter.loadHighlighter();
 	door.LoadDoor();
 	player.Player_Character();
-	wall.LoadWall();
+	wwall.LoadWall();
 }
 
 /******************************************************************************/
@@ -82,11 +82,11 @@ void GameStateDontPeekLoad(void)
 /******************************************************************************/
 void GameStateDontPeekInit(void)
 {
+	wwall.InitWall();
 	sharpener.initSharpener();
 	highlighter.initHighlighter();
 	door.InitDoor();
 	player.Player_Init();
-	wall.InitWall();
 }
 
 /******************************************************************************/
@@ -101,7 +101,7 @@ void GameStateDontPeekUpdate(void)
 	highlighter.updateHighlighter();
 	door.UpdateDoor();
 	player.Player_Update();
-	wall.UpdateWall();
+	//wall.UpdateWall();
 }
 
 /******************************************************************************/
@@ -111,11 +111,11 @@ void GameStateDontPeekUpdate(void)
 /******************************************************************************/
 void GameStateDontPeekDraw(void)
 {
+	wwall.DrawWall();
 	highlighter.drawHighlighter();
 	sharpener.drawSharpener();
 	door.DrawDoor();
 	player.Player_Draw();
-	wall.DrawWall();
 }
 
 /******************************************************************************/

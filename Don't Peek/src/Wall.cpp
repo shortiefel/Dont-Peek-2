@@ -35,14 +35,14 @@ void Wall::LoadWall()
 
 	AEGfxMeshStart();
 	AEGfxTriAdd(
-		-0.5f, -0.5f, 0x00000000, 0.0f, 0.0f,
-		0.5f, -0.5f, 0x00000000, 0.0f, 0.0f,
-		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
+		-0.5f, -0.5f, 0x0000000, 0.0f, 0.0f,
+		0.5f, -0.5f, 0x0000000, 0.0f, 0.0f,
+		-0.5f, 0.5f, 0x0000000, 0.0f, 0.0f);
 
 	AEGfxTriAdd(
-		0.5f, -0.5f, 0x00000000, 0.0f, 0.0f,
-		0.5f, 0.5f, 0x00000000, 0.0f, 0.0f,
-		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
+		0.5f, -0.5f, 0x0000000, 0.0f, 0.0f,
+		0.5f, 0.5f, 0x0000000, 0.0f, 0.0f,
+		-0.5f, 0.5f, 0x0000000, 0.0f, 0.0f);
 
 	pWall->pMesh = AEGfxMeshEnd();
 
@@ -72,7 +72,6 @@ void Wall::InitWall()
 		Walltemp->boundingBox.min.y = Wallpos.y - Wallscale / 2;
 		Walltemp->boundingBox.max.x = Wallpos.x + Wallscale / 2;
 		Walltemp->boundingBox.max.y = Wallpos.y + Wallscale / 2;
-		printf("collide with wall");
 	}
 }
 
@@ -98,12 +97,13 @@ void CreateWall(AEVec2 pos, AEVec2 dir, int number, Wall* const WallArr, float s
 }
 
 void Wall::DrawWall()
-{
+{	AEGfxSetBlendMode(AE_GFX_BM_NONE);
 	AEGfxSetRenderMode(AE_GFX_RM_COLOR);
 	AEGfxTextureSet(NULL, 0, 0);
-
+	
 	for (int i = 0; i < numberWalls; i++)
 	{
+		//printf("print wall");
 		// Drawing object 1
 		AEGfxSetRenderMode(AE_GFX_RM_COLOR);
 		// Set the current object instance's transform matrix using "AEGfxSetTransform"
@@ -115,27 +115,7 @@ void Wall::DrawWall()
 
 void Wall::UpdateWall()
 {
-	for (int i = 0; i < 1; i++)
-	{
-		Wall* Walltemp = wall + i;
-		for (int j = 0; j < numberWalls; j++)
-		{
-			/*Wall* Walltemp = wall + j;
-			if (CollisionIntersection_RectRect(Walltemp->boundingBox, { 0,0 } , Walltemp->boundingBox, { 0,0 }))
-			{
-				pos.x += 5;
-				printf("Collision True");
-				printf("BB2 min x %f \n", Sharpenertemp->boundingBox.min.x);
-				printf("BB2 min y %f \n", Sharpenertemp->boundingBox.min.y);
-				printf("BB2 maX x %f \n", Sharpenertemp->boundingBox.max.x);
-				printf("BB2 max y %f \n", Sharpenertemp->boundingBox.max.y);
-				printf("BB min x %f \n", highlightertemp->boundingBox.min.x);
-				printf("BB min y %f \n", highlightertemp->boundingBox.min.y);
-				printf("BB maX x %f \n", highlightertemp->boundingBox.max.x);
-				printf("BB max y %f \n", highlightertemp->boundingBox.max.y);
-			}*/
-		}
-	}
+	
 }
 
 void Wall::FreeWall()
@@ -144,11 +124,4 @@ void Wall::FreeWall()
 }
 void Wall::UnloadWall()
 {
-	// free all mesh data (shapes) of each object using "AEGfxTriFree"
-	/*for (unsigned long i = 0; i < numberWalls; i++)
-	{
-		GameObj* Objects = sGameObjList + i;
-		if (Objects->pMesh)
-			AEGfxMeshFree(Objects->pMesh);
-	}*/
 }
