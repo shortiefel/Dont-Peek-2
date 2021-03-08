@@ -1,5 +1,4 @@
-﻿  GameState_DontPeek.cpp
-  Level 1.cpp
-  Wall.cpp
-  Generating Code...
-LINK : fatal error LNK1209: program database 'C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.pdb' differs from previous link; relink or rebuild
+﻿  Sharpener.cpp
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(164,3): warning C4456: declaration of 'i' hides previous local declaration
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(83,11): message : see declaration of 'i'
+  DontPeek.vcxproj -> C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe

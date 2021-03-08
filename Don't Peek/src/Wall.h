@@ -24,6 +24,7 @@ Technology is prohibited.
 #include "Main.h"
 #include "GameState_DontPeek.h"
 
+
 class Wall
 {
 private:
@@ -31,7 +32,7 @@ private:
 	AEVec2 Walldir;
 	float Wallscale;
 	AEMtx33	transform;	// object transformation matrix
-	AABB boundingBox;
+	
 	GameObj* pWall;
 	//AEGfxVertexList* wMesh;
 public:
@@ -43,9 +44,10 @@ public:
 	void FreeWall();
 	void UnloadWall();
 	void CreateWall(AEVec2 pos, AEVec2 dir, int number, float scale);
+	AABB boundingBox;
 };
 
 //functions for other people
 
 int Get_NumWalls();
-const Wall* Get_WallArr();
+Wall* Get_WallArr();

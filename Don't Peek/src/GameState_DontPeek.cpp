@@ -83,8 +83,9 @@ void GameStateDontPeekLoad(void)
 /******************************************************************************/
 void GameStateDontPeekInit(void)
 {
-	wwall.InitWall();
 	Level1_Init();
+	wwall.InitWall();
+	
 	sharpener.initSharpener();
 	highlighter.initHighlighter();
 	door.InitDoor();
@@ -103,7 +104,7 @@ void GameStateDontPeekUpdate(void)
 	highlighter.updateHighlighter();
 	door.UpdateDoor();
 	player.Player_Update();
-	//wall.UpdateWall();
+	//wwall.UpdateWall();
 }
 
 /******************************************************************************/

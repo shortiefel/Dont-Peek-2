@@ -68,11 +68,15 @@ void Wall::InitWall()
 	{
 		Wall* Walltemp = WallArr + i;
 
-		Walltemp->boundingBox.min.x = Wallpos.x - Wallscale / 2;
-		Walltemp->boundingBox.min.y = Wallpos.y - Wallscale / 2;
-		Walltemp->boundingBox.max.x = Wallpos.x + Wallscale / 2;
-		Walltemp->boundingBox.max.y = Wallpos.y + Wallscale / 2;
+		Walltemp->boundingBox.min.x = Walltemp->Wallpos.x - Walltemp->Wallscale / 2;
+		Walltemp->boundingBox.min.y = Walltemp->Wallpos.y - Walltemp->Wallscale / 2;
+		Walltemp->boundingBox.max.x = Walltemp->Wallpos.x + Walltemp->Wallscale / 2;
+		Walltemp->boundingBox.max.y = Walltemp->Wallpos.y + Walltemp->Wallscale / 2;
+
+		printf("bounding box max x %f \n", Walltemp->boundingBox.max.x);
+	
 	}
+	
 }
 
 void Wall::CreateWall(AEVec2 pos, AEVec2 dir, int number, float scale)
@@ -131,7 +135,7 @@ int Get_NumWalls()
 	return numberWalls;
 }
 
-const Wall* Get_WallArr()
+Wall* Get_WallArr()
 {
 	return WallArr;
 }

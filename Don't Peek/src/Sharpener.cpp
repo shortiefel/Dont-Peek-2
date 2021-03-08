@@ -22,6 +22,7 @@ Technology is prohibited.
 #include "Highlighter.h"
 #include "Player.h"
 #include "Door.h"
+#include "Wall.h"
 
 Sharpener SharpenerArray[1];
 int right, left;
@@ -154,7 +155,28 @@ void Sharpener::updateSharpener() {
 				}
 			}
 		}
+
+		/******************************************************************************/
+		/*!
+			WALLS
+		*/
+		/******************************************************************************/
+		for (int i = 0; i < Get_NumWalls(); i++)
+		{
+			Wall* Walltemp = Get_WallArr() + i;
+			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, Walltemp->boundingBox, { 0,0 }))
+			{
+				if (pos.x < -370)
+				{
+					pos.x = -370;
+				}
+
+			}
+
+		}
 	}
+
+	
 
 
 
