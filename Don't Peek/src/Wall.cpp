@@ -56,12 +56,12 @@ void Wall::InitWall()
 	/*pos={ 0,10 };
 	dir={ 1,0 };
 	CreateWall(pos, dir, 10, wall, 30.f);*/
-	printf("drawing\n");
-	printf("number %d \n", numberWalls);
+	/*printf("drawing\n");
+	printf("number %d \n", numberWalls);*/
 
 	for (int i = 0; i < numberWalls; i++)
 	{
-		printf("wall %d pos = (%f,%f)\n", i, WallArr[i].Wallpos.x, WallArr[i].Wallpos.y);
+		//printf("wall %d pos = (%f,%f)\n", i, WallArr[i].Wallpos.x, WallArr[i].Wallpos.y);
 	}
 
 	for (int i = 0; i < numberWalls; i++)
@@ -73,7 +73,7 @@ void Wall::InitWall()
 		Walltemp->boundingBox.max.x = Walltemp->Wallpos.x + Walltemp->Wallscale / 2;
 		Walltemp->boundingBox.max.y = Walltemp->Wallpos.y + Walltemp->Wallscale / 2;
 
-		printf("bounding box max x %f \n", Walltemp->boundingBox.max.x);
+		//printf("bounding box max x %f \n", Walltemp->boundingBox.max.x);
 	
 	}
 	
