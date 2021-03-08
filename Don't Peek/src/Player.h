@@ -20,24 +20,12 @@ private:
 
 public:
 	void Player_Character();
-	void SetGravity();
 	void Player_Draw();
 	void Player_Init();
-	void Player_Velocity();
 	void Player_Update();
-<<<<<<< HEAD
-	void Player_Exit();
-
-private:
-	AEVec2 Position;
-	AEVec2 Velocity;
-=======
 	//void Player_Exit();
 	void SetGravity();
 	void BoundingBoxPlayer();
-	void Player_TestDoor();
+	//void Player_TestDoor();
 	//AEVec2 GetPosition(void) const;
->>>>>>> Player-IMSODONE
 };
-
-

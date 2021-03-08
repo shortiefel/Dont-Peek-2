@@ -7,7 +7,7 @@
 
 /******************************************************************************/
 /*!
-	Game Object 
+	Game Object
 */
 /******************************************************************************/
 
@@ -15,23 +15,11 @@ static GameObjInst* player;
 const int Player_Gravity = 8;
 bool Gravity = true;
 float GROUND = 0.f;
-<<<<<<< HEAD
-bool CanJump = false;
-
-
-
-/******************************************************************************/
-/*!
-	Player Character
-*/
-/******************************************************************************/
-=======
->>>>>>> Player-IMSODONE
 
 
 void Player::Player_Character() //drawing of character
 {
-	
+
 	pPlayer = sGameObjList + sGameObjNum++;
 	pPlayer->type = TYPE_PLAYER;
 
@@ -53,40 +41,12 @@ void Player::Player_Character() //drawing of character
 	pPlayer->pMesh = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pPlayer->pMesh, "fail to create object!!");
 
-	
-}
-
-<<<<<<< HEAD
-void Player::SetGravity()
-{
-	//printf("you shit");
-	Position.y -= 2;
-		//Velocity.y = sqrt((2 * Player_Gravity) * (Position.y - Position.x));
 
 }
 
-//void Player::Player_Movement()
-//{
-//	if (isPlayerAlive == TRUE && isPlayerWin == FALSE)
-//	{
-//		player->velCurr.y += 3.0f * g_dt; //constant gravity for falling 
-//		player->velCurr.x = player->velCurr.x * Speed * 1.25f * 100.0f;
-//		player->velCurr.y = player->velCurr.y * Speed * 1.25f * 100.f;
-//		Speed_Overall = (player->velCurr.x, player->velCurr.y);
-//	}
-//}
-
-/******************************************************************************/
-/*!
-	Player Draw
-*/
-/******************************************************************************/
-
-=======
->>>>>>> Player-IMSODONE
 void Player::Player_Draw()
 {
-	
+
 	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 	AEGfxSetPosition(pos.x, pos.y);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
@@ -95,31 +55,17 @@ void Player::Player_Draw()
 	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 	AEGfxSetTransparency(1.0f);
 	AEGfxMeshDraw(pPlayer->pMesh, AE_GFX_MDM_TRIANGLES);
-	
+
 }
 
-/******************************************************************************/
-/*!
-	Player Init
-*/
-/******************************************************************************/
 
 void Player::Player_Init()
 {
-<<<<<<< HEAD
-	Velocity.x = SPEED;
-	Velocity.y = SPEED;
-	Position.x = 40.0f;
-	Position.y = -50.f;
-
-
-=======
 	Scale = 100.0f;
 	flag = FLAG_ACTIVE;
 	AEVec2Set(&vel, SPEED, SPEED);
 	AEVec2Set(&pos, 80.0f, -10.f);
 	printf("Init Player \n");
->>>>>>> Player-IMSODONE
 }
 
 /******************************************************************************/
@@ -130,12 +76,8 @@ void Player::Player_Init()
 
 void Player::Player_Update()
 {
-<<<<<<< HEAD
-	
-=======
 
 
->>>>>>> Player-IMSODONE
 	if (AEInputCheckCurr(AEVK_LEFT))
 	{
 		//Position.x -= Velocity.x;
@@ -156,7 +98,7 @@ void Player::Player_Update()
 		CanJump = false;
 		//Position.y += Velocity.y * 4;
 		vel.y = 5.f;
-		printf("PosY: %f, %f\n",pos.x, pos.y);
+		printf("PosY: %f, %f\n", pos.x, pos.y);
 	}
 
 
@@ -166,28 +108,6 @@ void Player::Player_Update()
 		CanJump = true;
 		vel.y = 0;
 	}
-<<<<<<< HEAD
-	if (AEInputCheckTriggered(AEVK_UP) && CanJump == true)
-	{
-		CanJump = false;
-		Position.y += Velocity.y * 4;
-		printf("PosY: %f, %f\n", Position.x, Position.y);
-	}
-	else
-	{
-		Position.x += 0.f;
-		Position.y += 0.f;
-	}
-	SetGravity();
-	if (Position.y < GROUND)
-	{
-		Position.y = GROUND;
-		CanJump = true;
-	}
-	
-	
-
-=======
 	else {
 
 		SetGravity();
@@ -197,7 +117,7 @@ void Player::Player_Update()
 	pos.y += vel.y;
 
 	BoundingBoxPlayer();
-	
+
 	for (int i = 0; i < 1; i++)
 	{
 		Sharpener* Sharpenertemp = SharpenerArray + i;
@@ -218,7 +138,7 @@ void Player::Player_Update()
 
 	}
 
-	
+
 
 	for (int i = 0; i < 1; i++)
 	{
@@ -239,27 +159,17 @@ void Player::Player_Update()
 
 		}
 	}
-	
->>>>>>> Player-IMSODONE
 
-	
 
-	
-	
-	
+
+
+
+
+
 
 }
 
-<<<<<<< HEAD
-/******************************************************************************/
-/*!
-	Player Exit
-*/
-/******************************************************************************/
-void Player::Player_Exit()
-=======
 void Player::SetGravity()
->>>>>>> Player-IMSODONE
 {
 	//printf("you shit");
 	//Position.y -= 2;
@@ -281,15 +191,8 @@ void Player::BoundingBoxPlayer()
 	AEMtx33Trans(&Transform2, pos.x, pos.y);
 	AEMtx33Concat(&Transform, &Transform2, &Size);
 
-	boundingBox.min.x = pos.x - Scale/2;
-	boundingBox.min.y = pos.y - Scale/2;
-	boundingBox.max.x = pos.x + Scale/2;
-	boundingBox.max.y = pos.y + Scale/2;
+	boundingBox.min.x = pos.x - Scale / 2;
+	boundingBox.min.y = pos.y - Scale / 2;
+	boundingBox.max.x = pos.x + Scale / 2;
+	boundingBox.max.y = pos.y + Scale / 2;
 }
-
-
-
-
-
-
-

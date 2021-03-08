@@ -48,12 +48,9 @@ void gameObjInstDestroy(GameObjInst* pInst);
 
 Door door;
 Player player;
-<<<<<<< HEAD
-
-=======
 Sharpener sharpener;
 Highlighter highlighter;
->>>>>>> Player-IMSODONE
+
 
 
 /******************************************************************************/
