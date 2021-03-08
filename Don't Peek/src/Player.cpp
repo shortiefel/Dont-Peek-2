@@ -10,7 +10,7 @@
 */
 /******************************************************************************/
 
-static GameObjInst* player;
+//static GameObjInst* player;
 const int Player_Gravity = 8;
 bool Gravity = true;
 float GROUND = 0.f;
@@ -80,17 +80,19 @@ void Player::Player_Update()
 	if (AEInputCheckTriggered(AEVK_LEFT))
 	{
 		//Position.x -= Velocity.x;
-		//vel.x = -SPEED;
-		left = 1;
-		right = 0;
-		printf("player left: %d, player right %d\n", left, right);
+		vel.x = -SPEED;
+		//left = 1;
+		//right = 0;
+		//printf("player left: %d, player right %d\n", left, right);
+		printf("left\n");
 	}
 	else if (AEInputCheckTriggered(AEVK_RIGHT))
 	{
-		//vel.x = SPEED;
-		right = 1;
-		left = 0;
-		printf("player left: %d, player right %d\n", left, right);
+		vel.x = SPEED;
+		//right = 1;
+		//left = 0;
+		//printf("player left: %d, player right %d\n", left, right);
+		printf("right\n");
 	}
 	else
 	{
@@ -121,20 +123,6 @@ void Player::Player_Update()
 	pos.y += vel.y;
 
 	BoundingBoxPlayer();
-
-	for (int i = 0; i < 1; i++)
-	{
-		Sharpener* Sharpenertemp = SharpenerArray + i;
-		if (CollisionIntersection_RectRect(boundingBox, vel, Sharpenertemp->boundingBox, Sharpenertemp->vel))
-		{
-			printf("Collision True");
-			printf("BB2 min x %f \n", Sharpenertemp->boundingBox.min.x);
-			printf("BB2 min y %f \n", Sharpenertemp->boundingBox.min.y);
-			printf("BB2 maX x %f \n", Sharpenertemp->boundingBox.max.x);
-			printf("BB2 max y %f \n", Sharpenertemp->boundingBox.max.y);
-
-		}
-	}
 
 
 }
@@ -167,3 +155,17 @@ void Player::BoundingBoxPlayer()
 	boundingBox.max.y = pos.y + Scale / 2;
 }
 
+AABB Player::GetBoundingBoxPlayer() const
+{
+	return boundingBox;
+}
+
+AEVec2 Player::GetVelPlayer() const
+{
+	return vel;
+}
+
+const Player* Player::GetPlayerObj() const
+{
+	return this;
+}

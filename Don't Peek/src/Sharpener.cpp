@@ -79,25 +79,28 @@ void Sharpener::initSharpener() {
 
 void Sharpener::updateSharpener() {
 
+	BoundingBox();
 
+	//Player player;
 
 	/******************************************************************************/
 	/*!
 		PLAYER
 	*/
-	/******************************************************************************/
-	if (AEInputCheckTriggered(AEVK_LEFT))
-	{
-		left = 1;
-		right = 0;
-		pos.x -= 5;
-	}
-	if (AEInputCheckTriggered(AEVK_RIGHT))
-	{
-		right = 1;
-		left = 0;
-		pos.x += 5;
-	}
+	///******************************************************************************/
+	//if (AEInputCheckCurr(AEVK_LEFT))
+	//{
+	//	left = 1;
+	//	right = 0;
+	//	pos.x -= 5;
+	//}
+	//if (AEInputCheckCurr(AEVK_RIGHT))
+	//{
+	//	right = 1;
+	//	left = 0;
+	//	pos.x += 5;
+	//}
+
 
 
 	/******************************************************************************/
@@ -108,6 +111,23 @@ void Sharpener::updateSharpener() {
 	for (int i = 0; i < 1; i++)
 	{
 		Sharpener* Sharpenertemp = SharpenerArray + i;
+
+		//player
+		if (CollisionIntersection_RectRect(player.GetBoundingBoxPlayer(), player.GetVelPlayer(), Sharpenertemp->boundingBox, Sharpenertemp->vel))
+		{
+			printf("PLAYER COLLIDE WITH Sharpener\n");
+
+			if ((AEInputCheckCurr(AEVK_LSHIFT)|| AEInputCheckCurr(AEVK_RSHIFT)) && AEInputCheckCurr(AEVK_RIGHT))
+			{
+				pos.x += 5;
+			}
+			if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) && AEInputCheckCurr(AEVK_LEFT))
+			{
+				pos.x-=5;
+			}
+		}
+
+
 		for (int j = 0; j < 1; j++)
 		{
 			Highlighter* highlightertemp = HighlighterArray + j;
@@ -132,12 +152,12 @@ void Sharpener::updateSharpener() {
 				if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, highlightertemp->boundingBox, highlightertemp->vel))
 				{
 					pos.x -= 5;
-					printf("errr testing");
+					printf("im moving to the lefttttttttt+++++++++++++++++++++++++++++++++++++++++\n");
 				}
 			}
 		}
 	}
-	BoundingBox();
+
 }
 
 

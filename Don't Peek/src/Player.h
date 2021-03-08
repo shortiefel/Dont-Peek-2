@@ -33,14 +33,11 @@ public:
 	int right = 0;
 	int left = 0;
 
-	//// Setter
-	//void setPos(AEVec2 pos) {
-	//	Position1 = pos;
-	//}
-	//// Getter
-	//AEVec2 getPos() {
-	//	return Position1;
-	//}
+	AABB GetBoundingBoxPlayer() const;
+	AEVec2 GetVelPlayer() const;
+	const Player* GetPlayerObj() const;
 };
+
+extern Player player;
 
 
