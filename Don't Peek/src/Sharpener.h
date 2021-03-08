@@ -21,20 +21,30 @@ Technology is prohibited.
 /* End Header **************************************************************************/
 
 #include "Main.h"
-struct Sharpener
-{
-	AEVec2 currPos;
-	AEVec2 currVelocity;
 
-};
 
-class sharpener
+class Sharpener
 {
 private:
-
+	GameObj* pSharpener;
+	AEVec2 pos;
+	unsigned long flag;
+	float Scale;
+	AEMtx33	Transform;
+	
 public:
 	void loadSharpener();
+	void drawSharpener();
 	void initSharpener();
 	void updateSharpener();
+	void unloadSharpener();
+	void BoundingBox();
+	AEVec2 vel;
+	AABB boundingBox;
+
+	
 
 };
+
+extern Sharpener SharpenerArray[1];
+

@@ -1,6 +1,31 @@
+/* Start Header ************************************************************************/
+/*!
+\file GameState_DontPeek.cpp
+\team name Don't Peak
+\software name I don't want to do homework
+\authors
+Tan Wei Ling Felicia	weilingfelicia.tan@digipen.edu
+Margaret Teo Boon See	Teo.b@digipen.edu
+Loh Yun Yi Tessa	tessa.loh@digipen.edu
+Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
+
+\date 22/01/2021
+\brief <give a brief description of this file>
+
+
+Copyright (C) 2021 DigiPen Institute of Technology.
+Reproduction or disclosure of this file or its contents
+without the prior written consent of DigiPen Institute of
+Technology is prohibited.
+*/
+/* End Header **************************************************************************/
+
 #include "GameState_DontPeek.h"
 #include "Door.h"
 #include "Player.h"
+#include "Sharpener.h"
+#include "Highlighter.h"
+
 
 
 /******************************************************************************/
@@ -8,6 +33,11 @@
 	DEFINES
 */
 /******************************************************************************/
+GameObj				sGameObjList[GAME_OBJ_NUM_MAX];				// Each element in this array represents a unique game object (shape)
+unsigned long		sGameObjNum;
+
+GameObjInst			sGameObjInstList[GAME_OBJ_INST_NUM_MAX];	// Each element in this array represents a unique game object instance (sprite)
+unsigned long		sGameObjInstNum;
 
 
 GameObjInst* gameObjInstCreate(unsigned long type, float scale,
@@ -15,8 +45,11 @@ GameObjInst* gameObjInstCreate(unsigned long type, float scale,
 void gameObjInstDestroy(GameObjInst* pInst);
 
 //individual classes
+
 Door door;
 Player player;
+Sharpener sharpener;
+Highlighter highlighter;
 
 
 
@@ -30,12 +63,14 @@ void GameStateDontPeekLoad(void)
 	memset(sGameObjList, 0, sizeof(GameObj) * GAME_OBJ_NUM_MAX);
 	// No game objects (shapes) at this point
 	sGameObjNum = 0;
+	memset(sGameObjInstList, 0, sizeof(GameObjInst) * GAME_OBJ_INST_NUM_MAX);
+	// No game object instances (sprites) at this point
+	sGameObjInstNum = 0;
+
+	sharpener.loadSharpener();
+	highlighter.loadHighlighter();
 	door.LoadDoor();
-
 	player.Player_Character();
-
-
-
 }
 
 /******************************************************************************/
@@ -45,6 +80,9 @@ void GameStateDontPeekLoad(void)
 /******************************************************************************/
 void GameStateDontPeekInit(void)
 {
+	sharpener.initSharpener();
+	highlighter.initHighlighter();
+	door.InitDoor();
 	player.Player_Init();
 }
 
@@ -55,18 +93,10 @@ void GameStateDontPeekInit(void)
 /******************************************************************************/
 void GameStateDontPeekUpdate(void)
 {
-	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
-	{
-		GameObjInst* pInst = sGameObjInstList + i;
-
-		pInst->boundingBox.min.x = pInst->posCurr.x - pInst->scale * 0.5f;
-		pInst->boundingBox.min.y = pInst->posCurr.y - pInst->scale * 0.5f;
-
-		pInst->boundingBox.max.x = pInst->posCurr.x + pInst->scale * 0.5f;
-		pInst->boundingBox.max.y = pInst->posCurr.y + pInst->scale * 0.5f;
-	}
-
-
+	
+	sharpener.updateSharpener();
+	highlighter.updateHighlighter();
+	door.UpdateDoor();
 	player.Player_Update();
 }
 
@@ -77,26 +107,8 @@ void GameStateDontPeekUpdate(void)
 /******************************************************************************/
 void GameStateDontPeekDraw(void)
 {
-	/*char strBuffer[1024];
-
-	AEGfxSetRenderMode(AE_GFX_RM_COLOR);
-	AEGfxTextureSet(NULL, 0, 0);
-
-	//draw all object instances in the list
-	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
-	{
-		GameObjInst* pInst = sGameObjInstList + i;
-
-		//skipping of non-active object
-		if ((pInst->flag & FLAG_ACTIVE) == 0)
-			continue;
-
-		//Setting current object instance's transform matrix 
-		AEGfxSetTransform(pInst->transform.m);
-
-		//drawing of shap using current object instance
-		AEGfxMeshDraw(pInst->pObject->pMesh, AE_GFX_MDM_TRIANGLES);
-	}*/
+	highlighter.drawHighlighter();
+	sharpener.drawSharpener();
 	door.DrawDoor();
 	player.Player_Draw();
 

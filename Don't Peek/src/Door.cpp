@@ -10,7 +10,7 @@ Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 
 \date 22/01/2021
-\brief <give a brief description of this file>
+\brief This file is contains all the functions required to create door.
 
 
 Copyright (C) 2021 DigiPen Institute of Technology.
@@ -22,57 +22,82 @@ Technology is prohibited.
 
 #include "Door.h"
 #include "GameState_DontPeek.h"
+Door DoorArray[2];
 
-GameObj* pObj;
-
+//This function is responsible for creating Mesh and loading texture for door.
 void Door::LoadDoor()
 {
-	pObj = sGameObjList + sGameObjNum++;
-	pObj->type = TYPE_DOOR;
+	pDoor = sGameObjList + sGameObjNum++ ;
+	pDoor->type = TYPE_DOOR;
 
 	AEGfxMeshStart();
 	AEGfxTriAdd(
-		-30.0f, -30.0f, 0x00000000, 0.0f, 1.0f,
-		45.0f, -30.0f, 0x00000000, 1.0f, 1.0f,
-		-30.0f, 30.0f, 0x00000000, 0.0f, 0.0f);
+		-0.5f, -0.5f, 0x00000000, 0.0f, 1.0f,
+		0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
+		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 
 	AEGfxTriAdd(
-		45.0f, -30.0f, 0x00000000, 1.0f, 1.0f,
-		45.0f, 30.0f, 0x00000000, 1.0f, 0.0f,
-		-30.0f, 30.0f, 0x00000000, 0.0f, 0.0f);
-	pObj->pMesh = AEGfxMeshEnd();
-	AE_ASSERT_MESG(pObj->pMesh, "fail to create object!!");
+		0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
+		0.5f, 0.5f, 0x00000000, 1.0f, 0.0f,
+		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
+	pDoor->pMesh = AEGfxMeshEnd();
+	AE_ASSERT_MESG(pDoor->pMesh, "fail to create object!!");
 
-	pObj->texture = AEGfxTextureLoad("Resources/Sharpener_Animation.png");
-	AE_ASSERT_MESG(pObj->texture, "Failed to create texture1!!");
+	pDoor->texture = AEGfxTextureLoad("Resources/Door.png");
+	AE_ASSERT_MESG(pDoor->texture, "Failed to create texture1!!");
 
 }
-AEVec2 Door::InitDoor()
+void Door::InitDoor()
+{	
+	Scale = 50.0f;
+	AEVec2Set(&pos, 50, 80);
+	//AEVec2Set(&vel, 0, 0);
+	AEVec2* pPos = &pos;
+	AEVec2* pVel = &vel;
+	for (int i = 0; i < 2; i++)
+	{
+		Door* Doortemp = DoorArray + i;
+		Doortemp->flag = FLAG_ACTIVE;
+		Doortemp->pos = *pPos;
+		Doortemp->vel = *pVel;
+	}
+
+
+}
+
+void Door::UpdateDoor()
 {
-	Doorpos.x = 5;
-	Doorpos.y = 5;
-	return Doorpos;
+	BoundingBox();
 }
+
 void Door::DrawDoor()
 {
-	// Drawing object 2 - (first) - No tint
 	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
-	// Set position for object 2
-	AEGfxSetPosition(100.0f, -60.0f);
-	// No tint
+	AEGfxSetPosition(pos.x, pos.y);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
-
-	AEGfxTextureSet(pObj->texture, 0, 0);		// Same object, different texture
-
+	AEGfxTextureSet(pDoor->texture, 0, 0);
+	AEGfxSetTransform(Transform.m);
 	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
-
-	// Drawing the mesh (list of triangles)
-	AEGfxMeshDraw(pObj->pMesh, AE_GFX_MDM_TRIANGLES);
-	// Set Transparency
 	AEGfxSetTransparency(1.0f);
-
+	AEGfxMeshDraw(pDoor->pMesh, AE_GFX_MDM_TRIANGLES);
+	
 }
-void ExitDoor()
+
+void Door::BoundingBox()
 {
+	AEMtx33 Transform2, Size;
+	for (int i = 0; i < 1; i++)
+	{
+		Door* Doortemp = DoorArray + i;
+		AEMtx33Scale(&Size, Scale, Scale);
+		AEMtx33Trans(&Transform2, pos.x, pos.y);
+		AEMtx33Concat(&Transform, &Transform2, &Size);
+
+		Doortemp->boundingBox.min.x = pos.x - Scale / 2;
+		Doortemp->boundingBox.min.y = pos.y - Scale / 2;
+		Doortemp->boundingBox.max.x = pos.x + Scale / 2;
+		Doortemp->boundingBox.max.y = pos.y + Scale / 2;
+	}
 
 }
+
