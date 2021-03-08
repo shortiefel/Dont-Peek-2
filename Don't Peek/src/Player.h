@@ -18,6 +18,8 @@ private:
 	float Scale;
 	AEMtx33	Transform;
 
+		//AEVec2 Position1;
+
 public:
 	void Player_Character();
 	void Player_Draw();
@@ -28,6 +30,17 @@ public:
 	void BoundingBoxPlayer();
 	//void Player_Collision();
 	//AEVec2 GetPosition(void) const;
+	int right = 0;
+	int left = 0;
+
+	//// Setter
+	//void setPos(AEVec2 pos) {
+	//	Position1 = pos;
+	//}
+	//// Getter
+	//AEVec2 getPos() {
+	//	return Position1;
+	//}
 };
 
 

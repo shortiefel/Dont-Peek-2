@@ -23,15 +23,17 @@ Technology is prohibited.
 #include "Sharpener.h"
 #include "Collision.h"
 #include "Highlighter.h"
+#include "Player.h"
 
 Sharpener SharpenerArray[1];
+int right, left;
 
 void Sharpener::loadSharpener() {
 
 	//memset(sGameObjList, 0, sizeof(GameObj) * GAME_OBJ_NUM_MAX);
 	//sGameObjNum = 0;
 
-	pSharpener = sGameObjList + sGameObjNum++ ;
+	pSharpener = sGameObjList + sGameObjNum++;
 	pSharpener->type = TYPE_SHARPENER;
 
 	pSharpener->texture = AEGfxTextureLoad("Resources/Sharpener_Animation.png");
@@ -55,24 +57,12 @@ void Sharpener::loadSharpener() {
 
 }
 
-void Sharpener::drawSharpener() {
-
-	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
-	AEGfxSetPosition(pos.x, pos.y);
-	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
-	AEGfxTextureSet(pSharpener->texture, 0, 0);
-	AEGfxSetTransform(Transform.m);
-	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
-	AEGfxMeshDraw(pSharpener->pMesh, AE_GFX_MDM_TRIANGLES);
-	AEGfxSetTransparency(1.0f);
-}
-
 void Sharpener::initSharpener() {
 	//Velocity.x = SPEED;
 	Scale = 80.0f;
 	flag = FLAG_ACTIVE;
 	AEVec2Set(&vel, SPEED, 0);
-	AEVec2Set(&pos, -100.0f, 100.0f);
+	AEVec2Set(&pos, -100.0f, -15.0f);
 	AEVec2* pPos = &pos;
 	AEVec2* pVel = &vel;
 	for (int i = 0; i < 1; i++)
@@ -82,27 +72,87 @@ void Sharpener::initSharpener() {
 		Sharpenertemp->pos = *pPos;
 		Sharpenertemp->vel = *pVel;
 	}
-	
+
 	//printf("Init Sharpener %lu \n", i);
 
 }
 
 void Sharpener::updateSharpener() {
 
-	BoundingBox();
+
+
+	/******************************************************************************/
+	/*!
+		PLAYER
+	*/
+	/******************************************************************************/
+	if (AEInputCheckTriggered(AEVK_LEFT))
+	{
+		left = 1;
+		right = 0;
+		pos.x -= 5;
+	}
+	if (AEInputCheckTriggered(AEVK_RIGHT))
+	{
+		right = 1;
+		left = 0;
+		pos.x += 5;
+	}
+
+
+	/******************************************************************************/
+	/*!
+		HIGHLIGHTER
+	*/
+	/******************************************************************************/
 	for (int i = 0; i < 1; i++)
 	{
 		Sharpener* Sharpenertemp = SharpenerArray + i;
 		for (int j = 0; j < 1; j++)
 		{
 			Highlighter* highlightertemp = HighlighterArray + j;
-			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, highlightertemp->boundingBox, highlightertemp->vel))
-			{
-				pos.x += 5;
-				
+			//printf("R: %d\n L: %d\n", right, left);
+			if (right == 1) {
+				if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, highlightertemp->boundingBox, highlightertemp->vel))
+				{
+					pos.x += 5;
+					printf("Collision to the right is True-------------------------------------------\n");
+					printf("BB2 min x %f \n", Sharpenertemp->boundingBox.min.x);
+					printf("BB2 min y %f \n", Sharpenertemp->boundingBox.min.y);
+					printf("BB2 maX x %f \n", Sharpenertemp->boundingBox.max.x);
+					printf("BB2 max y %f \n", Sharpenertemp->boundingBox.max.y);
+					printf("-\n");
+					printf("BBH min x %f \n", highlightertemp->boundingBox.min.x);
+					printf("BBH min y %f \n", highlightertemp->boundingBox.min.y);
+					printf("BBH maX x %f \n", highlightertemp->boundingBox.max.x);
+					printf("BBH max y %f \n", highlightertemp->boundingBox.max.y);
+				}
+			}
+			else if (left == 1) {
+				if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, highlightertemp->boundingBox, highlightertemp->vel))
+				{
+					pos.x -= 5;
+					printf("errr testing");
+				}
 			}
 		}
 	}
+	BoundingBox();
+}
+
+
+void Sharpener::drawSharpener() {
+
+	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
+	AEGfxSetPosition(pos.x, pos.y);
+	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
+	AEGfxTextureSet(pSharpener->texture, 0, 0);
+	AEGfxSetTransform(Transform.m);
+	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
+	//AEGfxSetBlendMode(AE_GFX_BM_NONE);
+	AEGfxSetTransparency(1.0f);
+	AEGfxMeshDraw(pSharpener->pMesh, AE_GFX_MDM_TRIANGLES);
+
 }
 
 void Sharpener::unloadSharpener() {
@@ -120,7 +170,7 @@ void Sharpener::BoundingBox()
 		AEMtx33Scale(&Size, Scale, Scale);
 		AEMtx33Trans(&Transform2, pos.x, pos.y);
 		AEMtx33Concat(&Transform, &Transform2, &Size);
-		
+
 		Sharpenertemp->boundingBox.min.x = pos.x - Scale / 2;
 		Sharpenertemp->boundingBox.min.y = pos.y - Scale / 2;
 		Sharpenertemp->boundingBox.max.x = pos.x + Scale / 2;
