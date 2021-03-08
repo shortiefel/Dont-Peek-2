@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿  Door.cpp
   GameStateMgr.cpp
   GameState_DontPeek.cpp
@@ -5,3 +6,7 @@
   Sharpener.cpp
   Generating Code...
   DontPeek.vcxproj -> C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe
+=======
+﻿  Player.cpp
+  DontPeek.vcxproj -> C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe
+>>>>>>> a51786829cf1e4b0edd766dbd5afb412049dc8ba

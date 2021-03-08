@@ -62,7 +62,7 @@ void Sharpener::drawSharpener() {
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
 	AEGfxTextureSet(pSharpener->texture, 0, 0);
 	AEGfxSetTransform(Transform.m);
-	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
+	AEGfxSetBlendMode(AE_GFX_BM_NONE);
 	AEGfxSetTransparency(1.0f);
 	AEGfxMeshDraw(pSharpener->pMesh, AE_GFX_MDM_TRIANGLES);
 	

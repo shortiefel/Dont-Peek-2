@@ -52,7 +52,7 @@ void Player::Player_Draw()
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
 	AEGfxTextureSet(pPlayer->texture, 0, 0);
 	AEGfxSetTransform(Transform.m);
-	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
+	AEGfxSetBlendMode(AE_GFX_BM_NONE);
 	AEGfxSetTransparency(1.0f);
 	AEGfxMeshDraw(pPlayer->pMesh, AE_GFX_MDM_TRIANGLES);
 	
@@ -77,6 +77,7 @@ void Player::Player_Init()
 void Player::Player_Update()
 {
 
+
 	if (AEInputCheckCurr(AEVK_LEFT))
 	{
 		//Position.x -= Velocity.x;
@@ -90,6 +91,7 @@ void Player::Player_Update()
 	{
 		vel.x = 0.f;
 	}
+
 	if (AEInputCheckTriggered(AEVK_UP) && CanJump == true)
 	{
 		printf("jumping \n");
@@ -112,7 +114,7 @@ void Player::Player_Update()
 	}
 
 	pos.x += vel.x;
-	pos.y +=vel.y;
+	pos.y += vel.y;
 
 	BoundingBoxPlayer();
 	
@@ -121,7 +123,17 @@ void Player::Player_Update()
 		Sharpener* Sharpenertemp = SharpenerArray + i;
 		if (CollisionIntersection_RectRect(boundingBox, vel, Sharpenertemp->boundingBox, Sharpenertemp->vel))
 		{
-			printf("Collision True Sharpener\n");
+			printf("Collision Sharpener\n");
+			printf("BB2 Door min x %f \n", Sharpenertemp->boundingBox.min.x);
+			printf("BB2 Door min y %f \n", Sharpenertemp->boundingBox.min.y);
+			printf("BB2 Door max x %f \n", Sharpenertemp->boundingBox.max.x);
+			printf("BB2 Door max y %f \n", Sharpenertemp->boundingBox.max.y);
+
+			printf("|| \n");
+			printf("BBP min x %f \n", boundingBox.min.x);
+			printf("BBP min y %f \n", boundingBox.min.y);
+			printf("BBP max x %f \n", boundingBox.max.x);
+			printf("BBP max y %f \n", boundingBox.max.y);
 		}
 
 	}
@@ -133,17 +145,17 @@ void Player::Player_Update()
 		Door* Doortemp = DoorArray + i;
 		if (CollisionIntersection_RectRect(boundingBox, vel, Doortemp->boundingBox, Doortemp->vel))
 		{
-			printf("Collision True DOOR \n");
+			printf("Collision True----------------------------------------------- \n");
 			printf("BB2 Door min x %f \n", Doortemp->boundingBox.min.x);
 			printf("BB2 Door min y %f \n", Doortemp->boundingBox.min.y);
 			printf("BB2 Door maX x %f \n", Doortemp->boundingBox.max.x);
 			printf("BB2 Door max y %f \n", Doortemp->boundingBox.max.y);
 
-			printf("Collision Player \n");
-			printf("BB2 Door min x %f \n", boundingBox.min.x);
-			printf("BB2 Door min y %f \n", boundingBox.min.y);
-			printf("BB2 Door maX x %f \n", boundingBox.max.x);
-			printf("BB2 Door max y %f \n", boundingBox.max.y);
+			printf("|| \n");
+			printf("BBP min x %f \n", boundingBox.min.x);
+			printf("BBP min y %f \n", boundingBox.min.y);
+			printf("BBP max x %f \n", boundingBox.max.x);
+			printf("BBP max y %f \n", boundingBox.max.y);
 
 		}
 	}
