@@ -62,7 +62,7 @@ void Sharpener::initSharpener() {
 	Scale = 80.0f;
 	flag = FLAG_ACTIVE;
 	AEVec2Set(&vel, SPEED, 0);
-	AEVec2Set(&pos, -100.0f, -15.0f);
+	AEVec2Set(&pos, -50.0f, -15.0f);
 	AEVec2* pPos = &pos;
 	AEVec2* pVel = &vel;
 	for (int i = 0; i < 1; i++)
