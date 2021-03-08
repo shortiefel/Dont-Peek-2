@@ -11,7 +11,7 @@
 */
 /******************************************************************************/
 
-static GameObjInst* player;
+
 const int Player_Gravity = 8;
 bool Gravity = true;
 float GROUND = 0.f;
@@ -41,18 +41,20 @@ void Player::Player_Character() //drawing of character
 	pPlayer->pMesh = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pPlayer->pMesh, "fail to create object!!");
 
+	
 
 }
 
 void Player::Player_Draw()
 {
+	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 
 	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 	AEGfxSetPosition(pos.x, pos.y);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
 	AEGfxTextureSet(pPlayer->texture, 0, 0);
 	AEGfxSetTransform(Transform.m);
-	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
+	
 	AEGfxSetTransparency(1.0f);
 	AEGfxMeshDraw(pPlayer->pMesh, AE_GFX_MDM_TRIANGLES);
 
@@ -145,17 +147,10 @@ void Player::Player_Update()
 		Door* Doortemp = DoorArray + i;
 		if (CollisionIntersection_RectRect(boundingBox, vel, Doortemp->boundingBox, Doortemp->vel))
 		{
-			printf("Collision True----------------------------------------------- \n");
-			printf("BB2 Door min x %f \n", Doortemp->boundingBox.min.x);
-			printf("BB2 Door min y %f \n", Doortemp->boundingBox.min.y);
-			printf("BB2 Door maX x %f \n", Doortemp->boundingBox.max.x);
-			printf("BB2 Door max y %f \n", Doortemp->boundingBox.max.y);
-
-			printf("|| \n");
-			printf("BBP min x %f \n", boundingBox.min.x);
-			printf("BBP min y %f \n", boundingBox.min.y);
-			printf("BBP max x %f \n", boundingBox.max.x);
-			printf("BBP max y %f \n", boundingBox.max.y);
+			
+			printf("Collision True DOOR \n");
+			AEVec2Set(&pos, -400, 0);
+			
 
 		}
 	}
@@ -195,4 +190,19 @@ void Player::BoundingBoxPlayer()
 	boundingBox.min.y = pos.y - Scale / 2;
 	boundingBox.max.x = pos.x + Scale / 2;
 	boundingBox.max.y = pos.y + Scale / 2;
+}
+
+AABB Player::GetBoundingBoxPlayer() const
+{
+	return boundingBox;
+}
+
+AEVec2 Player::GetVelPlayer() const
+{
+	return vel;
+}
+
+const Player* Player::GetPlayerObj() const
+{
+	return this;
 }

@@ -1,7 +1,7 @@
 #pragma once
 /* Start Header ************************************************************************/
 /*!
-\file Wall.h
+\file Level 1.h
 \team name Don't Peak
 \software name I don't want to do homework
 \authors
@@ -20,29 +20,22 @@ without the prior written consent of DigiPen Institute of
 Technology is prohibited.
 */
 /* End Header **************************************************************************/
-
 #include "Main.h"
 #include "GameState_DontPeek.h"
+#include "Wall.h"
 
-class Wall
+struct background
 {
-private:
-	AEVec2 Wallpos;
-	AEVec2 Walldir;
-	float Wallscale;
+	AEVec2 Bgpos;
+	AEVec2 Bgscale;
 	AEMtx33	transform;	// object transformation matrix
-	AABB boundingBox;
-	GameObj* pWall;
-	//AEGfxVertexList* wMesh;
-public:
-
-	void LoadWall();
-	void InitWall();
-	void UpdateWall();
-	void DrawWall();
-	void FreeWall();
-	void UnloadWall();
-	void CreateWall(AEVec2 pos, AEVec2 dir, int number, float scale);
+	GameObj* pBg;
 };
 
-//void CreateWall(AEVec2 pos, float dir, int number, Wall* const WallArr, float scale);
+void Level1_Load();
+void Level1_Init();
+void Level1_Update();
+void Level1_Draw();
+void Level1_Free();
+void Level1_Unload();
+//void CreateWall(AEVec2 pos, AEVec2 dir, int number, float scale);
