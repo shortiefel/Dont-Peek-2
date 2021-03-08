@@ -51,16 +51,18 @@ void Door::InitDoor()
 {	
 	Scale = 50.0f;
 	AEVec2Set(&pos, 50, 80);
-	AEVec2Set(&vel, 0, 0);
+	//AEVec2Set(&vel, 0, 0);
 	AEVec2* pPos = &pos;
-	AEVec2* pVel = &vel;
-	for (int i = 0; i < 1; i++)
+	//AEVec2* pVel = &vel;
+	for (int i = 0; i < 2; i++)
 	{
 		Door* Doortemp = DoorArray + i;
 		Doortemp->flag = FLAG_ACTIVE;
 		Doortemp->pos = *pPos;
-		Doortemp->vel = *pVel;
+		//Doortemp->vel = *pVel;
 	}
+
+
 }
 
 void Door::UpdateDoor()

@@ -35,7 +35,7 @@ private:
 
 public:
 	AABB boundingBox;
-	AEVec2 vel;
+	//AEVec2 vel;
 
 	void LoadDoor();
 	void InitDoor();
@@ -45,4 +45,4 @@ public:
 	void BoundingBox();
 };
 
-extern Door DoorArray[1];
+extern Door DoorArray[2];
