@@ -64,7 +64,7 @@ void Player::Player_Init()
 	Scale = 100.0f;
 	flag = FLAG_ACTIVE;
 	AEVec2Set(&vel, SPEED, SPEED);
-	AEVec2Set(&pos, 100.0f, -100.f);
+	AEVec2Set(&pos, 80.0f, -10.f);
 	printf("Init Player \n");
 }
 
@@ -121,11 +121,12 @@ void Player::Player_Update()
 		Sharpener* Sharpenertemp = SharpenerArray + i;
 		if (CollisionIntersection_RectRect(boundingBox, vel, Sharpenertemp->boundingBox, Sharpenertemp->vel))
 		{
-			printf("Collision True \n");
-			
-
+			printf("Collision True Sharpener\n");
 		}
+
 	}
+
+	
 
 	for (int i = 0; i < 1; i++)
 	{
@@ -138,8 +139,15 @@ void Player::Player_Update()
 			printf("BB2 Door maX x %f \n", Doortemp->boundingBox.max.x);
 			printf("BB2 Door max y %f \n", Doortemp->boundingBox.max.y);
 
+			printf("Collision Player \n");
+			printf("BB2 Door min x %f \n", boundingBox.min.x);
+			printf("BB2 Door min y %f \n", boundingBox.min.y);
+			printf("BB2 Door maX x %f \n", boundingBox.max.x);
+			printf("BB2 Door max y %f \n", boundingBox.max.y);
+
 		}
 	}
+	
 
 	
 

@@ -100,7 +100,7 @@ void Sharpener::updateSharpener() {
 			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, highlightertemp->boundingBox, highlightertemp->vel))
 			{
 				pos.x += 5;
-				printf("Collision True");
+				printf("Collision True Highlighter");
 				printf("BB2 min x %f \n", Sharpenertemp->boundingBox.min.x);
 				printf("BB2 min y %f \n", Sharpenertemp->boundingBox.min.y);
 				printf("BB2 maX x %f \n", Sharpenertemp->boundingBox.max.x);
