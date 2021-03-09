@@ -18,7 +18,7 @@ float GROUND = 0.f;
 bool Movement = false;
 
 
-void Player::Player_Character() //drawing of character
+void Player::Player_Load() //drawing of character
 {
 
 	pPlayer = sGameObjList + sGameObjNum++;
@@ -46,28 +46,15 @@ void Player::Player_Character() //drawing of character
 
 }
 
-void Player::Player_Draw()
-{
-	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 
-	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
-	AEGfxSetPosition(pos.x, pos.y);
-	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
-	AEGfxTextureSet(pPlayer->texture, 0, 0);
-	AEGfxSetTransform(Transform.m);
-	
-	AEGfxSetTransparency(1.0f);
-	AEGfxMeshDraw(pPlayer->pMesh, AE_GFX_MDM_TRIANGLES);
-
-}
 
 
 void Player::Player_Init()
 {
 	Scale = 100.0f;
 	flag = FLAG_ACTIVE;
-	AEVec2Set(&vel, SPEED, SPEED);
-	AEVec2Set(&pos, 80.0f, -10.f);
+	AEVec2Set(&(player.vel), SPEED, SPEED);
+	AEVec2Set(&(player.pos), 80.0f, -10.f);
 	//printf("Init Player \n");
 }
 
@@ -93,20 +80,20 @@ void Player::Player_Update()
 		for (int i = 0; i < Get_NumWalls(); i++)
 		{
 			Wall* Walltemp = Get_WallArr() + i;
-			if (CollisionIntersection_RectRect(boundingBox, vel, Walltemp->boundingBox, { 0,0 }))
+			if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Walltemp->boundingBox, { 0,0 }))
 			{
-				vel.x = 0.f;
+				player.vel.x = 0.f;
 
 			}
 			else
-				vel.x = -SPEED;
+				player.vel.x = -SPEED;
 
 		}
 
 	}
 	else if (AEInputCheckCurr(AEVK_RIGHT))
 	{
-		vel.x = SPEED;
+		player.vel.x = SPEED;
 		//right = 1;
 		//left = 0;
 		//printf("player left: %d, player right %d\n", left, right);
@@ -117,7 +104,7 @@ void Player::Player_Update()
 	}
 	else
 	{
-		vel.x = 0.f;
+		player.vel.x = 0.f;
 	}
 
 	if (AEInputCheckTriggered(AEVK_UP) && CanJump == true)
@@ -125,66 +112,51 @@ void Player::Player_Update()
 		//printf("jumping \n");
 		CanJump = false;
 		//Position.y += Velocity.y * 4;
-		vel.y = 5.f;
+		player.vel.y = 5.f;
 		//printf("PosY: %f, %f\n", pos.x, pos.y);
 	}
 
 
-	if (pos.y < GROUND)
+	if (player.pos.y < GROUND)
 	{
-		pos.y = GROUND;
+		player.pos.y = GROUND;
 		CanJump = true;
-		vel.y = 0;
+		player.vel.y = 0;
 	}
 	else {
 
 		SetGravity();
 	}
 
-	pos.x += vel.x;
-	pos.y += vel.y;
+	player.pos.x += player.vel.x;
+	player.pos.y += player.vel.y;
 
-	BoundingBoxPlayer();
+	BoundingBox();
 
 	for (int i = 0; i < 1; i++)
 	{
 		Sharpener* Sharpenertemp = SharpenerArray + i;
-		if (CollisionIntersection_RectRect(boundingBox, vel, Sharpenertemp->boundingBox, Sharpenertemp->vel))
+		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Sharpenertemp->GetSharpenerBoundingBox(i), Sharpenertemp->GetSharpenerVelocity(i)))
 		{
-			/*printf("Collision Sharpener\n");
-			printf("BB2 Door min x %f \n", Sharpenertemp->boundingBox.min.x);
-			printf("BB2 Door min y %f \n", Sharpenertemp->boundingBox.min.y);
-			printf("BB2 Door max x %f \n", Sharpenertemp->boundingBox.max.x);
-			printf("BB2 Door max y %f \n", Sharpenertemp->boundingBox.max.y);
-
-			printf("|| \n");
-			printf("BBP min x %f \n", boundingBox.min.x);
-			printf("BBP min y %f \n", boundingBox.min.y);
-			printf("BBP max x %f \n", boundingBox.max.x);
-			printf("BBP max y %f \n", boundingBox.max.y);*/
+			
 		}
 
 	}
 
-
-
 	for (int i = 0; i < 1; i++)
 	{
 		Door* Doortemp = DoorArray + i;
-		if (CollisionIntersection_RectRect(boundingBox, vel, Doortemp->boundingBox, Doortemp->vel))
+		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Doortemp->GetDoorBoundingBox(i), Doortemp->GetDoorVelocity(i)))
 		{
-			
 			//printf("Collision True DOOR \n");
 			AEVec2Set(&pos, -300, 0);
-			
-
 		}
 	}
 
 	for (int i = 0; i < Get_NumWalls(); i++)
 	{
 		Wall* Walltemp = Get_WallArr() + i;
-		if (CollisionIntersection_RectRect(boundingBox, vel, Walltemp->boundingBox, { 0,0 }))
+		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Walltemp->boundingBox, { 0,0 }))
 		{
 			if (pos.x < -370)
 			{
@@ -197,42 +169,61 @@ void Player::Player_Update()
 
 }
 
-void Player::SetGravity()
+void Player::Player_Draw()
 {
-	//printf("you shit");
-	//Position.y -= 2;
-	//Velocity.y = sqrt((2 * Player_Gravity) * (Position.y - Position.x));
-	vel.y -= 0.15f;
+	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
+
+	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
+	AEGfxSetPosition(pos.x, pos.y);
+	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
+	AEGfxTextureSet(pPlayer->texture, 0, 0);
+	AEGfxSetTransform(Transform.m);
+	
+	AEGfxSetTransparency(1.0f);
+	AEGfxMeshDraw(pPlayer->pMesh, AE_GFX_MDM_TRIANGLES);
 
 }
+
+void Player::Player_Unload()
+{
+	AEGfxTextureUnload(pPlayer->texture);
+}
+
+
 
 /******************************************************************************/
 /*!
 	Player Bounding Box
 */
 /******************************************************************************/
+void Player::SetGravity()
+{
+	
+	vel.y -= 0.15f;
 
-void Player::BoundingBoxPlayer()
+}
+
+void Player::BoundingBox()
 {
 	AEMtx33 Transform2, Size;
 	AEMtx33Scale(&Size, Scale, Scale);
 	AEMtx33Trans(&Transform2, pos.x, pos.y);
-	AEMtx33Concat(&Transform, &Transform2, &Size);
+	AEMtx33Concat(&(player.Transform), &Transform2, &Size);
 
-	boundingBox.min.x = pos.x - Scale / 4;
-	boundingBox.min.y = pos.y - Scale / 2;
-	boundingBox.max.x = pos.x + Scale / 4;
-	boundingBox.max.y = pos.y + Scale / 2;
+	player.boundingBox.min.x = player.pos.x - Scale / 4;
+	player.boundingBox.min.y = player.pos.y - Scale / 2;
+	player.boundingBox.max.x = player.pos.x + Scale / 4;
+	player.boundingBox.max.y = player.pos.y + Scale / 2;
 }
 
 AABB Player::GetBoundingBoxPlayer() const
 {
-	return boundingBox;
+	return player.boundingBox;
 }
 
 AEVec2 Player::GetVelPlayer() const
 {
-	return vel;
+	return player.vel;
 }
 
 const Player* Player::GetPlayerObj() const

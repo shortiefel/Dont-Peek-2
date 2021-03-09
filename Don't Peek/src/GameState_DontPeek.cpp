@@ -47,10 +47,10 @@ void gameObjInstDestroy(GameObjInst* pInst);
 
 //individual classes
 
-Door door;
+static Door door;
 Player player;
-Sharpener sharpener;
-Highlighter highlighter;
+static Sharpener sharpener;
+static Highlighter highlighter;
 Wall wwall;
 
 
@@ -69,11 +69,12 @@ void GameStateDontPeekLoad(void)
 	sGameObjInstNum = 0;
 
 	Level1_Load();
-	sharpener.loadSharpener();
-	highlighter.loadHighlighter();
-	door.LoadDoor();
-	player.Player_Character();
 	wwall.LoadWall();
+	sharpener.LoadSharpener();
+	highlighter.LoadHighlighter();
+	door.LoadDoor();
+	player.Player_Load();
+	
 }
 
 /******************************************************************************/
@@ -85,9 +86,8 @@ void GameStateDontPeekInit(void)
 {
 	Level1_Init();
 	wwall.InitWall();
-	
-	sharpener.initSharpener();
-	highlighter.initHighlighter();
+	sharpener.InitSharpener();
+	highlighter.InitHighlighter();
 	door.InitDoor();
 	player.Player_Init();
 }
@@ -100,8 +100,8 @@ void GameStateDontPeekInit(void)
 void GameStateDontPeekUpdate(void)
 {
 	Level1_Update();
-	sharpener.updateSharpener();
-	highlighter.updateHighlighter();
+	sharpener.UpdateSharpener();
+	highlighter.UpdateHighlighter();
 	door.UpdateDoor();
 	player.Player_Update();
 	//wwall.UpdateWall();
@@ -116,8 +116,8 @@ void GameStateDontPeekDraw(void)
 {
 	Level1_Draw();
 	wwall.DrawWall();
-	highlighter.drawHighlighter();
-	sharpener.drawSharpener();
+	highlighter.DrawHighlighter();
+	sharpener.DrawSharpener();
 	door.DrawDoor();
 	player.Player_Draw();
 }
@@ -148,13 +148,10 @@ void GameStateDontPeekFree(void)
 /******************************************************************************/
 void GameStateDontPeekUnload(void)
 {
-	//freeing all mesh data of each object
-	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
-	{
-		GameObj* Objects = sGameObjList + i;
-		if (Objects->pMesh)
-			AEGfxMeshFree(Objects->pMesh);
-	}
+	sharpener.UnloadSharpener();
+	highlighter.UnloadHighlighter();
+	door.UnloadDoor();
+	player.Player_Unload();
 }
 
 void gameObjInstDestroy(GameObjInst* pInst)

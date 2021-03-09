@@ -22,13 +22,13 @@ Technology is prohibited.
 #pragma once
 #include "Main.h"
 #include "GameState_DontPeek.h"
-extern Door DoorArray[MAX];
-GameObj* pDoor;
+
+
 
 class Door
 {
 private:
-
+	GameObj* pDoor;
 	AEVec2 pos;
 	unsigned long flag;
 	float Scale;
@@ -52,6 +52,8 @@ public:
 	void SetDoorPosition(int i, AEVec2 NewPos);
 	
 };
+extern Door DoorArray[MAX];
+
 	int GetDoorNum();
 	void SetDoorNum(int Num);
 

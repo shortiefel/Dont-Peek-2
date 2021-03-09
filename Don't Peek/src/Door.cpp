@@ -52,24 +52,14 @@ void Door::LoadDoor()
 }
 void Door::InitDoor()
 {	
-	Door* doortemp = DoorArray + 0;
-	Scale = 50.0f;
-	AEVec2Set(&vel, 0, 0);
-	AEVec2* pvel = &vel;
-	AEVec2Set(&pos, 300, 0);
 	
-	doortemp->flag = FLAG_ACTIVE;
-	doortemp->pos = pos;
-	doortemp->vel = *pvel;
-
-	Door* doortemp2 = DoorArray + 1;
 	Scale = 50.0f;
-	AEVec2Set(&vel, 0, 0);
-	AEVec2Set(&pos, -300, 0);
-
-	doortemp2->flag = FLAG_ACTIVE;
-	doortemp2->pos = pos;
-	doortemp2->vel = *pvel;
+	for (int i = 0; i < DoorNum; i++)
+	{
+		Door* Doortemp = DoorArray + i;
+		Doortemp->flag = FLAG_ACTIVE;
+		Doortemp->vel = {0,0};
+	}
 	
 }
 

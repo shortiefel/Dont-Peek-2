@@ -17,11 +17,11 @@ Technology is prohibited.
 */
 /* End Header **************************************************************************/
 #include "GameState_DontPeek.h"
-#include "Sharpener.h"
 #include "Collision.h"
+#include "Sharpener.h"
 #include "Highlighter.h"
-#include "Player.h"
 #include "Door.h"
+#include "Player.h"
 #include "Wall.h"
 
 Sharpener SharpenerArray[MAX];
@@ -55,16 +55,12 @@ void Sharpener::LoadSharpener()
 void Sharpener::InitSharpener() {
 	//Velocity.x = SPEED;
 	Scale = 80.0f;
-	flag = FLAG_ACTIVE;
 	AEVec2Set(&vel, SPEED, 0);
-	AEVec2Set(&pos, -150.0f, -15.0f);
-	AEVec2* pPos = &pos;
 	AEVec2* pVel = &vel;
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < SharpenerNum; i++)
 	{
 		Sharpener* Sharpenertemp = SharpenerArray + i;
 		Sharpenertemp->flag = FLAG_ACTIVE;
-		Sharpenertemp->pos = *pPos;
 		Sharpenertemp->vel = *pVel;
 	}
 }
@@ -73,7 +69,7 @@ void Sharpener::UpdateSharpener()
 {
 	BoundingBox();
 
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < SharpenerNum; i++)
 	{
 		Sharpener* Sharpenertemp = SharpenerArray + i;
 		/******************************************************************************/
@@ -81,7 +77,7 @@ void Sharpener::UpdateSharpener()
 			DOOR
 		*/
 		/******************************************************************************/
-		for (int s = 0; s < 1; s++)
+		for (int s = 0; s < GetDoorNum(); s++)
 		{
 			Door* Doortemp = DoorArray + s;
 			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, Doortemp->GetDoorBoundingBox(s), Doortemp->GetDoorVelocity(s)))
@@ -116,7 +112,7 @@ void Sharpener::UpdateSharpener()
 			HIGHLIGHTER
 		*/
 		/******************************************************************************/
-		for (int j = 0; j < 1; j++)
+		for (int j = 0; j < GetHighlighterNum(); j++)
 		{
 			Highlighter* highlightertemp = HighlighterArray + j;
 
@@ -139,9 +135,9 @@ void Sharpener::UpdateSharpener()
 			WALLS
 		*/
 		/******************************************************************************/
-		for (int i = 0; i < Get_NumWalls(); i++)
+		for (int j = 0; j < Get_NumWalls(); j++)
 		{
-			Wall* Walltemp = Get_WallArr() + i;
+			Wall* Walltemp = Get_WallArr() + j;
 			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, Walltemp->boundingBox, { 0,0 }))
 			{
 				if (Sharpenertemp->pos.x < -370)

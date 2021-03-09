@@ -22,13 +22,13 @@ Technology is prohibited.
 /* End Header **************************************************************************/
 
 #include "Main.h"
-extern Sharpener SharpenerArray[MAX];
-GameObj* pSharpener;
+
+
 
 class Sharpener
 {
 private:
-	
+	GameObj* pSharpener;
 	AEVec2 pos;
 	unsigned long flag;
 	float Scale;
@@ -50,6 +50,8 @@ public:
 	void SetSharpenerPosition(int i, AEVec2 NewPos);
 	
 };
+extern Sharpener SharpenerArray[MAX];
+
 
 int GetSharpenerNum();
 void SetSharpenerNum(int Num);

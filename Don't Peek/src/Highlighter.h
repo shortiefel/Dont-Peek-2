@@ -24,13 +24,12 @@ Technology is prohibited.
 #include "AEVec2.h"
 #include "AEInput.h"
 
-extern Highlighter HighlighterArray[MAX];
-GameObj* pHighlighter;
+
 
 class Highlighter
 {
 private:
-	
+	GameObj* pHighlighter;
 	AEVec2 pos;
 	unsigned long flag;
 	float scaleX;
@@ -53,6 +52,7 @@ public:
 	void SetHighlighterPosition(int i, AEVec2 NewPos);
 
 };
+extern Highlighter HighlighterArray[MAX];
 
 int GetHighlighterNum();
 void SetHighlighterrNum(int Num);

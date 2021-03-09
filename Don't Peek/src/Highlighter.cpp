@@ -21,7 +21,6 @@ Technology is prohibited.
 /* End Header **************************************************************************/
 #include "GameState_DontPeek.h"
 #include "Highlighter.h"
-#include "Sharpener.h"
 
 Highlighter HighlighterArray[MAX];
 static int HighlighterNum = 0;
@@ -52,15 +51,12 @@ void Highlighter::InitHighlighter() {
 
 	scaleX = 150.0f;
 	scaleY = 50.0f;
-	AEVec2Set(&pos, 0, -25);
-	AEVec2Set(&vel, 0, 0);
 	for (int i = 0; i < 1; i++)
 	{
-		Highlighter* temp = HighlighterArray + i;
+		Highlighter* Highlightertemp = HighlighterArray + i;
 
-		temp->flag = FLAG_ACTIVE;
-		temp->pos = pos;
-		temp->vel = vel;
+		Highlightertemp->flag = FLAG_ACTIVE;
+		Highlightertemp->vel = {0,0};
 	}
 }
 

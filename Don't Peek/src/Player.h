@@ -21,19 +21,19 @@ private:
 		//AEVec2 Position1;
 
 public:
-	void Player_Character();
-	void Player_Draw();
+	void Player_Load();
 	void Player_Init();
 	void Player_Update();
-	//void Player_Exit();
+	void Player_Draw();
+	void Player_Unload();
+	
+	void BoundingBox();
 	void SetGravity();
-	void BoundingBoxPlayer();
 	//void Player_TestDoor();
-	//AEVec2 GetPosition(void) const;
+	//AEVec2 GetPosition(void);
 
 	AABB GetBoundingBoxPlayer() const;
 	AEVec2 GetVelPlayer() const;
 	const Player* GetPlayerObj() const;
 };
-
 extern Player player;
