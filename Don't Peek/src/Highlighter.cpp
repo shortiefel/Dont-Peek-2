@@ -51,9 +51,10 @@ void Highlighter::InitHighlighter() {
 
 	scaleX = 150.0f;
 	scaleY = 50.0f;
-	for (int i = 0; i < HighlighterNum; i++)
+	for (int i = 0; i < 1; i++)
 	{
 		Highlighter* Highlightertemp = HighlighterArray + i;
+
 		Highlightertemp->flag = FLAG_ACTIVE;
 		Highlightertemp->vel = {0,0};
 	}
@@ -68,7 +69,7 @@ void Highlighter::UpdateHighlighter()
 
 void Highlighter::DrawHighlighter() 
 {
-	AEGfxSetBlendMode(AE_GFX_BM_NONE);
+	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 	AEGfxSetTransparency(1.0f);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
 
@@ -76,8 +77,9 @@ void Highlighter::DrawHighlighter()
 	{
 		Highlighter* Highlightertemp = HighlighterArray + i;
 		AEGfxSetPosition(Highlightertemp->pos.x, Highlightertemp->pos.y);
+		AEGfxTextureSet(pHighlighter->texture, 0, 0);
 		AEGfxSetTransform(Highlightertemp->Transform.m);
-		AEGfxSetRenderMode(AE_GFX_RM_COLOR);
+		AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 		AEGfxMeshDraw(pHighlighter->pMesh, AE_GFX_MDM_TRIANGLES);
 	}
 }

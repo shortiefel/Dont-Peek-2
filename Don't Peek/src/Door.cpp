@@ -52,11 +52,12 @@ void Door::LoadDoor()
 }
 void Door::InitDoor()
 {	
+	
+	Scale = 50.0f;
 	for (int i = 0; i < DoorNum; i++)
 	{
 		Door* Doortemp = DoorArray + i;
 		Doortemp->flag = FLAG_ACTIVE;
-		Doortemp->Scale = 50.0f;
 		Doortemp->vel = {0,0};
 	}
 	
@@ -92,24 +93,19 @@ void Door::UnloadDoor()
 void Door::BoundingBox()
 {
 	AEMtx33 Transform2, Size;
-	Door* Doortemp = DoorArray;
-	
-	if (Doortemp)
+	for (int i = 0; i < 2; i++)
 	{
-		for (int i = 0; i < DoorNum; i++)
-		{
-			Doortemp = DoorArray + i;
+		Door* Doortemp = DoorArray + i;
+		AEMtx33Scale(&Size, Scale, Scale);
+		AEMtx33Trans(&Transform2, Doortemp->pos.x, Doortemp->pos.y);
+		AEMtx33Concat(&(Doortemp->Transform), &Transform2, &Size);
 
-			AEMtx33Scale(&Size, Doortemp->Scale, Doortemp->Scale);
-			AEMtx33Trans(&Transform2, Doortemp->pos.x, Doortemp->pos.y);
-			AEMtx33Concat(&(Doortemp->Transform), &Transform2, &Size);
-			
-			Doortemp->boundingBox.min.x = Doortemp->pos.x - Doortemp->Scale / 2;
-			Doortemp->boundingBox.min.y = Doortemp->pos.y - Doortemp->Scale / 2;
-			Doortemp->boundingBox.max.x = Doortemp->pos.x + Doortemp->Scale / 2;
-			Doortemp->boundingBox.max.y = Doortemp->pos.y + Doortemp->Scale / 2;
-		}
+		Doortemp->boundingBox.min.x = Doortemp->pos.x - Scale / 2;
+		Doortemp->boundingBox.min.y = Doortemp->pos.y - Scale / 2;
+		Doortemp->boundingBox.max.x = Doortemp->pos.x + Scale / 2;
+		Doortemp->boundingBox.max.y = Doortemp->pos.y + Scale / 2;
 	}
+
 }
 
 //Get Function

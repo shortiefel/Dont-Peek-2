@@ -20,15 +20,15 @@ Technology is prohibited.
 */
 /* End Header **************************************************************************/
 #include"Level 1.h"
+#include "Door.h"
 #include "Sharpener.h"
 #include "Highlighter.h"
-#include "Door.h"
-#include "Player.h"
 
 static background bg;
 static Wall wall[100];
-
-
+static Door door;
+static Sharpener sharpener;
+static Highlighter highlighter;
 void Level1_Load()
 {
 	bg.Bgpos= {350.f,-200.f };
@@ -64,15 +64,18 @@ void Level1_Init()
 	wall->CreateWall({ -410,210 }, { 0,-1 }, 9, 30.f);
 	wall->CreateWall({ -410,210 }, { 1,0 }, 26, 30.f);
 	wall->CreateWall({ 340,210 }, { 0,-1 }, 9, 30.f);
-
+	//Sharpener
 	SetSharpenerNum(1);
-	SharpenerArray->SetSharpenerPosition( 0 , { -100,0 });
+	sharpener.SetSharpenerPosition(1, { -100,0 });
+
+	//Highlighter
 	SetHighlighterrNum(1);
-	HighlighterArray->SetHighlighterPosition( 0, { 100,0 });
+	highlighter.SetHighlighterPosition(1, { 0,0 });
+
+	//Door
 	SetDoorNum(2);
-	DoorArray->SetDoorPosition( 0 , { 300 , 0 });
-	DoorArray->SetDoorPosition( 1 , { -300 , 0 });
-	player.SetPosition({ 0, 0 });
+	door.SetDoorPosition(1, { 300 , 0 });
+	door.SetDoorPosition(2, { -300 , 0 });
 }
 void Level1_Update()
 {

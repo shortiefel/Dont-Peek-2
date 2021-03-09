@@ -29,11 +29,11 @@ public:
 	
 	void BoundingBox();
 	void SetGravity();
-	
+	//void Player_TestDoor();
+	//AEVec2 GetPosition(void);
 
 	AABB GetBoundingBoxPlayer() const;
 	AEVec2 GetVelPlayer() const;
 	const Player* GetPlayerObj() const;
-	void SetPosition(AEVec2 NewPos);
 };
 extern Player player;
