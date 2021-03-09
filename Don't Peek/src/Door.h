@@ -38,7 +38,6 @@ private:
 
 public:
 
-
 	void LoadDoor();
 	void InitDoor();
 	void UpdateDoor();
@@ -46,6 +45,7 @@ public:
 	void UnloadDoor();
 
 	void BoundingBox();
+
 	AABB GetDoorBoundingBox(int i);
 	AEVec2 GetDoorVelocity(int i);
 	AEVec2 GetDoorPosition(int i);

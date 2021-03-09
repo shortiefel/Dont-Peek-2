@@ -23,8 +23,6 @@ Technology is prohibited.
 
 #include "Main.h"
 
-
-
 class Sharpener
 {
 private:
@@ -44,6 +42,7 @@ public:
 	void UnloadSharpener();
 
 	void BoundingBox();
+
 	AABB GetSharpenerBoundingBox(int i);
 	AEVec2 GetSharpenerVelocity(int i);
 	AEVec2 GetSharpenerPosition(int i);

@@ -25,7 +25,11 @@ Technology is prohibited.
 Highlighter HighlighterArray[MAX];
 static int HighlighterNum = 0;
 
-
+/******************************************************************************/
+/*!
+	Highlighter Load
+*/
+/******************************************************************************/
 void Highlighter::LoadHighlighter() 
 {
 	pHighlighter = sGameObjList + sGameObjNum++;
@@ -47,6 +51,11 @@ void Highlighter::LoadHighlighter()
 
 }
 
+/******************************************************************************/
+/*!
+	Highlighter Init
+*/
+/******************************************************************************/
 void Highlighter::InitHighlighter() {
 
 	scaleX = 150.0f;
@@ -60,13 +69,21 @@ void Highlighter::InitHighlighter() {
 	}
 }
 
-
+/******************************************************************************/
+/*!
+	Highlighter Update
+*/
+/******************************************************************************/
 void Highlighter::UpdateHighlighter()
 {
 	BoundingBox();
-
 }
 
+/******************************************************************************/
+/*!
+	Highlighter Draw
+*/
+/******************************************************************************/
 void Highlighter::DrawHighlighter() 
 {
 	AEGfxSetBlendMode(AE_GFX_BM_NONE);
@@ -83,11 +100,21 @@ void Highlighter::DrawHighlighter()
 	}
 }
 
+/******************************************************************************/
+/*!
+	Highlighter Unload
+*/
+/******************************************************************************/
 void Highlighter::UnloadHighlighter() 
 {
 	AEGfxTextureUnload(pHighlighter->texture);
 }
 
+/******************************************************************************/
+/*!
+	Highlighter Bpunding Box
+*/
+/******************************************************************************/
 void Highlighter::BoundingBox()
 {
 	AEMtx33 Transform2, Size;
@@ -105,7 +132,11 @@ void Highlighter::BoundingBox()
 	}
 }
 
-//Get Function
+/******************************************************************************/
+/*!
+	Highlighter Getter & Setter Functions
+*/
+/******************************************************************************/
 AABB Highlighter::GetHighlighterBoundingBox(int i)
 {
 	Highlighter* Highlightertemp = HighlighterArray + i;
@@ -129,7 +160,11 @@ void Highlighter::SetHighlighterPosition(int i, AEVec2 NewPos)
 	Highlightertemp->pos = NewPos;
 }
 
-//External Function
+/******************************************************************************/
+/*!
+	Highlighter External Functions
+*/
+/******************************************************************************/
 int GetHighlighterNum()
 {
 	return HighlighterNum;

@@ -24,10 +24,14 @@ Technology is prohibited.
 #include "Collision.h"
 #include "Player.h"
 
-//static GameObj* pObj;
 static int numberWalls = 0;
 static Wall WallArr[40];
 
+/******************************************************************************/
+/*!
+	Wall Load
+*/
+/******************************************************************************/
 void Wall::LoadWall()
 {
 	pWall = sGameObjList + sGameObjNum++;
@@ -47,6 +51,12 @@ void Wall::LoadWall()
 	pWall->pMesh = AEGfxMeshEnd();
 
 }
+
+/******************************************************************************/
+/*!
+	Wall Init
+*/
+/******************************************************************************/
 void Wall::InitWall()
 {
 	/*AEVec2 pos{ 5,5 };
@@ -79,27 +89,21 @@ void Wall::InitWall()
 	
 }
 
-void Wall::CreateWall(AEVec2 pos, AEVec2 dir, int number, float scale)
+/******************************************************************************/
+/*!
+	Wall Update
+*/
+/******************************************************************************/
+void Wall::UpdateWall()
 {
-	Wall *temp = WallArr + numberWalls;
-	AEMtx33	trans, sc;
-	for (int i = 0; i <number; i++, temp++)
-	{
-		temp->Wallscale = scale;
-		// new pos = old pos + (dir * 1/2 size) * number of walls
-		temp->Wallpos.x = pos.x + temp->Wallscale * i * dir.x;
-		temp->Wallpos.y = pos.y + temp->Wallscale * i * dir.y;
-		numberWalls++;
-
-		// Compute the scaling matrix
-		AEMtx33Scale(&sc, temp->Wallscale, temp->Wallscale);
-		// Compute the translation matrix
-		AEMtx33Trans(&trans, temp->Wallpos.x, temp->Wallpos.y);
-
-		AEMtx33Concat(&(temp->transform), &trans, &sc);
-	}
+	
 }
 
+/******************************************************************************/
+/*!
+	Wall Draw
+*/
+/******************************************************************************/
 void Wall::DrawWall()
 {	
 	AEGfxSetBlendMode(AE_GFX_BM_NONE);	
@@ -116,19 +120,68 @@ void Wall::DrawWall()
 	}
 }
 
-void Wall::UpdateWall()
-{
-	
-}
-
+/******************************************************************************/
+/*!
+	Wall Free
+*/
+/******************************************************************************/
 void Wall::FreeWall()
 {
 
 }
+
+/******************************************************************************/
+/*!
+	Wall Unload
+*/
+/******************************************************************************/
 void Wall::UnloadWall()
 {
+
 }
 
+/******************************************************************************/
+/*!
+	Wall CreateWall
+*/
+/******************************************************************************/
+void Wall::CreateWall(AEVec2 pos, AEVec2 dir, int number, float scale)
+{
+	Wall *Walltemp = WallArr + numberWalls;
+	AEMtx33	trans, sc;
+	for (int i = 0; i <number; i++, Walltemp++)
+	{
+		Walltemp->Wallscale = scale;
+		// new pos = old pos + (dir * 1/2 size) * number of walls
+		Walltemp->Wallpos.x = pos.x + Walltemp->Wallscale * i * dir.x;
+		Walltemp->Wallpos.y = pos.y + Walltemp->Wallscale * i * dir.y;
+		numberWalls++;
+
+		// Compute the scaling matrix
+		AEMtx33Scale(&sc, Walltemp->Wallscale, Walltemp->Wallscale);
+		// Compute the translation matrix
+		AEMtx33Trans(&trans, Walltemp->Wallpos.x, Walltemp->Wallpos.y);
+
+		AEMtx33Concat(&(Walltemp->transform), &trans, &sc);
+	}
+}
+
+/******************************************************************************/
+/*!
+	Wall Getter & Setter Functions
+*/
+/******************************************************************************/
+AABB Wall::GetWallBoundingBox(int i)
+{
+	Wall* temp = WallArr + i;
+	return temp->boundingBox;
+}
+
+/******************************************************************************/
+/*!
+	Wall External Functions
+*/
+/******************************************************************************/
 int Get_NumWalls()
 {
 	return numberWalls;

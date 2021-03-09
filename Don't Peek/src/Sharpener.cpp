@@ -28,6 +28,11 @@ Sharpener SharpenerArray[MAX];
 static int SharpenerNum;
 int right, left;
 
+/******************************************************************************/
+/*!
+	Sharpener Load
+*/
+/******************************************************************************/
 void Sharpener::LoadSharpener() 
 {
 	pSharpener = sGameObjList + sGameObjNum++;
@@ -52,6 +57,11 @@ void Sharpener::LoadSharpener()
 
 }
 
+/******************************************************************************/
+/*!
+	Sharpener Init
+*/
+/******************************************************************************/
 void Sharpener::InitSharpener() {
 	//Velocity.x = SPEED;
 	Scale = 80.0f;
@@ -65,6 +75,11 @@ void Sharpener::InitSharpener() {
 	}
 }
 
+/******************************************************************************/
+/*!
+	Sharpener Update
+*/
+/******************************************************************************/
 void Sharpener::UpdateSharpener() 
 {
 	BoundingBox();
@@ -77,23 +92,23 @@ void Sharpener::UpdateSharpener()
 			DOOR
 		*/
 		/******************************************************************************/
-		for (int s = 0; s < GetDoorNum(); s++)
+		for (int j = 0; j < GetDoorNum(); j++)
 		{
-			Door* Doortemp = DoorArray + s;
-			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, Doortemp->GetDoorBoundingBox(s), Doortemp->GetDoorVelocity(s)))
+			Door* Doortemp = DoorArray + j;
+			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, Doortemp->GetDoorBoundingBox(j), Doortemp->GetDoorVelocity(j)))
 			{
-				if (s % 2 == 0)
+				if (j % 2 == 0)
 				{
-					Sharpenertemp->pos = Doortemp->GetDoorPosition(s + 1);
+					Sharpenertemp->pos = Doortemp->GetDoorPosition(j + 1);
 					Sharpenertemp->pos.x += 50;
 				}
 				else
 				{
-					Sharpenertemp->pos = Doortemp->GetDoorPosition(s - 1);
+					Sharpenertemp->pos = Doortemp->GetDoorPosition(j - 1);
 					Sharpenertemp->pos.x += -50;
 				}
 			}
-		}
+		}//End of Door for loop
 
 		/******************************************************************************/
 		/*!
@@ -137,7 +152,7 @@ void Sharpener::UpdateSharpener()
 					Sharpenertemp->pos.x -= 5;
 				}
 			}
-		}
+		}//End of Highlighter for loop
 
 		/******************************************************************************/
 		/*!
@@ -147,17 +162,22 @@ void Sharpener::UpdateSharpener()
 		for (int j = 0; j < Get_NumWalls(); j++)
 		{
 			Wall* Walltemp = Get_WallArr() + j;
-			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, Walltemp->boundingBox, { 0,0 }))
+			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, Walltemp->GetWallBoundingBox(j), { 0,0 }))
 			{
 				if (Sharpenertemp->pos.x < -370)
 				{
 					Sharpenertemp->pos.x = -370;
 				}
 			}
-		}
-	}
+		}//End of Wall for loop
+	}//End of Sharpener for loop
 }
 
+/******************************************************************************/
+/*!
+	Sharpener Draw
+*/
+/******************************************************************************/
 void Sharpener::DrawSharpener() 
 {
 	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
@@ -174,11 +194,21 @@ void Sharpener::DrawSharpener()
 	}
 }
 
+/******************************************************************************/
+/*!
+	Sharpener Unload
+*/
+/******************************************************************************/
 void Sharpener::UnloadSharpener() {
 
 	AEGfxTextureUnload(pSharpener->texture);
 }
 
+/******************************************************************************/
+/*!
+	Sharpener Bounding Box
+*/
+/******************************************************************************/
 void Sharpener::BoundingBox()
 {
 	AEMtx33 Transform2, Size;
@@ -196,7 +226,11 @@ void Sharpener::BoundingBox()
 	}
 
 }
-//Get Function
+/******************************************************************************/
+/*!
+	Sharpener Getter & Setter Functions
+*/
+/******************************************************************************/
 AABB Sharpener::GetSharpenerBoundingBox(int i)
 {
 	Sharpener* Sharpenertemp = SharpenerArray + i;
@@ -218,7 +252,11 @@ void Sharpener::SetSharpenerPosition(int i, AEVec2 NewPos)
 	Sharpenertemp->pos = NewPos;
 }
 
-//External Function
+/******************************************************************************/
+/*!
+	Sharpener External Functions
+*/
+/******************************************************************************/
 int GetSharpenerNum()
 {
 	return SharpenerNum;

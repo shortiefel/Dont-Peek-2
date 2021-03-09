@@ -28,12 +28,12 @@ Technology is prohibited.
 class Wall
 {
 private:
+	GameObj* pWall;
 	AEVec2 Wallpos;
 	AEVec2 Walldir;
 	float Wallscale;
 	AEMtx33	transform;	// object transformation matrix
-	
-	GameObj* pWall;
+	AABB boundingBox;
 	//AEGfxVertexList* wMesh;
 public:
 
@@ -43,8 +43,10 @@ public:
 	void DrawWall();
 	void FreeWall();
 	void UnloadWall();
+
 	void CreateWall(AEVec2 pos, AEVec2 dir, int number, float scale);
-	AABB boundingBox;
+
+	AABB GetWallBoundingBox(int i);
 };
 
 //functions for other people

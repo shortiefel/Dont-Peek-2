@@ -27,7 +27,11 @@ Door DoorArray[MAX];
 static int DoorNum = 0;
 
 
-//This function is responsible for creating Mesh and loading texture for door.
+/******************************************************************************/
+/*!
+	Door Load
+*/
+/******************************************************************************/
 void Door::LoadDoor()
 {
 	pDoor = sGameObjList + sGameObjNum++ ;
@@ -50,6 +54,12 @@ void Door::LoadDoor()
 	AE_ASSERT_MESG(pDoor->texture, "Failed to create texture1!!");
 
 }
+
+/******************************************************************************/
+/*!
+	Door Init
+*/
+/******************************************************************************/
 void Door::InitDoor()
 {	
 	
@@ -60,14 +70,23 @@ void Door::InitDoor()
 		Doortemp->flag = FLAG_ACTIVE;
 		Doortemp->vel = {0,0};
 	}
-	
 }
 
+/******************************************************************************/
+/*!
+	Door Update
+*/
+/******************************************************************************/
 void Door::UpdateDoor()
 {
 	BoundingBox();
 }
 
+/******************************************************************************/
+/*!
+	Door Draw
+*/
+/******************************************************************************/
 void Door::DrawDoor()
 {
 	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
@@ -84,11 +103,21 @@ void Door::DrawDoor()
 	}
 }
 
+/******************************************************************************/
+/*!
+	Door Unload
+*/
+/******************************************************************************/
 void Door::UnloadDoor()
 {
 	AEGfxTextureUnload(pDoor->texture);
 }
 
+/******************************************************************************/
+/*!
+	Door Bounding Box
+*/
+/******************************************************************************/
 void Door::BoundingBox()
 {
 	AEMtx33 Transform2, Size;
@@ -104,10 +133,13 @@ void Door::BoundingBox()
 		Doortemp->boundingBox.max.x = Doortemp->pos.x + Scale / 2;
 		Doortemp->boundingBox.max.y = Doortemp->pos.y + Scale / 2;
 	}
-
 }
 
-//Get Function
+/******************************************************************************/
+/*!
+	Door Getter & Setter Functions
+*/
+/******************************************************************************/
 AABB Door::GetDoorBoundingBox(int i)
 {
 	Door* Doortemp = DoorArray + i;
@@ -129,7 +161,11 @@ void Door::SetDoorPosition(int i, AEVec2 NewPos)
 	Doortemp->pos = NewPos;
 }
 
-//External Function
+/******************************************************************************/
+/*!
+	Door External Functions
+*/
+/******************************************************************************/
 int GetDoorNum()
 {
 	return DoorNum;

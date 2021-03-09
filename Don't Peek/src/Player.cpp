@@ -1,3 +1,21 @@
+/* Start Header ************************************************************************/
+/*!
+\file Player.cpp
+\team name Don't Peak
+\software name I don't want to do homework
+\authors
+Tan Wei Ling Felicia	weilingfelicia.tan@digipen.edu
+Margaret Teo Boon See	Teo.b@digipen.edu
+Loh Yun Yi Tessa	tessa.loh@digipen.edu
+Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
+\date 22/01/2021
+\brief This is the player file. It contains all the player function
+Copyright (C) 2021 DigiPen Institute of Technology.
+Reproduction or disclosure of this file or its contents
+without the prior written consent of DigiPen Institute of
+Technology is prohibited.
+*/
+/* End Header **************************************************************************/
 #include "GameState_DontPeek.h"
 #include "Player.h"
 #include "Sharpener.h"
@@ -17,7 +35,11 @@ bool Gravity = true;
 float GROUND = 0.f;
 bool Movement = false;
 
-
+/******************************************************************************/
+/*!
+	Player Load
+*/
+/******************************************************************************/
 void Player::Player_Load() //drawing of character
 {
 
@@ -46,16 +68,17 @@ void Player::Player_Load() //drawing of character
 
 }
 
-
-
-
+/******************************************************************************/
+/*!
+	Player Init
+*/
+/******************************************************************************/
 void Player::Player_Init()
 {
 	Scale = 100.0f;
 	flag = FLAG_ACTIVE;
 	AEVec2Set(&(player.vel), SPEED, SPEED);
 	AEVec2Set(&(player.pos), 80.0f, -10.f);
-	//printf("Init Player \n");
 }
 
 /******************************************************************************/
@@ -63,24 +86,19 @@ void Player::Player_Init()
 	Player Update
 */
 /******************************************************************************/
-
 void Player::Player_Update()
 {
-
-
+	/******************************************************************************/
+	/*!
+		INPUTS
+	*/
+	/******************************************************************************/
 	if (AEInputCheckCurr(AEVK_LEFT))
 	{
-		//Position.x -= Velocity.x;
-		//vel.x = -SPEED;
-		//left = 1;
-		//right = 0;
-		//printf("player left: %d, player right %d\n", left, right);
-		//printf("left\n");
-
 		for (int i = 0; i < Get_NumWalls(); i++)
 		{
 			Wall* Walltemp = Get_WallArr() + i;
-			if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Walltemp->boundingBox, { 0,0 }))
+			if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Walltemp->GetWallBoundingBox(i), { 0,0 }))
 			{
 				player.vel.x = 0.f;
 
@@ -94,13 +112,6 @@ void Player::Player_Update()
 	else if (AEInputCheckCurr(AEVK_RIGHT))
 	{
 		player.vel.x = SPEED;
-		//right = 1;
-		//left = 0;
-		//printf("player left: %d, player right %d\n", left, right);
-		//printf("right\n");
-
-		
-
 	}
 	else
 	{
@@ -132,7 +143,11 @@ void Player::Player_Update()
 	player.pos.y += player.vel.y;
 
 	BoundingBox();
-
+	/******************************************************************************/
+	/*!
+		SHARPENERS
+	*/
+	/******************************************************************************/
 	for (int i = 0; i < GetSharpenerNum(); i++)
 	{
 		Sharpener* Sharpenertemp = SharpenerArray + i;
@@ -140,9 +155,12 @@ void Player::Player_Update()
 		{
 			
 		}
-
-	}
-
+	}//End of Sharpener for loop
+	/******************************************************************************/
+	/*!
+		DOORS
+	*/
+	/******************************************************************************/
 	for (int i = 0; i < GetDoorNum(); i++)
 	{
 		Door* Doortemp = DoorArray + i;
@@ -159,12 +177,16 @@ void Player::Player_Update()
 				pos.x += -50;
 			}
 		}
-	}
-
+	}//End of Door for loop
+	/******************************************************************************/
+	/*!
+		WALLS
+	*/
+	/******************************************************************************/
 	for (int i = 0; i < Get_NumWalls(); i++)
 	{
 		Wall* Walltemp = Get_WallArr() + i;
-		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Walltemp->boundingBox, { 0,0 }))
+		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Walltemp->GetWallBoundingBox(i), { 0,0 }))
 		{
 			if (pos.x < -370)
 			{
@@ -172,11 +194,14 @@ void Player::Player_Update()
 			}
 
 		}
-
-	}
-
+	}//End of Wall for loop
 }
 
+/******************************************************************************/
+/*!
+	Player Draw
+*/
+/******************************************************************************/
 void Player::Player_Draw()
 {
 	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
@@ -192,25 +217,31 @@ void Player::Player_Draw()
 
 }
 
+/******************************************************************************/
+/*!
+	Player Unload
+*/
+/******************************************************************************/
 void Player::Player_Unload()
 {
 	AEGfxTextureUnload(pPlayer->texture);
 }
 
-
+/******************************************************************************/
+/*!
+	Player Gravity
+*/
+/******************************************************************************/
+void Player::SetGravity()
+{
+	vel.y -= 0.15f;
+}
 
 /******************************************************************************/
 /*!
 	Player Bounding Box
 */
 /******************************************************************************/
-void Player::SetGravity()
-{
-	
-	vel.y -= 0.15f;
-
-}
-
 void Player::BoundingBox()
 {
 	AEMtx33 Transform2, Size;
@@ -224,6 +255,11 @@ void Player::BoundingBox()
 	player.boundingBox.max.y = player.pos.y + Scale / 2;
 }
 
+/******************************************************************************/
+/*!
+	Player Getter & Setter Functions
+*/
+/******************************************************************************/
 AABB Player::GetBoundingBoxPlayer() const
 {
 	return player.boundingBox;

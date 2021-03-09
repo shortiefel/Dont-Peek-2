@@ -40,10 +40,11 @@ private:
 
 public:
 	void LoadHighlighter();
-	void DrawHighlighter();
 	void InitHighlighter();
 	void UpdateHighlighter();
+	void DrawHighlighter();
 	void UnloadHighlighter();
+
 	void BoundingBox();
 
 	AABB GetHighlighterBoundingBox(int i);
