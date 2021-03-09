@@ -219,9 +219,9 @@ void Player::BoundingBoxPlayer()
 	AEMtx33Trans(&Transform2, pos.x, pos.y);
 	AEMtx33Concat(&Transform, &Transform2, &Size);
 
-	boundingBox.min.x = pos.x - Scale / 2;
+	boundingBox.min.x = pos.x - Scale / 4;
 	boundingBox.min.y = pos.y - Scale / 2;
-	boundingBox.max.x = pos.x + Scale / 2;
+	boundingBox.max.x = pos.x + Scale / 4;
 	boundingBox.max.y = pos.y + Scale / 2;
 }
 
