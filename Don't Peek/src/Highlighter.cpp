@@ -77,7 +77,6 @@ void Highlighter::DrawHighlighter()
 	{
 		Highlighter* Highlightertemp = HighlighterArray + i;
 		AEGfxSetPosition(Highlightertemp->pos.x, Highlightertemp->pos.y);
-		AEGfxTextureSet(pHighlighter->texture, 0, 0);
 		AEGfxSetTransform(Highlightertemp->Transform.m);
 		AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 		AEGfxMeshDraw(pHighlighter->pMesh, AE_GFX_MDM_TRIANGLES);

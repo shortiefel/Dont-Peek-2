@@ -114,7 +114,7 @@ void GameStateDontPeekUpdate(void)
 /******************************************************************************/
 void GameStateDontPeekDraw(void)
 {
-	Level1_Draw();
+	//Level1_Draw();
 	wwall.DrawWall();
 	highlighter.DrawHighlighter();
 	sharpener.DrawSharpener();

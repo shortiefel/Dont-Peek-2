@@ -133,7 +133,7 @@ void Player::Player_Update()
 
 	BoundingBox();
 
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < GetSharpenerNum(); i++)
 	{
 		Sharpener* Sharpenertemp = SharpenerArray + i;
 		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Sharpenertemp->GetSharpenerBoundingBox(i), Sharpenertemp->GetSharpenerVelocity(i)))
@@ -143,13 +143,21 @@ void Player::Player_Update()
 
 	}
 
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < GetDoorNum(); i++)
 	{
 		Door* Doortemp = DoorArray + i;
 		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Doortemp->GetDoorBoundingBox(i), Doortemp->GetDoorVelocity(i)))
 		{
-			//printf("Collision True DOOR \n");
-			AEVec2Set(&pos, -300, 0);
+			if (i % 2 == 0)
+			{
+				pos = Doortemp->GetDoorPosition(i + 1);
+				pos.x += 50;
+			}
+			else
+			{
+				pos = Doortemp->GetDoorPosition(i - 1);
+				pos.x += -50;
+			}
 		}
 	}
 

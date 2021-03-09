@@ -66,16 +66,16 @@ void Level1_Init()
 	wall->CreateWall({ 340,210 }, { 0,-1 }, 9, 30.f);
 	//Sharpener
 	SetSharpenerNum(1);
-	sharpener.SetSharpenerPosition(1, { -100,0 });
+	sharpener.SetSharpenerPosition(0, { -100,0 });
 
 	//Highlighter
 	SetHighlighterrNum(1);
-	highlighter.SetHighlighterPosition(1, { 0,0 });
+	highlighter.SetHighlighterPosition(0, { 0,0 });
 
 	//Door
 	SetDoorNum(2);
-	door.SetDoorPosition(1, { 300 , 0 });
-	door.SetDoorPosition(2, { -300 , 0 });
+	door.SetDoorPosition(0, { 300 , 0 });
+	door.SetDoorPosition(1, { -300 , 0 });
 }
 void Level1_Update()
 {

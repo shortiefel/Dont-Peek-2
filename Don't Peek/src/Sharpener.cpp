@@ -82,7 +82,17 @@ void Sharpener::UpdateSharpener()
 			Door* Doortemp = DoorArray + s;
 			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, Doortemp->GetDoorBoundingBox(s), Doortemp->GetDoorVelocity(s)))
 			{
-				AEVec2Set(&(Sharpenertemp->pos), -300, 0);
+				if (i % 2 == 0)
+				{
+					Sharpenertemp->pos = Doortemp->GetDoorPosition(s + 1);
+					Sharpenertemp->pos.x += 50;
+				}
+				else
+				{
+					Sharpenertemp->pos = Doortemp->GetDoorPosition(s - 1);
+					Sharpenertemp->pos.x += -50;
+				}
+
 			}
 		}
 
@@ -181,10 +191,10 @@ void Sharpener::BoundingBox()
 		AEMtx33Trans(&Transform2, Sharpenertemp->pos.x, Sharpenertemp->pos.y);
 		AEMtx33Concat(&(Sharpenertemp->Transform), &Transform2, &Size);
 
-		Sharpenertemp->boundingBox.min.x = pos.x - Scale / 2;
-		Sharpenertemp->boundingBox.min.y = pos.y - Scale / 2;
-		Sharpenertemp->boundingBox.max.x = pos.x + Scale / 2;
-		Sharpenertemp->boundingBox.max.y = pos.y + Scale / 2;
+		Sharpenertemp->boundingBox.min.x = Sharpenertemp->pos.x - Scale / 2;
+		Sharpenertemp->boundingBox.min.y = Sharpenertemp->pos.y - Scale / 2;
+		Sharpenertemp->boundingBox.max.x = Sharpenertemp->pos.x + Scale / 2;
+		Sharpenertemp->boundingBox.max.y = Sharpenertemp->pos.y + Scale / 2;
 	}
 
 }

@@ -93,7 +93,7 @@ void Door::UnloadDoor()
 void Door::BoundingBox()
 {
 	AEMtx33 Transform2, Size;
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < DoorNum; i++)
 	{
 		Door* Doortemp = DoorArray + i;
 		AEMtx33Scale(&Size, Scale, Scale);
