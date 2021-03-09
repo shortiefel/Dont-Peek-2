@@ -22,32 +22,34 @@ Technology is prohibited.
 /* End Header **************************************************************************/
 
 #include "Main.h"
-
+extern Sharpener SharpenerArray[MAX];
+GameObj* pSharpener;
 
 class Sharpener
 {
 private:
-	GameObj* pSharpener;
+	
 	AEVec2 pos;
 	unsigned long flag;
 	float Scale;
 	AEMtx33	Transform;
-
-
-public:
-	void loadSharpener();
-	void initSharpener();
-	void updateSharpener();
-	void drawSharpener();
-	void unloadSharpener();
-	void BoundingBox();
-
 	AEVec2 vel;
 	AABB boundingBox;
 
+public:
+	void LoadSharpener();
+	void InitSharpener();
+	void UpdateSharpener();
+	void DrawSharpener();
+	void UnloadSharpener();
 
-
+	void BoundingBox();
+	AABB GetSharpenerBoundingBox(int i);
+	AEVec2 GetSharpenerVelocity(int i);
+	AEVec2 GetSharpenerPosition(int i);
+	void SetSharpenerPosition(int i, AEVec2 NewPos);
+	
 };
 
-extern Sharpener SharpenerArray[1];
-
+int GetSharpenerNum();
+void SetSharpenerNum(int Num);

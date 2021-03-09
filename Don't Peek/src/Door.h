@@ -22,27 +22,36 @@ Technology is prohibited.
 #pragma once
 #include "Main.h"
 #include "GameState_DontPeek.h"
+extern Door DoorArray[MAX];
+GameObj* pDoor;
+
 class Door
 {
 private:
 
-	GameObj* pDoor;
 	AEVec2 pos;
 	unsigned long flag;
 	float Scale;
 	AEMtx33	Transform;
-	//void BoundingBox();
-
-public:
 	AABB boundingBox;
 	AEVec2 vel;
+
+public:
+
 
 	void LoadDoor();
 	void InitDoor();
 	void UpdateDoor();
 	void DrawDoor();
+	void UnloadDoor();
+
 	void BoundingBox();
+	AABB GetDoorBoundingBox(int i);
+	AEVec2 GetDoorVelocity(int i);
+	AEVec2 GetDoorPosition(int i);
+	void SetDoorPosition(int i, AEVec2 NewPos);
 	
 };
+	int GetDoorNum();
+	void SetDoorNum(int Num);
 
-extern Door DoorArray[2];

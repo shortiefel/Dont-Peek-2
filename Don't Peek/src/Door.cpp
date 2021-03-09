@@ -23,8 +23,9 @@ Technology is prohibited.
 #include "GameState_DontPeek.h"
 #include "Door.h"
 
-static int numberDoors = 0;
-Door DoorArray[2];
+Door DoorArray[MAX];
+static int DoorNum = 0;
+
 
 //This function is responsible for creating Mesh and loading texture for door.
 void Door::LoadDoor()
@@ -83,8 +84,7 @@ void Door::DrawDoor()
 	AEGfxSetTransparency(1.0f);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
 	
-	
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < DoorNum; i++)
 	{
 		Door* Doortemp = DoorArray + i;
 		AEGfxSetPosition(Doortemp->pos.x, Doortemp->pos.y);
@@ -93,8 +93,11 @@ void Door::DrawDoor()
 		AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 		AEGfxMeshDraw(pDoor->pMesh, AE_GFX_MDM_TRIANGLES);
 	}
-	
-	
+}
+
+void Door::UnloadDoor()
+{
+	AEGfxTextureUnload(pDoor->texture);
 }
 
 void Door::BoundingBox()
@@ -115,7 +118,34 @@ void Door::BoundingBox()
 
 }
 
+//Get Function
+AABB Door::GetDoorBoundingBox(int i)
+{
+	Door* Doortemp = DoorArray + i;
+	return Doortemp->boundingBox;
+}
+AEVec2 Door::GetDoorVelocity(int i)
+{
+	Door* Doortemp = DoorArray + i;
+	return Doortemp->vel;
+}
+AEVec2 Door::GetDoorPosition(int i)
+{
+	Door* Doortemp = DoorArray + i;
+	return Doortemp->pos;
+}
+void Door::SetDoorPosition(int i, AEVec2 NewPos)
+{
+	Door* Doortemp = DoorArray + i;
+	Doortemp->pos = NewPos;
+}
 
-
-
-
+//External Function
+int GetDoorNum()
+{
+	return DoorNum;
+}
+void SetDoorNum(int Num)
+{
+	DoorNum = Num;
+}

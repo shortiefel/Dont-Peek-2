@@ -24,31 +24,35 @@ Technology is prohibited.
 #include "AEVec2.h"
 #include "AEInput.h"
 
+extern Highlighter HighlighterArray[MAX];
+GameObj* pHighlighter;
 
 class Highlighter
 {
 private:
-	GameObj* pHighlighter;
+	
 	AEVec2 pos;
 	unsigned long flag;
 	float scaleX;
 	float scaleY;
 	AEMtx33	Transform;
-
-
-
-public:
-	void loadHighlighter();
-	void drawHighlighter();
-	void initHighlighter();
-	void updateHighlighter();
-	void unloadHighlighter();
-	void BoundingBox();
-
 	AEVec2 vel;
 	AABB boundingBox;
 
+public:
+	void LoadHighlighter();
+	void DrawHighlighter();
+	void InitHighlighter();
+	void UpdateHighlighter();
+	void UnloadHighlighter();
+	void BoundingBox();
+
+	AABB GetHighlighterBoundingBox(int i);
+	AEVec2 GetHighlighterVelocity(int i);
+	AEVec2 GetHighlighterPosition(int i);
+	void SetHighlighterPosition(int i, AEVec2 NewPos);
 
 };
-extern Highlighter HighlighterArray[1];
 
+int GetHighlighterNum();
+void SetHighlighterrNum(int Num);

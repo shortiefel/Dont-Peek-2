@@ -24,22 +24,18 @@ Technology is prohibited.
 #include "Door.h"
 #include "Wall.h"
 
-Sharpener SharpenerArray[1];
+Sharpener SharpenerArray[MAX];
+static int SharpenerNum;
 int right, left;
 
-void Sharpener::loadSharpener() {
-
-	//memset(sGameObjList, 0, sizeof(GameObj) * GAME_OBJ_NUM_MAX);
-	//sGameObjNum = 0;
-
+void Sharpener::LoadSharpener() 
+{
 	pSharpener = sGameObjList + sGameObjNum++;
 	pSharpener->type = TYPE_SHARPENER;
 
 	pSharpener->texture = AEGfxTextureLoad("Resources/Sharpener_Animation.png");
 	AE_ASSERT_MESG(pSharpener->texture, "Failed to load sharpener!!");
 
-	//sharpeners = AEGfxTextureLoad("Sharpener_Animation.png");
-	//AEGfxVertexList* sharpener = 0;
 	AEGfxMeshStart();
 	AEGfxTriAdd(
 		-0.5f, -0.5f, 0x00000000, 0.0f, 1.0f,
@@ -56,7 +52,7 @@ void Sharpener::loadSharpener() {
 
 }
 
-void Sharpener::initSharpener() {
+void Sharpener::InitSharpener() {
 	//Velocity.x = SPEED;
 	Scale = 80.0f;
 	flag = FLAG_ACTIVE;
@@ -71,20 +67,15 @@ void Sharpener::initSharpener() {
 		Sharpenertemp->pos = *pPos;
 		Sharpenertemp->vel = *pVel;
 	}
-
-	//printf("Init Sharpener %lu \n", i);
-
 }
 
-void Sharpener::updateSharpener() {
-
+void Sharpener::UpdateSharpener() 
+{
 	BoundingBox();
 
 	for (int i = 0; i < 1; i++)
 	{
 		Sharpener* Sharpenertemp = SharpenerArray + i;
-
-
 		/******************************************************************************/
 		/*!
 			DOOR
@@ -93,9 +84,9 @@ void Sharpener::updateSharpener() {
 		for (int s = 0; s < 1; s++)
 		{
 			Door* Doortemp = DoorArray + s;
-			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, Doortemp->boundingBox, Doortemp->vel))
+			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, Doortemp->GetDoorBoundingBox(s), Doortemp->GetDoorVelocity(s)))
 			{
-				AEVec2Set(&pos, -300, 0);
+				AEVec2Set(&(Sharpenertemp->pos), -300, 0);
 			}
 		}
 
@@ -106,17 +97,15 @@ void Sharpener::updateSharpener() {
 		/******************************************************************************/
 		if (CollisionIntersection_RectRect(player.GetBoundingBoxPlayer(), player.GetVelPlayer(), Sharpenertemp->boundingBox, Sharpenertemp->vel))
 		{
-			//printf("PLAYER COLLIDE WITH Sharpener\n");
-
 			if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) && AEInputCheckCurr(AEVK_RIGHT))
 			{
-				pos.x += 5;
+				Sharpenertemp->pos.x += 5;
 				right = 1;
 				left = 0;
 			}
 			if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) && AEInputCheckCurr(AEVK_LEFT))
 			{
-				pos.x -= 5;
+				Sharpenertemp->pos.x -= 5;
 				left = 1;
 				right = 0;
 			}
@@ -130,28 +119,17 @@ void Sharpener::updateSharpener() {
 		for (int j = 0; j < 1; j++)
 		{
 			Highlighter* highlightertemp = HighlighterArray + j;
-			//printf("R: %d\n L: %d\n", right, left);
+
 			if (right == 1) {
-				if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, highlightertemp->boundingBox, highlightertemp->vel))
+				if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, highlightertemp->GetHighlighterBoundingBox(j), highlightertemp->GetHighlighterVelocity(j)))
 				{
-					pos.x += 5;
-					/*printf("Collision to the right is True-------------------------------------------\n");
-					printf("BB2 min x %f \n", Sharpenertemp->boundingBox.min.x);
-					printf("BB2 min y %f \n", Sharpenertemp->boundingBox.min.y);
-					printf("BB2 maX x %f \n", Sharpenertemp->boundingBox.max.x);
-					printf("BB2 max y %f \n", Sharpenertemp->boundingBox.max.y);
-					printf("-\n");
-					printf("BBH min x %f \n", highlightertemp->boundingBox.min.x);
-					printf("BBH min y %f \n", highlightertemp->boundingBox.min.y);
-					printf("BBH maX x %f \n", highlightertemp->boundingBox.max.x);
-					printf("BBH max y %f \n", highlightertemp->boundingBox.max.y);*/
+					Sharpenertemp->pos.x += 5;
 				}
 			}
 			else if (left == 1) {
-				if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, highlightertemp->boundingBox, highlightertemp->vel))
+				if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, highlightertemp->GetHighlighterBoundingBox(j), highlightertemp->GetHighlighterVelocity(j)))
 				{
-					pos.x -= 5;
-					//printf("im moving to the lefttttttttt+++++++++++++++++++++++++++++++++++++++++\n");
+					Sharpenertemp->pos.x -= 5;
 				}
 			}
 		}
@@ -166,52 +144,46 @@ void Sharpener::updateSharpener() {
 			Wall* Walltemp = Get_WallArr() + i;
 			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, Walltemp->boundingBox, { 0,0 }))
 			{
-				if (pos.x < -370)
+				if (Sharpenertemp->pos.x < -370)
 				{
-					pos.x = -370;
+					Sharpenertemp->pos.x = -370;
 				}
-
 			}
-
 		}
 	}
-
-	
-
-
-
 }
 
-
-void Sharpener::drawSharpener() {
-
-	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
-	AEGfxSetPosition(pos.x, pos.y);
-	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
-	AEGfxTextureSet(pSharpener->texture, 0, 0);
-	AEGfxSetTransform(Transform.m);
+void Sharpener::DrawSharpener() 
+{
 	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
-	//AEGfxSetBlendMode(AE_GFX_BM_NONE);
 	AEGfxSetTransparency(1.0f);
-	AEGfxMeshDraw(pSharpener->pMesh, AE_GFX_MDM_TRIANGLES);
+	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
 
+	for (int i = 0; i < SharpenerNum; i++)
+	{
+		Sharpener* Sharpenertemp = SharpenerArray + i;
+		AEGfxSetPosition(Sharpenertemp->pos.x, Sharpenertemp->pos.y);
+		AEGfxTextureSet(pSharpener->texture, 0, 0);
+		AEGfxSetTransform(Sharpenertemp->Transform.m);
+		AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
+		AEGfxMeshDraw(pSharpener->pMesh, AE_GFX_MDM_TRIANGLES);
+	}
 }
 
-void Sharpener::unloadSharpener() {
+void Sharpener::UnloadSharpener() {
 
 	AEGfxTextureUnload(pSharpener->texture);
-	//AEGfxTextureUnload(sharpeners);
 }
 
 void Sharpener::BoundingBox()
 {
 	AEMtx33 Transform2, Size;
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < SharpenerNum; i++)
 	{
 		Sharpener* Sharpenertemp = SharpenerArray + i;
 		AEMtx33Scale(&Size, Scale, Scale);
-		AEMtx33Trans(&Transform2, pos.x, pos.y);
-		AEMtx33Concat(&Transform, &Transform2, &Size);
+		AEMtx33Trans(&Transform2, Sharpenertemp->pos.x, Sharpenertemp->pos.y);
+		AEMtx33Concat(&(Sharpenertemp->Transform), &Transform2, &Size);
 
 		Sharpenertemp->boundingBox.min.x = pos.x - Scale / 2;
 		Sharpenertemp->boundingBox.min.y = pos.y - Scale / 2;
@@ -220,3 +192,35 @@ void Sharpener::BoundingBox()
 	}
 
 }
+//Get Function
+AABB Sharpener::GetSharpenerBoundingBox(int i)
+{
+	Sharpener* Sharpenertemp = SharpenerArray + i;
+	return Sharpenertemp->boundingBox;
+}
+AEVec2 Sharpener::GetSharpenerVelocity(int i)
+{
+	Sharpener* Sharpenertemp = SharpenerArray + i;
+	return Sharpenertemp->vel;
+}
+AEVec2 Sharpener::GetSharpenerPosition(int i)
+{
+	Sharpener* Sharpenertemp = SharpenerArray + i;
+	return Sharpenertemp->pos;
+}
+void Sharpener::SetSharpenerPosition(int i, AEVec2 NewPos)
+{
+	Sharpener* Sharpenertemp = SharpenerArray + i;
+	Sharpenertemp->pos = NewPos;
+}
+
+//External Function
+int GetSharpenerNum()
+{
+	return SharpenerNum;
+}
+void SetSharpenerNum(int Num)
+{
+	SharpenerNum = Num;
+}
+
