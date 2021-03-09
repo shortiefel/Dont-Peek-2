@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿  Collision.cpp
   Door.cpp
   GameStateMgr.cpp
@@ -11,4 +12,7 @@ C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Sharpener.cp
 C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(83,11): message : see declaration of 'i'
   Wall.cpp
   Generating Code...
+=======
+﻿  Player.cpp
+>>>>>>> Engine-Proof
   DontPeek.vcxproj -> C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe
