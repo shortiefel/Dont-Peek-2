@@ -101,15 +101,14 @@ void Wall::CreateWall(AEVec2 pos, AEVec2 dir, int number, float scale)
 }
 
 void Wall::DrawWall()
-{	AEGfxSetBlendMode(AE_GFX_BM_NONE);
+{	
+	AEGfxSetBlendMode(AE_GFX_BM_NONE);	
 	AEGfxSetRenderMode(AE_GFX_RM_COLOR);
-	AEGfxTextureSet(NULL, 0, 0);
-	
 	for (int i = 0; i < numberWalls; i++)
 	{
 		//printf("print wall");
 		// Drawing object 1
-		AEGfxSetRenderMode(AE_GFX_RM_COLOR);
+		
 		// Set the current object instance's transform matrix using "AEGfxSetTransform"
 		AEGfxSetTransform(WallArr[i].transform.m);
 		// Draw the shape used by the current object instance using "AEGfxMeshDraw"

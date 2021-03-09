@@ -82,7 +82,7 @@ void Sharpener::UpdateSharpener()
 			Door* Doortemp = DoorArray + s;
 			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, Doortemp->GetDoorBoundingBox(s), Doortemp->GetDoorVelocity(s)))
 			{
-				if (i % 2 == 0)
+				if (s % 2 == 0)
 				{
 					Sharpenertemp->pos = Doortemp->GetDoorPosition(s + 1);
 					Sharpenertemp->pos.x += 50;
@@ -92,7 +92,6 @@ void Sharpener::UpdateSharpener()
 					Sharpenertemp->pos = Doortemp->GetDoorPosition(s - 1);
 					Sharpenertemp->pos.x += -50;
 				}
-
 			}
 		}
 
@@ -164,14 +163,13 @@ void Sharpener::DrawSharpener()
 	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 	AEGfxSetTransparency(1.0f);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
-
+	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 	for (int i = 0; i < SharpenerNum; i++)
 	{
 		Sharpener* Sharpenertemp = SharpenerArray + i;
 		AEGfxSetPosition(Sharpenertemp->pos.x, Sharpenertemp->pos.y);
 		AEGfxTextureSet(pSharpener->texture, 0, 0);
 		AEGfxSetTransform(Sharpenertemp->Transform.m);
-		AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 		AEGfxMeshDraw(pSharpener->pMesh, AE_GFX_MDM_TRIANGLES);
 	}
 }
@@ -191,9 +189,9 @@ void Sharpener::BoundingBox()
 		AEMtx33Trans(&Transform2, Sharpenertemp->pos.x, Sharpenertemp->pos.y);
 		AEMtx33Concat(&(Sharpenertemp->Transform), &Transform2, &Size);
 
-		Sharpenertemp->boundingBox.min.x = Sharpenertemp->pos.x - Scale / 2;
+		Sharpenertemp->boundingBox.min.x = Sharpenertemp->pos.x - Scale / 4;
 		Sharpenertemp->boundingBox.min.y = Sharpenertemp->pos.y - Scale / 2;
-		Sharpenertemp->boundingBox.max.x = Sharpenertemp->pos.x + Scale / 2;
+		Sharpenertemp->boundingBox.max.x = Sharpenertemp->pos.x + Scale / 4;
 		Sharpenertemp->boundingBox.max.y = Sharpenertemp->pos.y + Scale / 2;
 	}
 

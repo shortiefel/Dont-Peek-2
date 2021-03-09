@@ -73,14 +73,13 @@ void Door::DrawDoor()
 	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 	AEGfxSetTransparency(1.0f);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
-	
+	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 	for (int i = 0; i < DoorNum; i++)
 	{
 		Door* Doortemp = DoorArray + i;
 		AEGfxSetPosition(Doortemp->pos.x, Doortemp->pos.y);
 		AEGfxTextureSet(pDoor->texture, 0, 0);
 		AEGfxSetTransform(Doortemp->Transform.m);
-		AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 		AEGfxMeshDraw(pDoor->pMesh, AE_GFX_MDM_TRIANGLES);
 	}
 }

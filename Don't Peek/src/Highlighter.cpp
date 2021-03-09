@@ -69,16 +69,16 @@ void Highlighter::UpdateHighlighter()
 
 void Highlighter::DrawHighlighter() 
 {
-	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
+	AEGfxSetBlendMode(AE_GFX_BM_NONE);
 	AEGfxSetTransparency(1.0f);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
-
+	AEGfxSetRenderMode(AE_GFX_RM_COLOR);
 	for (int i = 0; i < HighlighterNum; i++)
 	{
 		Highlighter* Highlightertemp = HighlighterArray + i;
 		AEGfxSetPosition(Highlightertemp->pos.x, Highlightertemp->pos.y);
 		AEGfxSetTransform(Highlightertemp->Transform.m);
-		AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
+		//AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 		AEGfxMeshDraw(pHighlighter->pMesh, AE_GFX_MDM_TRIANGLES);
 	}
 }
