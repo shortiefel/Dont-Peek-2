@@ -26,7 +26,7 @@ Technology is prohibited.
 
 Sharpener SharpenerArray[MAX];
 static int SharpenerNum;
-int right, left;
+int right = 0, left = 0;
 
 void Sharpener::LoadSharpener() 
 {
@@ -52,16 +52,14 @@ void Sharpener::LoadSharpener()
 
 }
 
-void Sharpener::InitSharpener() {
-	//Velocity.x = SPEED;
-	Scale = 80.0f;
-	AEVec2Set(&vel, SPEED, 0);
-	AEVec2* pVel = &vel;
+void Sharpener::InitSharpener() 
+{
 	for (int i = 0; i < SharpenerNum; i++)
 	{
 		Sharpener* Sharpenertemp = SharpenerArray + i;
 		Sharpenertemp->flag = FLAG_ACTIVE;
-		Sharpenertemp->vel = *pVel;
+		Sharpenertemp->Scale = 80.f;
+		Sharpenertemp->vel = {5.0f, 0};
 	}
 }
 
@@ -82,7 +80,7 @@ void Sharpener::UpdateSharpener()
 			Door* Doortemp = DoorArray + s;
 			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, Doortemp->GetDoorBoundingBox(s), Doortemp->GetDoorVelocity(s)))
 			{
-				AEVec2Set(&(Sharpenertemp->pos), -300, 0);
+				Sharpenertemp->pos = { -300 , 0 };
 			}
 		}
 
@@ -91,17 +89,17 @@ void Sharpener::UpdateSharpener()
 			PLAYER
 		*/
 		/******************************************************************************/
-		if (CollisionIntersection_RectRect(player.GetBoundingBoxPlayer(), player.GetVelPlayer(), Sharpenertemp->boundingBox, Sharpenertemp->vel))
+		if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox , Sharpenertemp->vel, player.GetBoundingBoxPlayer() , player.GetVelPlayer() ))
 		{
 			if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) && AEInputCheckCurr(AEVK_RIGHT))
 			{
-				Sharpenertemp->pos.x += 5;
+				Sharpenertemp->pos.x += Sharpenertemp->vel.x;
 				right = 1;
 				left = 0;
 			}
 			if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) && AEInputCheckCurr(AEVK_LEFT))
 			{
-				Sharpenertemp->pos.x -= 5;
+				Sharpenertemp->pos.x -= Sharpenertemp->vel.x;;
 				left = 1;
 				right = 0;
 			}
@@ -135,9 +133,9 @@ void Sharpener::UpdateSharpener()
 			WALLS
 		*/
 		/******************************************************************************/
-		for (int j = 0; j < Get_NumWalls(); j++)
+		for (int k = 0; k < Get_NumWalls(); k++)
 		{
-			Wall* Walltemp = Get_WallArr() + j;
+			Wall* Walltemp = Get_WallArr() + k;
 			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, Walltemp->boundingBox, { 0,0 }))
 			{
 				if (Sharpenertemp->pos.x < -370)
@@ -166,7 +164,8 @@ void Sharpener::DrawSharpener()
 	}
 }
 
-void Sharpener::UnloadSharpener() {
+void Sharpener::UnloadSharpener() 
+{
 
 	AEGfxTextureUnload(pSharpener->texture);
 }
@@ -174,17 +173,18 @@ void Sharpener::UnloadSharpener() {
 void Sharpener::BoundingBox()
 {
 	AEMtx33 Transform2, Size;
+
 	for (int i = 0; i < SharpenerNum; i++)
 	{
 		Sharpener* Sharpenertemp = SharpenerArray + i;
-		AEMtx33Scale(&Size, Scale, Scale);
+		AEMtx33Scale(&Size, Sharpenertemp->Scale, Sharpenertemp->Scale);
 		AEMtx33Trans(&Transform2, Sharpenertemp->pos.x, Sharpenertemp->pos.y);
 		AEMtx33Concat(&(Sharpenertemp->Transform), &Transform2, &Size);
 
-		Sharpenertemp->boundingBox.min.x = pos.x - Scale / 2;
-		Sharpenertemp->boundingBox.min.y = pos.y - Scale / 2;
-		Sharpenertemp->boundingBox.max.x = pos.x + Scale / 2;
-		Sharpenertemp->boundingBox.max.y = pos.y + Scale / 2;
+		Sharpenertemp->boundingBox.min.x = Sharpenertemp->pos.x - Sharpenertemp->Scale / 2;
+		Sharpenertemp->boundingBox.min.y = Sharpenertemp->pos.y - Sharpenertemp->Scale / 2;
+		Sharpenertemp->boundingBox.max.x = Sharpenertemp->pos.x + Sharpenertemp->Scale / 2;
+		Sharpenertemp->boundingBox.max.y = Sharpenertemp->pos.y + Sharpenertemp->Scale / 2;
 	}
 
 }

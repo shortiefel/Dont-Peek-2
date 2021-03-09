@@ -78,12 +78,6 @@ extern unsigned long		sGameObjNum;
 extern GameObjInst			sGameObjInstList[GAME_OBJ_INST_NUM_MAX];	// Each element in this array represents a unique game object instance (sprite)
 extern unsigned long		sGameObjInstNum;
 
-GameObjInst* gameObjInstCreate(unsigned long type, float scale,
-	AEVec2* pPos, AEVec2* pVel, float dir);
-void				gameObjInstDestroy(GameObjInst* pInst);
-
-
-
 
 void GameStateDontPeekLoad(void);
 void GameStateDontPeekInit(void);

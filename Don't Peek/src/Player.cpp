@@ -16,11 +16,11 @@ const int Player_Gravity = 8;
 bool Gravity = true;
 float GROUND = 0.f;
 bool Movement = false;
+Player player;
 
 
 void Player::Player_Load() //drawing of character
 {
-
 	pPlayer = sGameObjList + sGameObjNum++;
 	pPlayer->type = TYPE_PLAYER;
 
@@ -51,11 +51,9 @@ void Player::Player_Load() //drawing of character
 
 void Player::Player_Init()
 {
-	Scale = 100.0f;
-	flag = FLAG_ACTIVE;
-	AEVec2Set(&(player.vel), SPEED, SPEED);
-	AEVec2Set(&(player.pos), 80.0f, -10.f);
-	//printf("Init Player \n");
+	player.flag = FLAG_ACTIVE;
+	player.Scale = 100.0f;
+	player.vel = { 0, 0 };
 }
 
 /******************************************************************************/
@@ -66,16 +64,10 @@ void Player::Player_Init()
 
 void Player::Player_Update()
 {
-
+	BoundingBox();
 
 	if (AEInputCheckCurr(AEVK_LEFT))
 	{
-		//Position.x -= Velocity.x;
-		//vel.x = -SPEED;
-		//left = 1;
-		//right = 0;
-		//printf("player left: %d, player right %d\n", left, right);
-		//printf("left\n");
 
 		for (int i = 0; i < Get_NumWalls(); i++)
 		{
@@ -94,13 +86,6 @@ void Player::Player_Update()
 	else if (AEInputCheckCurr(AEVK_RIGHT))
 	{
 		player.vel.x = SPEED;
-		//right = 1;
-		//left = 0;
-		//printf("player left: %d, player right %d\n", left, right);
-		//printf("right\n");
-
-		
-
 	}
 	else
 	{
@@ -131,25 +116,32 @@ void Player::Player_Update()
 	player.pos.x += player.vel.x;
 	player.pos.y += player.vel.y;
 
-	BoundingBox();
 
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < GetSharpenerNum(); i++)
 	{
 		Sharpener* Sharpenertemp = SharpenerArray + i;
 		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Sharpenertemp->GetSharpenerBoundingBox(i), Sharpenertemp->GetSharpenerVelocity(i)))
 		{
 			
 		}
-
 	}
 
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < GetDoorNum(); i++)
 	{
 		Door* Doortemp = DoorArray + i;
-		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Doortemp->GetDoorBoundingBox(i), Doortemp->GetDoorVelocity(i)))
+		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Doortemp->GetDoorBoundingBox(i) , Doortemp->GetDoorVelocity(i)))
 		{
+			if (i % 2 == 0)
+			{
+				player.pos = Doortemp->GetDoorPosition(i + 1);
+				player.pos.x += 50;
+			}
+			else
+			{
+				player.pos = Doortemp->GetDoorPosition(i - 1);
+				player.pos.x += -50;
+			}
 			//printf("Collision True DOOR \n");
-			AEVec2Set(&pos, -300, 0);
 		}
 	}
 
@@ -158,13 +150,11 @@ void Player::Player_Update()
 		Wall* Walltemp = Get_WallArr() + i;
 		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Walltemp->boundingBox, { 0,0 }))
 		{
-			if (pos.x < -370)
+			if (player.pos.x < -370)
 			{
-				pos.x = -370;
+				player.pos.x = -370;
 			}
-
 		}
-
 	}
 
 }
@@ -172,16 +162,13 @@ void Player::Player_Update()
 void Player::Player_Draw()
 {
 	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
-
 	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
-	AEGfxSetPosition(pos.x, pos.y);
+	AEGfxSetTransparency(1.0f);
+	AEGfxSetPosition(player.pos.x, player.pos.y);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
 	AEGfxTextureSet(pPlayer->texture, 0, 0);
-	AEGfxSetTransform(Transform.m);
-	
-	AEGfxSetTransparency(1.0f);
+	AEGfxSetTransform(player.Transform.m);
 	AEGfxMeshDraw(pPlayer->pMesh, AE_GFX_MDM_TRIANGLES);
-
 }
 
 void Player::Player_Unload()
@@ -198,22 +185,20 @@ void Player::Player_Unload()
 /******************************************************************************/
 void Player::SetGravity()
 {
-	
-	vel.y -= 0.15f;
-
+	player.vel.y -= 0.15f;
 }
 
 void Player::BoundingBox()
 {
 	AEMtx33 Transform2, Size;
-	AEMtx33Scale(&Size, Scale, Scale);
-	AEMtx33Trans(&Transform2, pos.x, pos.y);
+	AEMtx33Scale(&Size, player.Scale, player.Scale);
+	AEMtx33Trans(&Transform2, player.pos.x, player.pos.y);
 	AEMtx33Concat(&(player.Transform), &Transform2, &Size);
 
-	player.boundingBox.min.x = player.pos.x - Scale / 4;
-	player.boundingBox.min.y = player.pos.y - Scale / 2;
-	player.boundingBox.max.x = player.pos.x + Scale / 4;
-	player.boundingBox.max.y = player.pos.y + Scale / 2;
+	player.boundingBox.min.x = player.pos.x - player.Scale / 6;
+	player.boundingBox.min.y = player.pos.y - player.Scale / 2;
+	player.boundingBox.max.x = player.pos.x + player.Scale / 6;
+	player.boundingBox.max.y = player.pos.y + player.Scale / 2;
 }
 
 AABB Player::GetBoundingBoxPlayer() const
@@ -229,4 +214,9 @@ AEVec2 Player::GetVelPlayer() const
 const Player* Player::GetPlayerObj() const
 {
 	return this;
+}
+
+void Player::SetPosition(AEVec2 NewPos)
+{
+	player.pos = NewPos;
 }
