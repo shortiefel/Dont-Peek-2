@@ -1,7 +1,7 @@
 #pragma once
 /* Start Header ************************************************************************/
 /*!
-\file Walls.h
+\file Wall.h
 \team name Don't Peak
 \software name I don't want to do homework
 \authors
@@ -21,48 +21,33 @@ Technology is prohibited.
 */
 /* End Header **************************************************************************/
 
+#include "Main.h"
+#include "GameState_DontPeek.h"
 
-/*enum for stages*/
-enum gStage {
-	TUTORIAL
-} currentStage;
 
-/*enum for Wall type*/
-enum WallType {
-	WALL,
-	PLATFORM,
-	UNUSED
-} WallType;
-
-//use for vectors
-struct Vec
-{
-	float x, y;
-};
-
-//things needed for walls
 class Wall
 {
-	//GameObj* pObject;	// pointer to the 'original' shape
-	unsigned long flag;		// bit flag or-ed together
-	Vec position;
-	Vec direction;
-	float width;
-	float height;
-	bool active;
-	size_t collider;
-	int type;
-
+private:
+	AEVec2 Wallpos;
+	AEVec2 Walldir;
+	float Wallscale;
+	AEMtx33	transform;	// object transformation matrix
+	
+	GameObj* pWall;
+	//AEGfxVertexList* wMesh;
 public:
-	Wall(); // default constructor
-	~Wall(); // destructor
 
-	bool GetActive();
-	void CreateWall(int count, Wall wallArr[], Vec direction, Vec pos, int type); // creates wall based on how many ya wan
-
-	//void Wall_Load(void);
-	void Wall_Init(void);
-	void Wall_Render(void);
-	void Wall_Update(void);
-	void Wall_Exit(void);
+	void LoadWall();
+	void InitWall();
+	void UpdateWall();
+	void DrawWall();
+	void FreeWall();
+	void UnloadWall();
+	void CreateWall(AEVec2 pos, AEVec2 dir, int number, float scale);
+	AABB boundingBox;
 };
+
+//functions for other people
+
+int Get_NumWalls();
+Wall* Get_WallArr();

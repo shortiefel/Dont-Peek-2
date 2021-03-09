@@ -31,7 +31,11 @@ private:
 	GameObj* pHighlighter;
 	AEVec2 pos;
 	unsigned long flag;
-	
+	float scaleX;
+	float scaleY;
+	AEMtx33	Transform;
+
+
 
 public:
 	void loadHighlighter();
@@ -40,9 +44,11 @@ public:
 	void updateHighlighter();
 	void unloadHighlighter();
 	void BoundingBox();
-	AABB boundingBox;
+
 	AEVec2 vel;
+	AABB boundingBox;
 
 
 };
 extern Highlighter HighlighterArray[1];
+

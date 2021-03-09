@@ -18,6 +18,8 @@ private:
 	float Scale;
 	AEMtx33	Transform;
 
+		//AEVec2 Position1;
+
 public:
 	void Player_Character();
 	void Player_Draw();
@@ -28,4 +30,10 @@ public:
 	void BoundingBoxPlayer();
 	//void Player_TestDoor();
 	//AEVec2 GetPosition(void) const;
+
+	AABB GetBoundingBoxPlayer() const;
+	AEVec2 GetVelPlayer() const;
+	const Player* GetPlayerObj() const;
 };
+
+extern Player player;

@@ -41,8 +41,8 @@ public:
 	void InitDoor();
 	void UpdateDoor();
 	void DrawDoor();
-
 	void BoundingBox();
+	
 };
 
 extern Door DoorArray[2];

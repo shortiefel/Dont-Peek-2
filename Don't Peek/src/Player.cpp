@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Sharpener.h"
 #include "Door.h"
+#include "Wall.h"
 
 
 
@@ -11,10 +12,10 @@
 */
 /******************************************************************************/
 
-static GameObjInst* player;
 const int Player_Gravity = 8;
 bool Gravity = true;
 float GROUND = 0.f;
+bool Movement = false;
 
 
 void Player::Player_Character() //drawing of character
@@ -41,18 +42,20 @@ void Player::Player_Character() //drawing of character
 	pPlayer->pMesh = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pPlayer->pMesh, "fail to create object!!");
 
+	
 
 }
 
 void Player::Player_Draw()
 {
+	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 
 	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 	AEGfxSetPosition(pos.x, pos.y);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
 	AEGfxTextureSet(pPlayer->texture, 0, 0);
 	AEGfxSetTransform(Transform.m);
-	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
+	
 	AEGfxSetTransparency(1.0f);
 	AEGfxMeshDraw(pPlayer->pMesh, AE_GFX_MDM_TRIANGLES);
 
@@ -65,7 +68,7 @@ void Player::Player_Init()
 	flag = FLAG_ACTIVE;
 	AEVec2Set(&vel, SPEED, SPEED);
 	AEVec2Set(&pos, 80.0f, -10.f);
-	printf("Init Player \n");
+	//printf("Init Player \n");
 }
 
 /******************************************************************************/
@@ -81,11 +84,36 @@ void Player::Player_Update()
 	if (AEInputCheckCurr(AEVK_LEFT))
 	{
 		//Position.x -= Velocity.x;
-		vel.x = -SPEED;
+		//vel.x = -SPEED;
+		//left = 1;
+		//right = 0;
+		//printf("player left: %d, player right %d\n", left, right);
+		//printf("left\n");
+
+		for (int i = 0; i < Get_NumWalls(); i++)
+		{
+			Wall* Walltemp = Get_WallArr() + i;
+			if (CollisionIntersection_RectRect(boundingBox, vel, Walltemp->boundingBox, { 0,0 }))
+			{
+				vel.x = 0.f;
+
+			}
+			else
+				vel.x = -SPEED;
+
+		}
+
 	}
 	else if (AEInputCheckCurr(AEVK_RIGHT))
 	{
 		vel.x = SPEED;
+		//right = 1;
+		//left = 0;
+		//printf("player left: %d, player right %d\n", left, right);
+		//printf("right\n");
+
+		
+
 	}
 	else
 	{
@@ -94,11 +122,11 @@ void Player::Player_Update()
 
 	if (AEInputCheckTriggered(AEVK_UP) && CanJump == true)
 	{
-		printf("jumping \n");
+		//printf("jumping \n");
 		CanJump = false;
 		//Position.y += Velocity.y * 4;
 		vel.y = 5.f;
-		printf("PosY: %f, %f\n", pos.x, pos.y);
+		//printf("PosY: %f, %f\n", pos.x, pos.y);
 	}
 
 
@@ -123,7 +151,7 @@ void Player::Player_Update()
 		Sharpener* Sharpenertemp = SharpenerArray + i;
 		if (CollisionIntersection_RectRect(boundingBox, vel, Sharpenertemp->boundingBox, Sharpenertemp->vel))
 		{
-			printf("Collision Sharpener\n");
+			/*printf("Collision Sharpener\n");
 			printf("BB2 Door min x %f \n", Sharpenertemp->boundingBox.min.x);
 			printf("BB2 Door min y %f \n", Sharpenertemp->boundingBox.min.y);
 			printf("BB2 Door max x %f \n", Sharpenertemp->boundingBox.max.x);
@@ -133,7 +161,7 @@ void Player::Player_Update()
 			printf("BBP min x %f \n", boundingBox.min.x);
 			printf("BBP min y %f \n", boundingBox.min.y);
 			printf("BBP max x %f \n", boundingBox.max.x);
-			printf("BBP max y %f \n", boundingBox.max.y);
+			printf("BBP max y %f \n", boundingBox.max.y);*/
 		}
 
 	}
@@ -145,27 +173,27 @@ void Player::Player_Update()
 		Door* Doortemp = DoorArray + i;
 		if (CollisionIntersection_RectRect(boundingBox, vel, Doortemp->boundingBox, Doortemp->vel))
 		{
-			printf("Collision True----------------------------------------------- \n");
-			printf("BB2 Door min x %f \n", Doortemp->boundingBox.min.x);
-			printf("BB2 Door min y %f \n", Doortemp->boundingBox.min.y);
-			printf("BB2 Door maX x %f \n", Doortemp->boundingBox.max.x);
-			printf("BB2 Door max y %f \n", Doortemp->boundingBox.max.y);
-
-			printf("|| \n");
-			printf("BBP min x %f \n", boundingBox.min.x);
-			printf("BBP min y %f \n", boundingBox.min.y);
-			printf("BBP max x %f \n", boundingBox.max.x);
-			printf("BBP max y %f \n", boundingBox.max.y);
+			
+			//printf("Collision True DOOR \n");
+			AEVec2Set(&pos, -300, 0);
+			
 
 		}
 	}
 
+	for (int i = 0; i < Get_NumWalls(); i++)
+	{
+		Wall* Walltemp = Get_WallArr() + i;
+		if (CollisionIntersection_RectRect(boundingBox, vel, Walltemp->boundingBox, { 0,0 }))
+		{
+			if (pos.x < -370)
+			{
+				pos.x = -370;
+			}
 
+		}
 
-
-
-
-
+	}
 
 }
 
@@ -195,4 +223,19 @@ void Player::BoundingBoxPlayer()
 	boundingBox.min.y = pos.y - Scale / 2;
 	boundingBox.max.x = pos.x + Scale / 2;
 	boundingBox.max.y = pos.y + Scale / 2;
+}
+
+AABB Player::GetBoundingBoxPlayer() const
+{
+	return boundingBox;
+}
+
+AEVec2 Player::GetVelPlayer() const
+{
+	return vel;
+}
+
+const Player* Player::GetPlayerObj() const
+{
+	return this;
 }
