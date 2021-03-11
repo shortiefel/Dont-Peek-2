@@ -22,13 +22,16 @@ Technology is prohibited.
 #include"Level 1.h"
 #include "Door.h"
 #include "Sharpener.h"
+#include "Eraser.h"
 #include "Highlighter.h"
 
 static background bg;
 static Wall wall[100];
 static Door door;
 static Sharpener sharpener;
+static Eraser eraser;
 static Highlighter highlighter;
+
 void Level1_Load()
 {
 	bg.Bgpos= {350.f,-200.f };
@@ -64,9 +67,14 @@ void Level1_Init()
 	wall->CreateWall({ -410,210 }, { 0,-1 }, 9, 30.f);
 	wall->CreateWall({ -410,210 }, { 1,0 }, 26, 30.f);
 	wall->CreateWall({ 340,210 }, { 0,-1 }, 9, 30.f);
+
 	//Sharpener
 	SetSharpenerNum(1);
 	sharpener.SetSharpenerPosition(0, { -100,0 });
+
+	//Eraser
+	SetEraserNum(1);
+	eraser.SetEraserPosition(0, { -200,0 });
 
 	//Highlighter
 	SetHighlighterrNum(1);
