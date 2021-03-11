@@ -127,21 +127,6 @@ void Player::Player_Update()
 		//printf("PosY: %f, %f\n", pos.x, pos.y);
 	}
 
-
-	if (player.pos.y < GROUND)
-	{
-		player.pos.y = GROUND;
-		CanJump = true;
-		player.vel.y = 0;
-	}
-	else {
-
-		SetGravity();
-	}
-
-	player.pos.x += player.vel.x;
-	player.pos.y += player.vel.y;
-
 	BoundingBox();
 	/******************************************************************************/
 	/*!
@@ -187,17 +172,33 @@ void Player::Player_Update()
 	{
 		Wall* Walltemp = Get_WallArr() + i;
 		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Walltemp->GetWallBoundingBox(i), { 0,0 }))
-		{
-			if (player.pos.x >= Walltemp->GetWallBoundingBox(i).min.x)
+		{	
+			//Collision with wall
+			if (player.boundingBox.max.x >= Walltemp->GetWallBoundingBox(i).min.x)
 			{
 				player.pos.x = (Walltemp->GetWallBoundingBox(i).max.x - 50);
 			}
-			else if (player.pos.x <= Walltemp->GetWallBoundingBox(i).max.x)
+			else if (player.boundingBox.min.x <= Walltemp->GetWallBoundingBox(i).max.x)
 			{
 				player.pos.x = (Walltemp->GetWallBoundingBox(i).min.x + 50);
 			}
 		}
 	}//End of Wall for loop
+
+
+	if (player.pos.y < GROUND)
+	{
+		player.pos.y = GROUND;
+		CanJump = true;
+		player.vel.y = 0;
+	}
+	else {
+
+		SetGravity();
+	}
+
+	player.pos.x += player.vel.x;
+	player.pos.y += player.vel.y;
 }
 
 /******************************************************************************/

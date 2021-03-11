@@ -38,6 +38,7 @@ bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1,
 	UNREFERENCED_PARAMETER(aabb2);
 	UNREFERENCED_PARAMETER(vel2);
 
+	
 	/*
 	Implement the collision intersection over here.
 
