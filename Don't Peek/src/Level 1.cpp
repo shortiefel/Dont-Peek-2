@@ -60,10 +60,12 @@ void Level1_Load()
 }
 void Level1_Init()
 {
-	//wall->CreateWall({ -410,-60 }, { 1,0 }, 26, 30.f);
+	//Wall
+	wall->CreateWall({ -410,-60 }, { 1,0 }, 26, 30.f);
 	wall->CreateWall({ -150,210 }, { 0,-1 }, 9, 30.f);
 	wall->CreateWall({ -410,210 }, { 1,0 }, 26, 30.f);
 	wall->CreateWall({ 340,210 }, { 0,-1 }, 9, 30.f);
+	
 	//Sharpener
 	SetSharpenerNum(1);
 	sharpener.SetSharpenerPosition(0, { -100,0 });

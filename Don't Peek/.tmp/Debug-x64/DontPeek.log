@@ -1,2 +1,3 @@
-﻿  Sharpener.cpp
+﻿  Player.cpp
+C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Player.cpp(177,30): warning C4804: '>=': unsafe use of type 'bool' in operation
   DontPeek.vcxproj -> C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe
