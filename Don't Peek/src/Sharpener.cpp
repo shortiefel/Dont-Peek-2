@@ -120,11 +120,11 @@ void Sharpener::UpdateSharpener()
 			Eraser* Erasertemp = EraserArray + j;
 			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, Erasertemp->GetEraserBoundingBox(j), Erasertemp->GetEraserVelocity(j)))
 			{
-				if (right == 1)
+				if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) && AEInputCheckCurr(AEVK_RIGHT))
 				{
 					eraser.SetEraserPosition(j, { pos.x += 5,0 });
 				}
-				else if (left == 1)
+				if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) && AEInputCheckCurr(AEVK_LEFT))
 				{
 					eraser.SetEraserPosition(j, { pos.x -= 5,0 });
 				}

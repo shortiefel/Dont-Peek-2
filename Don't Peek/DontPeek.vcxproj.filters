@@ -67,6 +67,15 @@
     <Filter Include="Source Files\Objects\Highlighter\Header">
       <UniqueIdentifier>{4aa85340-7eb3-4069-9b70-ddb4148c9d32}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Objects\Eraser">
+      <UniqueIdentifier>{f5595287-94c9-43cb-9250-2f94b553da89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects\Eraser\Code">
+      <UniqueIdentifier>{081af3ae-6a91-48e8-bc87-3d46d776e86e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects\Eraser\Header">
+      <UniqueIdentifier>{82ff8b7f-857f-4e60-85bf-b3231568b1af}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Collision.cpp">
@@ -100,7 +109,7 @@
       <Filter>Source Files\Environment</Filter>
     </ClCompile>
     <ClCompile Include="src\Eraser.cpp">
-      <Filter>Source Files\Objects</Filter>
+      <Filter>Source Files\Objects\Eraser\Code</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -135,7 +144,7 @@
       <Filter>Source Files\Environment</Filter>
     </ClInclude>
     <ClInclude Include="src\Eraser.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Objects\Eraser\Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
