@@ -112,6 +112,27 @@ void Sharpener::UpdateSharpener()
 
 		/******************************************************************************/
 		/*!
+			WALLS
+		*/
+		/******************************************************************************/
+		for (int j = 0; j < Get_NumWalls(); j++)
+		{
+			Wall* Walltemp = Get_WallArr() + j;
+			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, Walltemp->GetWallBoundingBox(j), { 0,0 }))
+			{
+				if (Sharpenertemp->boundingBox.max.x >= Walltemp->GetWallBoundingBox(j).min.x && right == 1)
+				{
+					Sharpenertemp->pos.x = (Walltemp->GetWallBoundingBox(j).min.x - 30);
+				}
+				else if (Sharpenertemp->boundingBox.min.x <= Walltemp->GetWallBoundingBox(j).max.x && left == 1)
+				{
+					Sharpenertemp->pos.x = (Walltemp->GetWallBoundingBox(j).max.x + 30);
+					//printf("collide 2 \n");
+				}
+			}
+		}//End of Wall for loop
+		/******************************************************************************/
+		/*!
 			PLAYER
 		*/
 		/******************************************************************************/
@@ -119,13 +140,13 @@ void Sharpener::UpdateSharpener()
 		{
 			if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) && AEInputCheckCurr(AEVK_RIGHT))
 			{
-				Sharpenertemp->pos.x += 5;
+				Sharpenertemp->pos.x += Sharpenertemp->vel.x;
 				right = 1;
 				left = 0;
 			}
 			if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) && AEInputCheckCurr(AEVK_LEFT))
 			{
-				Sharpenertemp->pos.x -= 5;
+				Sharpenertemp->pos.x -= Sharpenertemp->vel.x;
 				left = 1;
 				right = 0;
 			}
@@ -153,28 +174,6 @@ void Sharpener::UpdateSharpener()
 				}
 			}
 		}//End of Highlighter for loop
-
-		/******************************************************************************/
-		/*!
-			WALLS
-		*/
-		/******************************************************************************/
-		for (int j = 0; j < Get_NumWalls(); j++)
-		{
-			Wall* Walltemp = Get_WallArr() + j;
-			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, Walltemp->GetWallBoundingBox(j), { 0,0 }))
-			{
-				if (Sharpenertemp->boundingBox.max.x >= Walltemp->GetWallBoundingBox(j).min.x && right == 1)
-				{
-					Sharpenertemp->pos.x = (Walltemp->GetWallBoundingBox(j).min.x - 40);
-				}
-				else if (Sharpenertemp->boundingBox.min.x <= Walltemp->GetWallBoundingBox(j).max.x && left == 1)
-				{
-					Sharpenertemp->pos.x = (Walltemp->GetWallBoundingBox(j).max.x + 40);
-					//printf("collide 2 \n");
-				}
-			}
-		}//End of Wall for loop
 	}//End of Sharpener for loop
 }
 
