@@ -59,15 +59,6 @@ void Wall::LoadWall()
 /******************************************************************************/
 void Wall::InitWall()
 {
-	/*AEVec2 pos{ 5,5 };
-	AEVec2 dir{ 0,1 };
-	CreateWall(pos, dir, 3, wall,30.f);*/
-
-	/*pos={ 0,10 };
-	dir={ 1,0 };
-	CreateWall(pos, dir, 10, wall, 30.f);*/
-	/*printf("drawing\n");
-	printf("number %d \n", numberWalls);*/
 
 	for (int i = 0; i < numberWalls; i++)
 	{
@@ -113,11 +104,22 @@ void Wall::DrawWall()
 	{
 		//printf("print wall");
 		// Drawing object 1
-		
-		// Set the current object instance's transform matrix using "AEGfxSetTransform"
-		AEGfxSetTransform(WallArr[i].transform.m);
-		// Draw the shape used by the current object instance using "AEGfxMeshDraw"
-		AEGfxMeshDraw(pWall->pMesh, AE_GFX_MDM_TRIANGLES);
+		if (WallArr[i].Walltype == WALL)
+		{
+			// Set the current object instance's transform matrix using "AEGfxSetTransform"
+			AEGfxSetTransform(WallArr[i].transform.m);
+			// Draw the shape used by the current object instance using "AEGfxMeshDraw"
+			AEGfxSetBlendColor(0.f, 0.f, 0.f, 1.f);
+			AEGfxMeshDraw(pWall->pMesh, AE_GFX_MDM_TRIANGLES);
+		}
+		else if (WallArr[i].Walltype == PLATFORM)
+		{
+			// Set the current object instance's transform matrix using "AEGfxSetTransform"
+			AEGfxSetTransform(WallArr[i].transform.m);
+			// Draw the shape used by the current object instance using "AEGfxMeshDraw"
+			AEGfxSetBlendColor(1.0f, 0.f, 0.f, 1.f);
+			AEGfxMeshDraw(pWall->pMesh, AE_GFX_MDM_TRIANGLES);
+		}
 	}
 }
 
@@ -146,7 +148,7 @@ void Wall::UnloadWall()
 	Wall CreateWall
 */
 /******************************************************************************/
-void Wall::CreateWall(AEVec2 pos, AEVec2 dir, int number, float scale)
+void Wall::CreateWall(AEVec2 pos, AEVec2 dir, int number, float scale, wallType type)
 {
 	Wall *Walltemp = WallArr + numberWalls;
 	AEMtx33	trans, sc;
@@ -156,6 +158,7 @@ void Wall::CreateWall(AEVec2 pos, AEVec2 dir, int number, float scale)
 		// new pos = old pos + (dir * 1/2 size) * number of walls
 		Walltemp->Wallpos.x = pos.x + Walltemp->Wallscale * i * dir.x;
 		Walltemp->Wallpos.y = pos.y + Walltemp->Wallscale * i * dir.y;
+		Walltemp->Walltype = type;
 		numberWalls++;
 
 		// Compute the scaling matrix
