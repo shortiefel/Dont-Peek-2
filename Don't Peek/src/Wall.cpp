@@ -177,8 +177,14 @@ void Wall::CreateWall(AEVec2 pos, AEVec2 dir, int number, float scale, wallType 
 /******************************************************************************/
 AABB Wall::GetWallBoundingBox(int i)
 {
-	Wall* temp = WallArr + i;
-	return temp->boundingBox;
+	Wall* Walltemp = WallArr + i;
+	return Walltemp->boundingBox;
+}
+
+wallType Wall::GetType(int i)
+{
+	Wall* Walltemp = WallArr + i;
+	return Walltemp->Walltype;
 }
 
 /******************************************************************************/

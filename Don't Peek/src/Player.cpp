@@ -105,7 +105,6 @@ void Player::Player_Update()
 			}
 			else
 				player.vel.x = -SPEED;
-
 		}
 
 	}
@@ -126,6 +125,16 @@ void Player::Player_Update()
 		player.vel.y = 5.f;
 		//printf("PosY: %f, %f\n", pos.x, pos.y);
 	}
+	if (player.pos.y < GROUND)
+	{
+		player.pos.y = GROUND;
+		CanJump = true;
+		player.vel.y = 0;
+	}
+	else {
+
+		SetGravity();
+	}
 
 	BoundingBox();
 	/******************************************************************************/
@@ -136,6 +145,7 @@ void Player::Player_Update()
 	for (int i = 0; i < GetSharpenerNum(); i++)
 	{
 		Sharpener* Sharpenertemp = SharpenerArray + i;
+		BoundingBox();
 		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Sharpenertemp->GetSharpenerBoundingBox(i), Sharpenertemp->GetSharpenerVelocity(i)))
 		{
 			
@@ -149,17 +159,18 @@ void Player::Player_Update()
 	for (int i = 0; i < GetDoorNum(); i++)
 	{
 		Door* Doortemp = DoorArray + i;
+		BoundingBox();
 		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Doortemp->GetDoorBoundingBox(i), Doortemp->GetDoorVelocity(i)))
 		{
 			if (i % 2 == 0)
 			{
-				pos = Doortemp->GetDoorPosition(i + 1);
-				pos.x += 50;
+				player.pos = Doortemp->GetDoorPosition(i + 1);
+				player.pos.x += 50;
 			}
 			else
 			{
-				pos = Doortemp->GetDoorPosition(i - 1);
-				pos.x += -50;
+				player.pos = Doortemp->GetDoorPosition(i - 1);
+				player.pos.x += -50;
 			}
 		}
 	}//End of Door for loop
@@ -171,34 +182,36 @@ void Player::Player_Update()
 	for (int i = 0; i < Get_NumWalls(); i++)
 	{
 		Wall* Walltemp = Get_WallArr() + i;
+		BoundingBox();
 		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Walltemp->GetWallBoundingBox(i), { 0,0 }))
 		{	
-			//Collision with wall
-			if (player.boundingBox.max.x >= Walltemp->GetWallBoundingBox(i).min.x)
+			if (Walltemp->GetType(i) == WALL)
 			{
-				player.pos.x = (Walltemp->GetWallBoundingBox(i).max.x - 50);
+				if (player.pos.x >= Walltemp->GetWallBoundingBox(i).min.x)
+				{
+					player.pos.x = (Walltemp->GetWallBoundingBox(i).max.x - 50);
+				}
+				else if (player.pos.x <= Walltemp->GetWallBoundingBox(i).max.x)
+				{
+					player.pos.x = (Walltemp->GetWallBoundingBox(i).min.x + 50);
+				}
 			}
-			else if (player.boundingBox.min.x <= Walltemp->GetWallBoundingBox(i).max.x)
+			else if (Walltemp->GetType(i) == PLATFORM)
 			{
-				player.pos.x = (Walltemp->GetWallBoundingBox(i).min.x + 50);
+				if (player.boundingBox.min.y >= Walltemp->GetWallBoundingBox(i).max.y)
+				{
+					GROUND = (Walltemp->GetWallBoundingBox(i).max.y + 10);
+					player.pos.y = GROUND;
+					BoundingBox();
+				}
 			}
+			
 		}
 	}//End of Wall for loop
 
-
-	if (player.pos.y < GROUND)
-	{
-		player.pos.y = GROUND;
-		CanJump = true;
-		player.vel.y = 0;
-	}
-	else {
-
-		SetGravity();
-	}
-
 	player.pos.x += player.vel.x;
 	player.pos.y += player.vel.y;
+
 }
 
 /******************************************************************************/

@@ -87,6 +87,7 @@ void Sharpener::UpdateSharpener()
 	for (int i = 0; i < SharpenerNum; i++)
 	{
 		Sharpener* Sharpenertemp = SharpenerArray + i;
+		BoundingBox();
 		/******************************************************************************/
 		/*!
 			DOOR
@@ -160,7 +161,6 @@ void Sharpener::UpdateSharpener()
 		for (int j = 0; j < GetHighlighterNum(); j++)
 		{
 			Highlighter* highlightertemp = HighlighterArray + j;
-
 			if (right == 1) {
 				if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, highlightertemp->GetHighlighterBoundingBox(j), highlightertemp->GetHighlighterVelocity(j)))
 				{

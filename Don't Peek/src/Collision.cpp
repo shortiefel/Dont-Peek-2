@@ -134,3 +134,21 @@ bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1,
 
 	}
 }
+
+//bool CollisionIntersection_PointLine(const AEVec2& point, const AEVec2& vel1,
+//	const AABB& line, const AEVec2& vel2)
+//{
+//	float buffer = 0.1;
+//	
+//}
+
+bool CollisionIntersection_PointRect(const AEVec2& point, const AEVec2& vel1,
+	const AABB& Rect, const AEVec2& vel2)
+{
+	if ((point.x < Rect.min.x || point.x > Rect.max.x) && (point.y < Rect.min.y || point.y > Rect.min.y))
+	{
+		return 0;
+	}
+	else
+		return 1;
+}
