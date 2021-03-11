@@ -84,6 +84,7 @@ void Wall::InitWall()
 		Walltemp->boundingBox.max.y = Walltemp->Wallpos.y + Walltemp->Wallscale / 2;
 
 		//printf("bounding box max x %f \n", Walltemp->boundingBox.max.x);
+		//printf("bounding box min x %f \n", Walltemp->boundingBox.min.x);
 	
 	}
 	

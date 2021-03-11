@@ -61,7 +61,7 @@ void Level1_Load()
 void Level1_Init()
 {
 	//wall->CreateWall({ -410,-60 }, { 1,0 }, 26, 30.f);
-	wall->CreateWall({ -410,210 }, { 0,-1 }, 9, 30.f);
+	wall->CreateWall({ -150,210 }, { 0,-1 }, 9, 30.f);
 	wall->CreateWall({ -410,210 }, { 1,0 }, 26, 30.f);
 	wall->CreateWall({ 340,210 }, { 0,-1 }, 9, 30.f);
 	//Sharpener
@@ -70,7 +70,7 @@ void Level1_Init()
 
 	//Highlighter
 	SetHighlighterrNum(1);
-	highlighter.SetHighlighterPosition(0, { 0,0 });
+	highlighter.SetHighlighterPosition(0, { 100,0 });
 
 	//Door
 	SetDoorNum(2);

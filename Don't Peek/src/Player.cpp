@@ -188,11 +188,14 @@ void Player::Player_Update()
 		Wall* Walltemp = Get_WallArr() + i;
 		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Walltemp->GetWallBoundingBox(i), { 0,0 }))
 		{
-			if (pos.x < -370)
+			if (player.pos.x >= Walltemp->GetWallBoundingBox(i).min.x)
 			{
-				pos.x = -370;
+				player.pos.x = (Walltemp->GetWallBoundingBox(i).max.x - 50);
 			}
-
+			else if (player.pos.x <= Walltemp->GetWallBoundingBox(i).max.x)
+			{
+				player.pos.x = (Walltemp->GetWallBoundingBox(i).min.x + 50);
+			}
 		}
 	}//End of Wall for loop
 }
@@ -249,9 +252,9 @@ void Player::BoundingBox()
 	AEMtx33Trans(&Transform2, pos.x, pos.y);
 	AEMtx33Concat(&(player.Transform), &Transform2, &Size);
 
-	player.boundingBox.min.x = player.pos.x - Scale / 4;
+	player.boundingBox.min.x = player.pos.x - Scale / 5;
 	player.boundingBox.min.y = player.pos.y - Scale / 2;
-	player.boundingBox.max.x = player.pos.x + Scale / 4;
+	player.boundingBox.max.x = player.pos.x + Scale / 5;
 	player.boundingBox.max.y = player.pos.y + Scale / 2;
 }
 

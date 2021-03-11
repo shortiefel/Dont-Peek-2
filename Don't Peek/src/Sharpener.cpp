@@ -164,9 +164,14 @@ void Sharpener::UpdateSharpener()
 			Wall* Walltemp = Get_WallArr() + j;
 			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, Walltemp->GetWallBoundingBox(j), { 0,0 }))
 			{
-				if (Sharpenertemp->pos.x < -370)
+				if (Sharpenertemp->boundingBox.max.x >= Walltemp->GetWallBoundingBox(j).min.x && right == 1)
 				{
-					Sharpenertemp->pos.x = -370;
+					Sharpenertemp->pos.x = (Walltemp->GetWallBoundingBox(j).min.x - 40);
+				}
+				else if (Sharpenertemp->boundingBox.min.x <= Walltemp->GetWallBoundingBox(j).max.x && left == 1)
+				{
+					Sharpenertemp->pos.x = (Walltemp->GetWallBoundingBox(j).max.x + 40);
+					//printf("collide 2 \n");
 				}
 			}
 		}//End of Wall for loop
@@ -219,9 +224,9 @@ void Sharpener::BoundingBox()
 		AEMtx33Trans(&Transform2, Sharpenertemp->pos.x, Sharpenertemp->pos.y);
 		AEMtx33Concat(&(Sharpenertemp->Transform), &Transform2, &Size);
 
-		Sharpenertemp->boundingBox.min.x = Sharpenertemp->pos.x - Scale / 4;
+		Sharpenertemp->boundingBox.min.x = Sharpenertemp->pos.x - Scale / 3;
 		Sharpenertemp->boundingBox.min.y = Sharpenertemp->pos.y - Scale / 2;
-		Sharpenertemp->boundingBox.max.x = Sharpenertemp->pos.x + Scale / 4;
+		Sharpenertemp->boundingBox.max.x = Sharpenertemp->pos.x + Scale / 3;
 		Sharpenertemp->boundingBox.max.y = Sharpenertemp->pos.y + Scale / 2;
 	}
 
