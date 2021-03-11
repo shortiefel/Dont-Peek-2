@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
@@ -90,6 +90,7 @@
   <ItemGroup>
     <ClCompile Include="src\Collision.cpp" />
     <ClCompile Include="src\Door.cpp" />
+    <ClCompile Include="src\Eraser.cpp" />
     <ClCompile Include="src\GameStateMgr.cpp" />
     <ClCompile Include="src\GameState_DontPeek.cpp" />
     <ClCompile Include="src\Highlighter.cpp" />
@@ -102,6 +103,7 @@
   <ItemGroup>
     <ClInclude Include="src\Collision.h" />
     <ClInclude Include="src\Door.h" />
+    <ClInclude Include="src\Eraser.h" />
     <ClInclude Include="src\GameStateList.h" />
     <ClInclude Include="src\GameStateMgr.h" />
     <ClInclude Include="src\GameState_DontPeek.h" />
@@ -114,6 +116,7 @@
   <ItemGroup>
     <Image Include="..\..\..\..\Desktop\drawings\Sharpener_Animation.png" />
     <ClInclude Include="src\Main.h" />
+    <Image Include="Resources\eraser.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

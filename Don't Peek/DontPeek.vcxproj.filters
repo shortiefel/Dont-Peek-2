@@ -99,6 +99,9 @@
     <ClCompile Include="src\Level 1.cpp">
       <Filter>Source Files\Environment</Filter>
     </ClCompile>
+    <ClCompile Include="src\Eraser.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Collision.h">
@@ -131,6 +134,9 @@
     <ClInclude Include="src\Level 1.h">
       <Filter>Source Files\Environment</Filter>
     </ClInclude>
+    <ClInclude Include="src\Eraser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\Desktop\drawings\Sharpener_Animation.png">
@@ -139,5 +145,8 @@
     <ClInclude Include="src\Main.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <Image Include="Resources\eraser.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
