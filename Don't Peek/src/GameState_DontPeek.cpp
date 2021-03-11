@@ -26,6 +26,7 @@ Technology is prohibited.
 #include "Sharpener.h"
 #include "Eraser.h"
 #include "Highlighter.h"
+#include "Pencil.h"
 #include "Wall.h"
 #include "Level 1.h"
 
@@ -52,6 +53,7 @@ static Door door;
 Player player;
 Sharpener sharpener;
 Eraser eraser;
+static Pencil pencil;
 static Highlighter highlighter;
 Wall wwall;
 
@@ -75,6 +77,7 @@ void GameStateDontPeekLoad(void)
 	sharpener.LoadSharpener();
 	eraser.LoadEraser();
 	highlighter.LoadHighlighter();
+	pencil.LoadPencil();
 	door.LoadDoor();
 	player.Player_Load();
 	
@@ -92,6 +95,7 @@ void GameStateDontPeekInit(void)
 	sharpener.InitSharpener();
 	eraser.InitEraser();
 	highlighter.InitHighlighter();
+	pencil.InitPencil();
 	door.InitDoor();
 	player.Player_Init();
 }
@@ -107,6 +111,7 @@ void GameStateDontPeekUpdate(void)
 	sharpener.UpdateSharpener();
 	eraser.UpdateEraser();
 	highlighter.UpdateHighlighter();
+	pencil.UpdatePencil();
 	door.UpdateDoor();
 	player.Player_Update();
 	//wwall.UpdateWall();
@@ -122,6 +127,7 @@ void GameStateDontPeekDraw(void)
 	Level1_Draw();
 	wwall.DrawWall();
 	highlighter.DrawHighlighter();
+	pencil.DrawPencil();
 	sharpener.DrawSharpener();
 	eraser.DrawEraser();
 	door.DrawDoor();
@@ -157,6 +163,7 @@ void GameStateDontPeekUnload(void)
 	sharpener.UnloadSharpener();
 	eraser.UnloadEraser();
 	highlighter.UnloadHighlighter();
+	pencil.UnloadPencil();
 	door.UnloadDoor();
 	player.Player_Unload();
 }

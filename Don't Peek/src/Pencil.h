@@ -16,3 +16,39 @@ without the prior written consent of DigiPen Institute of
 Technology is prohibited.
 */
 /* End Header **************************************************************************/
+
+#include "Main.h"
+#include "AEVec2.h"
+#include "AEInput.h"
+
+class Pencil
+{
+private:
+	GameObj* pPencil;
+	AEVec2 pos;
+	unsigned long flag;
+	float scaleX;
+	float scaleY;
+	AEMtx33	Transform;
+	AEVec2 vel;
+	AABB boundingBox;
+
+public:
+	void LoadPencil();
+	void InitPencil();
+	void UpdatePencil();
+	void DrawPencil();
+	void UnloadPencil();
+
+	void BoundingBox();
+
+	AABB GetPencilBoundingBox(int i);
+	AEVec2 GetPencilVelocity(int i);
+	AEVec2 GetPencilPosition(int i);
+	void SetPencilPosition(int i, AEVec2 NewPos);
+
+};
+extern Pencil PencilArray[MAX];
+
+int GetPencilNum();
+void SetPencilNum(int Num);

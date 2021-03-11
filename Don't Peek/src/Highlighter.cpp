@@ -169,7 +169,7 @@ int GetHighlighterNum()
 {
 	return HighlighterNum;
 }
-void SetHighlighterrNum(int Num)
+void SetHighlighterNum(int Num)
 {
 	HighlighterNum = Num;
 }

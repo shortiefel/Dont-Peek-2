@@ -76,6 +76,15 @@
     <Filter Include="Source Files\Objects\Eraser\Header">
       <UniqueIdentifier>{82ff8b7f-857f-4e60-85bf-b3231568b1af}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Objects\Pencil">
+      <UniqueIdentifier>{0e830a27-91dc-406f-bf31-654dfa61a511}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects\Pencil\Code">
+      <UniqueIdentifier>{a28c9f4b-59f5-4c51-a1c8-f19066cf5dea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects\Pencil\Header">
+      <UniqueIdentifier>{1c90031b-c2bc-4406-9e23-e63c93793f9a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Collision.cpp">
@@ -111,6 +120,9 @@
     <ClCompile Include="src\Eraser.cpp">
       <Filter>Source Files\Objects\Eraser\Code</Filter>
     </ClCompile>
+    <ClCompile Include="src\Pencil.cpp">
+      <Filter>Source Files\Objects\Pencil\Code</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Collision.h">
@@ -145,6 +157,9 @@
     </ClInclude>
     <ClInclude Include="src\Eraser.h">
       <Filter>Source Files\Objects\Eraser\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pencil.h">
+      <Filter>Source Files\Objects\Pencil\Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

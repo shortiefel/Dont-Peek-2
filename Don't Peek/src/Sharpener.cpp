@@ -95,13 +95,13 @@ void Sharpener::UpdateSharpener()
 		/******************************************************************************/
 		if (CollisionIntersection_RectRect(player.GetBoundingBoxPlayer(), player.GetVelPlayer(), Sharpenertemp->boundingBox, Sharpenertemp->vel))
 		{
-			if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) && AEInputCheckCurr(AEVK_RIGHT))
+			if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) && AEInputCheckCurr(AEVK_RIGHT) && Sharpenertemp->boundingBox.min.x == player.GetBoundingBoxPlayer().max.x )
 			{
 				Sharpenertemp->pos.x += 5;
 				right = 1;
 				left = 0;
 			}
-			if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) && AEInputCheckCurr(AEVK_LEFT))
+			if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) && AEInputCheckCurr(AEVK_LEFT) && Sharpenertemp->boundingBox.max.x == player.GetBoundingBoxPlayer().min.x)
 			{
 				Sharpenertemp->pos.x -= 5;
 				left = 1;
@@ -120,40 +120,48 @@ void Sharpener::UpdateSharpener()
 			Eraser* Erasertemp = EraserArray + j;
 			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, Erasertemp->GetEraserBoundingBox(j), Erasertemp->GetEraserVelocity(j)))
 			{
-				if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) && AEInputCheckCurr(AEVK_RIGHT))
+				if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) && AEInputCheckCurr(AEVK_RIGHT)
+					&& Sharpenertemp->boundingBox.min.x == eraser.GetEraserBoundingBox(j).max.x
+					&& eraser.GetEraserBoundingBox(j).min.x == player.GetBoundingBoxPlayer().max.x)
 				{
-					eraser.SetEraserPosition(j, { pos.x += 5,0 });
+					Sharpenertemp->pos.x += 5;
+					right = 1;
+					left = 0;
 				}
-				if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) && AEInputCheckCurr(AEVK_LEFT))
+				if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) && AEInputCheckCurr(AEVK_LEFT)
+					&& Sharpenertemp->boundingBox.max.x == eraser.GetEraserBoundingBox(j).min.x
+					&& eraser.GetEraserBoundingBox(j).max.x == player.GetBoundingBoxPlayer().min.x)
 				{
-					eraser.SetEraserPosition(j, { pos.x -= 5,0 });
+					Sharpenertemp->pos.x -= 5;
+					left = 1;
+					right = 0;
 				}
 
 			}
 		}//End of Eraser for loop
 
-		///******************************************************************************/
-		///*!
-		//	HIGHLIGHTER
-		//*/
-		///******************************************************************************/
-		//for (int j = 0; j < GetHighlighterNum(); j++)
-		//{
-		//	Highlighter* highlightertemp = HighlighterArray + j;
+		/******************************************************************************/
+		/*!
+			HIGHLIGHTER
+		*/
+		/******************************************************************************/
+		for (int j = 0; j < GetHighlighterNum(); j++)
+		{
+			Highlighter* highlightertemp = HighlighterArray + j;
 
-		//	if (right == 1) {
-		//		if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, highlightertemp->GetHighlighterBoundingBox(j), highlightertemp->GetHighlighterVelocity(j)))
-		//		{
-		//			Sharpenertemp->pos.x += 5;
-		//		}
-		//	}
-		//	else if (left == 1) {
-		//		if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, highlightertemp->GetHighlighterBoundingBox(j), highlightertemp->GetHighlighterVelocity(j)))
-		//		{
-		//			Sharpenertemp->pos.x -= 5;
-		//		}
-		//	}
-		//}//End of Highlighter for loop
+			if (right == 1) {
+				if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, highlightertemp->GetHighlighterBoundingBox(j), highlightertemp->GetHighlighterVelocity(j)))
+				{
+					Sharpenertemp->pos.x += 5;
+				}
+			}
+			else if (left == 1) {
+				if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, highlightertemp->GetHighlighterBoundingBox(j), highlightertemp->GetHighlighterVelocity(j)))
+				{
+					Sharpenertemp->pos.x -= 5;
+				}
+			}
+		}//End of Highlighter for loop
 
 		/******************************************************************************/
 		/*!

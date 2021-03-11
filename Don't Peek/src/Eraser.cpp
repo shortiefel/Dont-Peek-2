@@ -97,13 +97,13 @@ void Eraser::UpdateEraser()
 		/******************************************************************************/
 		if (CollisionIntersection_RectRect(player.GetBoundingBoxPlayer(), player.GetVelPlayer(), Erasertemp->boundingBox, Erasertemp->vel))
 		{
-			if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) && AEInputCheckCurr(AEVK_RIGHT))
+			if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) && AEInputCheckCurr(AEVK_RIGHT) && Erasertemp->boundingBox.min.x == player.GetBoundingBoxPlayer().max.x)
 			{
 				Erasertemp->pos.x += 5;
 				right = 1;
 				left = 0;
 			}
-			if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) && AEInputCheckCurr(AEVK_LEFT))
+			if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) && AEInputCheckCurr(AEVK_LEFT) && Erasertemp->boundingBox.max.x == player.GetBoundingBoxPlayer().min.x)
 			{
 				Erasertemp->pos.x -= 5;
 				left = 1;
@@ -119,43 +119,50 @@ void Eraser::UpdateEraser()
 		for (int j = 0; j < GetSharpenerNum(); j++)
 		{
 			Sharpener* Sharpenertemp = SharpenerArray + j;
-				if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, Sharpenertemp->GetSharpenerBoundingBox(j), Sharpenertemp->GetSharpenerVelocity(j)))
+			if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, Sharpenertemp->GetSharpenerBoundingBox(j), Sharpenertemp->GetSharpenerVelocity(j)))
+			{
+				if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) && AEInputCheckCurr(AEVK_RIGHT)
+					&& Erasertemp->boundingBox.min.x == sharpener.GetSharpenerBoundingBox(j).max.x
+					&& sharpener.GetSharpenerBoundingBox(j).min.x == player.GetBoundingBoxPlayer().max.x)
 				{
-					if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) && AEInputCheckCurr(AEVK_RIGHT))
-					{
-						sharpener.SetSharpenerPosition(j, { pos.x += 5,0 });
-					}
-					if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) && AEInputCheckCurr(AEVK_LEFT))
-					{
-						sharpener.SetSharpenerPosition(j, { pos.x -= 5,0 });
-					}
+					Erasertemp->pos.x += 5;
+					right = 1;
+					left = 0;
 				}
-			
+				if ((AEInputCheckCurr(AEVK_LSHIFT) || AEInputCheckCurr(AEVK_RSHIFT)) && AEInputCheckCurr(AEVK_LEFT) 
+					&& Erasertemp->boundingBox.max.x == sharpener.GetSharpenerBoundingBox(j).min.x
+					&& sharpener.GetSharpenerBoundingBox(j).max.x == player.GetBoundingBoxPlayer().min.x)
+				{
+					Erasertemp->pos.x -= 5;
+					left = 1;
+
+				}
+			}
 
 		}//End of Eraser for loop
 
-		///******************************************************************************/
-		///*!
-		//	HIGHLIGHTER
-		//*/
-		///******************************************************************************/
-		//for (int j = 0; j < GetHighlighterNum(); j++)
-		//{
-		//	Highlighter* highlightertemp = HighlighterArray + j;
+		/******************************************************************************/
+		/*!
+			HIGHLIGHTER
+		*/
+		/******************************************************************************/
+		for (int j = 0; j < GetHighlighterNum(); j++)
+		{
+			Highlighter* highlightertemp = HighlighterArray + j;
 
-		//	if (right == 1) {
-		//		if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, highlightertemp->GetHighlighterBoundingBox(j), highlightertemp->GetHighlighterVelocity(j)))
-		//		{
-		//			Erasertemp->pos.x += 5;
-		//		}
-		//	}
-		//	else if (left == 1) {
-		//		if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, highlightertemp->GetHighlighterBoundingBox(j), highlightertemp->GetHighlighterVelocity(j)))
-		//		{
-		//			Erasertemp->pos.x -= 5;
-		//		}
-		//	}
-		//}//End of Highlighter for loop
+			if (right == 1) {
+				if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, highlightertemp->GetHighlighterBoundingBox(j), highlightertemp->GetHighlighterVelocity(j)))
+				{
+					Erasertemp->pos.x += 5;
+				}
+			}
+			else if (left == 1) {
+				if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, highlightertemp->GetHighlighterBoundingBox(j), highlightertemp->GetHighlighterVelocity(j)))
+				{
+					Erasertemp->pos.x -= 5;
+				}
+			}
+		}//End of Highlighter for loop
 
 
 		/******************************************************************************/

@@ -22,6 +22,7 @@ Technology is prohibited.
 #include"Level 1.h"
 #include "Door.h"
 #include "Sharpener.h"
+#include "Pencil.h"
 #include "Eraser.h"
 #include "Highlighter.h"
 
@@ -30,6 +31,7 @@ static Wall wall[100];
 static Door door;
 static Sharpener sharpener;
 static Eraser eraser;
+static Pencil pencil;
 static Highlighter highlighter;
 
 void Level1_Load()
@@ -77,8 +79,12 @@ void Level1_Init()
 	eraser.SetEraserPosition(0, { -200,0 });
 
 	//Highlighter
-	SetHighlighterrNum(1);
+	SetHighlighterNum(1);
 	highlighter.SetHighlighterPosition(0, { 0,0 });
+
+	//Pencil
+	SetPencilNum(1);
+	pencil.SetPencilPosition(0, { 100,50 });
 
 	//Door
 	SetDoorNum(2);
