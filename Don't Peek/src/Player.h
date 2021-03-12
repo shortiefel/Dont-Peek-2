@@ -53,5 +53,6 @@ public:
 	AABB GetBoundingBoxPlayer() const;
 	AEVec2 GetVelPlayer() const;
 	const Player* GetPlayerObj() const;
+	AEVec2 GetPosPlayer() const;
 };
 extern Player player;

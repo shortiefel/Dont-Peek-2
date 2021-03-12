@@ -27,6 +27,7 @@ Technology is prohibited.
 #include "Highlighter.h"
 #include "Wall.h"
 #include "Level 1.h"
+#include "Camera.h"
 
 
 /******************************************************************************/
@@ -52,6 +53,7 @@ Player player;
 static Sharpener sharpener;
 static Highlighter highlighter;
 Wall wwall;
+Camera camera;
 
 
 /******************************************************************************/
@@ -90,6 +92,7 @@ void GameStateDontPeekInit(void)
 	highlighter.InitHighlighter();
 	door.InitDoor();
 	player.Player_Init();
+	camera.initCamera();
 }
 
 /******************************************************************************/
@@ -105,6 +108,7 @@ void GameStateDontPeekUpdate(void)
 	door.UpdateDoor();
 	player.Player_Update();
 	//wwall.UpdateWall();
+	camera.updateCamera();
 }
 
 /******************************************************************************/

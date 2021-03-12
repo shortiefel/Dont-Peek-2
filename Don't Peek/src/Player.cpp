@@ -230,6 +230,8 @@ void Player::Player_Unload()
 	AEGfxTextureUnload(pPlayer->texture);
 }
 
+
+
 /******************************************************************************/
 /*!
 	Player Gravity
@@ -276,4 +278,9 @@ AEVec2 Player::GetVelPlayer() const
 const Player* Player::GetPlayerObj() const
 {
 	return this;
+}
+
+AEVec2 Player::GetPosPlayer() const
+{
+	return player.pos;
 }
