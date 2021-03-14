@@ -201,10 +201,8 @@ void Player::Player_Update()
 				{
 					GROUND = Walltemp->GetWallBoundingBox(i).max.y + 40;
 					player.pos.y = GROUND ;
-					//BoundingBox();
 				}
 			}
-			
 		}
 	}//End of Wall for loop
 
