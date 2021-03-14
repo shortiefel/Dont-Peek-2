@@ -136,7 +136,7 @@ void Player::Player_Update()
 		SetGravity();
 	}
 
-	//BoundingBox();
+	BoundingBox();
 	/******************************************************************************/
 	/*!
 		SHARPENERS
@@ -159,7 +159,6 @@ void Player::Player_Update()
 	for (int i = 0; i < GetDoorNum(); i++)
 	{
 		Door* Doortemp = DoorArray + i;
-		BoundingBox();
 		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Doortemp->GetDoorBoundingBox(i), Doortemp->GetDoorVelocity(i)))
 		{
 			if (i % 2 == 0)
@@ -200,7 +199,7 @@ void Player::Player_Update()
 			{
 				if (CanJump == false && player.vel.y < 0)
 				{
-					GROUND = Walltemp->GetWallBoundingBox(i).max.y + 50;
+					GROUND = Walltemp->GetWallBoundingBox(i).max.y + 40;
 					player.pos.y = GROUND ;
 					//BoundingBox();
 				}
