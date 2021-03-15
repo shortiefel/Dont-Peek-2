@@ -19,6 +19,7 @@ Technology is prohibited.
 #include "GameState_DontPeek.h"
 #include "Player.h"
 #include "Sharpener.h"
+#include "Eraser.h"
 #include "Door.h"
 #include "Wall.h"
 
@@ -156,6 +157,31 @@ void Player::Player_Update()
 			
 		}
 	}//End of Sharpener for loop
+
+	///******************************************************************************/
+	///*!
+	//	AMELIA TESTING
+	//*/
+	///******************************************************************************/
+	//for (int i = 0; i < GetSharpenerNum(); i++)
+	//{
+	//	Sharpener* Sharpenertemp = SharpenerArray + i;
+	//	for (int j = 0; j < GetEraserNum(); j++)
+	//	{
+	//		Eraser* Erasertemp = EraserArray + j;
+
+	//		if (CollisionIntersection_RectRect(eraser.GetEraserBoundingBox(j), eraser.GetEraserVelocity(j), sharpener.GetSharpenerBoundingBox(i), sharpener.GetSharpenerVelocity(i)))
+	//		{
+	//			if (AEInputCheckCurr(AEVK_LSHIFT))
+	//			{
+	//				printf("test");
+	//				player.vel.x = 0;
+	//				player.pos.x += player.vel.x;
+	//			}
+	//		}
+	//	}
+	//}//End of Sharpener for loop
+
 	/******************************************************************************/
 	/*!
 		DOORS

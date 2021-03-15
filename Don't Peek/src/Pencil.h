@@ -32,6 +32,7 @@ private:
 	AEMtx33	Transform;
 	AEVec2 vel;
 	AABB boundingBox;
+	bool collisionFlag;
 
 public:
 	void LoadPencil();

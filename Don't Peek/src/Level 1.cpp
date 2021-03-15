@@ -72,19 +72,19 @@ void Level1_Init()
 
 	//Sharpener
 	SetSharpenerNum(1);
-	sharpener.SetSharpenerPosition(0, { -100,0 });
+	sharpener.SetSharpenerPosition(0, { -50,0 });
 
 	//Eraser
 	SetEraserNum(1);
-	eraser.SetEraserPosition(0, { -200,0 });
+	eraser.SetEraserPosition(0, { -140,0 });
 
 	//Highlighter
 	SetHighlighterNum(1);
-	highlighter.SetHighlighterPosition(0, { 0,0 });
+	highlighter.SetHighlighterPosition(0, { 30,0 });
 
 	//Pencil
 	SetPencilNum(1);
-	pencil.SetPencilPosition(0, { 100,50 });
+	pencil.SetPencilPosition(0, { 130,50 });
 
 	//Door
 	SetDoorNum(2);

@@ -65,6 +65,7 @@ void Pencil::InitPencil() {
 
 		Penciltemp->flag = FLAG_ACTIVE;
 		Penciltemp->vel = { 0,0 };
+		Penciltemp->collisionFlag = 1;
 	}
 }
 
@@ -92,7 +93,8 @@ void Pencil::UpdatePencil()
 
 			if (CollisionIntersection_RectRect(Penciltemp->boundingBox, Penciltemp->vel, Erasertemp->GetEraserBoundingBox(j), Erasertemp->GetEraserVelocity(j)))
 			{
-				printf("remove the pencil pls");
+				Penciltemp->collisionFlag = 0;
+
 			}
 
 		}//End of Eraser for loop
@@ -113,6 +115,11 @@ void Pencil::DrawPencil()
 	for (int i = 0; i < PencilNum; i++)
 	{
 		Pencil* Penciltemp = PencilArray + i;
+		if (Penciltemp->collisionFlag== 0)
+		{
+			continue;
+		}
+
 		AEGfxSetPosition(Penciltemp->pos.x, Penciltemp->pos.y);
 		AEGfxSetTransform(Penciltemp->Transform.m);
 		//AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
