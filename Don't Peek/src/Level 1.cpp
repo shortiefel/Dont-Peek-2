@@ -32,7 +32,7 @@ static Highlighter highlighter;
 void Level1_Load()
 {
 	bg.Bgpos= {350.f,-200.f };
-	bg.Bgscale = { 1760.f,1090.f };
+	bg.Bgscale = { 1.5f* 1760.f, 1.5f *1090.f };
 
 	bg.pBg = sGameObjList + sGameObjNum++;
 	bg.pBg->texture = AEGfxTextureLoad("Resources/Background.png");

@@ -124,6 +124,9 @@ void Player::Player_Update()
 		//Position.y += Velocity.y * 4;
 		player.vel.y = 5.f;
 		//printf("PosY: %f, %f\n", pos.x, pos.y);
+
+		
+
 	}
 	if (player.pos.y < GROUND)
 	{
@@ -131,7 +134,8 @@ void Player::Player_Update()
 		CanJump = true;
 		player.vel.y = 0;
 	}
-	else {
+	else 
+	{
 
 		SetGravity();
 	}
@@ -297,4 +301,9 @@ const Player* Player::GetPlayerObj() const
 AEVec2 Player::GetPosPlayer() const
 {
 	return player.pos;
+}
+
+bool Player::GetCanJump()
+{
+	return true;
 }

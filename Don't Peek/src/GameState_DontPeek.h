@@ -17,6 +17,8 @@ const unsigned int	MAX = 10;
 //const float			MAX_SPEED = 60.0f;
 const float			SPEED = 5.0f;
 
+const f32			WORLD_SCALE_X = 40;
+const f32			WORLD_SCALE_Y = 50;
 
 enum TYPE
 {

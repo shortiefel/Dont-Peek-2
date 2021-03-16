@@ -1,15 +1,2 @@
-﻿  Camera.cpp
-  Collision.cpp
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(146,34): warning C4100: 'vel2': unreferenced formal parameter
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(145,73): warning C4100: 'vel1': unreferenced formal parameter
-  Door.cpp
-  GameStateMgr.cpp
-  GameState_DontPeek.cpp
-  Highlighter.cpp
-  Level 1.cpp
-  Main.cpp
-  Player.cpp
-  Sharpener.cpp
-  Wall.cpp
-  Generating Code...
+﻿  Level 1.cpp
   DontPeek.vcxproj -> C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe

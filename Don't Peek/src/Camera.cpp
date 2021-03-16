@@ -7,8 +7,6 @@
 	Classes & Objects
 */
 /******************************************************************************/
-Player player2;
-
 
 /******************************************************************************/
 /*!
@@ -17,7 +15,10 @@ Player player2;
 /******************************************************************************/
 void Camera::initCamera()
 {
-	AEGfxSetCamPosition(player2.GetPosPlayer().x, player2.GetPosPlayer().y);
+	/*if (player.GetPosPlayer().x > (f32)AEGetWindowHeight() / 2)
+	{
+		if (player.GetPosPlayer().y)
+	}*/
 }
 
 /******************************************************************************/
@@ -27,9 +28,8 @@ void Camera::initCamera()
 /******************************************************************************/
 void Camera::updateCamera()
 {
-	AEGfxSetCamPosition(player2.GetPosPlayer().x, player2.GetPosPlayer().y);
+	AEGfxSetCamPosition(player.GetPosPlayer().x, player.GetPosPlayer().y);
 }
-
 /******************************************************************************/
 /*!
 	Camera Exit
@@ -38,3 +38,4 @@ void Camera::updateCamera()
 void Camera::exitCamera()
 {
 }
+ 

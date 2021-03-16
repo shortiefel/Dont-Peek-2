@@ -102,14 +102,17 @@ void GameStateDontPeekInit(void)
 /******************************************************************************/
 void GameStateDontPeekUpdate(void)
 {
+	
 	Level1_Update();
 	sharpener.UpdateSharpener();
 	highlighter.UpdateHighlighter();
 	door.UpdateDoor();
+	wwall.UpdateWall();
 	player.Player_Update();
-	//wwall.UpdateWall();
 	camera.updateCamera();
+	
 }
+
 
 /******************************************************************************/
 /*!
@@ -119,11 +122,12 @@ void GameStateDontPeekUpdate(void)
 void GameStateDontPeekDraw(void)
 {
 	Level1_Draw();
+	player.Player_Draw();
 	wwall.DrawWall();
 	highlighter.DrawHighlighter();
 	sharpener.DrawSharpener();
 	door.DrawDoor();
-	player.Player_Draw();
+	
 }
 
 /******************************************************************************/
