@@ -99,6 +99,9 @@
     <ClCompile Include="src\Level 1.cpp">
       <Filter>Source Files\Environment</Filter>
     </ClCompile>
+    <ClCompile Include="src\Menu.cpp">
+      <Filter>Source Files\Levels\Code</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Collision.h">
@@ -130,6 +133,9 @@
     </ClInclude>
     <ClInclude Include="src\Level 1.h">
       <Filter>Source Files\Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Menu.h">
+      <Filter>Source Files\Levels\Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
