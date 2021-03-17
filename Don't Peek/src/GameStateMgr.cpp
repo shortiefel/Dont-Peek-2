@@ -62,6 +62,11 @@ void GameStateMgrUpdate()
 		GameStateFree = GameStateDontPeekFree;
 		GameStateUnload = GameStateDontPeekUnload;
 		break;
+	case GS_MENU:
+		//to fill in
+
+	case GS_TUTORIAL:
+		//to fill in
 
 		//case GS_RESTART:
 			//GameStateInit = GameStateDontPeekInit;
