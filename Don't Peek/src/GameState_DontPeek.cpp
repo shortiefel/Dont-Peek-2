@@ -53,7 +53,7 @@ static Door door;
 Player player;
 Sharpener sharpener;
 Eraser eraser;
-static Pencil pencil;
+Pencil pencil;
 static Highlighter highlighter;
 Wall wwall;
 
