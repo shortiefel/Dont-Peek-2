@@ -135,11 +135,15 @@ void Sharpener::UpdateSharpener()
 				}
 				else
 				{
-					if (right == 1 && (eraser.GetEraserBoundingBox(j).min.x == Sharpenertemp->boundingBox.max.x) && (Sharpenertemp->boundingBox.min.x == player.GetBoundingBoxPlayer().max.x))
+					if (right == 1 
+						&& ((eraser.GetEraserBoundingBox(j).min.x <= Sharpenertemp->boundingBox.max.x) &&(Sharpenertemp->boundingBox.min.x < eraser.GetEraserBoundingBox(j).max.x))
+						&& (Sharpenertemp->boundingBox.min.x == player.GetBoundingBoxPlayer().max.x))
 					{
 						Sharpenertemp->vel.x = 0;
 					}
-					else if (left == 1 && (eraser.GetEraserBoundingBox(j).max.x == Sharpenertemp->boundingBox.min.x) && (Sharpenertemp->boundingBox.max.x == player.GetBoundingBoxPlayer().min.x))
+					else if (left == 1 
+						&& ((eraser.GetEraserBoundingBox(j).max.x >= Sharpenertemp->boundingBox.min.x) &&(eraser.GetEraserBoundingBox(j).min.x < Sharpenertemp->boundingBox.max.x))
+						&& (Sharpenertemp->boundingBox.max.x == player.GetBoundingBoxPlayer().min.x))
 					{
 						Sharpenertemp->vel.x = 0;
 					}
