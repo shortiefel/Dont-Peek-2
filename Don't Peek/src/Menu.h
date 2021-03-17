@@ -46,9 +46,9 @@ struct Button
 	AEVec2 pos;
 	AEVec2 scale;
 	AEMtx33	transform;	// object transformation matrix
-	GameObj* pObj;
+	GameObj* pButton;
+	AABB boundingBox;
 };
-
 
 void MenuLoad();
 void MenuInit();
@@ -56,3 +56,5 @@ void MenuUpdate();
 void MenuDraw();
 void MenuFree();
 void MenuUnload();
+
+void BoundingBox();

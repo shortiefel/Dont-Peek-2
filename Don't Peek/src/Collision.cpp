@@ -145,7 +145,7 @@ bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1,
 bool CollisionIntersection_PointRect(const AEVec2& point, const AEVec2& vel1,
 	const AABB& Rect, const AEVec2& vel2)
 {
-	if ((point.x < Rect.min.x || point.x > Rect.max.x) && (point.y < Rect.min.y || point.y > Rect.min.y))
+	if ((point.x < Rect.min.x || point.x > Rect.max.x) && (point.y < Rect.min.y || point.y > Rect.max.y))
 	{
 		return 0;
 	}

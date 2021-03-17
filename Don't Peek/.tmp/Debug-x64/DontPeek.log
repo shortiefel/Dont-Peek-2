@@ -1,2 +1,6 @@
 ﻿  Menu.cpp
+C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\Don't Peek\src\Menu.cpp(158,7): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\Don't Peek\src\Menu.cpp(162,10): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\Don't Peek\src\Menu.cpp(166,7): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\Don't Peek\src\Menu.cpp(170,10): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   DontPeek.vcxproj -> C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\Don't Peek\bin\Debug-x64\DontPeek.exe
