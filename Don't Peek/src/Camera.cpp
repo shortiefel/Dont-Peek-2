@@ -25,10 +25,7 @@ void Camera::initCamera()
 /******************************************************************************/
 void Camera::updateCamera()
 {
-	printf("minX %i \n", MinX);
-	printf("minY %i \n", MinY);
-	printf("maxX %i \n", MaxX);
-	printf("maxy %i \n", MinY);
+	AEGfxSetCamPosition(player.GetPosPlayer().x, player.GetPosPlayer().y);
 
 
 }
