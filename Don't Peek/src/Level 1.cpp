@@ -76,15 +76,15 @@ void Level1_Init()
 
 	//Eraser
 	SetEraserNum(1);
-	eraser.SetEraserPosition(0, { -140,0 });
+	eraser.SetEraserPosition(0, { -180,0 });
 
 	//Highlighter
 	SetHighlighterNum(1);
-	highlighter.SetHighlighterPosition(0, { 30,0 });
+	highlighter.SetHighlighterPosition(0, { 50,0 });
 
 	//Pencil
 	SetPencilNum(1);
-	pencil.SetPencilPosition(0, { 130,50 });
+	pencil.SetPencilPosition(0, { 150,50 });
 
 	//Door
 	SetDoorNum(2);
