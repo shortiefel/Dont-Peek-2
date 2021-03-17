@@ -20,6 +20,12 @@ const float			SPEED = 5.0f;
 const f32			WORLD_SCALE_X = 40;
 const f32			WORLD_SCALE_Y = 50;
 
+////camera testing
+//extern int CameraMinX = -400;
+//extern int CameraMinY = -100;
+//extern int CameraMaxX = 400;
+//extern int CameraMaxY = 100;
+
 enum TYPE
 {
 	// list of game object types
@@ -71,7 +77,7 @@ struct GameObjInst
 
 /******************************************************************************/
 /*!
-	STATIC VARIABLES
+	EXTERN VARIABLES / FUNCTIONS
 */
 /******************************************************************************/
 // list of original object
@@ -84,6 +90,10 @@ extern unsigned long		sGameObjInstNum;
 GameObjInst* gameObjInstCreate(unsigned long type, float scale,
 	AEVec2* pPos, AEVec2* pVel, float dir);
 void				gameObjInstDestroy(GameObjInst* pInst);
+
+
+
+
 
 
 

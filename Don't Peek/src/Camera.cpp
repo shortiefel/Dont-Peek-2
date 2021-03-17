@@ -15,10 +15,7 @@
 /******************************************************************************/
 void Camera::initCamera()
 {
-	/*if (player.GetPosPlayer().x > (f32)AEGetWindowHeight() / 2)
-	{
-		if (player.GetPosPlayer().y)
-	}*/
+	
 }
 
 /******************************************************************************/
@@ -28,7 +25,12 @@ void Camera::initCamera()
 /******************************************************************************/
 void Camera::updateCamera()
 {
-	AEGfxSetCamPosition(player.GetPosPlayer().x, player.GetPosPlayer().y);
+	printf("minX %i \n", MinX);
+	printf("minY %i \n", MinY);
+	printf("maxX %i \n", MaxX);
+	printf("maxy %i \n", MinY);
+
+
 }
 /******************************************************************************/
 /*!
@@ -38,4 +40,6 @@ void Camera::updateCamera()
 void Camera::exitCamera()
 {
 }
+
+
  

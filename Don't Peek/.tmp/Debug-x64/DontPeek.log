@@ -1,4 +1,12 @@
-﻿  GameStateMgr.cpp
-  Main.cpp
+﻿  Camera.cpp
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Camera.h(12,28): warning C4244: 'initializing': conversion from 'f32' to 'int', possible loss of data
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Camera.h(13,28): warning C4244: 'initializing': conversion from 'f32' to 'int', possible loss of data
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Camera.h(14,28): warning C4244: 'initializing': conversion from 'f32' to 'int', possible loss of data
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Camera.h(15,28): warning C4244: 'initializing': conversion from 'f32' to 'int', possible loss of data
+  GameState_DontPeek.cpp
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Camera.h(12,28): warning C4244: 'initializing': conversion from 'f32' to 'int', possible loss of data
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Camera.h(13,28): warning C4244: 'initializing': conversion from 'f32' to 'int', possible loss of data
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Camera.h(14,28): warning C4244: 'initializing': conversion from 'f32' to 'int', possible loss of data
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Camera.h(15,28): warning C4244: 'initializing': conversion from 'f32' to 'int', possible loss of data
   Generating Code...
   DontPeek.vcxproj -> C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe
