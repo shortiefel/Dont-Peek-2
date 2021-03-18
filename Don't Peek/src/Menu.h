@@ -39,6 +39,7 @@ struct Menu
 	AEVec2 scale;
 	AEMtx33	transform;	// object transformation matrix
 	GameObj* pObj;
+	//AEVec2 cursorPos;
 };
 
 struct Button

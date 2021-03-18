@@ -33,6 +33,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 		//if game is not restarting, load gamestate
 		if (gGameStateCurr != GS_RESTART)
 		{
+			
 			GameStateMgrUpdate();
 			GameStateLoad();
 		}

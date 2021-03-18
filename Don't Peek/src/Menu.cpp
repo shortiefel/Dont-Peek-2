@@ -25,6 +25,11 @@ Technology is prohibited.
 
 static Menu menu;
 Button button[4];
+int x, y;
+int SetWidthCursor = 1000 / 2;
+int SetHeightCursor = 700 / 2;
+
+
 void MenuLoad()
 {
 	//MENU
@@ -145,48 +150,53 @@ void MenuLoad()
 }
 void MenuInit()
 {
-
+	
 }
 void MenuUpdate()
 {
-	int x, y;
-	float X, Y;
+	
 	BoundingBox();
 	AEInputGetCursorPosition(&x, &y);
-	if (x < 500)
+	if (x >= 0 && y >= 0)
 	{
-		X = x;
+		x = x - SetWidthCursor;
+		y -= SetHeightCursor;
+		y *= -1;
 	}
-	else
-	{
-		X = -x + 500;
-	}
-	if (y < 350)
-	{
-		Y = y;
-	}
-	else
-	{
-		Y = -y + 350;
-	}
+		
+		
+	
+
+
 	if (AEInputCheckTriggered(AEVK_LBUTTON))
 	{
-		if (CollisionIntersection_PointRect({ X, Y }, { 0,0 }, button[0].boundingBox, { 0,0 }))
+		printf("Mouse: %d::%d\n", x, y);
+
+		
+		if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[0].boundingBox, { 0,0 }))
 		{
-			//gGameStateCurr = GS_DONT_PEEK;
-			printf("BUTTON PLAY \n");
+			if (AEInputUpdate)
+			{
+				gGameStateNext = GS_DONT_PEEK;
+				printf("BUTTON PLAY \n");
+				printf("BBMin: %f::%f\n", button[0].boundingBox.min.x, button[0].boundingBox.min.y);
+				printf("BBMax: %f::%f\n", button[0].boundingBox.max.x, button[0].boundingBox.max.y);
+			}
+			
 		}
-		else if (CollisionIntersection_PointRect({ X, Y }, { 0,0 }, button[1].boundingBox, { 0,0 }))
+		else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[1].boundingBox, { 0,0 }))
 		{
 			//gGameStateCurr = GS_DONT_PEEK;
 			printf("BUTTON LEVEL \n");
+			
 		}
-		else if (CollisionIntersection_PointRect({ X, Y }, { 0,0 }, button[2].boundingBox, { 0,0 }))
+		else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[2].boundingBox, { 0,0 }))
 		{
 			//gGameStateCurr = GS_DONT_PEEK;
 			printf("BUTTON OPTIONS \n");
+			
 		}
-		else if (CollisionIntersection_PointRect({ X, Y }, { 0,0 }, button[3].boundingBox, { 0,0 }))
+		else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[3].boundingBox, { 0,0 }))
 		{
 			//gGameStateCurr = GS_DONT_PEEK;
 			printf("BUTTON CREDITS \n");
@@ -226,10 +236,10 @@ void BoundingBox()
 {
 	for (int i = 0; i < 4; i++)
 	{
-		button[i].boundingBox.min.x = button[i].pos.x - button[i].scale.x / 4;
-		button[i].boundingBox.min.y = button[i].pos.y - button[i].scale.y / 8;
-		button[i].boundingBox.max.x = button[i].pos.x + button[i].scale.x / 4;
-		button[i].boundingBox.max.y = button[i].pos.y + button[i].scale.y / 8;
+		button[i].boundingBox.min.x = button[i].pos.x - button[i].scale.x / 2;
+		button[i].boundingBox.min.y = button[i].pos.y - button[i].scale.y / 2;
+		button[i].boundingBox.max.x = button[i].pos.x + button[i].scale.x / 2;
+		button[i].boundingBox.max.y = button[i].pos.y + button[i].scale.y / 2;
 	}
 		
 }
