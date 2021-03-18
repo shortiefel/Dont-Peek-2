@@ -1,2 +1,27 @@
-﻿  Player.cpp
-  DontPeek.vcxproj -> C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe
+﻿  Collision.cpp
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(146,34): warning C4100: 'vel2': unreferenced formal parameter
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(145,73): warning C4100: 'vel1': unreferenced formal parameter
+  Door.cpp
+  GameStateMgr.cpp
+  GameState_DontPeek.cpp
+  Highlighter.cpp
+  Level 1.cpp
+  Main.cpp
+  Menu.cpp
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Menu.cpp(178,8): warning C4551: function call missing argument list
+  Music.cpp
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Music.cpp(32,8): warning C4189: 'bIsPlaying': local variable is initialized but not referenced
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\fmod_errors.h(20,20): warning C4505: 'FMOD_ErrorString': unreferenced local function has been removed
+  Player.cpp
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Player.cpp(145,18): warning C4553: '==': result of expression not used; did you intend '='?
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Player.cpp(148,18): warning C4553: '==': result of expression not used; did you intend '='?
+  Sharpener.cpp
+  Wall.cpp
+  Generating Code...
+Music.obj : error LNK2019: unresolved external symbol "public: static enum FMOD_RESULT __cdecl FMOD::Studio::System::create(class FMOD::Studio::System * *,unsigned int)" (?create@System@Studio@FMOD@@SA?AW4FMOD_RESULT@@PEAPEAV123@I@Z) referenced in function "public: __cdecl fmodapi::fmodapi(void)" (??0fmodapi@@QEAA@XZ)
+Music.obj : error LNK2019: unresolved external symbol "public: enum FMOD_RESULT __cdecl FMOD::Studio::System::initialize(int,unsigned int,unsigned int,void *)" (?initialize@System@Studio@FMOD@@QEAA?AW4FMOD_RESULT@@HIIPEAX@Z) referenced in function "public: __cdecl fmodapi::fmodapi(void)" (??0fmodapi@@QEAA@XZ)
+Music.obj : error LNK2019: unresolved external symbol "public: enum FMOD_RESULT __cdecl FMOD::Studio::System::release(void)" (?release@System@Studio@FMOD@@QEAA?AW4FMOD_RESULT@@XZ) referenced in function "public: __cdecl fmodapi::~fmodapi(void)" (??1fmodapi@@QEAA@XZ)
+Music.obj : error LNK2019: unresolved external symbol "public: enum FMOD_RESULT __cdecl FMOD::Studio::System::getCoreSystem(class FMOD::System * *)const " (?getCoreSystem@System@Studio@FMOD@@QEBA?AW4FMOD_RESULT@@PEAPEAV13@@Z) referenced in function "public: __cdecl fmodapi::fmodapi(void)" (??0fmodapi@@QEAA@XZ)
+Music.obj : error LNK2019: unresolved external symbol "public: enum FMOD_RESULT __cdecl FMOD::Studio::System::unloadAll(void)" (?unloadAll@System@Studio@FMOD@@QEAA?AW4FMOD_RESULT@@XZ) referenced in function "public: __cdecl fmodapi::~fmodapi(void)" (??1fmodapi@@QEAA@XZ)
+Music.obj : error LNK2019: unresolved external symbol "public: static int __cdecl AudioEngine::ErrorCheck(enum FMOD_RESULT)" (?ErrorCheck@AudioEngine@@SAHW4FMOD_RESULT@@@Z) referenced in function "public: __cdecl fmodapi::fmodapi(void)" (??0fmodapi@@QEAA@XZ)
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\\bin\Debug-x64\DontPeek.exe : fatal error LNK1120: 6 unresolved externals

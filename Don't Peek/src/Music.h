@@ -7,9 +7,11 @@
 #include <map>
 #include <math.h>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
+//creates a FMOD studio and Low-Level System
 struct fmodapi
 {
 	fmodapi(); //ctor
@@ -42,9 +44,22 @@ public:
 	static int ErrorCheck(FMOD_RESULT result); //memory checking
 
 	//flags passed into studio loadbank commands to control bank load behaviour
-	void LoadBank(const string& strBankName, FMOD_STUDIO_LOAD_BANK_FLAGS flags); 
-	void LoadEvent(const string& strEventName);
-	void LoadSound(const string& strSoundName, bool b)
+	void LoadBank(const string& BankName, FMOD_STUDIO_LOAD_BANK_FLAGS flags); 
+	void LoadEvent(const string& EventName);
+	void LoadSound(const string& SoundName, bool b3d = true, bool blooping = false, bool bStream = false);
+	void UnLoadSound(const string& SoundName);
+	void PlaySound(const string& SoundName, float fVolumedB = 0.0f);
+	void PlayEvent(const string& EventName);
+	void StopChannel(int ChannelID);
+	void StopEvent(const string& EventNAme, bool bImmediate = false);
+	void GetEventParameter(const string& EventName, const string& EventParameter, float* parameter);
+	void SetEventParameter(const string& EventName, const string& ParameterName, float fValue);
+	void StopAllChannels();
+	void SetChannelVolume(int ChannelID, float fVolumedB);
+	bool IsPlaying(int ChannelID) const;
+	bool IsEventPlaying(const string& EventName) const;
+	float dbToVolume(float db);
+	float VolumeToDB(float volume);
 };
 
 

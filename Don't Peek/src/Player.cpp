@@ -21,7 +21,8 @@ Technology is prohibited.
 #include "Sharpener.h"
 #include "Door.h"
 #include "Wall.h"
-
+#include "GameStateMgr.h"
+#include "Menu.h"
 
 
 /******************************************************************************/
@@ -127,7 +128,7 @@ void Player::Player_Update()
 		player.vel.y = 100.f;
 		//printf("PosY: %f, %f\n", pos.x, pos.y);
 	}
-	else if (player.pos.y < GROUND || )
+	else if (player.pos.y < GROUND)
 	{
 		printf("ground \n");
 		player.pos.y = GROUND;
@@ -139,6 +140,12 @@ void Player::Player_Update()
 
 		SetGravity();
 	}
+
+	if (AEInputCheckCurr(AEVK_B))
+		gGameStateNext == GS_MENU;
+
+	if (AEInputCheckCurr(AEVK_Q))
+		gGameStateNext == GS_QUIT;
 
 	BoundingBox();
 	/******************************************************************************/
