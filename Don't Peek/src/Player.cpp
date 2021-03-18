@@ -159,35 +159,9 @@ void Player::Player_Update()
 		}
 	}//End of Sharpener for loop
 
-	/******************************************************************************/
-	/*!
-		AMELIA TESTING
-	*/
-	/******************************************************************************/
-	//for (int i = 0; i < GetSharpenerNum(); i++)
-	//{
-	//	Sharpener* Sharpenertemp = SharpenerArray + i;
-	//	for (int j = 0; j < GetEraserNum(); j++)
-	//	{
-	//		Eraser* Erasertemp = EraserArray + j;
-
-	//		if (CollisionIntersection_RectRect(eraser.GetEraserBoundingBox(j), eraser.GetEraserVelocity(j), sharpener.GetSharpenerBoundingBox(i), sharpener.GetSharpenerVelocity(i)))
-	//		{
-	//			if (sharpener.GetSharpenerBoundingBox(i).min.x == eraser.GetEraserBoundingBox(j).max.x)
-	//			{
-	//				if ((player.boundingBox.max.x == eraser.GetEraserBoundingBox(j).min.x) || (player.boundingBox.min.x == sharpener.GetSharpenerBoundingBox(i).max.x))
-	//				{
-	//					printf("check-------------------------");
-	//					player.vel.x = 0;
-	//					player.pos.x += player.vel.x;
-	//				}
-	//			}
-	//		}
-	//	}
-	//}//End of Sharpener for loop
 	///******************************************************************************/
 	///*!
-	//	PENCIL
+	//	AMELIA TESTING
 	//*/
 	///******************************************************************************/
 	//for (int j = 0; j < GetPencilNum(); j++)
@@ -198,6 +172,7 @@ void Player::Player_Update()
 	//		pos.x += 0;
 	//	}
 	//}//End of Pencil for loop
+
 
 	/******************************************************************************/
 	/*!
