@@ -24,11 +24,6 @@ Technology is prohibited.
 #include "Main.h"
 #include "GameState_DontPeek.h"
 
-enum wallType
-{
-	WALL,
-	PLATFORM
-};
 
 class Wall
 {
@@ -39,7 +34,6 @@ private:
 	float Wallscale;
 	AEMtx33	transform;	// object transformation matrix
 	AABB boundingBox;
-	wallType Walltype;
 	//AEGfxVertexList* wMesh;
 public:
 
@@ -50,8 +44,7 @@ public:
 	void FreeWall();
 	void UnloadWall();
 
-	void CreateWall(AEVec2 pos, AEVec2 dir, int number, float scale, wallType type);
-	wallType GetType(int i);
+	void CreateWall(AEVec2 pos, AEVec2 dir, int number, float scale);
 
 	AABB GetWallBoundingBox(int i);
 };

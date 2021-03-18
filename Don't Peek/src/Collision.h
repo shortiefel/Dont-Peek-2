@@ -34,9 +34,3 @@ struct AABB
 bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1,
 	const AABB& aabb2, const AEVec2& vel2);
 //void BoundingBox();
-
-//bool CollisionIntersection_PointLine(const AEVec2& point, const AEVec2& vel1,
-	//const AEVec2& line, const AEVec2& vel2);
-
-bool CollisionIntersection_PointRect(const AEVec2& point, const AEVec2& vel1,
-	const AABB& Rect, const AEVec2& vel2);

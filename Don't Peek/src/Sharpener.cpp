@@ -88,7 +88,6 @@ void Sharpener::UpdateSharpener()
 	for (int i = 0; i < SharpenerNum; i++)
 	{
 		Sharpener* Sharpenertemp = SharpenerArray + i;
-		BoundingBox();
 		/******************************************************************************/
 		/*!
 			PLAYER
