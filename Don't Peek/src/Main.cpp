@@ -54,9 +54,11 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 			//checking if application is being forced to quit
 			if ((AESysDoesWindowExist() == false || AEInputCheckTriggered(AEVK_ESCAPE)))
 			{
-				g_dt = (f32)AEFrameRateControllerGetFrameTime();
-				g_appTime += g_dt;
+				gGameStateNext = GS_QUIT;
 			}
+
+			g_dt = (f32)AEFrameRateControllerGetFrameTime();
+			g_appTime += g_dt;
 		}
 
 		GameStateFree();

@@ -15,7 +15,7 @@ const unsigned int	MAX = 10;
 //const float			PLAYER_ACCEL_BACKWARD = 40.f;
 //const float			PLAYER_SPEED = 100.0f;
 //const float			MAX_SPEED = 60.0f;
-const float			SPEED = 5.0f;
+const float			SPEED = 500.f;
 
 
 enum TYPE
