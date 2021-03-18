@@ -148,7 +148,17 @@ void Player::Player_Update()
 		//BoundingBox();
 		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Sharpenertemp->GetSharpenerBoundingBox(i), Sharpenertemp->GetSharpenerVelocity(i)))
 		{
-			
+			if (CanJump == false  && player.vel.y < 0)
+			{
+				GROUND = Sharpenertemp->GetSharpenerBoundingBox(i).max.y + 20;
+				player.pos.y = GROUND;
+			}
+			SharpenerCollision = true;
+		}
+		else if (PlatformCollision = false)
+		{
+			GROUND = 0;
+			SharpenerCollision = false;
 		}
 	}//End of Sharpener for loop
 	/******************************************************************************/
@@ -172,6 +182,7 @@ void Player::Player_Update()
 				player.pos.x += -50;
 			}
 		}
+
 	}//End of Door for loop
 	/******************************************************************************/
 	/*!
@@ -189,6 +200,7 @@ void Player::Player_Update()
 				if (player.pos.x >= Walltemp->GetWallBoundingBox(i).min.x)
 				{
 					player.pos.x = (Walltemp->GetWallBoundingBox(i).max.x - 50);
+
 				}
 				else if (player.pos.x <= Walltemp->GetWallBoundingBox(i).max.x)
 				{
@@ -202,6 +214,14 @@ void Player::Player_Update()
 					GROUND = Walltemp->GetWallBoundingBox(i).max.y + 40;
 					player.pos.y = GROUND ;
 				}
+			}
+		}
+		else
+		{
+			if (SharpenerCollision == false)
+			{
+				GROUND = 0;
+				PlatformCollision = false;
 			}
 		}
 	}//End of Wall for loop

@@ -23,7 +23,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 
 	//MISSING GAME TIME LOOP----
 
-	GameStateMgrInit(GS_MENU);
+	GameStateMgrInit(GS_DONT_PEEK);
 	
 	while (gGameStateCurr != GS_QUIT)
 	{
