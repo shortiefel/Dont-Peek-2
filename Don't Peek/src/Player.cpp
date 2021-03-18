@@ -80,7 +80,7 @@ void Player::Player_Init()
 	Scale = 100.0f;
 	flag = FLAG_ACTIVE;
 	AEVec2Set(&(player.vel), SPEED, SPEED);
-	AEVec2Set(&(player.pos), 80.0f, -10.f);
+	AEVec2Set(&(player.pos), 00.0f, -10.f);
 }
 
 /******************************************************************************/
@@ -107,7 +107,6 @@ void Player::Player_Update()
 			}
 			else
 				player.vel.x = -SPEED;
-
 		}
 
 	}
@@ -128,8 +127,6 @@ void Player::Player_Update()
 		player.vel.y = 5.f;
 		//printf("PosY: %f, %f\n", pos.x, pos.y);
 	}
-
-
 	if (player.pos.y < GROUND)
 	{
 		player.pos.y = GROUND;
@@ -141,9 +138,6 @@ void Player::Player_Update()
 		SetGravity();
 	}
 
-	player.pos.x += player.vel.x;
-	player.pos.y += player.vel.y;
-
 	BoundingBox();
 	/******************************************************************************/
 	/*!
@@ -153,9 +147,20 @@ void Player::Player_Update()
 	for (int i = 0; i < GetSharpenerNum(); i++)
 	{
 		Sharpener* Sharpenertemp = SharpenerArray + i;
+		//BoundingBox();
 		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Sharpenertemp->GetSharpenerBoundingBox(i), Sharpenertemp->GetSharpenerVelocity(i)))
 		{
-			
+			if (CanJump == false  && player.vel.y < 0)
+			{
+				GROUND = Sharpenertemp->GetSharpenerBoundingBox(i).max.y + 20;
+				player.pos.y = GROUND;
+			}
+			SharpenerCollision = true;
+		}
+		else if (PlatformCollision = false)
+		{
+			GROUND = 0;
+			SharpenerCollision = false;
 		}
 	}//End of Sharpener for loop
 
@@ -186,15 +191,16 @@ void Player::Player_Update()
 		{
 			if (i % 2 == 0)
 			{
-				pos = Doortemp->GetDoorPosition(i + 1);
-				pos.x += 50;
+				player.pos = Doortemp->GetDoorPosition(i + 1);
+				player.pos.x += 50;
 			}
 			else
 			{
-				pos = Doortemp->GetDoorPosition(i - 1);
-				pos.x += -50;
+				player.pos = Doortemp->GetDoorPosition(i - 1);
+				player.pos.x += -50;
 			}
 		}
+
 	}//End of Door for loop
 	/******************************************************************************/
 	/*!
@@ -204,15 +210,43 @@ void Player::Player_Update()
 	for (int i = 0; i < Get_NumWalls(); i++)
 	{
 		Wall* Walltemp = Get_WallArr() + i;
+		BoundingBox();
 		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Walltemp->GetWallBoundingBox(i), { 0,0 }))
-		{
-			if (pos.x < -370)
+		{	
+			if (Walltemp->GetType(i) == WALL)
 			{
-				pos.x = -370;
-			}
+				if (player.pos.x >= Walltemp->GetWallBoundingBox(i).min.x)
+				{
+					player.pos.x = (Walltemp->GetWallBoundingBox(i).max.x - 50);
 
+				}
+				else if (player.pos.x <= Walltemp->GetWallBoundingBox(i).max.x)
+				{
+					player.pos.x = (Walltemp->GetWallBoundingBox(i).min.x + 50);
+				}
+			}
+			else if (Walltemp->GetType(i) == PLATFORM)
+			{
+				if (CanJump == false && player.vel.y < 0)
+				{
+					GROUND = Walltemp->GetWallBoundingBox(i).max.y + 40;
+					player.pos.y = GROUND ;
+				}
+			}
+		}
+		else
+		{
+			if (SharpenerCollision == false)
+			{
+				GROUND = 0;
+				PlatformCollision = false;
+			}
 		}
 	}//End of Wall for loop
+
+	player.pos.x += player.vel.x;
+	player.pos.y += player.vel.y;
+
 }
 
 /******************************************************************************/
@@ -267,9 +301,9 @@ void Player::BoundingBox()
 	AEMtx33Trans(&Transform2, pos.x, pos.y);
 	AEMtx33Concat(&(player.Transform), &Transform2, &Size);
 
-	player.boundingBox.min.x = player.pos.x - Scale / 4;
+	player.boundingBox.min.x = player.pos.x - Scale / 5;
 	player.boundingBox.min.y = player.pos.y - Scale / 2;
-	player.boundingBox.max.x = player.pos.x + Scale / 4;
+	player.boundingBox.max.x = player.pos.x + Scale / 5;
 	player.boundingBox.max.y = player.pos.y + Scale / 2;
 }
 

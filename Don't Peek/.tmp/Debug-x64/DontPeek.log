@@ -1,5 +1,3 @@
 ﻿  Player.cpp
-  Sharpener.cpp
-  Wall.cpp
-  Generating Code...
-  DontPeek.vcxproj -> C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe
+C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\Don't Peek\src\Player.cpp(158): warning C4706: assignment within conditional expression
+  DontPeek.vcxproj -> C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\Don't Peek\bin\Debug-x64\DontPeek.exe

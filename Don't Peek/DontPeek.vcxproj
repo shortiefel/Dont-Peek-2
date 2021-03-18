@@ -97,6 +97,7 @@
     <ClCompile Include="src\Level 1.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Pencil.cpp" />
+    <ClCompile Include="src\Menu.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\Sharpener.cpp" />
     <ClCompile Include="src\Wall.cpp" />
@@ -111,6 +112,7 @@
     <ClInclude Include="src\Highlighter.h" />
     <ClInclude Include="src\Level 1.h" />
     <ClInclude Include="src\Pencil.h" />
+    <ClInclude Include="src\Menu.h" />
     <ClInclude Include="src\Player.h" />
     <ClInclude Include="src\Sharpener.h" />
     <ClInclude Include="src\Wall.h" />

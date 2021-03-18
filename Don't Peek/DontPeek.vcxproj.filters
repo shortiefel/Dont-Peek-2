@@ -122,6 +122,8 @@
     </ClCompile>
     <ClCompile Include="src\Pencil.cpp">
       <Filter>Source Files\Objects\Pencil\Code</Filter>
+    <ClCompile Include="src\Menu.cpp">
+      <Filter>Source Files\Levels\Code</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +162,8 @@
     </ClInclude>
     <ClInclude Include="src\Pencil.h">
       <Filter>Source Files\Objects\Pencil\Header</Filter>
+    <ClInclude Include="src\Menu.h">
+      <Filter>Source Files\Levels\Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

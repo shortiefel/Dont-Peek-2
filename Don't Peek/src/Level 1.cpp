@@ -65,10 +65,11 @@ void Level1_Load()
 }
 void Level1_Init()
 {
-	//wall->CreateWall({ -410,-60 }, { 1,0 }, 26, 30.f);
-	wall->CreateWall({ -410,210 }, { 0,-1 }, 9, 30.f);
-	wall->CreateWall({ -410,210 }, { 1,0 }, 26, 30.f);
-	wall->CreateWall({ 340,210 }, { 0,-1 }, 9, 30.f);
+	wall->CreateWall({ -410,-60 }, { 1,0 }, 26, 30.f, PLATFORM);
+	wall->CreateWall({  100, 0 }, { 1,0 }, 5, 30.f, PLATFORM);
+	wall->CreateWall({ -150,210 }, { 0,-1 }, 9, 30.f, WALL);
+	wall->CreateWall({ -410,210 }, { 1,0 }, 26, 30.f, PLATFORM);
+	wall->CreateWall({ 340,210 }, { 0,-1 }, 9, 30.f, WALL);
 
 	//Sharpener
 	SetSharpenerNum(1);
@@ -80,7 +81,7 @@ void Level1_Init()
 
 	//Highlighter
 	SetHighlighterNum(1);
-	highlighter.SetHighlighterPosition(0, { 50,0 });
+	highlighter.SetHighlighterPosition(0, { 100,0 });
 
 	//Pencil
 	SetPencilNum(1);
