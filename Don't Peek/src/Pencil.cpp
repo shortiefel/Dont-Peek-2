@@ -94,7 +94,6 @@ void Pencil::UpdatePencil()
 			if (CollisionIntersection_RectRect(Penciltemp->boundingBox, Penciltemp->vel, Erasertemp->GetEraserBoundingBox(j), Erasertemp->GetEraserVelocity(j)))
 			{
 				Penciltemp->collisionFlag = 0;
-
 			}
 
 		}//End of Eraser for loop
