@@ -88,6 +88,7 @@ void Player::Player_Init()
 /******************************************************************************/
 void Player::Player_Update()
 {
+	GROUND = 0;
 	/******************************************************************************/
 	/*!
 		INPUTS
@@ -148,18 +149,13 @@ void Player::Player_Update()
 		//BoundingBox();
 		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Sharpenertemp->GetSharpenerBoundingBox(i), Sharpenertemp->GetSharpenerVelocity(i)))
 		{
-			if (CanJump == false  && player.vel.y < 0)
+			if (CanJump == false && player.vel.y < 0)
 			{
 				GROUND = Sharpenertemp->GetSharpenerBoundingBox(i).max.y + 20;
 				player.pos.y = GROUND;
 			}
-			SharpenerCollision = true;
 		}
-		else if (PlatformCollision = false)
-		{
-			GROUND = 0;
-			SharpenerCollision = false;
-		}
+		
 	}//End of Sharpener for loop
 	/******************************************************************************/
 	/*!
@@ -195,16 +191,16 @@ void Player::Player_Update()
 		BoundingBox();
 		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Walltemp->GetWallBoundingBox(i), { 0,0 }))
 		{	
+			WallCollision = true;
 			if (Walltemp->GetType(i) == WALL)
 			{
 				if (player.pos.x >= Walltemp->GetWallBoundingBox(i).min.x)
 				{
-					player.pos.x = (Walltemp->GetWallBoundingBox(i).max.x - 50);
-
+					player.pos.x = (Walltemp->GetWallBoundingBox(i).max.x + 30);
 				}
 				else if (player.pos.x <= Walltemp->GetWallBoundingBox(i).max.x)
 				{
-					player.pos.x = (Walltemp->GetWallBoundingBox(i).min.x + 50);
+					player.pos.x = (Walltemp->GetWallBoundingBox(i).min.x - 30);
 				}
 			}
 			else if (Walltemp->GetType(i) == PLATFORM)
@@ -212,20 +208,11 @@ void Player::Player_Update()
 				if (CanJump == false && player.vel.y < 0)
 				{
 					GROUND = Walltemp->GetWallBoundingBox(i).max.y + 40;
-					player.pos.y = GROUND ;
+					player.pos.y = GROUND;
 				}
 			}
 		}
-		else
-		{
-			if (SharpenerCollision == false)
-			{
-				GROUND = 0;
-				PlatformCollision = false;
-			}
-		}
 	}//End of Wall for loop
-
 	player.pos.x += player.vel.x;
 	player.pos.y += player.vel.y;
 
