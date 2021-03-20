@@ -19,6 +19,8 @@ Technology is prohibited.
 #include "GameState_DontPeek.h"
 #include "Player.h"
 #include "Sharpener.h"
+#include "Eraser.h"
+#include "Pencil.h"
 #include "Door.h"
 #include "Wall.h"
 #include "GameStateMgr.h"
@@ -168,6 +170,27 @@ void Player::Player_Update()
 		}
 		
 	}//End of Sharpener for loop
+
+	/******************************************************************************/
+	/*!
+		ERASERS
+	*/
+	/******************************************************************************/
+	for (int i = 0; i < GetSharpenerNum(); i++)
+	{
+		Eraser* Erasertemp = EraserArray + i;
+		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Erasertemp->GetEraserBoundingBox(i), Erasertemp->GetEraserVelocity(i)))
+		{
+			if (player.pos.y >= Erasertemp->GetEraserBoundingBox(i).max.y + 20 && player.vel.y < 0)
+			{
+				player.vel.y = 0;
+				player.pos.y = Erasertemp->GetEraserBoundingBox(i).max.y + 20;
+				CanJump = true;
+			}
+		}
+
+	}//End of Sharpener for loop
+
 	/******************************************************************************/
 	/*!
 		DOORS
@@ -285,9 +308,9 @@ void Player::BoundingBox()
 	AEMtx33Trans(&Transform2, pos.x, pos.y);
 	AEMtx33Concat(&(player.Transform), &Transform2, &Size);
 
-	player.boundingBox.min.x = player.pos.x - Scale / 5;
+	player.boundingBox.min.x = player.pos.x - Scale / 4;// 5;
 	player.boundingBox.min.y = player.pos.y - Scale / 2;
-	player.boundingBox.max.x = player.pos.x + Scale / 5;
+	player.boundingBox.max.x = player.pos.x + Scale / 4;// 5;
 	player.boundingBox.max.y = player.pos.y + Scale / 2;
 }
 

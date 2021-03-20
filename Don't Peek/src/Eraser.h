@@ -23,10 +23,10 @@ Technology is prohibited.
 
 #include "Main.h"
 
-class Sharpener
+class Eraser
 {
 private:
-	GameObj* pSharpener;
+	GameObj* pEraser;
 	AEVec2 pos;
 	unsigned long flag;
 	float Scale;
@@ -35,24 +35,25 @@ private:
 	AABB boundingBox;
 
 public:
-	void LoadSharpener();
-	void InitSharpener();
-	void UpdateSharpener();
-	void DrawSharpener();
-	void UnloadSharpener();
+	void LoadEraser();
+	void InitEraser();
+	void UpdateEraser();
+	void DrawEraser();
+	void UnloadEraser();
 
 	void BoundingBox();
 
-	AABB GetSharpenerBoundingBox(int i);
-	AEVec2 GetSharpenerVelocity(int i);
-	AEVec2 GetSharpenerPosition(int i);
-	void SetSharpenerPosition(int i, AEVec2 NewPos);
-	
+	AABB GetEraserBoundingBox(int i);
+	AEVec2 GetEraserVelocity(int i);
+	AEVec2 GetEraserPosition(int i);
+	void SetEraserPosition(int i, AEVec2 NewPos);
+
 };
-extern Sharpener SharpenerArray[MAX];
+extern Eraser EraserArray[MAX];
 
 
-int GetSharpenerNum();
-void SetSharpenerNum(int Num);
+int GetEraserNum();
+void SetEraserNum(int Num);
 
-extern Sharpener sharpener;
+
+extern Eraser eraser;

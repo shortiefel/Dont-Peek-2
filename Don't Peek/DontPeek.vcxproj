@@ -90,6 +90,7 @@
   <ItemGroup>
     <ClCompile Include="src\Collision.cpp" />
     <ClCompile Include="src\Door.cpp" />
+    <ClCompile Include="src\Eraser.cpp" />
     <ClCompile Include="src\GameStateMgr.cpp" />
     <ClCompile Include="src\GameState_DontPeek.cpp" />
     <ClCompile Include="src\Highlighter.cpp" />
@@ -97,6 +98,7 @@
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Menu.cpp" />
     <ClCompile Include="src\Music.cpp" />
+    <ClCompile Include="src\Pencil.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\Sharpener.cpp" />
     <ClCompile Include="src\Wall.cpp" />
@@ -104,6 +106,7 @@
   <ItemGroup>
     <ClInclude Include="src\Collision.h" />
     <ClInclude Include="src\Door.h" />
+    <ClInclude Include="src\Eraser.h" />
     <ClInclude Include="src\fmod.hpp" />
     <ClInclude Include="src\fmod_android.h" />
     <ClInclude Include="src\fmod_codec.h" />
@@ -122,6 +125,7 @@
     <ClInclude Include="src\Level 1.h" />
     <ClInclude Include="src\Menu.h" />
     <ClInclude Include="src\Music.h" />
+    <ClInclude Include="src\Pencil.h" />
     <ClInclude Include="src\Player.h" />
     <ClInclude Include="src\Sharpener.h" />
     <ClInclude Include="src\Wall.h" />
@@ -129,6 +133,7 @@
   <ItemGroup>
     <Image Include="..\..\..\..\Desktop\drawings\Sharpener_Animation.png" />
     <ClInclude Include="src\Main.h" />
+    <Image Include="Resources\eraser.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
