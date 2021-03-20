@@ -35,6 +35,7 @@ const int Player_Gravity = 8;
 bool Gravity = true;
 float GROUND = 0.f;
 bool Movement = false;
+Wall* wall_player;
 
 /******************************************************************************/
 /*!
@@ -135,6 +136,7 @@ void Player::Player_Update()
 		CanJump = true;
 		player.vel.y = 0;
 	}
+	
 	//else 
 	{
 
@@ -208,10 +210,13 @@ void Player::Player_Update()
 			}
 			else if (Walltemp->GetType(i) == PLATFORM)
 			{
-				if (CanJump == false && player.vel.y < 0)
+
+				if (player.pos.y >= Walltemp->GetWallBoundingBox(i).max.y + 40 && player.vel.y < 0)
 				{
 					//GROUND = 
+					player.vel.y = 0;
 					player.pos.y = Walltemp->GetWallBoundingBox(i).max.y + 40;
+					CanJump = true;
 				}
 			}
 		}
