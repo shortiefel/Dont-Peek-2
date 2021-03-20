@@ -96,6 +96,7 @@
     <ClCompile Include="src\Level 1.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Menu.cpp" />
+    <ClCompile Include="src\Music.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\Sharpener.cpp" />
     <ClCompile Include="src\Wall.cpp" />
@@ -103,12 +104,24 @@
   <ItemGroup>
     <ClInclude Include="src\Collision.h" />
     <ClInclude Include="src\Door.h" />
+    <ClInclude Include="src\fmod.hpp" />
+    <ClInclude Include="src\fmod_android.h" />
+    <ClInclude Include="src\fmod_codec.h" />
+    <ClInclude Include="src\fmod_common.h" />
+    <ClInclude Include="src\fmod_dsp.h" />
+    <ClInclude Include="src\fmod_dsp_effects.h" />
+    <ClInclude Include="src\fmod_errors.h" />
+    <ClInclude Include="src\fmod_output.h" />
+    <ClInclude Include="src\fmod_studio.h" />
+    <ClInclude Include="src\fmod_studio.hpp" />
+    <ClInclude Include="src\fmod_studio_common.h" />
     <ClInclude Include="src\GameStateList.h" />
     <ClInclude Include="src\GameStateMgr.h" />
     <ClInclude Include="src\GameState_DontPeek.h" />
     <ClInclude Include="src\Highlighter.h" />
     <ClInclude Include="src\Level 1.h" />
     <ClInclude Include="src\Menu.h" />
+    <ClInclude Include="src\Music.h" />
     <ClInclude Include="src\Player.h" />
     <ClInclude Include="src\Sharpener.h" />
     <ClInclude Include="src\Wall.h" />
