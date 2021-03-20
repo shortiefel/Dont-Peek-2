@@ -80,7 +80,7 @@ void Player::Player_Init()
 	Scale = 100.0f;
 	flag = FLAG_ACTIVE;
 	AEVec2Set(&(player.vel), 0, 0);
-	AEVec2Set(&(player.pos), 0.0f, -10.f);
+	AEVec2Set(&(player.pos), 0.0f, 30.f);
 }
 
 /******************************************************************************/
@@ -90,7 +90,8 @@ void Player::Player_Init()
 /******************************************************************************/
 void Player::Player_Update()
 {
-	GROUND = 0;
+	//FAKE GROUND
+	GROUND = -100; //For Player To Fall
 	/******************************************************************************/
 	/*!
 		INPUTS
@@ -127,7 +128,7 @@ void Player::Player_Update()
 		//printf("jumping \n");
 		CanJump = false;
 		//Position.y += Velocity.y * 4;
-		player.vel.y = 100.f;
+		player.vel.y = 110.f;
 		//printf("PosY: %f, %f\n", pos.x, pos.y);
 	}
 	else if (player.pos.y < GROUND)
@@ -158,10 +159,11 @@ void Player::Player_Update()
 		//BoundingBox();
 		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Sharpenertemp->GetSharpenerBoundingBox(i), Sharpenertemp->GetSharpenerVelocity(i)))
 		{
-			if (CanJump == false && player.vel.y < 0)
+			if (player.pos.y >= Sharpenertemp->GetSharpenerBoundingBox(i).max.y + 20 && player.vel.y < 0)
 			{
-				GROUND = Sharpenertemp->GetSharpenerBoundingBox(i).max.y + 20;
-				player.pos.y = GROUND;
+				player.vel.y = 0;
+				player.pos.y = Sharpenertemp->GetSharpenerBoundingBox(i).max.y + 20;
+				CanJump = true;
 			}
 		}
 		
