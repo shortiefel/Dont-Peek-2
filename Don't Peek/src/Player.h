@@ -35,6 +35,8 @@ private:
 	AEVec2 pos;
 	AEVec2 vel;
 	bool CanJump = false;
+	bool SharpenerCollision = false;
+	bool WallCollision = false;
 	float Scale;
 	AEMtx33	Transform;
 

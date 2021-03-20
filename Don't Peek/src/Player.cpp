@@ -80,7 +80,7 @@ void Player::Player_Init()
 	Scale = 100.0f;
 	flag = FLAG_ACTIVE;
 	AEVec2Set(&(player.vel), 0, 0);
-	AEVec2Set(&(player.pos), 0.0f, -10.f);
+	AEVec2Set(&(player.pos), 0.0f, 30.f);
 }
 
 /******************************************************************************/
@@ -90,6 +90,8 @@ void Player::Player_Init()
 /******************************************************************************/
 void Player::Player_Update()
 {
+	//FAKE GROUND
+	GROUND = -100; //For Player To Fall
 	/******************************************************************************/
 	/*!
 		INPUTS
@@ -126,7 +128,7 @@ void Player::Player_Update()
 		//printf("jumping \n");
 		CanJump = false;
 		//Position.y += Velocity.y * 4;
-		player.vel.y = 100.f;
+		player.vel.y = 110.f;
 		//printf("PosY: %f, %f\n", pos.x, pos.y);
 	}
 	else if (player.pos.y < GROUND)
@@ -136,12 +138,8 @@ void Player::Player_Update()
 		CanJump = true;
 		player.vel.y = 0;
 	}
-	
-	//else 
-	{
-
 		SetGravity();
-	}
+
 
 	if (AEInputCheckCurr(AEVK_B))
 		gGameStateNext == GS_MENU;
@@ -161,8 +159,14 @@ void Player::Player_Update()
 		//BoundingBox();
 		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Sharpenertemp->GetSharpenerBoundingBox(i), Sharpenertemp->GetSharpenerVelocity(i)))
 		{
-			
+			if (player.pos.y >= Sharpenertemp->GetSharpenerBoundingBox(i).max.y + 20 && player.vel.y < 0)
+			{
+				player.vel.y = 0;
+				player.pos.y = Sharpenertemp->GetSharpenerBoundingBox(i).max.y + 20;
+				CanJump = true;
+			}
 		}
+		
 	}//End of Sharpener for loop
 	/******************************************************************************/
 	/*!
@@ -185,6 +189,7 @@ void Player::Player_Update()
 				player.pos.x += -50;
 			}
 		}
+
 	}//End of Door for loop
 	/******************************************************************************/
 	/*!
@@ -197,15 +202,16 @@ void Player::Player_Update()
 		BoundingBox();
 		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Walltemp->GetWallBoundingBox(i), { 0,0 }))
 		{	
+			WallCollision = true;
 			if (Walltemp->GetType(i) == WALL)
 			{
 				if (player.pos.x >= Walltemp->GetWallBoundingBox(i).min.x)
 				{
-					player.pos.x = (Walltemp->GetWallBoundingBox(i).max.x - 50);
+					player.pos.x = (Walltemp->GetWallBoundingBox(i).max.x + 30);
 				}
 				else if (player.pos.x <= Walltemp->GetWallBoundingBox(i).max.x)
 				{
-					player.pos.x = (Walltemp->GetWallBoundingBox(i).min.x + 50);
+					player.pos.x = (Walltemp->GetWallBoundingBox(i).min.x - 30);
 				}
 			}
 			else if (Walltemp->GetType(i) == PLATFORM)

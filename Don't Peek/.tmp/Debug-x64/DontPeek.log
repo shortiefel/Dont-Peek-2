@@ -1,2 +1,4 @@
-﻿  Sharpener.cpp
-  DontPeek.vcxproj -> C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe
+﻿  Player.cpp
+C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\Don't Peek\src\Player.cpp(145,18): warning C4553: '==': result of expression not used; did you intend '='?
+C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\Don't Peek\src\Player.cpp(148,18): warning C4553: '==': result of expression not used; did you intend '='?
+  DontPeek.vcxproj -> C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\Don't Peek\bin\Debug-x64\DontPeek.exe
