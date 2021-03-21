@@ -1,2 +1,30 @@
-﻿  Player.cpp
-  DontPeek.vcxproj -> C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\Don't Peek\bin\Debug-x64\DontPeek.exe
+﻿  Camera.cpp
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Camera.h(12,28): warning C4244: 'initializing': conversion from 'f32' to 'int', possible loss of data
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Camera.h(13,28): warning C4244: 'initializing': conversion from 'f32' to 'int', possible loss of data
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Camera.h(14,28): warning C4244: 'initializing': conversion from 'f32' to 'int', possible loss of data
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Camera.h(15,28): warning C4244: 'initializing': conversion from 'f32' to 'int', possible loss of data
+  Collision.cpp
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(141,34): warning C4100: 'vel2': unreferenced formal parameter
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Collision.cpp(140,73): warning C4100: 'vel1': unreferenced formal parameter
+  Door.cpp
+  Eraser.cpp
+  GameStateMgr.cpp
+  GameState_DontPeek.cpp
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Camera.h(12,28): warning C4244: 'initializing': conversion from 'f32' to 'int', possible loss of data
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Camera.h(13,28): warning C4244: 'initializing': conversion from 'f32' to 'int', possible loss of data
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Camera.h(14,28): warning C4244: 'initializing': conversion from 'f32' to 'int', possible loss of data
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Camera.h(15,28): warning C4244: 'initializing': conversion from 'f32' to 'int', possible loss of data
+  Highlighter.cpp
+  Level 1.cpp
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Level 1.cpp(32,27): warning C4211: nonstandard extension used: redefined extern to static
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Level 1.cpp(33,21): warning C4211: nonstandard extension used: redefined extern to static
+  Main.cpp
+  Menu.cpp
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Menu.cpp(178,8): warning C4551: function call missing argument list
+  Music.cpp
+  Pencil.cpp
+  Player.cpp
+  Sharpener.cpp
+  Wall.cpp
+  Generating Code...
+  DontPeek.vcxproj -> C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe
