@@ -66,7 +66,7 @@ void Level1_Load()
 void Level1_Init()
 {
 	wall->CreateWall({ -410,-60 }, { 1,0 }, 26, 30.f, PLATFORM);
-	wall->CreateWall({  100, 0 }, { 1,0 }, 5, 30.f, PLATFORM);
+	//wall->CreateWall({  100, 0 }, { 1,0 }, 5, 30.f, PLATFORM);
 	//wall->CreateWall({ -150,210 }, { 0,-1 }, 9, 30.f, WALL);
 	wall->CreateWall({ -410,210 }, { 1,0 }, 26, 30.f, PLATFORM);
 	wall->CreateWall({ 340,210 }, { 0,-1 }, 9, 30.f, WALL);
@@ -80,12 +80,12 @@ void Level1_Init()
 	eraser.SetEraserPosition(0, { -180,0 });
 
 	//Highlighter
-	SetHighlighterNum(1);
-	highlighter.SetHighlighterPosition(0, { 50,0 });
+	//SetHighlighterNum(1);
+	//highlighter.SetHighlighterPosition(0, { 50,0 });
 
 	//Pencil
-	SetPencilNum(1);
-	pencil.SetPencilPosition(0, { 150,50 });
+	//SetPencilNum(1);
+	//pencil.SetPencilPosition(0, { 150,50 });
 
 	//Door
 	SetDoorNum(2);
