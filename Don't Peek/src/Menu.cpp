@@ -30,12 +30,16 @@ int SetWidthCursor = 1000 / 2;
 int SetHeightCursor = 700 / 2;
 
 
+
 void MenuLoad()
 {
+
 	//MENU
 	menu.pos = { 0.f, 0.f };
 	menu.scale = { 950.f,650.f };
 
+
+	//MENU BG
 	menu.pObj = sGameObjList + sGameObjNum++;
 	menu.pObj->texture = AEGfxTextureLoad("Resources/Menu.png");
 	AE_ASSERT_MESG(menu.pObj->texture, "Failed to load Menu!");
@@ -154,55 +158,63 @@ void MenuInit()
 }
 void MenuUpdate()
 {
-	
-	BoundingBox();
-	AEInputGetCursorPosition(&x, &y);
-	if (x >= 0 && y >= 0)
+	if (g_dt < 3)
 	{
-		x = x - SetWidthCursor;
-		y -= SetHeightCursor;
-		y *= -1;
+
 	}
-		
-		
-	
-
-
-	if (AEInputCheckTriggered(AEVK_LBUTTON))
+	else
 	{
-		printf("Mouse: %d::%d\n", x, y);
-
-		
-		if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[0].boundingBox, { 0,0 }))
+		BoundingBox();
+		AEInputGetCursorPosition(&x, &y);
+		if (x >= 0 && y >= 0)
 		{
-			if (AEInputUpdate)
+			x = x - SetWidthCursor;
+			y -= SetHeightCursor;
+			y *= -1;
+		}
+
+
+
+
+
+		if (AEInputCheckTriggered(AEVK_LBUTTON))
+		{
+			printf("Mouse: %d::%d\n", x, y);
+
+
+			if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[0].boundingBox, { 0,0 }))
 			{
-				gGameStateNext = GS_DONT_PEEK;
-				printf("BUTTON PLAY \n");
-				printf("BBMin: %f::%f\n", button[0].boundingBox.min.x, button[0].boundingBox.min.y);
-				printf("BBMax: %f::%f\n", button[0].boundingBox.max.x, button[0].boundingBox.max.y);
+				if (AEInputUpdate)
+				{
+					gGameStateNext = GS_DONT_PEEK;
+					printf("BUTTON PLAY \n");
+					printf("BBMin: %f::%f\n", button[0].boundingBox.min.x, button[0].boundingBox.min.y);
+					printf("BBMax: %f::%f\n", button[0].boundingBox.max.x, button[0].boundingBox.max.y);
+				}
+
 			}
-			
+			else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[1].boundingBox, { 0,0 }))
+			{
+				//gGameStateCurr = GS_DONT_PEEK;
+				printf("BUTTON LEVEL \n");
+
+			}
+			else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[2].boundingBox, { 0,0 }))
+			{
+				//gGameStateCurr = GS_DONT_PEEK;
+				printf("BUTTON OPTIONS \n");
+
+			}
+			else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[3].boundingBox, { 0,0 }))
+			{
+				//gGameStateCurr = GS_DONT_PEEK;
+				printf("BUTTON CREDITS \n");
+			}
+			else printf("DEFAULT\n");
 		}
-		else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[1].boundingBox, { 0,0 }))
-		{
-			//gGameStateCurr = GS_DONT_PEEK;
-			printf("BUTTON LEVEL \n");
-			
-		}
-		else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[2].boundingBox, { 0,0 }))
-		{
-			//gGameStateCurr = GS_DONT_PEEK;
-			printf("BUTTON OPTIONS \n");
-			
-		}
-		else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[3].boundingBox, { 0,0 }))
-		{
-			//gGameStateCurr = GS_DONT_PEEK;
-			printf("BUTTON CREDITS \n");
-		}
-		else printf("DEFAULT\n");
 	}
+	
+	
 }
 void MenuDraw()
 {
@@ -243,3 +255,4 @@ void BoundingBox()
 	}
 		
 }
+

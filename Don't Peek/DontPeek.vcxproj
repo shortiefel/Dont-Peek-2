@@ -54,6 +54,8 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)\bin\$(Configuration)-$(Platform)\</OutDir>
     <IntDir>$(SolutionDir)\.tmp\$(Configuration)-$(Platform)\</IntDir>
+    <IncludePath>$(SolutionDir)Extern\AlphaEngine_V3.08\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Extern\AlphaEngine_V3.08\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

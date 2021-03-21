@@ -53,3 +53,17 @@ void AudioEngine::Update()
 {
 	sfmodapi->Update();
 }
+
+void LoadSound(const string& SoundName, bool b3d = true, bool blooping = false, bool bStream = false)
+{
+	auto Searching = sfmodapi->mSounds.find(SoundName);
+	if (Searching != sfmodapi->mSounds.end())
+		return;
+
+	FMOD_MODE eMode = FMOD_DEFAULT;
+	eMode |= b3d ? FMOD_3D : FMOD_2D;
+	eMode |= blooping ? FMOD_LOOP_NORMAL : FMOD_LOOP_OFF;
+	eMode |= bStream ? FMOD_CREATESTREAM : FMOD_CREATECOMPRESSEDSAMPLE;
+
+	FMOD::Sound* pSound = nullptr;
+}
