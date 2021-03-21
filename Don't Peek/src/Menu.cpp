@@ -207,7 +207,7 @@ void MenuUpdate()
 			}
 			else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[3].boundingBox, { 0,0 }))
 			{
-				//gGameStateCurr = GS_DONT_PEEK;
+				gGameStateCurr = GS_CREDITS;
 				printf("BUTTON CREDITS \n");
 			}
 			else printf("DEFAULT\n");
