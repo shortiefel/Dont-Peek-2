@@ -79,7 +79,7 @@ void Player::Player_Load() //drawing of character
 /******************************************************************************/
 void Player::Player_Init()
 {
-	Scale = 100.0f;
+	Scale = 130.0f;
 	flag = FLAG_ACTIVE;
 	AEVec2Set(&(player.vel), 0, 0);
 	AEVec2Set(&(player.pos), 0.0f, 30.f);
@@ -93,7 +93,7 @@ void Player::Player_Init()
 void Player::Player_Update()
 {
 	//FAKE GROUND
-	GROUND = -100; //For Player To Fall
+	GROUND = -1000; //For Player To Fall
 	/******************************************************************************/
 	/*!
 		INPUTS
@@ -130,7 +130,7 @@ void Player::Player_Update()
 		//printf("jumping \n");
 		CanJump = false;
 		//Position.y += Velocity.y * 4;
-		player.vel.y = 110.f;
+		player.vel.y = 130.f;
 		//printf("PosY: %f, %f\n", pos.x, pos.y);
 
 		
@@ -207,12 +207,12 @@ void Player::Player_Update()
 			if (i % 2 == 0)
 			{
 				player.pos = Doortemp->GetDoorPosition(i + 1);
-				player.pos.x += 50;
+				player.pos.x += player.Scale/2;
 			}
 			else
 			{
 				player.pos = Doortemp->GetDoorPosition(i - 1);
-				player.pos.x += -50;
+				player.pos.x -= player.Scale / 2;;
 			}
 		}
 
@@ -230,11 +230,11 @@ void Player::Player_Update()
 		{
 			if (player.pos.x >= Penciltemp->GetPencilBoundingBox(i).max.x)
 			{
-				player.pos.x = (Penciltemp->GetPencilBoundingBox(i).max.x + 30);
+				player.pos.x = (Penciltemp->GetPencilBoundingBox(i).max.x + 50);
 			}
 			else if (player.pos.x <= Penciltemp->GetPencilBoundingBox(i).min.x)
 			{
-				player.pos.x = (Penciltemp->GetPencilBoundingBox(i).min.x - 30);
+				player.pos.x = (Penciltemp->GetPencilBoundingBox(i).min.x - 50);
 			}
 		}
 	}
@@ -256,21 +256,21 @@ void Player::Player_Update()
 			{
 				if (player.pos.x >= Walltemp->GetWallBoundingBox(i).min.x)
 				{
-					player.pos.x = (Walltemp->GetWallBoundingBox(i).max.x + 30);
+					player.pos.x = (Walltemp->GetWallBoundingBox(i).max.x + player.Scale / 2 - 10);
 				}
 				else if (player.pos.x <= Walltemp->GetWallBoundingBox(i).max.x)
 				{
-					player.pos.x = (Walltemp->GetWallBoundingBox(i).min.x - 30);
+					player.pos.x = (Walltemp->GetWallBoundingBox(i).min.x - player.Scale / 2 - 10);
 				}
 			}
 			else if (Walltemp->GetType(i) == PLATFORM)
 			{
 
-				if (player.pos.y >= Walltemp->GetWallBoundingBox(i).max.y + 40 && player.vel.y < 0)
+				if (player.pos.y >= Walltemp->GetWallBoundingBox(i).max.y + player.Scale/2 - 10 && player.vel.y < 0)
 				{
 					//GROUND = 
 					player.vel.y = 0;
-					player.pos.y = Walltemp->GetWallBoundingBox(i).max.y + 40;
+					player.pos.y = Walltemp->GetWallBoundingBox(i).max.y + +player.Scale / 2 - 10;
 					CanJump = true;
 				}
 			}
@@ -321,7 +321,7 @@ void Player::Player_Unload()
 /******************************************************************************/
 void Player::SetGravity()
 {
-	vel.y -= 80.f * g_dt;
+	vel.y -= 50.f * g_dt;
 }
 
 /******************************************************************************/

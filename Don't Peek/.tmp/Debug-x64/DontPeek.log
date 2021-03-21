@@ -1,8 +1,2 @@
-<<<<<<< HEAD
-﻿  Level 1.cpp
-  DontPeek.vcxproj -> C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe
-=======
-﻿  Eraser.cpp
-  LINK : C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\Don't Peek\\bin\Debug-x64\DontPeek.exe not found or not built by the last incremental link; performing full link
-  DontPeek.vcxproj -> C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\Don't Peek\bin\Debug-x64\DontPeek.exe
->>>>>>> origin/ninjiomPPK
+﻿  Player.cpp
+  DontPeek.vcxproj -> C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\\bin\Debug-x64\DontPeek.exe

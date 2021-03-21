@@ -95,6 +95,22 @@ void Sharpener::UpdateSharpener()
 		/******************************************************************************/
 		if (CollisionIntersection_RectRect(player.GetBoundingBoxPlayer(), player.GetVelPlayer(), Sharpenertemp->boundingBox, Sharpenertemp->vel))
 		{
+			if ((AEInputCheckCurr(AEVK_LSHIFT) && AEInputCheckCurr(AEVK_RIGHT)) &&
+				(Sharpenertemp->boundingBox.min.x < (player.GetBoundingBoxPlayer().max.x + 5.0f)) && (Sharpenertemp->boundingBox.min.x > (player.GetBoundingBoxPlayer().max.x - 5.0f)))
+			{
+				Sharpenertemp->pos.x += Sharpenertemp->vel.x;
+				right = 1;
+				left = 0;
+				printf("SHARPENER VEL RIGHT: %f\n", Sharpenertemp->vel.x);
+			}
+			if ((AEInputCheckCurr(AEVK_LSHIFT) && AEInputCheckCurr(AEVK_LEFT)) &&
+				(Sharpenertemp->boundingBox.max.x < (player.GetBoundingBoxPlayer().min.x + 5.0f)) && (Sharpenertemp->boundingBox.max.x > (player.GetBoundingBoxPlayer().min.x - 5.0f)))
+			{
+				Sharpenertemp->pos.x -= Sharpenertemp->vel.x;
+				left = 1;
+				right = 0;
+				printf("SHARPENER VEL LEFT: %f\n", Sharpenertemp->vel.x);
+			}
 			for (int j = 0; j < GetEraserNum(); j++)
 			{
 				Eraser* Erasertemp = EraserArray + j;
