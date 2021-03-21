@@ -35,7 +35,7 @@ void Level1_Load()
 	bg.Bgscale = { 1.2 * 1760.f, 1.2* 1090.f };
 
 	bg.pBg = sGameObjList + sGameObjNum++;
-	bg.pBg->texture = AEGfxTextureLoad("Resources/Background.png");
+	bg.pBg->texture = AEGfxTextureLoad("Resources/level_1_layout.jpeg");
 	AE_ASSERT_MESG(bg.pBg->texture, "Failed to load Background!");
 
 	AEGfxMeshStart();
@@ -60,24 +60,62 @@ void Level1_Load()
 }
 void Level1_Init()
 {
-	//wall->CreateWall({ -410,-60 }, { 1,0 }, 26, 30.f, PLATFORM);
-	wall->CreateWall({  10, 0 }, { 1,0 }, 5, 30.f, PLATFORM);
-	wall->CreateWall({ -150,210 }, { 0,-1 }, 9, 30.f, WALL);
-	wall->CreateWall({ -410,210 }, { 1,0 }, 26, 30.f, WALL);
-	wall->CreateWall({ 340,210 }, { 0,-1 }, 9, 30.f, WALL);
-
-	//Sharpener
 	SetSharpenerNum(1);
-	sharpener.SetSharpenerPosition(0, { -100,0 });
-
+	SetDoorNum(8);
 	//Highlighter
-	SetHighlighterrNum(1);
-	highlighter.SetHighlighterPosition(0, { 100,0 });
+	//SetHighlighterrNum(1);
+	//highlighter.SetHighlighterPosition(0, { 100,0 });
 
-	//Door
-	SetDoorNum(2);
-	door.SetDoorPosition(0, { 300 , 0 });
-	door.SetDoorPosition(1, { -300 , 0 });
+	//first box
+	wall->CreateWall({ -390,-90 }, { 1,0 }, 20, 30.f, PLATFORM); //floor
+	wall->CreateWall({ -390,320 }, { 1,0 }, 20, 30.f, WALL); // top wall
+
+	wall->CreateWall({ -405,320 }, { 0,-1 }, 15, 30.f, WALL); //left wall
+	wall->CreateWall({ 200,320 }, { 0,-1 }, 15, 30.f, WALL); // right wall
+
+	wall->CreateWall({ 20,105 }, { 1,0 }, 6, 30.f, PLATFORM); //platform
+	wall->CreateWall({ 20,75 }, { 0,-1 }, 6, 30.f, WALL); //inside wall
+
+	SetSharpenerNum(1);
+	sharpener.SetSharpenerPosition(0, { -250,-20 });
+
+
+	door.SetDoorPosition(0, { 120 , 170 });
+
+	//2nd box
+	door.SetDoorPosition(1, { -40 , -320 });
+	door.SetDoorPosition(2, { 150 , -655 });
+	wall->CreateWall({ -105,-720 }, { 1,0 }, 11, 30.f, PLATFORM); //floor
+	wall->CreateWall({ -105,-210 }, { 1,0 }, 11, 30.f, WALL); // top wall
+	wall->CreateWall({ -135,-210 }, { 0,-1 }, 18, 30.f, WALL); // left wall
+	wall->CreateWall({ 210,-210 }, { 0,-1 }, 18, 30.f, WALL); // right wall
+	wall->CreateWall({ -125,-385 }, { 1,0 }, 6, 30.f, PLATFORM); //platform
+
+	//3rd box
+	door.SetDoorPosition(3, { 560 , -440 });
+	door.SetDoorPosition(4, { 1130 , -535 });
+	wall->CreateWall({ 520,-820 }, { 1,0 }, 24, 30.f, PLATFORM); //floor
+	wall->CreateWall({ 520,-368 }, { 1,0 }, 24, 30.f, WALL); // top wall
+	wall->CreateWall({ 490,-368 }, { 0,-1 }, 16, 30.f, WALL); // left wall
+	wall->CreateWall({ 1210,-368 }, { 0,-1 }, 16, 30.f, WALL); // right wall
+	wall->CreateWall({ 520,-505 }, { 1,0 }, 6, 30.f, PLATFORM); //platform left
+	wall->CreateWall({ 1060,-600 }, { 1,0 }, 5, 30.f, PLATFORM); //platform right
+	wall->CreateWall({ 670,-530 }, { 0,-1 }, 10, 30.f, WALL); //wall mid
+
+	//4th box
+	door.SetDoorPosition(5, { 580 , -140 });
+	door.SetDoorPosition(6, { 800 , 100 });
+	wall->CreateWall({ 540,-205 }, { 1,0 }, 11, 30.f, PLATFORM); //floor
+	wall->CreateWall({ 540,310 }, { 1,0 }, 11, 30.f, WALL); //top wall
+	wall->CreateWall({ 510,310 }, { 0,-1 }, 18, 30.f, WALL); //left wall
+	wall->CreateWall({ 870,310 }, { 0,-1 }, 18, 30.f, WALL); //right wall
+
+	//5th box
+	door.SetDoorPosition(7, { 990 , 100 });
+	wall->CreateWall({ 950,35 }, { 1,0 }, 8, 30.f, PLATFORM); //floor
+	wall->CreateWall({ 950,280 }, { 1,0 }, 3, 30.f, WALL); //ceiling
+	wall->CreateWall({ 920,280 }, { 0,-1 }, 9, 30.f, WALL); //left wall
+	wall->CreateWall({ 1190,280 }, { 0,-1 }, 9, 30.f, WALL); //left wall
 }
 void Level1_Update()
 {

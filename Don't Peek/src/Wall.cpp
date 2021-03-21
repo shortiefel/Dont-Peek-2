@@ -25,7 +25,7 @@ Technology is prohibited.
 #include "Player.h"
 
 static int numberWalls = 0;
-static Wall WallArr[40];
+static Wall WallArr[1000];
 
 /******************************************************************************/
 /*!

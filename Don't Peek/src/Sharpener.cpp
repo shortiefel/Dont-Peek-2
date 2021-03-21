@@ -64,7 +64,7 @@ void Sharpener::LoadSharpener()
 /******************************************************************************/
 void Sharpener::InitSharpener() {
 	//Velocity.x = SPEED;
-	Scale = 80.0f;
+	Scale = 110.0f;
 	AEVec2Set(&vel, SPEED, 0);
 	AEVec2* pVel = &vel;
 	for (int i = 0; i < SharpenerNum; i++)
