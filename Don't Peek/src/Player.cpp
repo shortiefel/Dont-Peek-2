@@ -144,10 +144,10 @@ void Player::Player_Update()
 
 
 	if (AEInputCheckCurr(AEVK_B))
-		gGameStateNext == GS_MENU;
+		gGameStateNext = GS_MENU;
 
 	if (AEInputCheckCurr(AEVK_Q))
-		gGameStateNext == GS_QUIT;
+		gGameStateNext = GS_QUIT;
 
 	BoundingBox();
 	/******************************************************************************/
@@ -214,6 +214,29 @@ void Player::Player_Update()
 		}
 
 	}//End of Door for loop
+
+	/******************************************************************************/
+	/*!
+		PENCIL
+	*/
+	/******************************************************************************/
+	for (int i =0; i< GetPencilNum(); i++)
+	{
+		Pencil* Penciltemp = PencilArray + i;
+		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Penciltemp->GetPencilBoundingBox(i), { 0,0 }))
+		{
+			if (player.pos.x >= Penciltemp->GetPencilBoundingBox(i).max.x)
+			{
+				player.pos.x = (Penciltemp->GetPencilBoundingBox(i).max.x + 30);
+			}
+			else if (player.pos.x <= Penciltemp->GetPencilBoundingBox(i).min.x)
+			{
+				player.pos.x = (Penciltemp->GetPencilBoundingBox(i).min.x - 30);
+			}
+		}
+	}
+
+
 	/******************************************************************************/
 	/*!
 		WALLS

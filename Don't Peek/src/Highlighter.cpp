@@ -108,7 +108,7 @@ void Highlighter::DrawHighlighter()
 /******************************************************************************/
 void Highlighter::UnloadHighlighter() 
 {
-	AEGfxTextureUnload(pHighlighter->texture);
+	AEGfxMeshFree(pHighlighter->pMesh);
 }
 
 /******************************************************************************/

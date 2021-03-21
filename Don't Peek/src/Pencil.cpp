@@ -133,7 +133,7 @@ void Pencil::DrawPencil()
 /******************************************************************************/
 void Pencil::UnloadPencil()
 {
-	AEGfxTextureUnload(pPencil->texture);
+	AEGfxMeshFree(pPencil->pMesh);
 }
 
 /******************************************************************************/
