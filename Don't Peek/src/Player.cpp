@@ -164,10 +164,10 @@ void Player::Player_Update()
 		//BoundingBox();
 		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Sharpenertemp->GetSharpenerBoundingBox(i), Sharpenertemp->GetSharpenerVelocity(i)))
 		{
-			if (player.pos.y >= Sharpenertemp->GetSharpenerBoundingBox(i).max.y + 20 && player.vel.y < 0)
+			if (player.pos.y >= Sharpenertemp->GetSharpenerBoundingBox(i).max.y + (Scale / 6) && player.vel.y < 0)
 			{
 				player.vel.y = 0;
-				player.pos.y = Sharpenertemp->GetSharpenerBoundingBox(i).max.y + 20;
+				player.pos.y = Sharpenertemp->GetSharpenerBoundingBox(i).max.y + (Scale/6);
 				CanJump = true;
 			}
 		}
@@ -184,10 +184,10 @@ void Player::Player_Update()
 		Eraser* Erasertemp = EraserArray + i;
 		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Erasertemp->GetEraserBoundingBox(i), Erasertemp->GetEraserVelocity(i)))
 		{
-			if (player.pos.y >= Erasertemp->GetEraserBoundingBox(i).max.y + 20 && player.vel.y < 0)
+			if (player.pos.y >= Erasertemp->GetEraserBoundingBox(i).max.y + (Scale / 6) && player.vel.y < 0)
 			{
 				player.vel.y = 0;
-				player.pos.y = Erasertemp->GetEraserBoundingBox(i).max.y + 20;
+				player.pos.y = Erasertemp->GetEraserBoundingBox(i).max.y + (Scale / 6);
 				CanJump = true;
 			}
 		}
@@ -207,12 +207,12 @@ void Player::Player_Update()
 			if (i % 2 == 0)
 			{
 				player.pos = Doortemp->GetDoorPosition(i + 1);
-				player.pos.x += player.Scale/2;
+				player.pos.x += Scale / 2 + 30;
 			}
 			else
 			{
 				player.pos = Doortemp->GetDoorPosition(i - 1);
-				player.pos.x -= player.Scale / 2;;
+				player.pos.x -= Scale / 2 + 30;
 			}
 		}
 
@@ -230,11 +230,11 @@ void Player::Player_Update()
 		{
 			if (player.pos.x >= Penciltemp->GetPencilBoundingBox(i).max.x)
 			{
-				player.pos.x = (Penciltemp->GetPencilBoundingBox(i).max.x + 50);
+				player.pos.x = (Penciltemp->GetPencilBoundingBox(i).max.x + (Scale / 5));
 			}
 			else if (player.pos.x <= Penciltemp->GetPencilBoundingBox(i).min.x)
 			{
-				player.pos.x = (Penciltemp->GetPencilBoundingBox(i).min.x - 50);
+				player.pos.x = (Penciltemp->GetPencilBoundingBox(i).min.x - (Scale / 5));
 			}
 		}
 	}
@@ -256,11 +256,11 @@ void Player::Player_Update()
 			{
 				if (player.pos.x >= Walltemp->GetWallBoundingBox(i).min.x)
 				{
-					player.pos.x = (Walltemp->GetWallBoundingBox(i).max.x + player.Scale / 2 - 10);
+					player.pos.x = (Walltemp->GetWallBoundingBox(i).max.x + Scale / 3 );
 				}
 				else if (player.pos.x <= Walltemp->GetWallBoundingBox(i).max.x)
 				{
-					player.pos.x = (Walltemp->GetWallBoundingBox(i).min.x - player.Scale / 2 - 10);
+					player.pos.x = (Walltemp->GetWallBoundingBox(i).min.x - player.Scale / 3);
 				}
 			}
 			else if (Walltemp->GetType(i) == PLATFORM)
@@ -270,7 +270,7 @@ void Player::Player_Update()
 				{
 					//GROUND = 
 					player.vel.y = 0;
-					player.pos.y = Walltemp->GetWallBoundingBox(i).max.y + +player.Scale / 2 - 10;
+					player.pos.y = Walltemp->GetWallBoundingBox(i).max.y + player.Scale / 2 - 10;
 					CanJump = true;
 				}
 			}
