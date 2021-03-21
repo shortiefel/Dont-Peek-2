@@ -1,6 +1,7 @@
+
 /* Start Header ************************************************************************/
 /*!
-\file Player.h
+\file Sharpener.h
 \team name Don't Peak
 \software name I don't want to do homework
 \authors
@@ -21,41 +22,38 @@ Technology is prohibited.
 /* End Header **************************************************************************/
 
 #include "Main.h"
-#include "AEVec2.h"
-#include "AEInput.h"
-#include "Math.h"
 
-
-class Player
+class Eraser
 {
 private:
-	GameObj* pPlayer;
-	unsigned long flag;
-	AABB boundingBox;
+	GameObj* pEraser;
 	AEVec2 pos;
-	AEVec2 vel;
-	bool CanJump = false;
-	bool SharpenerCollision = false;
-	bool WallCollision = false;
+	unsigned long flag;
 	float Scale;
 	AEMtx33	Transform;
-
-		//AEVec2 Position1;
+	AEVec2 vel;
+	AABB boundingBox;
 
 public:
-	void Player_Load();
-	void Player_Init();
-	void Player_Update();
-	void Player_Draw();
-	void Player_Unload();
-	
-	void BoundingBox();
-	void SetGravity();
+	void LoadEraser();
+	void InitEraser();
+	void UpdateEraser();
+	void DrawEraser();
+	void UnloadEraser();
 
-	AABB GetBoundingBoxPlayer() const;
-	AEVec2 GetVelPlayer() const;
-	const Player* GetPlayerObj() const;
-	AEVec2 GetPosPlayer() const;
-	bool GetCanJump();
+	void BoundingBox();
+
+	AABB GetEraserBoundingBox(int i);
+	AEVec2 GetEraserVelocity(int i);
+	AEVec2 GetEraserPosition(int i);
+	void SetEraserPosition(int i, AEVec2 NewPos);
+
 };
-extern Player player;
+extern Eraser EraserArray[MAX];
+
+
+int GetEraserNum();
+void SetEraserNum(int Num);
+
+
+extern Eraser eraser;

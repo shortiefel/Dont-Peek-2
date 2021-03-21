@@ -56,4 +56,4 @@ public:
 extern Highlighter HighlighterArray[MAX];
 
 int GetHighlighterNum();
-void SetHighlighterrNum(int Num);
+void SetHighlighterNum(int Num);

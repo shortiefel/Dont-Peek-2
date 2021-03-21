@@ -75,6 +75,32 @@
     </Filter>
     <Filter Include="Source Files\Objects\Camera\Code">
       <UniqueIdentifier>{51deeff3-73fb-4670-be27-054d2ae6d52a}</UniqueIdentifier>
+    <Filter Include="Source Files\Environment\Music">
+      <UniqueIdentifier>{d7ce614d-986d-4c97-ae91-1058e94615c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Environment\Music\Header">
+      <UniqueIdentifier>{4c191fdb-20ab-4635-9654-0399cf6dd618}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Environment\Music\Code">
+      <UniqueIdentifier>{97eac8d9-6777-4987-ad39-9f763bb0b325}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects\Eraser">
+      <UniqueIdentifier>{0470ce48-3db2-4811-bef9-5e9cf4aec46c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects\Eraser\Code">
+      <UniqueIdentifier>{7046bac9-2f55-4857-a072-23ef321ffb4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects\Eraser\Header">
+      <UniqueIdentifier>{c0165ded-6754-4ebc-83a6-ada06fc04f93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects\Pencil">
+      <UniqueIdentifier>{5cd5c74a-048b-4cce-a6de-915885338431}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects\Pencil\Code">
+      <UniqueIdentifier>{5848b8c7-61a7-40d2-9684-4e993e182edd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects\Pencil\Header">
+      <UniqueIdentifier>{81d93639-eb44-434a-8bb9-151df6eec4ea}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +136,17 @@
     </ClCompile>
     <ClCompile Include="src\Camera.cpp">
       <Filter>Source Files\Objects\Camera\Code</Filter>
+    <ClCompile Include="src\Menu.cpp">
+      <Filter>Source Files\Levels\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Music.cpp">
+      <Filter>Source Files\Environment\Music\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Eraser.cpp">
+      <Filter>Source Files\Objects\Eraser\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pencil.cpp">
+      <Filter>Source Files\Objects\Pencil\Code</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +182,50 @@
     </ClInclude>
     <ClInclude Include="src\Camera.h">
       <Filter>Source Files\Objects\Camera\Header</Filter>
+    <ClInclude Include="src\Menu.h">
+      <Filter>Source Files\Levels\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fmod.hpp">
+      <Filter>Source Files\Environment\Music\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fmod_studio.h">
+      <Filter>Source Files\Environment\Music\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Music.h">
+      <Filter>Source Files\Environment\Music\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fmod_studio.hpp">
+      <Filter>Source Files\Environment\Music\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fmod_android.h">
+      <Filter>Source Files\Environment\Music\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fmod_codec.h">
+      <Filter>Source Files\Environment\Music\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fmod_common.h">
+      <Filter>Source Files\Environment\Music\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fmod_dsp.h">
+      <Filter>Source Files\Environment\Music\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fmod_dsp_effects.h">
+      <Filter>Source Files\Environment\Music\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fmod_errors.h">
+      <Filter>Source Files\Environment\Music\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fmod_output.h">
+      <Filter>Source Files\Environment\Music\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fmod_studio_common.h">
+      <Filter>Source Files\Environment\Music\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Eraser.h">
+      <Filter>Source Files\Objects\Eraser\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pencil.h">
+      <Filter>Source Files\Objects\Pencil\Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -154,5 +235,8 @@
     <ClInclude Include="src\Main.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <Image Include="Resources\eraser.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

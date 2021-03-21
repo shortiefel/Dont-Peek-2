@@ -1,5 +1,5 @@
 #include "GameStateMgr.h"
-
+#include "Menu.h"
 
 /******************************************************************************/
 /*!
@@ -54,6 +54,15 @@ void GameStateMgrUpdate()
 
 	switch (gGameStateCurr)
 	{
+	case GS_MENU:
+		GameStateLoad = MenuLoad;
+		GameStateInit = MenuInit;
+		GameStateUpdate = MenuUpdate;
+		GameStateDraw = MenuDraw;
+		GameStateFree = MenuFree;
+		GameStateUnload = MenuUnload;
+		break;
+
 	case GS_DONT_PEEK:
 		GameStateLoad = GameStateDontPeekLoad;
 		GameStateInit = GameStateDontPeekInit;

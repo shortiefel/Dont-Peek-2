@@ -8,6 +8,7 @@ enum
 	GS_MENU,
 	GS_TUTORIAL,
 
+	GS_LEVEL,
 	//Special Game State. DONT CHANGE HOR
 	GS_RESTART,
 	GS_QUIT,

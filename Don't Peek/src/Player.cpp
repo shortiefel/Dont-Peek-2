@@ -19,9 +19,12 @@ Technology is prohibited.
 #include "GameState_DontPeek.h"
 #include "Player.h"
 #include "Sharpener.h"
+#include "Eraser.h"
+#include "Pencil.h"
 #include "Door.h"
 #include "Wall.h"
-
+#include "GameStateMgr.h"
+#include "Menu.h"
 
 
 /******************************************************************************/
@@ -34,6 +37,7 @@ const int Player_Gravity = 8;
 bool Gravity = true;
 float GROUND = 0.f;
 bool Movement = false;
+Wall* wall_player;
 
 /******************************************************************************/
 /*!
@@ -77,8 +81,8 @@ void Player::Player_Init()
 {
 	Scale = 100.0f;
 	flag = FLAG_ACTIVE;
-	AEVec2Set(&(player.vel), SPEED, SPEED);
-	AEVec2Set(&(player.pos), 80.0f, -10.f);
+	AEVec2Set(&(player.vel), 0, 0);
+	AEVec2Set(&(player.pos), 0.0f, 30.f);
 }
 
 /******************************************************************************/
@@ -88,6 +92,8 @@ void Player::Player_Init()
 /******************************************************************************/
 void Player::Player_Update()
 {
+	//FAKE GROUND
+	GROUND = -100; //For Player To Fall
 	/******************************************************************************/
 	/*!
 		INPUTS
@@ -110,6 +116,7 @@ void Player::Player_Update()
 	}
 	else if (AEInputCheckCurr(AEVK_RIGHT))
 	{
+		
 		player.vel.x = SPEED;
 	}
 	else
@@ -117,28 +124,33 @@ void Player::Player_Update()
 		player.vel.x = 0.f;
 	}
 
-	if (AEInputCheckTriggered(AEVK_UP) && CanJump == true)
+	if (AEInputCheckTriggered(AEVK_SPACE) && CanJump == true)
 	{
+		printf("jump \n");
 		//printf("jumping \n");
 		CanJump = false;
 		//Position.y += Velocity.y * 4;
-		player.vel.y = 5.f;
+		player.vel.y = 110.f;
 		//printf("PosY: %f, %f\n", pos.x, pos.y);
 
 		
 
 	}
-	if (player.pos.y < GROUND)
+	else if (player.pos.y < GROUND)
 	{
+		printf("ground \n");
 		player.pos.y = GROUND;
 		CanJump = true;
 		player.vel.y = 0;
 	}
-	else 
-	{
-
 		SetGravity();
-	}
+
+
+	if (AEInputCheckCurr(AEVK_B))
+		gGameStateNext = GS_MENU;
+
+	if (AEInputCheckCurr(AEVK_Q))
+		gGameStateNext = GS_QUIT;
 
 	BoundingBox();
 	/******************************************************************************/
@@ -149,12 +161,39 @@ void Player::Player_Update()
 	for (int i = 0; i < GetSharpenerNum(); i++)
 	{
 		Sharpener* Sharpenertemp = SharpenerArray + i;
-		BoundingBox();
+		//BoundingBox();
 		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Sharpenertemp->GetSharpenerBoundingBox(i), Sharpenertemp->GetSharpenerVelocity(i)))
 		{
-			
+			if (player.pos.y >= Sharpenertemp->GetSharpenerBoundingBox(i).max.y + 20 && player.vel.y < 0)
+			{
+				player.vel.y = 0;
+				player.pos.y = Sharpenertemp->GetSharpenerBoundingBox(i).max.y + 20;
+				CanJump = true;
+			}
 		}
+		
 	}//End of Sharpener for loop
+
+	/******************************************************************************/
+	/*!
+		ERASERS
+	*/
+	/******************************************************************************/
+	for (int i = 0; i < GetSharpenerNum(); i++)
+	{
+		Eraser* Erasertemp = EraserArray + i;
+		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Erasertemp->GetEraserBoundingBox(i), Erasertemp->GetEraserVelocity(i)))
+		{
+			if (player.pos.y >= Erasertemp->GetEraserBoundingBox(i).max.y + 20 && player.vel.y < 0)
+			{
+				player.vel.y = 0;
+				player.pos.y = Erasertemp->GetEraserBoundingBox(i).max.y + 20;
+				CanJump = true;
+			}
+		}
+
+	}//End of Sharpener for loop
+
 	/******************************************************************************/
 	/*!
 		DOORS
@@ -163,7 +202,6 @@ void Player::Player_Update()
 	for (int i = 0; i < GetDoorNum(); i++)
 	{
 		Door* Doortemp = DoorArray + i;
-		BoundingBox();
 		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Doortemp->GetDoorBoundingBox(i), Doortemp->GetDoorVelocity(i)))
 		{
 			if (i % 2 == 0)
@@ -177,7 +215,31 @@ void Player::Player_Update()
 				player.pos.x += -50;
 			}
 		}
+
 	}//End of Door for loop
+
+	/******************************************************************************/
+	/*!
+		PENCIL
+	*/
+	/******************************************************************************/
+	for (int i =0; i< GetPencilNum(); i++)
+	{
+		Pencil* Penciltemp = PencilArray + i;
+		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Penciltemp->GetPencilBoundingBox(i), { 0,0 }))
+		{
+			if (player.pos.x >= Penciltemp->GetPencilBoundingBox(i).max.x)
+			{
+				player.pos.x = (Penciltemp->GetPencilBoundingBox(i).max.x + 30);
+			}
+			else if (player.pos.x <= Penciltemp->GetPencilBoundingBox(i).min.x)
+			{
+				player.pos.x = (Penciltemp->GetPencilBoundingBox(i).min.x - 30);
+			}
+		}
+	}
+
+
 	/******************************************************************************/
 	/*!
 		WALLS
@@ -189,32 +251,34 @@ void Player::Player_Update()
 		BoundingBox();
 		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Walltemp->GetWallBoundingBox(i), { 0,0 }))
 		{	
+			WallCollision = true;
 			if (Walltemp->GetType(i) == WALL)
 			{
 				if (player.pos.x >= Walltemp->GetWallBoundingBox(i).min.x)
 				{
-					player.pos.x = (Walltemp->GetWallBoundingBox(i).max.x - 50);
+					player.pos.x = (Walltemp->GetWallBoundingBox(i).max.x + 30);
 				}
 				else if (player.pos.x <= Walltemp->GetWallBoundingBox(i).max.x)
 				{
-					player.pos.x = (Walltemp->GetWallBoundingBox(i).min.x + 50);
+					player.pos.x = (Walltemp->GetWallBoundingBox(i).min.x - 30);
 				}
 			}
 			else if (Walltemp->GetType(i) == PLATFORM)
 			{
-				if (player.boundingBox.min.y >= Walltemp->GetWallBoundingBox(i).max.y)
+
+				if (player.pos.y >= Walltemp->GetWallBoundingBox(i).max.y + 40 && player.vel.y < 0)
 				{
-					GROUND = (Walltemp->GetWallBoundingBox(i).max.y + 10);
-					player.pos.y = GROUND;
-					BoundingBox();
+					//GROUND = 
+					player.vel.y = 0;
+					player.pos.y = Walltemp->GetWallBoundingBox(i).max.y + 40;
+					CanJump = true;
 				}
 			}
-			
 		}
 	}//End of Wall for loop
 
-	player.pos.x += player.vel.x;
-	player.pos.y += player.vel.y;
+	player.pos.x += player.vel.x * g_dt;
+	player.pos.y += player.vel.y * g_dt;
 
 }
 
@@ -257,7 +321,7 @@ void Player::Player_Unload()
 /******************************************************************************/
 void Player::SetGravity()
 {
-	vel.y -= 0.15f;
+	vel.y -= 80.f * g_dt;
 }
 
 /******************************************************************************/
@@ -272,9 +336,9 @@ void Player::BoundingBox()
 	AEMtx33Trans(&Transform2, pos.x, pos.y);
 	AEMtx33Concat(&(player.Transform), &Transform2, &Size);
 
-	player.boundingBox.min.x = player.pos.x - Scale / 5;
+	player.boundingBox.min.x = player.pos.x - Scale / 4;// 5;
 	player.boundingBox.min.y = player.pos.y - Scale / 2;
-	player.boundingBox.max.x = player.pos.x + Scale / 5;
+	player.boundingBox.max.x = player.pos.x + Scale / 4;// 5;
 	player.boundingBox.max.y = player.pos.y + Scale / 2;
 }
 

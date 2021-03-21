@@ -22,13 +22,18 @@ Technology is prohibited.
 #include"Level 1.h"
 #include "Door.h"
 #include "Sharpener.h"
+#include "Pencil.h"
+#include "Eraser.h"
 #include "Highlighter.h"
 
 static background bg;
 static Wall wall[100];
 static Door door;
 static Sharpener sharpener;
+static Eraser eraser;
+static Pencil pencil;
 static Highlighter highlighter;
+
 void Level1_Load()
 {
 	bg.Bgpos= {350.f,-200.f };

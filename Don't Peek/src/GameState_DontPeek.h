@@ -15,7 +15,19 @@ const unsigned int	MAX = 10;
 //const float			PLAYER_ACCEL_BACKWARD = 40.f;
 //const float			PLAYER_SPEED = 100.0f;
 //const float			MAX_SPEED = 60.0f;
-const float			SPEED = 5.0f;
+const float			SPEED = 200.f;
+
+////Flags
+//const unsigned int	FLAG_ACTIVE = 0x00000001;
+//const unsigned int	FLAG_VISIBLE = 0x00000002;
+//const unsigned int	FLAG_NON_COLLIDABLE = 0x00000004;
+//
+////Collision flags
+//const unsigned int	COLLISION_LEFT = 0x00000001;	//0001
+//const unsigned int	COLLISION_RIGHT = 0x00000002;	//0010
+//const unsigned int	COLLISION_TOP = 0x00000004;		//0100
+//const unsigned int	COLLISION_BOTTOM = 0x00000008;	//1000
+
 
 const f32			WORLD_SCALE_X = 40;
 const f32			WORLD_SCALE_Y = 50;
@@ -69,7 +81,8 @@ struct GameObjInst
 	AEVec2				posCurr;	// object current position
 	AEVec2				velCurr;	// obj velocity
 	float				dirCurr;	// object current direction
-	unsigned long		flag;		// bit flag or-ed together
+	unsigned int		flag;		// bit flag or-ed together
+	int					gridCollisionFlag; //hold current
 
 };
 

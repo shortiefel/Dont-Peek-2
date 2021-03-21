@@ -1,6 +1,6 @@
 /* Start Header ************************************************************************/
 /*!
-\file Player.h
+\file Menu.h
 \team name Don't Peak
 \software name I don't want to do homework
 \authors
@@ -19,43 +19,43 @@ without the prior written consent of DigiPen Institute of
 Technology is prohibited.
 */
 /* End Header **************************************************************************/
-
+#pragma once
 #include "Main.h"
-#include "AEVec2.h"
-#include "AEInput.h"
-#include "Math.h"
-
-
-class Player
+#include "GameState_DontPeek.h"
+enum BUTTON
 {
-private:
-	GameObj* pPlayer;
-	unsigned long flag;
-	AABB boundingBox;
-	AEVec2 pos;
-	AEVec2 vel;
-	bool CanJump = false;
-	bool SharpenerCollision = false;
-	bool WallCollision = false;
-	float Scale;
-	AEMtx33	Transform;
+	// list of button types
+	TYPE_PLAY = 10,
 
-		//AEVec2 Position1;
-
-public:
-	void Player_Load();
-	void Player_Init();
-	void Player_Update();
-	void Player_Draw();
-	void Player_Unload();
-	
-	void BoundingBox();
-	void SetGravity();
-
-	AABB GetBoundingBoxPlayer() const;
-	AEVec2 GetVelPlayer() const;
-	const Player* GetPlayerObj() const;
-	AEVec2 GetPosPlayer() const;
-	bool GetCanJump();
+	TYPE_LEVEL,
+	TYPE_OPTIONS,
+	TYPE_RESTART,
+	TYPE_RESUME,
+	TYPE_CREDITS
 };
-extern Player player;
+struct Menu
+{
+	AEVec2 pos;
+	AEVec2 scale;
+	AEMtx33	transform;	// object transformation matrix
+	GameObj* pObj;
+	//AEVec2 cursorPos;
+};
+
+struct Button
+{
+	AEVec2 pos;
+	AEVec2 scale;
+	AEMtx33	transform;	// object transformation matrix
+	GameObj* pButton;
+	AABB boundingBox;
+};
+
+void MenuLoad();
+void MenuInit();
+void MenuUpdate();
+void MenuDraw();
+void MenuFree();
+void MenuUnload();
+
+void BoundingBox();
