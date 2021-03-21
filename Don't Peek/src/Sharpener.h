@@ -33,6 +33,7 @@ private:
 	AEMtx33	Transform;
 	AEVec2 vel;
 	AABB boundingBox;
+	bool WallCollision = false;
 
 public:
 	void LoadSharpener();

@@ -261,18 +261,27 @@ void Sharpener::UpdateSharpener()
 			WALLS
 		*/
 		/******************************************************************************/
-		for (int j = 0; j < Get_NumWalls(); j++)
+		for (int i = 0; i < Get_NumWalls(); i++)
 		{
-			Wall* Walltemp = Get_WallArr() + j;
-			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, Walltemp->GetWallBoundingBox(j), { 0,0 }))
+			Wall* Walltemp = Get_WallArr() + i;
+			BoundingBox();
+			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, Walltemp->GetWallBoundingBox(i), { 0,0 }))
 			{
-				if (Sharpenertemp->pos.x < -370)
+				WallCollision = true;
+				if (Walltemp->GetType(i) == WALL)
 				{
-					Sharpenertemp->pos.x = -370;
+					if (Sharpenertemp->pos.x >= Walltemp->GetWallBoundingBox(i).min.x)
+					{
+						Sharpenertemp->pos.x = (Walltemp->GetWallBoundingBox(i).max.x + 30);
+					}
+					else if (Sharpenertemp->pos.x <= Walltemp->GetWallBoundingBox(i).max.x)
+					{
+						Sharpenertemp->pos.x = (Walltemp->GetWallBoundingBox(i).min.x - 30);
+					}
 				}
 			}
 		}//End of Wall for loop
-		//Sharpenertemp->pos.x += Sharpenertemp->vel.x * g_dt;
+
 	}//End of Sharpener for loop
 }
 

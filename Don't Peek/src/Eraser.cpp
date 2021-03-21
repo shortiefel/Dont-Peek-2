@@ -210,23 +210,26 @@ void Eraser::UpdateEraser()
 			DOOR
 		*/
 		/******************************************************************************/
-		for (int j = 0; j < GetDoorNum(); j++)
+		for (int i = 0; i < Get_NumWalls(); i++)
 		{
-			Door* Doortemp = DoorArray + j;
-			if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, Doortemp->GetDoorBoundingBox(j), Doortemp->GetDoorVelocity(j)))
+			Wall* Walltemp = Get_WallArr() + i;
+			BoundingBox();
+			if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, Walltemp->GetWallBoundingBox(i), { 0,0 }))
 			{
-				if (j % 2 == 0)
+				WallCollision = true;
+				if (Walltemp->GetType(i) == WALL)
 				{
-					Erasertemp->pos = Doortemp->GetDoorPosition(j + 1);
-					Erasertemp->pos.x += 50;
-				}
-				else
-				{
-					Erasertemp->pos = Doortemp->GetDoorPosition(j - 1);
-					Erasertemp->pos.x += -50;
+					if (Erasertemp->pos.x >= Walltemp->GetWallBoundingBox(i).min.x)
+					{
+						Erasertemp->pos.x = (Walltemp->GetWallBoundingBox(i).max.x + 30);
+					}
+					else if (Erasertemp->pos.x <= Walltemp->GetWallBoundingBox(i).max.x)
+					{
+						Erasertemp->pos.x = (Walltemp->GetWallBoundingBox(i).min.x - 30);
+					}
 				}
 			}
-		}//End of Door for loop
+		}//End of Wall for loop
 
 		/******************************************************************************/
 		/*!
