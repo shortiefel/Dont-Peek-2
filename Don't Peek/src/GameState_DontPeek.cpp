@@ -90,6 +90,7 @@ void GameStateDontPeekLoad(void)
 /******************************************************************************/
 void GameStateDontPeekInit(void)
 {
+
 	Level1_Init();
 	wwall.InitWall();
 	sharpener.InitSharpener();

@@ -23,7 +23,8 @@ Technology is prohibited.
 #include "Door.h"
 #include "Pencil.h"
 #include "Wall.h"
-
+#include "GameStateMgr.h"
+#include "Menu.h"
 
 
 /******************************************************************************/
@@ -36,6 +37,7 @@ const int Player_Gravity = 8;
 bool Gravity = true;
 float GROUND = 0.f;
 bool Movement = false;
+Wall* wall_player;
 
 /******************************************************************************/
 /*!
@@ -79,8 +81,8 @@ void Player::Player_Init()
 {
 	Scale = 100.0f;
 	flag = FLAG_ACTIVE;
-	AEVec2Set(&(player.vel), SPEED, SPEED);
-	AEVec2Set(&(player.pos), 80.0f, -10.f);
+	AEVec2Set(&(player.vel), 0, 0);
+	AEVec2Set(&(player.pos), 0.0f, 30.f);
 }
 
 /******************************************************************************/
@@ -90,6 +92,8 @@ void Player::Player_Init()
 /******************************************************************************/
 void Player::Player_Update()
 {
+	//FAKE GROUND
+	GROUND = -100; //For Player To Fall
 	/******************************************************************************/
 	/*!
 		INPUTS
@@ -113,6 +117,7 @@ void Player::Player_Update()
 	}
 	else if (AEInputCheckCurr(AEVK_RIGHT))
 	{
+		
 		player.vel.x = SPEED;
 	}
 	else
@@ -120,26 +125,30 @@ void Player::Player_Update()
 		player.vel.x = 0.f;
 	}
 
-	if (AEInputCheckTriggered(AEVK_UP) && CanJump == true)
+	if (AEInputCheckTriggered(AEVK_SPACE) && CanJump == true)
 	{
+		printf("jump \n");
 		//printf("jumping \n");
 		CanJump = false;
 		//Position.y += Velocity.y * 4;
-		player.vel.y = 5.f;
+		player.vel.y = 110.f;
 		//printf("PosY: %f, %f\n", pos.x, pos.y);
 	}
-
-
-	if (player.pos.y < GROUND)
+	else if (player.pos.y < GROUND)
 	{
+		printf("ground \n");
 		player.pos.y = GROUND;
 		CanJump = true;
 		player.vel.y = 0;
 	}
-	else {
-
 		SetGravity();
-	}
+
+
+	if (AEInputCheckCurr(AEVK_B))
+		gGameStateNext == GS_MENU;
+
+	if (AEInputCheckCurr(AEVK_Q))
+		gGameStateNext == GS_QUIT;
 
 	player.pos.x += player.vel.x;
 	player.pos.y += player.vel.y;
@@ -155,8 +164,14 @@ void Player::Player_Update()
 		Sharpener* Sharpenertemp = SharpenerArray + i;
 		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Sharpenertemp->GetSharpenerBoundingBox(i), Sharpenertemp->GetSharpenerVelocity(i)))
 		{
-			
+			if (player.pos.y >= Sharpenertemp->GetSharpenerBoundingBox(i).max.y + 20 && player.vel.y < 0)
+			{
+				player.vel.y = 0;
+				player.pos.y = Sharpenertemp->GetSharpenerBoundingBox(i).max.y + 20;
+				CanJump = true;
+			}
 		}
+		
 	}//End of Sharpener for loop
 
 	///******************************************************************************/
@@ -205,14 +220,36 @@ void Player::Player_Update()
 	{
 		Wall* Walltemp = Get_WallArr() + i;
 		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Walltemp->GetWallBoundingBox(i), { 0,0 }))
-		{
-			if (pos.x < -370)
+		{	
+			WallCollision = true;
+			if (Walltemp->GetType(i) == WALL)
 			{
-				pos.x = -370;
+				if (player.pos.x >= Walltemp->GetWallBoundingBox(i).min.x)
+				{
+					player.pos.x = (Walltemp->GetWallBoundingBox(i).max.x + 30);
+				}
+				else if (player.pos.x <= Walltemp->GetWallBoundingBox(i).max.x)
+				{
+					player.pos.x = (Walltemp->GetWallBoundingBox(i).min.x - 30);
+				}
 			}
+			else if (Walltemp->GetType(i) == PLATFORM)
+			{
 
+				if (player.pos.y >= Walltemp->GetWallBoundingBox(i).max.y + 40 && player.vel.y < 0)
+				{
+					//GROUND = 
+					player.vel.y = 0;
+					player.pos.y = Walltemp->GetWallBoundingBox(i).max.y + 40;
+					CanJump = true;
+				}
+			}
 		}
 	}//End of Wall for loop
+
+	player.pos.x += player.vel.x * g_dt;
+	player.pos.y += player.vel.y * g_dt;
+
 }
 
 /******************************************************************************/
@@ -252,7 +289,7 @@ void Player::Player_Unload()
 /******************************************************************************/
 void Player::SetGravity()
 {
-	vel.y -= 0.15f;
+	vel.y -= 80.f * g_dt;
 }
 
 /******************************************************************************/
