@@ -184,7 +184,18 @@ void Sharpener::UpdateSharpener()
 			Pencil* Penciltemp = PencilArray + j;
 			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, Penciltemp->GetPencilBoundingBox(j), Penciltemp->GetPencilVelocity(j)))
 			{
-				Sharpenertemp->vel.x = 0;
+				if ((Sharpenertemp->boundingBox.max.x >= Penciltemp->GetPencilBoundingBox(j).min.x) && AEInputCheckCurr(AEVK_RIGHT))
+				{
+					Sharpenertemp->vel.x = 0;
+				}
+				else if ((Sharpenertemp->boundingBox.min.x >= Penciltemp->GetPencilBoundingBox(j).max.x) && AEInputCheckCurr(AEVK_LEFT))
+				{
+					Sharpenertemp->vel.x = 0;
+				}
+				else
+				{
+					Sharpenertemp->vel.x = SPEED;
+				}
 			}
 		}//End of Pencil for loop
 
