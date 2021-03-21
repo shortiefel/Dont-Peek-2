@@ -130,7 +130,7 @@ void Player::Player_Update()
 		//printf("jumping \n");
 		CanJump = false;
 		//Position.y += Velocity.y * 4;
-		player.vel.y = 130.f;
+		player.vel.y = 100.f;
 		//printf("PosY: %f, %f\n", pos.x, pos.y);
 
 		
