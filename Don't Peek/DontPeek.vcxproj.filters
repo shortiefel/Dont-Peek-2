@@ -13,9 +13,6 @@
     <ClCompile Include="src\GameStateMgr.cpp">
       <Filter>Source\Levels\Code</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level 1.cpp">
-      <Filter>Source\Levels\Code</Filter>
-    </ClCompile>
     <ClCompile Include="src\Menu.cpp">
       <Filter>Source\Levels\Code</Filter>
     </ClCompile>
@@ -45,6 +42,12 @@
     </ClCompile>
     <ClCompile Include="src\Sharpener.cpp">
       <Filter>Source\Objects\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Win.cpp">
+      <Filter>Source\Levels\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Tutorial.cpp">
+      <Filter>Source\Levels\Code</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -96,9 +99,6 @@
     <ClInclude Include="src\GameStateMgr.h">
       <Filter>Source\Levels\Header</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level 1.h">
-      <Filter>Source\Levels\Header</Filter>
-    </ClInclude>
     <ClInclude Include="src\Menu.h">
       <Filter>Source\Levels\Header</Filter>
     </ClInclude>
@@ -128,6 +128,12 @@
     </ClInclude>
     <ClInclude Include="src\Sharpener.h">
       <Filter>Source\Objects\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Win.h">
+      <Filter>Source\Levels\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tutorial.h">
+      <Filter>Source\Levels\Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

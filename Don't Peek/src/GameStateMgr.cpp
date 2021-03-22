@@ -1,5 +1,6 @@
 #include "GameStateMgr.h"
 #include "Menu.h"
+#include "Tutorial.h"
 
 /******************************************************************************/
 /*!
@@ -63,6 +64,15 @@ void GameStateMgrUpdate()
 		GameStateUnload = MenuUnload;
 		break;
 
+	case GS_TUTORIAL:
+		GameStateLoad = Tutorial_Load;
+		GameStateInit = Tutorial_Init;
+		GameStateUpdate = Tutorial_Update;
+		GameStateDraw = Tutorial_Draw;
+		GameStateFree = Tutorial_Free;
+		GameStateUnload = Tutorial_Unload;
+		break;
+
 	case GS_DONT_PEEK:
 		GameStateLoad = GameStateDontPeekLoad;
 		GameStateInit = GameStateDontPeekInit;
@@ -72,8 +82,6 @@ void GameStateMgrUpdate()
 		GameStateUnload = GameStateDontPeekUnload;
 		break;
 
-	case GS_TUTORIAL:
-		//to fill in
 
 		//case GS_RESTART:
 			//GameStateInit = GameStateDontPeekInit;

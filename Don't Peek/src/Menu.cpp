@@ -37,7 +37,7 @@ void MenuLoad()
 	menu.scale = { 950.f,650.f };
 
 	menu.pObj = sGameObjList + sGameObjNum++;
-	menu.pObj->texture = AEGfxTextureLoad("Resources/Menu.png");
+	menu.pObj->texture = AEGfxTextureLoad("Resources/MenuNEW.png");
 	AE_ASSERT_MESG(menu.pObj->texture, "Failed to load Menu!");
 
 	AEGfxMeshStart();
@@ -192,7 +192,7 @@ void MenuUpdate()
 		}
 		else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[2].boundingBox, { 0,0 }))
 		{
-			//gGameStateCurr = GS_DONT_PEEK;
+			gGameStateNext = GS_TUTORIAL;
 			printf("BUTTON OPTIONS \n");
 			
 		}
@@ -203,6 +203,13 @@ void MenuUpdate()
 		}
 		else printf("DEFAULT\n");
 	}
+
+
+	if (AEInputCheckCurr(AEVK_B))
+		gGameStateNext = GS_MENU;
+
+	if (AEInputCheckCurr(AEVK_ESCAPE))
+		gGameStateNext = GS_QUIT;
 }
 void MenuDraw()
 {

@@ -9,6 +9,8 @@ enum
 	GS_TUTORIAL,
 
 	GS_LEVEL,
+	GS_WIN,
+	GS_LOSE,
 	//Special Game State. DONT CHANGE HOR
 	GS_RESTART,
 	GS_QUIT,
