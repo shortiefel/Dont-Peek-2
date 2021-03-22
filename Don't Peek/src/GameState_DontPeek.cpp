@@ -30,6 +30,7 @@ Technology is prohibited.
 #include "Wall.h"
 #include "Tutorial.h"
 #include "Camera.h"
+#include "Win.h"
 
 
 /******************************************************************************/
@@ -48,7 +49,11 @@ GameObjInst* gameObjInstCreate(unsigned long type, float scale,
 	AEVec2* pPos, AEVec2* pVel, float dir);
 void gameObjInstDestroy(GameObjInst* pInst);
 
-//individual classes
+/******************************************************************************/
+/*!
+	INDIVIDUAL CLASSES
+*/
+/******************************************************************************/
 
 static Door door;
 Player player;
@@ -82,6 +87,8 @@ void GameStateDontPeekLoad(void)
 	pencil.LoadPencil();
 	door.LoadDoor();
 	player.Player_Load();
+	
+
 	
 }
 

@@ -143,6 +143,12 @@
     <Image Include="..\..\..\..\Desktop\drawings\Sharpener_Animation.png">
       <Filter>Resources</Filter>
     </Image>
+    <Image Include="Resources\Door.png">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="Resources\win.png">
+      <Filter>Resources</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">

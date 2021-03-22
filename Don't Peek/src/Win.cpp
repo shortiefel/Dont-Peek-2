@@ -25,11 +25,11 @@ Technology is prohibited.
 #include "Win.h"
 #include "Menu.h"
 
-static Win win;
+Win win;
 Button Wbutton[2];
 int Win_x, Win_y;
 int SetWidthCursorWin = 1000 / 2;
-int SetHeightCursorLose = 700 / 2;
+int SetHeightCursorWin = 700 / 2;
 
 void WinLoad()
 {
@@ -62,6 +62,21 @@ void WinInit()
 
 void WinUpdate()
 {
+	BoundingBox();
+	AEInputGetCursorPosition(&Win_x, &Win_y);
+	if (Win_x >= 0 && Win_y >= 0)
+	{
+		Win_x = Win_x - SetWidthCursorWin;
+		Win_y -= SetHeightCursorWin;
+		Win_y *= -1;
+	}
+
+
+	if (AEInputCheckCurr(AEVK_B))
+		gGameStateNext = GS_MENU;
+
+	if (AEInputCheckCurr(AEVK_ESCAPE))
+		gGameStateNext = GS_QUIT;
 }
 
 void WinDraw()
@@ -74,16 +89,34 @@ void WinDraw()
 	AEGfxSetTransform(win.transform.m);
 	AEGfxSetTransparency(1.0f);
 	AEGfxMeshDraw(win.pObj->pMesh, AE_GFX_MDM_TRIANGLES);
+
+	/*for (int i = 0; i < 2; i++)
+	{
+		AEGfxTextureSet(Wbutton[i].pButton->texture, 0, 0);
+		AEGfxSetTransform(Wbutton[i].transform.m);
+		AEGfxSetTransparency(1.0f);
+		AEGfxMeshDraw(Wbutton[i].pButton->pMesh, AE_GFX_MDM_TRIANGLES);
+	}*/
 }
 
 void WinFree()
 {
+	//free(Wbutton->pButton);
+	free(win.pObj);
 }
 
 void WinUnload()
 {
+	
 }
 
 void BoundingBoxWin()
 {
+	/*for (int i = 0; i < 2; i++)
+	{
+		Wbutton[i].boundingBox.min.x = Wbutton[i].pos.x - Wbutton[i].scale.x / 2;
+		Wbutton[i].boundingBox.min.y = Wbutton[i].pos.y - Wbutton[i].scale.y / 2;
+		Wbutton[i].boundingBox.max.x = Wbutton[i].pos.x + Wbutton[i].scale.x / 2;
+		Wbutton[i].boundingBox.max.y = Wbutton[i].pos.y + Wbutton[i].scale.y / 2;
+	}*/
 }

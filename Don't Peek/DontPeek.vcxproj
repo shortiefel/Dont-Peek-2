@@ -137,7 +137,9 @@
   <ItemGroup>
     <Image Include="..\..\..\..\Desktop\drawings\Sharpener_Animation.png" />
     <ClInclude Include="src\Main.h" />
+    <Image Include="Resources\Door.png" />
     <Image Include="Resources\eraser.png" />
+    <Image Include="Resources\win.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
