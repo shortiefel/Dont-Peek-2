@@ -53,6 +53,14 @@ void WinLoad()
 		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 	win.pObj->pMesh = AEGfxMeshEnd();
 
+	AEMtx33	trans, sc;
+	// Compute the scaling matrix
+	AEMtx33Scale(&sc, win.scale.x, win.scale.y);
+	// Compute the translation matrix
+	AEMtx33Trans(&trans, win.pos.x, win.pos.y);
+
+	AEMtx33Concat(&(win.transform), &trans, &sc);
+
 	//MISSING NEXT LEVEl BUTTON
 }
 

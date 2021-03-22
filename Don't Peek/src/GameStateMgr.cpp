@@ -82,6 +82,7 @@ void GameStateMgrUpdate()
 		GameStateFree = GameStateDontPeekFree;
 		GameStateUnload = GameStateDontPeekUnload;
 		break;
+
 	case GS_WIN:
 		GameStateLoad = WinLoad;
 		GameStateInit = WinInit;
