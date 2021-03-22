@@ -1,6 +1,7 @@
 #include "GameStateMgr.h"
 #include "Menu.h"
 #include "Tutorial.h"
+#include  "Win.h"
 
 /******************************************************************************/
 /*!
@@ -80,6 +81,14 @@ void GameStateMgrUpdate()
 		GameStateDraw = GameStateDontPeekDraw;
 		GameStateFree = GameStateDontPeekFree;
 		GameStateUnload = GameStateDontPeekUnload;
+		break;
+	case GS_WIN:
+		GameStateLoad = WinLoad;
+		GameStateInit = WinInit;
+		GameStateUpdate = WinUpdate;
+		GameStateDraw = WinDraw;
+		GameStateFree = WinFree;
+		GameStateUnload = WinUnload;
 		break;
 
 

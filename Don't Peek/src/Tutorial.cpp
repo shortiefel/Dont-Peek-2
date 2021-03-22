@@ -19,7 +19,7 @@ without the prior written consent of DigiPen Institute of
 Technology is prohibited.
 */
 /* End Header **************************************************************************/
-#include"Tutorial.h"
+#include "Tutorial.h"
 #include "Door.h"
 #include "Sharpener.h"
 #include "Pencil.h"

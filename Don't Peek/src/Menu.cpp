@@ -96,7 +96,7 @@ void MenuLoad()
 	button[2].pos = { -150.f, -200.f };
 	button[2].scale = { 200.f,80.f };
 	button[2].pButton = sGameObjList + sGameObjNum++;
-	button[2].pButton->texture = AEGfxTextureLoad("Resources/Options.jpg");
+	button[2].pButton->texture = AEGfxTextureLoad("Resources/HowToPlay.jpg");
 	button[2].pButton->type = TYPE_OPTIONS;
 	AE_ASSERT_MESG(button[2].pButton->texture, "Failed to load Button2!");
 
@@ -193,7 +193,7 @@ void MenuUpdate()
 		else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[2].boundingBox, { 0,0 }))
 		{
 			gGameStateNext = GS_TUTORIAL;
-			printf("BUTTON OPTIONS \n");
+			printf("BUTTON HOW TO PLAY \n");
 			
 		}
 		else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[3].boundingBox, { 0,0 }))
