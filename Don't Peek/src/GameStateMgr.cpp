@@ -3,6 +3,7 @@
 #include "Tutorial.h"
 #include  "Win.h"
 #include "Lose.h"
+#include "Pause.h"
 #include "Credits.h"
 
 /******************************************************************************/
@@ -101,6 +102,15 @@ void GameStateMgrUpdate()
 		GameStateDraw = LoseDraw;
 		GameStateFree = LoseFree;
 		GameStateUnload = LoseUnload;
+		break;
+
+	case GS_PAUSE:
+		GameStateLoad = PauseLoad;
+		GameStateInit = PauseInit;
+		GameStateUpdate = PauseUpdate;
+		GameStateDraw = PauseDraw;
+		GameStateFree = PauseFree;
+		GameStateUnload = PauseUnload;
 		break;
 
 	case GS_CREDITS:

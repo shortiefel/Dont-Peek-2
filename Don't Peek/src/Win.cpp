@@ -26,7 +26,7 @@ Technology is prohibited.
 #include "Menu.h"
 
 Win win;
-ButtonW Wbutton[2];
+static ButtonW Wbutton[2];
 int Win_x, Win_y;
 int SetWidthCursorWin = 1000 / 2;
 int SetHeightCursorWin = 700 / 2;

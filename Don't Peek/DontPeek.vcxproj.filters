@@ -55,6 +55,9 @@
     <ClCompile Include="src\Lose.cpp">
       <Filter>Source\Levels\Code</Filter>
     </ClCompile>
+    <ClCompile Include="src\Pause.cpp">
+      <Filter>Source\Levels\Code</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Main.h">
@@ -145,6 +148,9 @@
       <Filter>Source\Levels\Header</Filter>
     </ClInclude>
     <ClInclude Include="src\Lose.h">
+      <Filter>Source\Levels\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pause.h">
       <Filter>Source\Levels\Header</Filter>
     </ClInclude>
   </ItemGroup>
