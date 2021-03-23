@@ -19,6 +19,7 @@ without the prior written consent of DigiPen Institute of
 Technology is prohibited.
 */
 /* End Header **************************************************************************/
+#include "GameStateMgr.h"
 #include "Tutorial.h"
 #include "Door.h"
 #include "Sharpener.h"
@@ -40,6 +41,7 @@ static Sharpener sharpener;
 static Eraser eraser;
 static Pencil pencil;
 static Highlighter highlighter;
+static float timer = 0;
 
 void Tutorial_Load()
 {
@@ -72,6 +74,7 @@ void Tutorial_Load()
 }
 void Tutorial_Init()
 {
+	timer = 300.f;
 	SetSharpenerNum(1);
 	SetDoorNum(8);
 	//Highlighter
@@ -131,7 +134,14 @@ void Tutorial_Init()
 }
 void Tutorial_Update()
 {
-	
+	if (timer < 0)
+	{
+		gGameStateNext = GS_LOSE;
+	}
+	else
+	{
+		timer -= g_dt;
+	}
 }
 void Tutorial_Draw()
 {
