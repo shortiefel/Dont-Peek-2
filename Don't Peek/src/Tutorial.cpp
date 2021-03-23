@@ -29,6 +29,7 @@ Technology is prohibited.
 #include "Wall.h"
 
 background bg;
+float timer = 0;
 void Tutorial_Load()
 {
 	bg.Bgpos= {350.f,-200.f };
