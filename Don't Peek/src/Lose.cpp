@@ -23,6 +23,7 @@ Technology is prohibited.
 #include "main.h"
 #include "GameStateMgr.h"
 #include "Win.h"
+#include "Lose.h"
 #include "Menu.h"
 
 static Win win;
@@ -119,7 +120,8 @@ void LoseInit()
 
 void LoseUpdate()
 {
-	BoundingBox();
+	AEGfxSetCamPosition(0, 0);
+	BoundingBoxLose();
 	AEInputGetCursorPosition(&Win_x, &Win_y);
 	if (Win_x >= 0 && Win_y >= 0)
 	{
@@ -131,6 +133,27 @@ void LoseUpdate()
 	if (AEInputCheckTriggered(AEVK_LBUTTON))
 	{
 		printf("Mouse: %d::%d\n", Win_x, Win_y);
+
+		if (CollisionIntersection_PointRect({ static_cast<float>(Win_x), static_cast<float>(Win_y) }, { 0,0 }, Wbutton[0].boundingBox, { 0,0 }))
+		{
+			if (AEInputUpdate)
+			{
+				gGameStateNext = GS_MENU;
+				printf("BUTTON PLAY \n");
+				printf("BBMin: %f::%f\n", Wbutton[0].boundingBox.min.x, Wbutton[0].boundingBox.min.y);
+				printf("BBMax: %f::%f\n", Wbutton[0].boundingBox.max.x, Wbutton[0].boundingBox.max.y);
+			}
+		}
+		else if (CollisionIntersection_PointRect({ static_cast<float>(Win_x), static_cast<float>(Win_y) }, { 0,0 }, Wbutton[0].boundingBox, { 0,0 }))
+		{
+			if (AEInputUpdate)
+			{
+				gGameStateNext = GS_DONT_PEEK;
+				printf("BUTTON NEXT LEVEL \n");
+				printf("BBMin: %f::%f\n", Wbutton[1].boundingBox.min.x, Wbutton[0].boundingBox.min.y);
+				printf("BBMax: %f::%f\n", Wbutton[1].boundingBox.max.x, Wbutton[0].boundingBox.max.y);
+			}
+		}
 	}
 
 
@@ -163,8 +186,7 @@ void LoseDraw()
 
 void LoseFree()
 {
-	free(Wbutton->pButton);
-	free(win.pObj);
+	
 }
 
 void LoseUnload()
