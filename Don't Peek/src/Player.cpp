@@ -25,6 +25,7 @@ Technology is prohibited.
 #include "Wall.h"
 #include "GameStateMgr.h"
 #include "Menu.h"
+#include <math.h>
 
 
 /******************************************************************************/
@@ -37,6 +38,8 @@ const int Player_Gravity = 8;
 bool Gravity = true;
 float GROUND = 0.f;
 bool Movement = false;
+float CameraPosX = 0;
+float CameraPosY = 0;
 Wall* wall_player;
 
 /******************************************************************************/
@@ -130,7 +133,8 @@ void Player::Player_Update()
 		//printf("jumping \n");
 		CanJump = false;
 		//Position.y += Velocity.y * 4;
-		player.vel.y = 120.f;
+		float g = 50.f * g_dt;
+		player.vel.y = static_cast<double>((2 * g) * (500 - 420));
 		//printf("PosY: %f, %f\n", pos.x, pos.y);
 	}
 	else if (player.pos.y < GROUND)
@@ -205,11 +209,23 @@ void Player::Player_Update()
 			{
 				player.pos = Doortemp->GetDoorPosition(i + 1);
 				player.pos.x += Scale / 2 + 30;
+				CameraPosX = (Doortemp->GetDoorPosition(i).x + Doortemp->GetDoorPosition(i - 1).x) / 2;
+				CameraPosY = (Doortemp->GetDoorPosition(i).y + Doortemp->GetDoorPosition(i - 1).y) / 2;
 			}
 			else
 			{
 				player.pos = Doortemp->GetDoorPosition(i - 1);
 				player.pos.x -= Scale / 2 + 30;
+				CameraPosX = (Doortemp->GetDoorPosition(i).x + Doortemp->GetDoorPosition(i + 1).x) / 2;
+				CameraPosY = (Doortemp->GetDoorPosition(i).y + Doortemp->GetDoorPosition(i + 1).y) / 2;
+			}
+			if (i == 0)
+			{
+				AEGfxSetCamPosition(player.pos.x, player.pos.y);
+			}
+			else
+			{
+				AEGfxSetCamPosition(CameraPosX, CameraPosY);
 			}
 		}
 

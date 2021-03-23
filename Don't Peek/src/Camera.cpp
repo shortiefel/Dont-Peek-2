@@ -26,8 +26,6 @@ void Camera::initCamera()
 void Camera::updateCamera()
 {
 	AEGfxSetCamPosition(player.GetPosPlayer().x, player.GetPosPlayer().y);
-
-
 }
 /******************************************************************************/
 /*!

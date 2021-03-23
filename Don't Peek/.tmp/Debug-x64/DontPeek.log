@@ -1,4 +1,3 @@
-﻿  Tutorial.cpp
-C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\Don't Peek\src\Tutorial.cpp(32,27): warning C4211: nonstandard extension used: redefined extern to static
-C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\Don't Peek\src\Tutorial.cpp(33,21): warning C4211: nonstandard extension used: redefined extern to static
+﻿  Player.cpp
+C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\Don't Peek\src\Player.cpp(137,46): warning C4244: '=': conversion from 'double' to 'f32', possible loss of data
   DontPeek.vcxproj -> C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\Don't Peek\bin\Debug-x64\DontPeek.exe

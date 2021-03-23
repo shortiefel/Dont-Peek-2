@@ -29,7 +29,6 @@ Technology is prohibited.
 #include "Pencil.h"
 #include "Wall.h"
 #include "Tutorial.h"
-#include "Camera.h"
 #include "Win.h"
 
 
@@ -62,7 +61,6 @@ Eraser eraser;
 Pencil pencil;
 static Highlighter highlighter;
 Wall wwall;
-Camera camera;
 
 
 /******************************************************************************/
@@ -88,8 +86,6 @@ void GameStateDontPeekLoad(void)
 	door.LoadDoor();
 	player.Player_Load();
 	
-
-	
 }
 
 /******************************************************************************/
@@ -107,7 +103,6 @@ void GameStateDontPeekInit(void)
 	pencil.InitPencil();
 	door.InitDoor();
 	player.Player_Init();
-	camera.initCamera();
 }
 
 /******************************************************************************/
@@ -126,8 +121,6 @@ void GameStateDontPeekUpdate(void)
 	door.UpdateDoor();
 	wwall.UpdateWall();
 	player.Player_Update();
-	camera.updateCamera();
-	
 }
 
 
