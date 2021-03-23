@@ -47,6 +47,7 @@ public:
 	void Player_Init();
 	void Player_Update();
 	void Player_Draw();
+	void Player_Free();
 	void Player_Unload();
 	
 	void BoundingBox();

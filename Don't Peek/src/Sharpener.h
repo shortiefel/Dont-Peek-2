@@ -40,6 +40,7 @@ public:
 	void InitSharpener();
 	void UpdateSharpener();
 	void DrawSharpener();
+	void FreeSharpener();
 	void UnloadSharpener();
 
 	void BoundingBox();

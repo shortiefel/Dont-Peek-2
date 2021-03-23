@@ -39,6 +39,7 @@ public:
 	void InitPencil();
 	void UpdatePencil();
 	void DrawPencil();
+	void FreePencil();
 	void UnloadPencil();
 
 	void BoundingBox();

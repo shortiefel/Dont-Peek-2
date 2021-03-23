@@ -40,6 +40,7 @@ public:
 	void InitEraser();
 	void UpdateEraser();
 	void DrawEraser();
+	void FreeEraser();
 	void UnloadEraser();
 
 	void BoundingBox();

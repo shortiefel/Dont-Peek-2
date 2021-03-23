@@ -151,6 +151,14 @@ void GameStateDontPeekFree(void)
 			continue;
 		gameObjInstDestroy(pInst);
 	}
+
+	sharpener.FreeSharpener();
+	eraser.FreeEraser();
+	highlighter.FreeHighlighter();
+	pencil.FreePencil();
+	door.FreeDoor();
+	player.Player_Free();
+
 }
 
 /******************************************************************************/
