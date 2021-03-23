@@ -57,3 +57,5 @@ extern Highlighter HighlighterArray[MAX];
 
 int GetHighlighterNum();
 void SetHighlighterNum(int Num);
+
+extern Highlighter highlighter;

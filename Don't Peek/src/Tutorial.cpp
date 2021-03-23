@@ -25,15 +25,9 @@ Technology is prohibited.
 #include "Pencil.h"
 #include "Eraser.h"
 #include "Highlighter.h"
+#include "Wall.h"
 
-static background bg;
-static Wall wall[100];
-static Door door;
-static Sharpener sharpener;
-static Eraser eraser;
-static Pencil pencil;
-static Highlighter highlighter;
-
+background bg;
 void Tutorial_Load()
 {
 	bg.Bgpos= {350.f,-200.f };
@@ -72,14 +66,14 @@ void Tutorial_Init()
 	//highlighter.SetHighlighterPosition(0, { 100,0 });
 
 	//first box
-	wall->CreateWall({ -390,-90 }, { 1,0 }, 20, 30.f, PLATFORM); //floor
-	wall->CreateWall({ -390,320 }, { 1,0 }, 20, 30.f, CEILING); // top wall
+	wall.CreateWall({ -390,-90 }, { 1,0 }, 20, 30.f, PLATFORM); //floor
+	wall.CreateWall({ -390,320 }, { 1,0 }, 20, 30.f, CEILING); // top wall
 
-	wall->CreateWall({ -405,320 }, { 0,-1 }, 15, 30.f, WALL); //left wall
-	wall->CreateWall({ 200,320 }, { 0,-1 }, 15, 30.f, WALL); // right wall
+	wall.CreateWall({ -405,320 }, { 0,-1 }, 15, 30.f, WALL); //left wall
+	wall.CreateWall({ 200,320 }, { 0,-1 }, 15, 30.f, WALL); // right wall
 
-	wall->CreateWall({ 20,105 }, { 1,0 }, 6, 30.f, PLATFORM); //platform
-	wall->CreateWall({ 20,75 }, { 0,-1 }, 6, 30.f, WALL); //inside wall
+	wall.CreateWall({ 20,105 }, { 1,0 }, 6, 30.f, PLATFORM); //platform
+	wall.CreateWall({ 20,75 }, { 0,-1 }, 6, 30.f, WALL); //inside wall
 
 	SetSharpenerNum(1);
 	sharpener.SetSharpenerPosition(0, { -250,-20 });
@@ -90,37 +84,37 @@ void Tutorial_Init()
 	//2nd box
 	door.SetDoorPosition(1, { -40 , -320 });
 	door.SetDoorPosition(2, { 150 , -655 });
-	wall->CreateWall({ -105,-720 }, { 1,0 }, 11, 30.f, PLATFORM); //floor
-	wall->CreateWall({ -105,-210 }, { 1,0 }, 11, 30.f, CEILING); // top wall
-	wall->CreateWall({ -135,-210 }, { 0,-1 }, 18, 30.f, WALL); // left wall
-	wall->CreateWall({ 210,-210 }, { 0,-1 }, 18, 30.f, WALL); // right wall
-	wall->CreateWall({ -125,-385 }, { 1,0 }, 6, 30.f, PLATFORM); //platform
+	wall.CreateWall({ -105,-720 }, { 1,0 }, 11, 30.f, PLATFORM); //floor
+	wall.CreateWall({ -105,-210 }, { 1,0 }, 11, 30.f, CEILING); // top wall
+	wall.CreateWall({ -135,-210 }, { 0,-1 }, 18, 30.f, WALL); // left wall
+	wall.CreateWall({ 210,-210 }, { 0,-1 }, 18, 30.f, WALL); // right wall
+	wall.CreateWall({ -125,-385 }, { 1,0 }, 6, 30.f, PLATFORM); //platform
 
 	//3rd box
 	door.SetDoorPosition(3, { 560 , -440 });
 	door.SetDoorPosition(4, { 1130 , -535 });
-	wall->CreateWall({ 520,-820 }, { 1,0 }, 24, 30.f, PLATFORM); //floor
-	wall->CreateWall({ 520,-368 }, { 1,0 }, 24, 30.f, CEILING); // top wall
-	wall->CreateWall({ 490,-368 }, { 0,-1 }, 16, 30.f, WALL); // left wall
-	wall->CreateWall({ 1210,-368 }, { 0,-1 }, 16, 30.f, WALL); // right wall
-	wall->CreateWall({ 520,-505 }, { 1,0 }, 6, 30.f, PLATFORM); //platform left
-	wall->CreateWall({ 1060,-600 }, { 1,0 }, 5, 30.f, PLATFORM); //platform right
-	wall->CreateWall({ 670,-530 }, { 0,-1 }, 10, 30.f, WALL); //wall mid
+	wall.CreateWall({ 520,-820 }, { 1,0 }, 24, 30.f, PLATFORM); //floor
+	wall.CreateWall({ 520,-368 }, { 1,0 }, 24, 30.f, CEILING); // top wall
+	wall.CreateWall({ 490,-368 }, { 0,-1 }, 16, 30.f, WALL); // left wall
+	wall.CreateWall({ 1210,-368 }, { 0,-1 }, 16, 30.f, WALL); // right wall
+	wall.CreateWall({ 520,-505 }, { 1,0 }, 6, 30.f, PLATFORM); //platform left
+	wall.CreateWall({ 1060,-600 }, { 1,0 }, 5, 30.f, PLATFORM); //platform right
+	wall.CreateWall({ 670,-530 }, { 0,-1 }, 10, 30.f, WALL); //wall mid
 
 	//4th box
 	door.SetDoorPosition(5, { 580 , -140 });
 	door.SetDoorPosition(6, { 800 , 100 });
-	wall->CreateWall({ 540,-205 }, { 1,0 }, 11, 30.f, PLATFORM); //floor
-	wall->CreateWall({ 540,310 }, { 1,0 }, 11, 30.f, CEILING); //top wall
-	wall->CreateWall({ 510,310 }, { 0,-1 }, 18, 30.f, WALL); //left wall
-	wall->CreateWall({ 870,310 }, { 0,-1 }, 18, 30.f, WALL); //right wall
+	wall.CreateWall({ 540,-205 }, { 1,0 }, 11, 30.f, PLATFORM); //floor
+	wall.CreateWall({ 540,310 }, { 1,0 }, 11, 30.f, CEILING); //top wall
+	wall.CreateWall({ 510,310 }, { 0,-1 }, 18, 30.f, WALL); //left wall
+	wall.CreateWall({ 870,310 }, { 0,-1 }, 18, 30.f, WALL); //right wall
 
 	//5th box
 	door.SetDoorPosition(7, { 990 , 100 });
-	wall->CreateWall({ 950,35 }, { 1,0 }, 8, 30.f, PLATFORM); //floor
-	wall->CreateWall({ 950,280 }, { 1,0 }, 3, 30.f, CEILING); //ceiling
-	wall->CreateWall({ 920,280 }, { 0,-1 }, 9, 30.f, WALL); //left wall
-	wall->CreateWall({ 1190,280 }, { 0,-1 }, 9, 30.f, WALL); //left wall
+	wall.CreateWall({ 950,35 }, { 1,0 }, 8, 30.f, PLATFORM); //floor
+	wall.CreateWall({ 950,280 }, { 1,0 }, 3, 30.f, CEILING); //ceiling
+	wall.CreateWall({ 920,280 }, { 0,-1 }, 9, 30.f, WALL); //left wall
+	wall.CreateWall({ 1190,280 }, { 0,-1 }, 9, 30.f, WALL); //left wall
 }
 void Tutorial_Update()
 {

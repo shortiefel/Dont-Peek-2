@@ -9,7 +9,6 @@
 /******************************************************************************/
 
 const unsigned int	GAME_OBJ_NUM_MAX = 32;					//The total number of different objects (Shapes)
-const unsigned int	GAME_OBJ_INST_NUM_MAX = 2048;			//The total number of different game object instances
 const unsigned int	MAX = 10;
 //const float			PLAYER_ACCEL_FORWARD = 40.f;
 //const float			PLAYER_ACCEL_BACKWARD = 40.f;
@@ -97,25 +96,9 @@ struct GameObjInst
 extern GameObj				sGameObjList[GAME_OBJ_NUM_MAX];				// Each element in this array represents a unique game object (shape)
 extern unsigned long		sGameObjNum;
 
-extern GameObjInst			sGameObjInstList[GAME_OBJ_INST_NUM_MAX];	// Each element in this array represents a unique game object instance (sprite)
-extern unsigned long		sGameObjInstNum;
-
-GameObjInst* gameObjInstCreate(unsigned long type, float scale,
-	AEVec2* pPos, AEVec2* pVel, float dir);
-void				gameObjInstDestroy(GameObjInst* pInst);
-
-
-
-
-
-
-
-
 void GameStateDontPeekLoad(void);
 void GameStateDontPeekInit(void);
 void GameStateDontPeekUpdate(void);
 void GameStateDontPeekDraw(void);
 void GameStateDontPeekFree(void);
 void GameStateDontPeekUnload(void);
-
-
