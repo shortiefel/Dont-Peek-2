@@ -115,7 +115,7 @@ void Tutorial_Init()
 	wall->CreateWall({ 670,-530 }, { 0,-1 }, 10, 30.f, WALL); //wall mid
 
 	//4th box
-	door.SetDoorPosition(5, { 580 , -140 });
+	door.SetDoorPosition(5, { 580 , -110 });
 	door.SetDoorPosition(6, { 800 , 100 });
 	wall->CreateWall({ 540,-205 }, { 1,0 }, 11, 30.f, PLATFORM); //floor
 	wall->CreateWall({ 540,310 }, { 1,0 }, 11, 30.f, CEILING); //top wall

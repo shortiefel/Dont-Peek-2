@@ -158,6 +158,8 @@ void MenuInit()
 }
 void MenuUpdate()
 {
+
+	AEGfxSetCamPosition(0,0);
 		BoundingBox();
 		AEInputGetCursorPosition(&x, &y);
 		if (x >= 0 && y >= 0)

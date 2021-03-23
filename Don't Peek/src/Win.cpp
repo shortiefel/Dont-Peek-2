@@ -26,7 +26,7 @@ Technology is prohibited.
 #include "Menu.h"
 
 Win win;
-Button Wbutton[2];
+ButtonW Wbutton[2];
 int Win_x, Win_y;
 int SetWidthCursorWin = 1000 / 2;
 int SetHeightCursorWin = 700 / 2;
@@ -61,7 +61,56 @@ void WinLoad()
 
 	AEMtx33Concat(&(win.transform), &trans, &sc);
 
+
+
+	//MAIN MENU BUTTON
+	Wbutton[0].pos = { 200.f, -150.f };
+	Wbutton[0].scale = { 200.f,80.f };
+	Wbutton[0].pButton = sGameObjList + sGameObjNum++;
+	Wbutton[0].pButton->texture = AEGfxTextureLoad("Resources/MBtn.jpg");
+	Wbutton[0].pButton->type = TYPE_LEVEL;
+	AE_ASSERT_MESG(Wbutton[0].pButton->texture, "Failed to load Button1!");
+
+	AEGfxMeshStart();
+	AEGfxTriAdd(
+		-0.5f, -0.5f, 0x00000000, 0.0f, 1.0f,
+		0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
+		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
+
+	AEGfxTriAdd(
+		0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
+		0.5f, 0.5f, 0x00000000, 1.0f, 0.0f,
+		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
+	Wbutton[0].pButton->pMesh = AEGfxMeshEnd();
+
+	//NEXT LEVEL
+	Wbutton[1].pos = { 200.f, -230.f };
+	Wbutton[1].scale = { 200.f,80.f };
+	Wbutton[1].pButton = sGameObjList + sGameObjNum++;
+	Wbutton[1].pButton->texture = AEGfxTextureLoad("Resources/NextLevel.jpg");
+	Wbutton[1].pButton->type = TYPE_LEVEL;
+	AE_ASSERT_MESG(Wbutton[1].pButton->texture, "Failed to load Button1!");
+
+	AEGfxMeshStart();
+	AEGfxTriAdd(
+		-0.5f, -0.5f, 0x00000000, 0.0f, 1.0f,
+		0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
+		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
+
+	AEGfxTriAdd(
+		0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
+		0.5f, 0.5f, 0x00000000, 1.0f, 0.0f,
+		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
+	Wbutton[1].pButton->pMesh = AEGfxMeshEnd();
 	
+	for (int i = 0; i < 2; i++)
+	{
+		AEMtx33Scale(&sc, Wbutton[i].scale.x, Wbutton[i].scale.y);
+		// Compute the translation matrix
+		AEMtx33Trans(&trans, Wbutton[i].pos.x, Wbutton[i].pos.y);
+
+		AEMtx33Concat(&(Wbutton[i].transform), &trans, &sc);
+	}
 }
 
 void WinInit()
@@ -77,6 +126,11 @@ void WinUpdate()
 		Win_x = Win_x - SetWidthCursorWin;
 		Win_y -= SetHeightCursorWin;
 		Win_y *= -1;
+	}
+
+	if (AEInputCheckTriggered(AEVK_LBUTTON))
+	{
+		printf("Mouse: %d::%d\n", Win_x, Win_y);
 	}
 
 
@@ -98,18 +152,18 @@ void WinDraw()
 	AEGfxSetTransparency(1.0f);
 	AEGfxMeshDraw(win.pObj->pMesh, AE_GFX_MDM_TRIANGLES);
 
-	/*for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 2; i++)
 	{
 		AEGfxTextureSet(Wbutton[i].pButton->texture, 0, 0);
 		AEGfxSetTransform(Wbutton[i].transform.m);
 		AEGfxSetTransparency(1.0f);
 		AEGfxMeshDraw(Wbutton[i].pButton->pMesh, AE_GFX_MDM_TRIANGLES);
-	}*/
+	}
 }
 
 void WinFree()
 {
-	//free(Wbutton->pButton);
+	free(Wbutton->pButton);
 	free(win.pObj);
 }
 
@@ -120,11 +174,11 @@ void WinUnload()
 
 void BoundingBoxWin()
 {
-	/*for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 2; i++)
 	{
 		Wbutton[i].boundingBox.min.x = Wbutton[i].pos.x - Wbutton[i].scale.x / 2;
 		Wbutton[i].boundingBox.min.y = Wbutton[i].pos.y - Wbutton[i].scale.y / 2;
 		Wbutton[i].boundingBox.max.x = Wbutton[i].pos.x + Wbutton[i].scale.x / 2;
 		Wbutton[i].boundingBox.max.y = Wbutton[i].pos.y + Wbutton[i].scale.y / 2;
-	}*/
+	}
 }
