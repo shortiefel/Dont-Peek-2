@@ -25,6 +25,12 @@ Technology is prohibited.
 #include "AEInput.h"
 
 
+enum highlighterType
+{
+	VERTICAL,
+	HORIZONTAL
+};
+
 
 class Highlighter
 {
@@ -34,9 +40,12 @@ private:
 	unsigned long flag;
 	float scaleX;
 	float scaleY;
+	float highlighterScaleX;
+	float highlighterScaleY;
 	AEMtx33	Transform;
 	AEVec2 vel;
 	AABB boundingBox;
+	highlighterType Highlightertype;
 
 public:
 	void LoadHighlighter();
@@ -51,7 +60,7 @@ public:
 	AABB GetHighlighterBoundingBox(int i);
 	AEVec2 GetHighlighterVelocity(int i);
 	AEVec2 GetHighlighterPosition(int i);
-	void SetHighlighterPosition(int i, AEVec2 NewPos);
+	void SetHighlighter(int num, AEVec2 NewPos, float scaleX, float scaleY, highlighterType type);
 
 };
 extern Highlighter HighlighterArray[MAX];
