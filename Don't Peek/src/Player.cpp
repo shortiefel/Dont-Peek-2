@@ -25,6 +25,7 @@ Technology is prohibited.
 #include "Wall.h"
 #include "GameStateMgr.h"
 #include "Menu.h"
+#include <math.h>
 
 
 /******************************************************************************/
@@ -130,7 +131,8 @@ void Player::Player_Update()
 		//printf("jumping \n");
 		CanJump = false;
 		//Position.y += Velocity.y * 4;
-		player.vel.y = 100.f;
+		float g = 50.f * g_dt;
+		player.vel.y = static_cast<double>((2 * g) * (500 - 420));
 		//printf("PosY: %f, %f\n", pos.x, pos.y);
 
 		
