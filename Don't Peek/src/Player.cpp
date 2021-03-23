@@ -209,15 +209,32 @@ void Player::Player_Update()
 			{
 				player.pos = Doortemp->GetDoorPosition(i + 1);
 				player.pos.x += Scale / 2 + 30;
-				CameraPosX = (Doortemp->GetDoorPosition(i).x + Doortemp->GetDoorPosition(i - 1).x) / 2;
-				CameraPosY = (Doortemp->GetDoorPosition(i).y + Doortemp->GetDoorPosition(i - 1).y) / 2;
+				if (i + 2 < GetDoorNum())
+				{
+					CameraPosX = (Doortemp->GetDoorPosition(i + 1).x + Doortemp->GetDoorPosition(i + 2).x) / 2;
+					CameraPosY = (Doortemp->GetDoorPosition(i + 1).y + Doortemp->GetDoorPosition(i + 2).y) / 2;
+				}
+				else
+				{
+					CameraPosX = player.pos.x;
+					CameraPosY = player.pos.y;
+				}
+				
 			}
 			else
 			{
 				player.pos = Doortemp->GetDoorPosition(i - 1);
 				player.pos.x -= Scale / 2 + 30;
-				CameraPosX = (Doortemp->GetDoorPosition(i).x + Doortemp->GetDoorPosition(i + 1).x) / 2;
-				CameraPosY = (Doortemp->GetDoorPosition(i).y + Doortemp->GetDoorPosition(i + 1).y) / 2;
+				if (i - 2 >= 0)
+				{
+					CameraPosX = (Doortemp->GetDoorPosition(i - 1).x + Doortemp->GetDoorPosition(i - 2).x) / 2;
+					CameraPosY = (Doortemp->GetDoorPosition(i - 1).y + Doortemp->GetDoorPosition(i - 2).y) / 2;
+				}
+				else
+				{
+					CameraPosX = player.pos.x;
+					CameraPosY = player.pos.y;
+				}
 			}
 			if (i == 0)
 			{
