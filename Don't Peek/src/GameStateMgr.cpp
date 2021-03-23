@@ -3,6 +3,7 @@
 #include "Tutorial.h"
 #include  "Win.h"
 #include "Credits.h"
+#include "Howtoplay.h"
 
 /******************************************************************************/
 /*!
@@ -67,12 +68,12 @@ void GameStateMgrUpdate()
 		break;
 
 	case GS_TUTORIAL:
-		GameStateLoad = Tutorial_Load;
-		GameStateInit = Tutorial_Init;
-		GameStateUpdate = Tutorial_Update;
-		GameStateDraw = Tutorial_Draw;
-		GameStateFree = Tutorial_Free;
-		GameStateUnload = Tutorial_Unload;
+		GameStateLoad = HowtoplayLoad;
+		GameStateInit = HowtoplayInit;
+		GameStateUpdate = HowtoplayUpdate;
+		GameStateDraw = HowtoplayDraw;
+		GameStateFree = HowtoplayFree;
+		GameStateUnload = HowtoplayUnload;
 		break;
 
 	case GS_DONT_PEEK:
