@@ -132,9 +132,6 @@ void Player::Player_Update()
 		//Position.y += Velocity.y * 4;
 		player.vel.y = 100.f;
 		//printf("PosY: %f, %f\n", pos.x, pos.y);
-
-		
-
 	}
 	else if (player.pos.y < GROUND)
 	{

@@ -2,6 +2,7 @@
 #include "Menu.h"
 #include "Tutorial.h"
 #include  "Win.h"
+#include "Credits.h"
 
 /******************************************************************************/
 /*!
@@ -90,6 +91,15 @@ void GameStateMgrUpdate()
 		GameStateDraw = WinDraw;
 		GameStateFree = WinFree;
 		GameStateUnload = WinUnload;
+		break;
+
+	case GS_CREDITS:
+		GameStateLoad = CreditsLoad;
+		GameStateInit = CreditsInit;
+		GameStateUpdate = CreditsUpdate;
+		GameStateDraw = CreditsDraw;
+		GameStateFree = CreditsFree;
+		GameStateUnload = CreditsUnload;
 		break;
 
 

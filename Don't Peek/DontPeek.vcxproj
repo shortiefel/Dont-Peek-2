@@ -92,6 +92,7 @@
   <ItemGroup>
     <ClCompile Include="src\Camera.cpp" />
     <ClCompile Include="src\Collision.cpp" />
+    <ClCompile Include="src\Credits.cpp" />
     <ClCompile Include="src\Door.cpp" />
     <ClCompile Include="src\Eraser.cpp" />
     <ClCompile Include="src\GameStateMgr.cpp" />
@@ -110,6 +111,7 @@
   <ItemGroup>
     <ClInclude Include="src\Camera.h" />
     <ClInclude Include="src\Collision.h" />
+    <ClInclude Include="src\Credits.h" />
     <ClInclude Include="src\Door.h" />
     <ClInclude Include="src\Eraser.h" />
     <ClInclude Include="src\fmod.hpp" />

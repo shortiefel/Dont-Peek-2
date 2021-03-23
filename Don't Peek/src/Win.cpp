@@ -1,6 +1,6 @@
 /* Start Header ************************************************************************/
 /*!
-\file Menu.cpp
+\file Win.cpp
 \team name Don't Peak
 \software name I don't want to do homework
 \authors

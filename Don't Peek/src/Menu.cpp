@@ -24,10 +24,10 @@ Technology is prohibited.
 #include "Menu.h"
 
 static Menu menu;
-Button button[4];
-int x, y;
-int SetWidthCursor = 1000 / 2;
-int SetHeightCursor = 700 / 2;
+static Button button[4];
+static int x, y;
+static int SetWidthCursor = 1000 / 2;
+static int SetHeightCursor = 700 / 2;
 
 
 
@@ -158,12 +158,6 @@ void MenuInit()
 }
 void MenuUpdate()
 {
-	if (g_dt < 3)
-	{
-
-	}
-	else
-	{
 		BoundingBox();
 		AEInputGetCursorPosition(&x, &y);
 		if (x >= 0 && y >= 0)
@@ -172,10 +166,6 @@ void MenuUpdate()
 			y -= SetHeightCursor;
 			y *= -1;
 		}
-
-
-
-
 
 		if (AEInputCheckTriggered(AEVK_LBUTTON))
 		{
@@ -195,32 +185,33 @@ void MenuUpdate()
 			}
 			else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[1].boundingBox, { 0,0 }))
 			{
-				//gGameStateCurr = GS_DONT_PEEK;
-				printf("BUTTON LEVEL \n");
+				if (AEInputUpdate)
+				{
+					printf("BUTTON LEVEL \n");
+				}
 
 			}
 			
-		}
-		else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[1].boundingBox, { 0,0 }))
-		{
-			//gGameStateCurr = GS_DONT_PEEK;
-			printf("BUTTON LEVEL \n");
-			
-		}
+		
+		
 		else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[2].boundingBox, { 0,0 }))
 		{
-			gGameStateNext = GS_TUTORIAL;
-			printf("BUTTON HOW TO PLAY \n");
+			if (AEInputUpdate)
+			{
+				gGameStateNext = GS_TUTORIAL;
+				printf("BUTTON HOW TO PLAY \n");
+			}
 			
 		}
 		else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[3].boundingBox, { 0,0 }))
 		{
-			gGameStateCurr = GS_CREDITS;
-			printf("BUTTON CREDITS \n");
+			if (AEInputUpdate)
+			{
+				gGameStateNext = GS_CREDITS;
+				printf("BUTTON CREDITS \n");
+			}
 		}
-	}
-
-
+		}
 	if (AEInputCheckCurr(AEVK_B))
 		gGameStateNext = GS_MENU;
 
