@@ -299,8 +299,17 @@ void Player::Player_Update()
 			}
 			else if (Walltemp->GetType(i) == CEILING)
 			{
+				if (player.pos.y < Walltemp->GetWallBoundingBox(i).max.y)
+				{
 					vel.y -= 50.f * g_dt;
 					player.pos.y = Walltemp->GetWallBoundingBox(i).min.y - player.Scale / 2;
+				}
+				else if(player.pos.y >= Walltemp->GetWallBoundingBox(i).max.y + player.Scale / 2 - 10 && player.vel.y < 0)
+				{
+					player.vel.y = 0;
+					player.pos.y = Walltemp->GetWallBoundingBox(i).max.y + player.Scale / 2 - 10;
+					CanJump = true;
+				}
 			}
 		}
 	}//End of Wall for loop
