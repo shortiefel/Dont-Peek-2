@@ -236,14 +236,7 @@ void Player::Player_Update()
 					CameraPosY = player.pos.y;
 				}
 			}
-			if (i == 0)
-			{
-				AEGfxSetCamPosition(player.pos.x, player.pos.y);
-			}
-			else
-			{
 				AEGfxSetCamPosition(CameraPosX, CameraPosY);
-			}
 		}
 
 	}//End of Door for loop
