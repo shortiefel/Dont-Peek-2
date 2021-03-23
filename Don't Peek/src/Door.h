@@ -42,6 +42,7 @@ public:
 	void InitDoor();
 	void UpdateDoor();
 	void DrawDoor();
+	void FreeDoor();
 	void UnloadDoor();
 
 	void BoundingBox();

@@ -33,12 +33,14 @@ private:
 	AEMtx33	Transform;
 	AEVec2 vel;
 	AABB boundingBox;
+	bool WallCollision = false;
 
 public:
 	void LoadEraser();
 	void InitEraser();
 	void UpdateEraser();
 	void DrawEraser();
+	void FreeEraser();
 	void UnloadEraser();
 
 	void BoundingBox();

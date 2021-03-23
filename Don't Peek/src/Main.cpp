@@ -1,6 +1,7 @@
 #include "Main.h"
 #include "GameState_DontPeek.h"
 #include "GameStateMgr.h"
+#include <memory>
 
 //-----------GLOBALs-----------
 float g_dt;
@@ -15,6 +16,12 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 {
 	UNREFERENCED_PARAMETER(prevInstanceH);
 	UNREFERENCED_PARAMETER(command_line);
+
+	// Enable run-time memory check for debug builds.
+	  #if defined(DEBUG) | defined(_DEBUG)
+	  _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	  #endif
+	 // int* pi = new int;
 
 	//------------INITILIZATION----------------
 	AESysInit(instanceH, show, 1000, 700, 1, 60, false, NULL);
