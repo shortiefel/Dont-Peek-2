@@ -19,6 +19,7 @@ without the prior written consent of DigiPen Institute of
 Technology is prohibited.
 */
 /* End Header **************************************************************************/
+#include "GameStateMgr.h"
 #include "Tutorial.h"
 #include "Door.h"
 #include "Sharpener.h"
@@ -59,6 +60,7 @@ void Tutorial_Load()
 }
 void Tutorial_Init()
 {
+	timer = 300.f;
 	SetSharpenerNum(1);
 	SetDoorNum(8);
 
@@ -98,7 +100,7 @@ void Tutorial_Init()
 	wall.CreateWall({ 670,-530 }, { 0,-1 }, 10, 30.f, WALL); //wall mid
 
 	//4th box
-	door.SetDoorPosition(5, { 580 , -140 });
+	door.SetDoorPosition(5, { 580 , -110 });
 	door.SetDoorPosition(6, { 800 , 100 });
 	wall.CreateWall({ 540,-205 }, { 1,0 }, 11, 30.f, PLATFORM); //floor
 	wall.CreateWall({ 540,310 }, { 1,0 }, 11, 30.f, CEILING); //top wall
@@ -115,7 +117,14 @@ void Tutorial_Init()
 
 void Tutorial_Update()
 {
-
+	if (timer < 0)
+	{
+		gGameStateNext = GS_LOSE;
+	}
+	else
+	{
+		timer -= g_dt;
+	}
 }
 void Tutorial_Draw()
 {

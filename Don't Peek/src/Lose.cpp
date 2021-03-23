@@ -1,6 +1,6 @@
 /* Start Header ************************************************************************/
 /*!
-\file Win.cpp
+\file Lose.cpp
 \team name Don't Peak
 \software name I don't want to do homework
 \authors
@@ -23,22 +23,23 @@ Technology is prohibited.
 #include "main.h"
 #include "GameStateMgr.h"
 #include "Win.h"
+#include "Lose.h"
 #include "Menu.h"
 
-Win win;
+static Win win;
 static ButtonW Wbutton[2];
-int Win_x, Win_y;
-int SetWidthCursorWin = 1000 / 2;
-int SetHeightCursorWin = 700 / 2;
+static int Win_x, Win_y;
+static int SetWidthCursorWin = 1000 / 2;
+static int SetHeightCursorWin = 700 / 2;
 
-void WinLoad()
+void LoseLoad()
 {
 	//For level Win
 	win.pos = { 0.f, 0.f };
 	win.scale = { 950.f, 650.f };
 
 	win.pObj = sGameObjList + sGameObjNum++;
-	win.pObj->texture = AEGfxTextureLoad("Resources/win.png");
+	win.pObj->texture = AEGfxTextureLoad("Resources/lose.png");
 	AE_ASSERT_MESG(win.pObj->texture, "Failed to load win screen!");
 
 	AEGfxMeshStart();
@@ -102,7 +103,7 @@ void WinLoad()
 		0.5f, 0.5f, 0x00000000, 1.0f, 0.0f,
 		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 	Wbutton[1].pButton->pMesh = AEGfxMeshEnd();
-	
+
 	for (int i = 0; i < 2; i++)
 	{
 		AEMtx33Scale(&sc, Wbutton[i].scale.x, Wbutton[i].scale.y);
@@ -113,14 +114,14 @@ void WinLoad()
 	}
 }
 
-void WinInit()
+void LoseInit()
 {
 }
 
-void WinUpdate()
+void LoseUpdate()
 {
 	AEGfxSetCamPosition(0, 0);
-	BoundingBoxWin();
+	BoundingBoxLose();
 	AEInputGetCursorPosition(&Win_x, &Win_y);
 	if (Win_x >= 0 && Win_y >= 0)
 	{
@@ -163,7 +164,7 @@ void WinUpdate()
 		gGameStateNext = GS_QUIT;
 }
 
-void WinDraw()
+void LoseDraw()
 {
 	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
@@ -183,18 +184,17 @@ void WinDraw()
 	}
 }
 
-void WinFree()
-{
-	//free(Wbutton->pButton);
-	//free(win.pObj);
-}
-
-void WinUnload()
+void LoseFree()
 {
 	
 }
 
-void BoundingBoxWin()
+void LoseUnload()
+{
+
+}
+
+void BoundingBoxLose()
 {
 	for (int i = 0; i < 2; i++)
 	{

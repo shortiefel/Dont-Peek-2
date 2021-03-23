@@ -49,7 +49,14 @@
     <ClCompile Include="src\Credits.cpp">
       <Filter>Source\Levels\Code</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="src\Howtoplay.cpp">
+=======
+    <ClCompile Include="src\Lose.cpp">
+      <Filter>Source\Levels\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pause.cpp">
+>>>>>>> DEAD
       <Filter>Source\Levels\Code</Filter>
     </ClCompile>
   </ItemGroup>
@@ -138,7 +145,14 @@
     <ClInclude Include="src\Credits.h">
       <Filter>Source\Levels\Header</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="src\Howtoplay.h">
+=======
+    <ClInclude Include="src\Lose.h">
+      <Filter>Source\Levels\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pause.h">
+>>>>>>> DEAD
       <Filter>Source\Levels\Header</Filter>
     </ClInclude>
   </ItemGroup>

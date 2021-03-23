@@ -136,7 +136,27 @@ void GameStateDontPeekDraw(void)
 void GameStateDontPeekFree(void)
 {
 	//killing all object instances in the array 
+<<<<<<< HEAD
 	
+=======
+	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
+	{
+		GameObjInst* pInst = sGameObjInstList + i;
+
+		//ignoring non-active object
+		if ((pInst->flag & FLAG_ACTIVE) == 0)
+			continue;
+		gameObjInstDestroy(pInst);
+	}
+
+	sharpener.FreeSharpener();
+	eraser.FreeEraser();
+	highlighter.FreeHighlighter();
+	pencil.FreePencil();
+	door.FreeDoor();
+	player.Player_Free();
+
+>>>>>>> DEAD
 }
 
 /******************************************************************************/

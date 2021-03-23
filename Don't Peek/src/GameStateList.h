@@ -12,6 +12,7 @@ enum
 	GS_CREDITS,
 	GS_WIN,
 	GS_LOSE,
+	GS_PAUSE,
 	//Special Game State. DONT CHANGE HOR
 	GS_RESTART,
 	GS_QUIT,

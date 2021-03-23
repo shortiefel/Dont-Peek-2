@@ -43,6 +43,7 @@ public:
 	void InitHighlighter();
 	void UpdateHighlighter();
 	void DrawHighlighter();
+	void FreeHighlighter();
 	void UnloadHighlighter();
 
 	void BoundingBox();

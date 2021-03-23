@@ -103,17 +103,28 @@ void Highlighter::DrawHighlighter()
 
 /******************************************************************************/
 /*!
-	Highlighter Unload
+	Highlighter Free
 */
 /******************************************************************************/
-void Highlighter::UnloadHighlighter() 
+void Highlighter::FreeHighlighter()
 {
 	AEGfxMeshFree(pHighlighter->pMesh);
 }
 
 /******************************************************************************/
 /*!
-	Highlighter Bpunding Box
+	Highlighter Unload
+*/
+/******************************************************************************/
+void Highlighter::UnloadHighlighter() 
+{
+	if (pHighlighter-> texture)
+	AEGfxTextureUnload(pHighlighter->texture);
+}
+
+/******************************************************************************/
+/*!
+	Highlighter Bounding Box
 */
 /******************************************************************************/
 void Highlighter::BoundingBox()

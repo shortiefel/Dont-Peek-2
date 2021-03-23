@@ -76,6 +76,7 @@ void Pencil::InitPencil() {
 /******************************************************************************/
 void Pencil::UpdatePencil()
 {
+	
 	BoundingBox();
 
 	for (int i = 0; i < PencilNum; i++)
@@ -107,10 +108,7 @@ void Pencil::UpdatePencil()
 /******************************************************************************/
 void Pencil::DrawPencil()
 {
-	AEGfxSetBlendMode(AE_GFX_BM_NONE);
-	AEGfxSetTransparency(1.0f);
-	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
-	AEGfxSetRenderMode(AE_GFX_RM_COLOR);
+	
 	for (int i = 0; i < PencilNum; i++)
 	{
 		Pencil* Penciltemp = PencilArray + i;
@@ -118,7 +116,10 @@ void Pencil::DrawPencil()
 		{
 			continue;
 		}
-
+		AEGfxSetBlendMode(AE_GFX_BM_NONE);
+		AEGfxSetTransparency(1.0f);
+		AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
+		AEGfxSetRenderMode(AE_GFX_RM_COLOR);
 		AEGfxSetPosition(Penciltemp->pos.x, Penciltemp->pos.y);
 		AEGfxSetTransform(Penciltemp->Transform.m);
 		//AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
@@ -128,12 +129,23 @@ void Pencil::DrawPencil()
 
 /******************************************************************************/
 /*!
+	Pencil Free
+*/
+/******************************************************************************/
+void Pencil::FreePencil()
+{
+	AEGfxMeshFree(pPencil->pMesh);
+}
+
+/******************************************************************************/
+/*!
 	Pencil Unload
 */
 /******************************************************************************/
 void Pencil::UnloadPencil()
 {
-	AEGfxMeshFree(pPencil->pMesh);
+	if(pPencil->texture)
+		AEGfxTextureUnload(pPencil->texture);
 }
 
 /******************************************************************************/

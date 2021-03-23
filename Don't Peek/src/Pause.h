@@ -1,7 +1,6 @@
-
 /* Start Header ************************************************************************/
 /*!
-\file Sharpener.h
+\file Pause.cpp
 \team name Don't Peak
 \software name I don't want to do homework
 \authors
@@ -9,53 +8,43 @@ Tan Wei Ling Felicia	weilingfelicia.tan@digipen.edu
 Margaret Teo Boon See	Teo.b@digipen.edu
 Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
-
-\date 22/01/2021
-\brief <give a brief description of this file>
-
-
+\date 24/03/2021
+\brief This is the player file. It contains all the player function
 Copyright (C) 2021 DigiPen Institute of Technology.
 Reproduction or disclosure of this file or its contents
 without the prior written consent of DigiPen Institute of
 Technology is prohibited.
 */
 /* End Header **************************************************************************/
+#pragma once
 
 #include "Main.h"
+#include "GameState_DontPeek.h"
 
-class Eraser
+struct Pause
 {
-private:
-	GameObj* pEraser;
 	AEVec2 pos;
-	unsigned long flag;
-	float Scale;
-	AEMtx33	Transform;
-	AEVec2 vel;
-	AABB boundingBox;
-	bool WallCollision = false;
-
-public:
-	void LoadEraser();
-	void InitEraser();
-	void UpdateEraser();
-	void DrawEraser();
-	void FreeEraser();
-	void UnloadEraser();
-
-	void BoundingBox();
-
-	AABB GetEraserBoundingBox(int i);
-	AEVec2 GetEraserVelocity(int i);
-	AEVec2 GetEraserPosition(int i);
-	void SetEraserPosition(int i, AEVec2 NewPos);
-
+	AEVec2 scale;
+	AEMtx33 transform; //object transformation matrix
+	GameObj* pObj;
 };
-extern Eraser EraserArray[MAX];
+
+struct ButtonP
+{
+	AEVec2 pos;
+	AEVec2 scale;
+	AEMtx33	transform;	// object transformation matrix
+	GameObj* pButton;
+	AABB boundingBox;
+};
 
 
-int GetEraserNum();
-void SetEraserNum(int Num);
+void PauseLoad();
+void PauseInit();
+void PauseUpdate();
+void PauseDraw();
+void PauseFree();
+void PauseUnload();
 
+void BoundingBoxPause();
 
-extern Eraser eraser;
