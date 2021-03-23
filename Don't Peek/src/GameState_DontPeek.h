@@ -29,6 +29,14 @@ const float			SPEED = 200.f;
 //const unsigned int	COLLISION_BOTTOM = 0x00000008;	//1000
 
 
+const f32			WORLD_SCALE_X = 40;
+const f32			WORLD_SCALE_Y = 50;
+
+////camera testing
+//extern int CameraMinX = -400;
+//extern int CameraMinY = -100;
+//extern int CameraMaxX = 400;
+//extern int CameraMaxY = 100;
 
 enum TYPE
 {
@@ -42,6 +50,7 @@ enum TYPE
 	TYPE_PLAYER,
 	TYPE_WALL,
 	TYPE_BOXES,
+	TYPE_CAMERA,
 
 	TYPE_NUM
 };
@@ -81,7 +90,7 @@ struct GameObjInst
 
 /******************************************************************************/
 /*!
-	STATIC VARIABLES
+	EXTERN VARIABLES / FUNCTIONS
 */
 /******************************************************************************/
 // list of original object
@@ -94,6 +103,10 @@ extern unsigned long		sGameObjInstNum;
 GameObjInst* gameObjInstCreate(unsigned long type, float scale,
 	AEVec2* pPos, AEVec2* pVel, float dir);
 void				gameObjInstDestroy(GameObjInst* pInst);
+
+
+
+
 
 
 

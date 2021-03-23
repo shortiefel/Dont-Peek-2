@@ -41,7 +41,7 @@ void MenuLoad()
 
 	//MENU BG
 	menu.pObj = sGameObjList + sGameObjNum++;
-	menu.pObj->texture = AEGfxTextureLoad("Resources/Menu.png");
+	menu.pObj->texture = AEGfxTextureLoad("Resources/MenuNEW.png");
 	AE_ASSERT_MESG(menu.pObj->texture, "Failed to load Menu!");
 
 	AEGfxMeshStart();
@@ -100,7 +100,7 @@ void MenuLoad()
 	button[2].pos = { -150.f, -200.f };
 	button[2].scale = { 200.f,80.f };
 	button[2].pButton = sGameObjList + sGameObjNum++;
-	button[2].pButton->texture = AEGfxTextureLoad("Resources/Options.jpg");
+	button[2].pButton->texture = AEGfxTextureLoad("Resources/HowToPlay.jpg");
 	button[2].pButton->type = TYPE_OPTIONS;
 	AE_ASSERT_MESG(button[2].pButton->texture, "Failed to load Button2!");
 
@@ -199,22 +199,33 @@ void MenuUpdate()
 				printf("BUTTON LEVEL \n");
 
 			}
-			else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[2].boundingBox, { 0,0 }))
-			{
-				//gGameStateCurr = GS_DONT_PEEK;
-				printf("BUTTON OPTIONS \n");
-
-			}
-			else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[3].boundingBox, { 0,0 }))
-			{
-				gGameStateCurr = GS_CREDITS;
-				printf("BUTTON CREDITS \n");
-			}
-			else printf("DEFAULT\n");
+			
+		}
+		else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[1].boundingBox, { 0,0 }))
+		{
+			//gGameStateCurr = GS_DONT_PEEK;
+			printf("BUTTON LEVEL \n");
+			
+		}
+		else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[2].boundingBox, { 0,0 }))
+		{
+			gGameStateNext = GS_TUTORIAL;
+			printf("BUTTON HOW TO PLAY \n");
+			
+		}
+		else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[3].boundingBox, { 0,0 }))
+		{
+			gGameStateCurr = GS_CREDITS;
+			printf("BUTTON CREDITS \n");
 		}
 	}
-	
-	
+
+
+	if (AEInputCheckCurr(AEVK_B))
+		gGameStateNext = GS_MENU;
+
+	if (AEInputCheckCurr(AEVK_ESCAPE))
+		gGameStateNext = GS_QUIT;
 }
 void MenuDraw()
 {

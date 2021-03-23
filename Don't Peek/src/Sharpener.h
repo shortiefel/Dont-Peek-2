@@ -54,3 +54,5 @@ extern Sharpener SharpenerArray[MAX];
 
 int GetSharpenerNum();
 void SetSharpenerNum(int Num);
+
+extern Sharpener sharpener;

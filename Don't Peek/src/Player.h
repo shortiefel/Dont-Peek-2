@@ -55,5 +55,7 @@ public:
 	AABB GetBoundingBoxPlayer() const;
 	AEVec2 GetVelPlayer() const;
 	const Player* GetPlayerObj() const;
+	AEVec2 GetPosPlayer() const;
+	bool GetCanJump();
 };
 extern Player player;

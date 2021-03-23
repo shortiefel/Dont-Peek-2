@@ -17,13 +17,13 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	UNREFERENCED_PARAMETER(command_line);
 
 	//------------INITILIZATION----------------
-	AESysInit(instanceH, show, WINDOW_HEIGHT, WINDOW_WIDTH, 1, 60, false, NULL);
+	AESysInit(instanceH, show, 1000, 700, 1, 60, false, NULL);
 	AESysSetWindowTitle("Don't Peek");
 	AEGfxSetBackgroundColor(100.0f, 100.0f, 100.0f);
 
 	//MISSING GAME TIME LOOP----
 
-	GameStateMgrInit(GS_DONT_PEEK);
+	GameStateMgrInit(GS_WIN); //for now its level one, once menu is done change it
 	
 	while (gGameStateCurr != GS_QUIT)
 	{

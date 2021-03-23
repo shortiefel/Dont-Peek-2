@@ -108,7 +108,7 @@ void Highlighter::DrawHighlighter()
 /******************************************************************************/
 void Highlighter::UnloadHighlighter() 
 {
-	AEGfxTextureUnload(pHighlighter->texture);
+	AEGfxMeshFree(pHighlighter->pMesh);
 }
 
 /******************************************************************************/
@@ -170,7 +170,7 @@ int GetHighlighterNum()
 {
 	return HighlighterNum;
 }
-void SetHighlighterrNum(int Num)
+void SetHighlighterNum(int Num)
 {
 	HighlighterNum = Num;
 }
