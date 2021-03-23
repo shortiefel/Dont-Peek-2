@@ -27,7 +27,8 @@ Technology is prohibited.
 enum wallType
 {
 	WALL,
-	PLATFORM
+	PLATFORM,
+	CEILING
 };
 
 class Wall

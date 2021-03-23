@@ -130,7 +130,7 @@ void Player::Player_Update()
 		//printf("jumping \n");
 		CanJump = false;
 		//Position.y += Velocity.y * 4;
-		player.vel.y = 100.f;
+		player.vel.y = 120.f;
 		//printf("PosY: %f, %f\n", pos.x, pos.y);
 	}
 	else if (player.pos.y < GROUND)
@@ -270,6 +270,11 @@ void Player::Player_Update()
 					player.pos.y = Walltemp->GetWallBoundingBox(i).max.y + player.Scale / 2 - 10;
 					CanJump = true;
 				}
+			}
+			else if (Walltemp->GetType(i) == CEILING)
+			{
+					vel.y -= 50.f * g_dt;
+					player.pos.y = Walltemp->GetWallBoundingBox(i).min.y - player.Scale / 2;
 			}
 		}
 	}//End of Wall for loop
