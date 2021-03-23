@@ -19,7 +19,7 @@ without the prior written consent of DigiPen Institute of
 Technology is prohibited.
 */
 /* End Header **************************************************************************/
-#include"Level 1.h"
+#include "Tutorial.h"
 #include "Door.h"
 #include "Sharpener.h"
 #include "Pencil.h"
@@ -34,7 +34,7 @@ static Eraser eraser;
 static Pencil pencil;
 static Highlighter highlighter;
 
-void Level1_Load()
+void Tutorial_Load()
 {
 	bg.Bgpos= {350.f,-200.f };
 	bg.Bgscale = { 1.2 * 1760.f, 1.2* 1090.f };
@@ -63,7 +63,7 @@ void Level1_Load()
 
 	AEMtx33Concat(&(bg.transform), &trans, &sc);
 }
-void Level1_Init()
+void Tutorial_Init()
 {
 	SetSharpenerNum(1);
 	SetDoorNum(8);
@@ -122,11 +122,11 @@ void Level1_Init()
 	wall->CreateWall({ 920,280 }, { 0,-1 }, 9, 30.f, WALL); //left wall
 	wall->CreateWall({ 1190,280 }, { 0,-1 }, 9, 30.f, WALL); //left wall
 }
-void Level1_Update()
+void Tutorial_Update()
 {
 
 }
-void Level1_Draw()
+void Tutorial_Draw()
 {
 	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
@@ -137,11 +137,11 @@ void Level1_Draw()
 	AEGfxSetTransparency(1.0f);
 	AEGfxMeshDraw(bg.pBg->pMesh, AE_GFX_MDM_TRIANGLES);
 }
-void Level1_Free()
+void Tutorial_Free()
 {
-
+	
 }
-void Level1_Unload()
+void Tutorial_Unload()
 {
 
 }

@@ -1,6 +1,6 @@
 /* Start Header ************************************************************************/
 /*!
-\file Menu.h
+\file Credits.h
 \team name Don't Peak
 \software name I don't want to do homework
 \authors
@@ -20,28 +20,19 @@ Technology is prohibited.
 */
 /* End Header **************************************************************************/
 #pragma once
+
 #include "Main.h"
 #include "GameState_DontPeek.h"
-enum BUTTON
-{
-	// list of button types
-	TYPE_PLAY = 10,
 
-	TYPE_LEVEL,
-	TYPE_OPTIONS,
-	TYPE_CREDITS,
-	TYPE_NEXT
-};
-struct Menu
+struct Credits
 {
 	AEVec2 pos;
 	AEVec2 scale;
-	AEMtx33	transform;	// object transformation matrix
+	AEMtx33 transform; //object transformation matrix
 	GameObj* pObj;
-	//AEVec2 cursorPos;
 };
 
-struct Button
+struct Button1
 {
 	AEVec2 pos;
 	AEVec2 scale;
@@ -50,11 +41,11 @@ struct Button
 	AABB boundingBox;
 };
 
-void MenuLoad();
-void MenuInit();
-void MenuUpdate();
-void MenuDraw();
-void MenuFree();
-void MenuUnload();
+void CreditsLoad();
+void CreditsInit();
+void CreditsUpdate();
+void CreditsDraw();
+void CreditsFree();
+void CreditsUnload();
 
-void BoundingBox();
+void BoundingBox1();

@@ -1,242 +1,203 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Source Files\Objects">
-      <UniqueIdentifier>{ebd4b5cf-9dbf-4c49-953f-da738fe577b5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Interaction">
-      <UniqueIdentifier>{1d456847-7a49-4cc7-a232-ea7798d4de4d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Environment">
-      <UniqueIdentifier>{58528bc4-3748-45b5-974e-42462378cd11}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Levels">
-      <UniqueIdentifier>{145f7333-551f-4722-9788-59b3964cf770}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Levels\Header">
-      <UniqueIdentifier>{a6025cff-6807-448f-acd3-2d154ee3d800}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Levels\Code">
-      <UniqueIdentifier>{05a23283-a572-408d-b7dd-5d2ae49350b6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Objects\Sharpener">
-      <UniqueIdentifier>{40642724-69bd-46f4-883f-f5bbf62dbb19}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Objects\Sharpener\Code">
-      <UniqueIdentifier>{083cbbc8-657f-45b9-a57a-345081a62340}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Objects\Sharpener\Header">
-      <UniqueIdentifier>{8f5d031a-1682-4324-8366-582ec0db37f1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Objects\Door">
-      <UniqueIdentifier>{e9278e22-e847-4bfa-bf46-6f01584a80d3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Objects\Door\Code">
-      <UniqueIdentifier>{50dea55d-8c3f-479b-be7a-818e22f75d09}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Objects\Door\Header">
-      <UniqueIdentifier>{1d98fc5e-a70d-482c-94f1-219ef58568da}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Objects\Player">
-      <UniqueIdentifier>{c8068fd0-222d-4ef2-b02f-6c2983e39ba6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Objects\Player\Header">
-      <UniqueIdentifier>{70c17535-70ff-4ff7-99b0-f7ac3195bfee}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Objects\Player\Code">
-      <UniqueIdentifier>{711a7d40-e691-4d4f-85d8-490528ab5b8a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Objects\Highlighter">
-      <UniqueIdentifier>{0048c620-3e96-4eaf-b217-1ec9104b6e23}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Objects\Highlighter\Code">
-      <UniqueIdentifier>{8591db35-1f8c-4b80-844d-12c9f08d72ba}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Objects\Highlighter\Header">
-      <UniqueIdentifier>{4aa85340-7eb3-4069-9b70-ddb4148c9d32}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Objects\Camera">
-      <UniqueIdentifier>{5c108d65-d789-4a2d-b5e9-186f38d90691}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Objects\Camera\Header">
-      <UniqueIdentifier>{c67a95da-1af7-48aa-975a-fe3177d234da}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Objects\Camera\Code">
-      <UniqueIdentifier>{51deeff3-73fb-4670-be27-054d2ae6d52a}</UniqueIdentifier>
-    <Filter Include="Source Files\Environment\Music">
-      <UniqueIdentifier>{d7ce614d-986d-4c97-ae91-1058e94615c0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Environment\Music\Header">
-      <UniqueIdentifier>{4c191fdb-20ab-4635-9654-0399cf6dd618}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Environment\Music\Code">
-      <UniqueIdentifier>{97eac8d9-6777-4987-ad39-9f763bb0b325}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Objects\Eraser">
-      <UniqueIdentifier>{0470ce48-3db2-4811-bef9-5e9cf4aec46c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Objects\Eraser\Code">
-      <UniqueIdentifier>{7046bac9-2f55-4857-a072-23ef321ffb4e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Objects\Eraser\Header">
-      <UniqueIdentifier>{c0165ded-6754-4ebc-83a6-ada06fc04f93}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Objects\Pencil">
-      <UniqueIdentifier>{5cd5c74a-048b-4cce-a6de-915885338431}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Objects\Pencil\Code">
-      <UniqueIdentifier>{5848b8c7-61a7-40d2-9684-4e993e182edd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Objects\Pencil\Header">
-      <UniqueIdentifier>{81d93639-eb44-434a-8bb9-151df6eec4ea}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\Collision.cpp">
-      <Filter>Source Files\Interaction</Filter>
+    <ClCompile Include="src\Main.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameStateMgr.cpp">
-      <Filter>Source Files\Levels\Code</Filter>
+    <ClCompile Include="src\Collision.cpp">
+      <Filter>Source\Interaction\Code</Filter>
     </ClCompile>
     <ClCompile Include="src\GameState_DontPeek.cpp">
-      <Filter>Source Files\Levels\Code</Filter>
+      <Filter>Source\Levels\Code</Filter>
     </ClCompile>
-    <ClCompile Include="src\Main.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\GameStateMgr.cpp">
+      <Filter>Source\Levels\Code</Filter>
     </ClCompile>
-    <ClCompile Include="src\Sharpener.cpp">
-      <Filter>Source Files\Objects\Sharpener\Code</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Wall.cpp">
-      <Filter>Source Files\Environment</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Door.cpp">
-      <Filter>Source Files\Objects\Door\Code</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Player.cpp">
-      <Filter>Source Files\Objects\Player\Code</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Highlighter.cpp">
-      <Filter>Source Files\Objects\Highlighter\Code</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Level 1.cpp">
-      <Filter>Source Files\Environment</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Camera.cpp">
-      <Filter>Source Files\Objects\Camera\Code</Filter>
     <ClCompile Include="src\Menu.cpp">
-      <Filter>Source Files\Levels\Code</Filter>
+      <Filter>Source\Levels\Code</Filter>
     </ClCompile>
     <ClCompile Include="src\Music.cpp">
-      <Filter>Source Files\Environment\Music\Code</Filter>
+      <Filter>Source\Environment\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Wall.cpp">
+      <Filter>Source\Environment\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Camera.cpp">
+      <Filter>Source\Objects\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Door.cpp">
+      <Filter>Source\Objects\Code</Filter>
     </ClCompile>
     <ClCompile Include="src\Eraser.cpp">
-      <Filter>Source Files\Objects\Eraser\Code</Filter>
+      <Filter>Source\Objects\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Highlighter.cpp">
+      <Filter>Source\Objects\Code</Filter>
     </ClCompile>
     <ClCompile Include="src\Pencil.cpp">
-      <Filter>Source Files\Objects\Pencil\Code</Filter>
+      <Filter>Source\Objects\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Player.cpp">
+      <Filter>Source\Objects\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Sharpener.cpp">
+      <Filter>Source\Objects\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Win.cpp">
+      <Filter>Source\Levels\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Tutorial.cpp">
+      <Filter>Source\Levels\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Credits.cpp">
+      <Filter>Source\Levels\Code</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Main.h">
+      <Filter>Source</Filter>
+    </ClInclude>
     <ClInclude Include="src\Collision.h">
-      <Filter>Source Files\Interaction</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameStateMgr.h">
-      <Filter>Source Files\Levels\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameStateList.h">
-      <Filter>Source Files\Levels\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameState_DontPeek.h">
-      <Filter>Source Files\Levels\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Sharpener.h">
-      <Filter>Source Files\Objects\Sharpener\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Wall.h">
-      <Filter>Source Files\Environment</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Door.h">
-      <Filter>Source Files\Objects\Door\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Player.h">
-      <Filter>Source Files\Objects\Player\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Highlighter.h">
-      <Filter>Source Files\Objects\Highlighter\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Level 1.h">
-      <Filter>Source Files\Environment</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Camera.h">
-      <Filter>Source Files\Objects\Camera\Header</Filter>
-    <ClInclude Include="src\Menu.h">
-      <Filter>Source Files\Levels\Header</Filter>
+      <Filter>Source\Interaction\Header</Filter>
     </ClInclude>
     <ClInclude Include="src\fmod.hpp">
-      <Filter>Source Files\Environment\Music\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="src\fmod_studio.h">
-      <Filter>Source Files\Environment\Music\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Music.h">
-      <Filter>Source Files\Environment\Music\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="src\fmod_studio.hpp">
-      <Filter>Source Files\Environment\Music\Header</Filter>
+      <Filter>Source\Environment\Header</Filter>
     </ClInclude>
     <ClInclude Include="src\fmod_android.h">
-      <Filter>Source Files\Environment\Music\Header</Filter>
+      <Filter>Source\Environment\Header</Filter>
     </ClInclude>
     <ClInclude Include="src\fmod_codec.h">
-      <Filter>Source Files\Environment\Music\Header</Filter>
+      <Filter>Source\Environment\Header</Filter>
     </ClInclude>
     <ClInclude Include="src\fmod_common.h">
-      <Filter>Source Files\Environment\Music\Header</Filter>
+      <Filter>Source\Environment\Header</Filter>
     </ClInclude>
     <ClInclude Include="src\fmod_dsp.h">
-      <Filter>Source Files\Environment\Music\Header</Filter>
+      <Filter>Source\Environment\Header</Filter>
     </ClInclude>
     <ClInclude Include="src\fmod_dsp_effects.h">
-      <Filter>Source Files\Environment\Music\Header</Filter>
+      <Filter>Source\Environment\Header</Filter>
     </ClInclude>
     <ClInclude Include="src\fmod_errors.h">
-      <Filter>Source Files\Environment\Music\Header</Filter>
+      <Filter>Source\Environment\Header</Filter>
     </ClInclude>
     <ClInclude Include="src\fmod_output.h">
-      <Filter>Source Files\Environment\Music\Header</Filter>
+      <Filter>Source\Environment\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fmod_studio.h">
+      <Filter>Source\Environment\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fmod_studio.hpp">
+      <Filter>Source\Environment\Header</Filter>
     </ClInclude>
     <ClInclude Include="src\fmod_studio_common.h">
-      <Filter>Source Files\Environment\Music\Header</Filter>
+      <Filter>Source\Environment\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameState_DontPeek.h">
+      <Filter>Source\Levels\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameStateList.h">
+      <Filter>Source\Levels\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameStateMgr.h">
+      <Filter>Source\Levels\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Menu.h">
+      <Filter>Source\Levels\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Music.h">
+      <Filter>Source\Environment\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Wall.h">
+      <Filter>Source\Environment\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Camera.h">
+      <Filter>Source\Objects\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Door.h">
+      <Filter>Source\Objects\Header</Filter>
     </ClInclude>
     <ClInclude Include="src\Eraser.h">
-      <Filter>Source Files\Objects\Eraser\Header</Filter>
+      <Filter>Source\Objects\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Highlighter.h">
+      <Filter>Source\Objects\Header</Filter>
     </ClInclude>
     <ClInclude Include="src\Pencil.h">
-      <Filter>Source Files\Objects\Pencil\Header</Filter>
+      <Filter>Source\Objects\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Player.h">
+      <Filter>Source\Objects\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Sharpener.h">
+      <Filter>Source\Objects\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Win.h">
+      <Filter>Source\Levels\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tutorial.h">
+      <Filter>Source\Levels\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Credits.h">
+      <Filter>Source\Levels\Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\Desktop\drawings\Sharpener_Animation.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <ClInclude Include="src\Main.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <Image Include="Resources\eraser.png">
-      <Filter>Resource Files</Filter>
+      <Filter>Resources</Filter>
     </Image>
+    <Image Include="..\..\..\..\Desktop\drawings\Sharpener_Animation.png">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="Resources\Door.png">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="Resources\win.png">
+      <Filter>Resources</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{7489c55f-22a2-4685-8c3d-65dde9ce5af5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Environment">
+      <UniqueIdentifier>{24fad4bf-f391-433e-8da5-6fdc828500f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Levels">
+      <UniqueIdentifier>{fd8a22c2-b27a-4d19-8838-086d0580e1c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Objects">
+      <UniqueIdentifier>{edeb108a-082c-4f2d-a139-2c1ff7d21556}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Interaction">
+      <UniqueIdentifier>{9761acba-99e0-4f21-8d64-74b65949f862}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Environment\Header">
+      <UniqueIdentifier>{9a5d8e85-d0c1-470c-851c-d0235d22d5af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Environment\Code">
+      <UniqueIdentifier>{d4f261e6-4ebd-450f-806d-9afe9a0a832e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Levels\Header">
+      <UniqueIdentifier>{2c8e4406-c2c8-4bee-ac3c-91facdac9131}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Levels\Code">
+      <UniqueIdentifier>{84dbaa5b-4d79-4c93-80d6-59996494399f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Interaction\Header">
+      <UniqueIdentifier>{2ff89050-a536-4e89-8fff-da04f5e4016d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Interaction\Code">
+      <UniqueIdentifier>{6f4906ad-37ff-40ef-b7db-308c456f6fec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Objects\Header">
+      <UniqueIdentifier>{e90f715f-2318-443d-b517-5d49b40684eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Objects\Code">
+      <UniqueIdentifier>{237288fe-90d0-400d-849d-84c217ca90e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{59a72dc6-fb63-465a-acfe-770032c6f300}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

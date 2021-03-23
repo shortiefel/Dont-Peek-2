@@ -132,9 +132,6 @@ void Player::Player_Update()
 		//Position.y += Velocity.y * 4;
 		player.vel.y = 100.f;
 		//printf("PosY: %f, %f\n", pos.x, pos.y);
-
-		
-
 	}
 	else if (player.pos.y < GROUND)
 	{
@@ -149,7 +146,7 @@ void Player::Player_Update()
 	if (AEInputCheckCurr(AEVK_B))
 		gGameStateNext = GS_MENU;
 
-	if (AEInputCheckCurr(AEVK_Q))
+	if (AEInputCheckCurr(AEVK_ESCAPE))
 		gGameStateNext = GS_QUIT;
 
 	BoundingBox();

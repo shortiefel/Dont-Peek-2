@@ -28,8 +28,9 @@ Technology is prohibited.
 #include "Highlighter.h"
 #include "Pencil.h"
 #include "Wall.h"
-#include "Level 1.h"
+#include "Tutorial.h"
 #include "Camera.h"
+#include "Win.h"
 
 
 /******************************************************************************/
@@ -48,7 +49,11 @@ GameObjInst* gameObjInstCreate(unsigned long type, float scale,
 	AEVec2* pPos, AEVec2* pVel, float dir);
 void gameObjInstDestroy(GameObjInst* pInst);
 
-//individual classes
+/******************************************************************************/
+/*!
+	INDIVIDUAL CLASSES
+*/
+/******************************************************************************/
 
 static Door door;
 Player player;
@@ -74,7 +79,7 @@ void GameStateDontPeekLoad(void)
 	// No game object instances (sprites) at this point
 	sGameObjInstNum = 0;
 
-	Level1_Load();
+	Tutorial_Load();
 	wwall.LoadWall();
 	sharpener.LoadSharpener();
 	eraser.LoadEraser();
@@ -82,6 +87,8 @@ void GameStateDontPeekLoad(void)
 	pencil.LoadPencil();
 	door.LoadDoor();
 	player.Player_Load();
+	
+
 	
 }
 
@@ -92,7 +99,7 @@ void GameStateDontPeekLoad(void)
 /******************************************************************************/
 void GameStateDontPeekInit(void)
 {
-	Level1_Init();
+	Tutorial_Init();
 	wwall.InitWall();
 	sharpener.InitSharpener();
 	eraser.InitEraser();
@@ -111,7 +118,7 @@ void GameStateDontPeekInit(void)
 void GameStateDontPeekUpdate(void)
 {
 	
-	Level1_Update();
+	Tutorial_Update();
 	sharpener.UpdateSharpener();
 	eraser.UpdateEraser();
 	highlighter.UpdateHighlighter();
@@ -131,7 +138,7 @@ void GameStateDontPeekUpdate(void)
 /******************************************************************************/
 void GameStateDontPeekDraw(void)
 {
-	Level1_Draw();
+	Tutorial_Draw();
 	player.Player_Draw();
 	wwall.DrawWall();
 	highlighter.DrawHighlighter();

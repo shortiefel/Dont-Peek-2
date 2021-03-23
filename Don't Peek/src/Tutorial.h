@@ -1,6 +1,7 @@
+#pragma once
 /* Start Header ************************************************************************/
 /*!
-\file Menu.h
+\file Level 1.h
 \team name Don't Peak
 \software name I don't want to do homework
 \authors
@@ -13,48 +14,28 @@ Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 \brief <give a brief description of this file>
 
 
-Copyright (C) 2021 DigiPen Institute of Technology.
+Copyright (C) 20xx DigiPen Institute of Technology.
 Reproduction or disclosure of this file or its contents
 without the prior written consent of DigiPen Institute of
 Technology is prohibited.
 */
 /* End Header **************************************************************************/
-#pragma once
 #include "Main.h"
 #include "GameState_DontPeek.h"
-enum BUTTON
-{
-	// list of button types
-	TYPE_PLAY = 10,
+#include "Wall.h"
 
-	TYPE_LEVEL,
-	TYPE_OPTIONS,
-	TYPE_CREDITS,
-	TYPE_NEXT
-};
-struct Menu
+struct background
 {
-	AEVec2 pos;
-	AEVec2 scale;
+	AEVec2 Bgpos;
+	AEVec2 Bgscale;
 	AEMtx33	transform;	// object transformation matrix
-	GameObj* pObj;
-	//AEVec2 cursorPos;
+	GameObj* pBg;
 };
 
-struct Button
-{
-	AEVec2 pos;
-	AEVec2 scale;
-	AEMtx33	transform;	// object transformation matrix
-	GameObj* pButton;
-	AABB boundingBox;
-};
-
-void MenuLoad();
-void MenuInit();
-void MenuUpdate();
-void MenuDraw();
-void MenuFree();
-void MenuUnload();
-
-void BoundingBox();
+void Tutorial_Load();
+void Tutorial_Init();
+void Tutorial_Update();
+void Tutorial_Draw();
+void Tutorial_Free();
+void Tutorial_Unload();
+//void CreateWall(AEVec2 pos, AEVec2 dir, int number, float scale);
