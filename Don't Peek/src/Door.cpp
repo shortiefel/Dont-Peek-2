@@ -26,7 +26,6 @@ Technology is prohibited.
 Door DoorArray[MAX];
 static int DoorNum = 0;
 
-
 /******************************************************************************/
 /*!
 	Door Load

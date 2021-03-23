@@ -61,3 +61,4 @@ public:
 
 int Get_NumWalls();
 Wall* Get_WallArr();
+extern Wall wall;
