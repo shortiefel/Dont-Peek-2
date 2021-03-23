@@ -25,7 +25,14 @@ Technology is prohibited.
 #include "Pencil.h"
 #include "Eraser.h"
 #include "Highlighter.h"
+#include "Player.h"
 
+
+/******************************************************************************/
+/*!
+	INDIVIDUAL CLASSES
+*/
+/******************************************************************************/
 static background bg;
 static Wall wall[100];
 static Door door;
@@ -124,7 +131,7 @@ void Tutorial_Init()
 }
 void Tutorial_Update()
 {
-
+	
 }
 void Tutorial_Draw()
 {
