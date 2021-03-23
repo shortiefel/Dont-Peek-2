@@ -74,7 +74,6 @@ void GameStateDontPeekLoad(void)
 	pencil.LoadPencil();
 	door.LoadDoor();
 	player.Player_Load();
-	
 }
 
 /******************************************************************************/
@@ -101,7 +100,6 @@ void GameStateDontPeekInit(void)
 /******************************************************************************/
 void GameStateDontPeekUpdate(void)
 {
-	
 	Tutorial_Update();
 	sharpener.UpdateSharpener();
 	eraser.UpdateEraser();
@@ -128,7 +126,6 @@ void GameStateDontPeekDraw(void)
 	sharpener.DrawSharpener();
 	eraser.DrawEraser();
 	door.DrawDoor();
-	
 }
 
 /******************************************************************************/

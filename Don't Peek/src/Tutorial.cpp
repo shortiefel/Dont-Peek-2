@@ -61,9 +61,6 @@ void Tutorial_Init()
 {
 	SetSharpenerNum(1);
 	SetDoorNum(8);
-	//Highlighter
-	//SetHighlighterrNum(1);
-	//highlighter.SetHighlighterPosition(0, { 100,0 });
 
 	//first box
 	wall.CreateWall({ -390,-90 }, { 1,0 }, 20, 30.f, PLATFORM); //floor
@@ -77,7 +74,6 @@ void Tutorial_Init()
 
 	SetSharpenerNum(1);
 	sharpener.SetSharpenerPosition(0, { -250,-20 });
-
 
 	door.SetDoorPosition(0, { 120 , 170 });
 
@@ -116,6 +112,7 @@ void Tutorial_Init()
 	wall.CreateWall({ 920,280 }, { 0,-1 }, 9, 30.f, WALL); //left wall
 	wall.CreateWall({ 1190,280 }, { 0,-1 }, 9, 30.f, WALL); //left wall
 }
+
 void Tutorial_Update()
 {
 
