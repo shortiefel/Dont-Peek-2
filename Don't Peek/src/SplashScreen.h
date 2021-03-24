@@ -1,6 +1,6 @@
 /* Start Header ************************************************************************/
 /*!
-\file Player.h
+\file SplashScreen.h
 \team name Don't Peak
 \software name I don't want to do homework
 \authors
@@ -19,48 +19,22 @@ without the prior written consent of DigiPen Institute of
 Technology is prohibited.
 */
 /* End Header **************************************************************************/
-
+#pragma once
 #include "Main.h"
-#include "AEVec2.h"
-#include "AEInput.h"
-#include "Math.h"
+#include "GameState_DontPeek.h"
 
-
-class Player
+struct SplashScreen
 {
-private:
-	GameObj* pPlayer;
-	unsigned long flag;
-	AABB boundingBox;
 	AEVec2 pos;
-	AEVec2 vel;
-	bool CanJump = false;
-	bool SharpenerCollision = false;
-	bool WallCollision = false;
-	float Scale;
-	AEMtx33	Transform;
-
-		//AEVec2 Position1;
-
-public:
-	void Player_Load();
-	void Player_Init();
-	void Player_Update();
-	void Player_Draw();
-	void Player_Free();
-	void Player_Unload();
-	
-	void BoundingBox();
-	void SetGravity();
-
-	AABB GetBoundingBoxPlayer() const;
-	AEVec2 GetVelPlayer() const;
-	const Player* GetPlayerObj() const;
-	AEVec2 GetPosPlayer() const;
-	bool GetCanJump();
+	AEVec2 scale;
+	AEMtx33	transform;	// object transformation matrix
+	GameObj* pObj;
+	//AEVec2 cursorPos;
 };
 
-
-void SetWin(AEVec2 Pos);
-
-extern Player player;
+void SSLoad();
+void SSInit();
+void SSUpdate();
+void SSDraw();
+void SSFree();
+void SSUnload();
