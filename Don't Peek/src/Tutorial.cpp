@@ -27,8 +27,10 @@ Technology is prohibited.
 #include "Eraser.h"
 #include "Highlighter.h"
 #include "Wall.h"
+#include "Music.h"
 
 background bg;
+float timer = 0.f;
 void Tutorial_Load()
 {
 	bg.Bgpos= {350.f,-200.f };
@@ -60,6 +62,8 @@ void Tutorial_Load()
 }
 void Tutorial_Init()
 {
+	SoundSystem_Init();
+
 	timer = 300.f;
 	SetSharpenerNum(1);
 	SetDoorNum(8);
@@ -117,6 +121,7 @@ void Tutorial_Init()
 
 void Tutorial_Update()
 {
+	SoundSystem_SFX();
 	if (timer < 0)
 	{
 		gGameStateNext = GS_LOSE;

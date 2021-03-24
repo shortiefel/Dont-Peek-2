@@ -30,6 +30,7 @@ Technology is prohibited.
 #include "Wall.h"
 #include "Tutorial.h"
 #include "Win.h"
+#include "Music.h"
 
 
 /******************************************************************************/
@@ -83,6 +84,7 @@ void GameStateDontPeekLoad(void)
 /******************************************************************************/
 void GameStateDontPeekInit(void)
 {
+	
 	Tutorial_Init();
 	wall.InitWall();
 	sharpener.InitSharpener();
@@ -100,6 +102,7 @@ void GameStateDontPeekInit(void)
 /******************************************************************************/
 void GameStateDontPeekUpdate(void)
 {
+	
 	Tutorial_Update();
 	sharpener.UpdateSharpener();
 	eraser.UpdateEraser();

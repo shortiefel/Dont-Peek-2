@@ -87,15 +87,6 @@
     <ClInclude Include="src\fmod_output.h">
       <Filter>Source\Environment\Header</Filter>
     </ClInclude>
-    <ClInclude Include="src\fmod_studio.h">
-      <Filter>Source\Environment\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="src\fmod_studio.hpp">
-      <Filter>Source\Environment\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="src\fmod_studio_common.h">
-      <Filter>Source\Environment\Header</Filter>
-    </ClInclude>
     <ClInclude Include="src\GameState_DontPeek.h">
       <Filter>Source\Levels\Header</Filter>
     </ClInclude>
@@ -146,6 +137,9 @@
     </ClInclude>
     <ClInclude Include="src\Pause.h">
       <Filter>Source\Levels\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fmod.h">
+      <Filter>Source\Environment\Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
