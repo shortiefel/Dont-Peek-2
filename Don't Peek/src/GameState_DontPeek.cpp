@@ -30,6 +30,7 @@ Technology is prohibited.
 #include "Wall.h"
 #include "Tutorial.h"
 #include "Win.h"
+#include "Music.h"
 
 
 /******************************************************************************/
@@ -53,6 +54,7 @@ Eraser eraser;
 Pencil pencil;
 Highlighter highlighter;
 Wall wall;
+
 
 
 /******************************************************************************/
@@ -83,6 +85,8 @@ void GameStateDontPeekLoad(void)
 /******************************************************************************/
 void GameStateDontPeekInit(void)
 {
+	SoundSystem_Init();
+	SoundSystem_SFX();
 	Tutorial_Init();
 	wall.InitWall();
 	sharpener.InitSharpener();
@@ -100,6 +104,7 @@ void GameStateDontPeekInit(void)
 /******************************************************************************/
 void GameStateDontPeekUpdate(void)
 {
+	
 	Tutorial_Update();
 	sharpener.UpdateSharpener();
 	eraser.UpdateEraser();
@@ -119,13 +124,14 @@ void GameStateDontPeekUpdate(void)
 void GameStateDontPeekDraw(void)
 {
 	Tutorial_Draw();
-	player.Player_Draw();
+	
 	wall.DrawWall();
 	highlighter.DrawHighlighter();
 	pencil.DrawPencil();
 	sharpener.DrawSharpener();
 	eraser.DrawEraser();
 	door.DrawDoor();
+	player.Player_Draw();
 }
 
 /******************************************************************************/
@@ -135,7 +141,7 @@ void GameStateDontPeekDraw(void)
 /******************************************************************************/
 void GameStateDontPeekFree(void)
 {
-
+	SoundSystem_Destroy();
 	sharpener.FreeSharpener();
 	eraser.FreeEraser();
 	highlighter.FreeHighlighter();

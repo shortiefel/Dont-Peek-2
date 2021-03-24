@@ -1,6 +1,6 @@
 /* Start Header ************************************************************************/
 /*!
-\file Pencil.h
+\file Howtoplay.h
 \team name Don't Peak
 \software name I don't want to do homework
 \authors
@@ -16,44 +16,13 @@ without the prior written consent of DigiPen Institute of
 Technology is prohibited.
 */
 /* End Header **************************************************************************/
-
+#pragma once
 #include "Main.h"
-#include "AEVec2.h"
-#include "AEInput.h"
+#include "Collision.h"
 
-class Pencil
-{
-private:
-	GameObj* pPencil;
-	AEVec2 pos;
-	unsigned long flag;
-	float scaleX;
-	float scaleY;
-	AEMtx33	Transform;
-	AEVec2 vel;
-	AABB boundingBox;
-	bool collisionFlag;
-
-public:
-	void LoadPencil();
-	void InitPencil();
-	void UpdatePencil();
-	void DrawPencil();
-	void FreePencil();
-	void UnloadPencil();
-
-	void BoundingBox();
-
-	AABB GetPencilBoundingBox(int i);
-	AEVec2 GetPencilVelocity(int i);
-	AEVec2 GetPencilPosition(int i);
-	void SetPencil(int i, AEVec2 NewPos, float scale_X, float scale_Y);
-
-};
-extern Pencil PencilArray[MAX];
-extern Pencil pencil;
-
-int GetPencilNum();
-void SetPencilNum(int Num);
-
-extern Pencil pencil;
+void HowtoplayLoad(void);
+void HowtoplayInit(void);
+void HowtoplayUpdate(void);
+void HowtoplayDraw(void);
+void HowtoplayFree(void);
+void HowtoplayUnload(void);

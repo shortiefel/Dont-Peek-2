@@ -22,8 +22,10 @@ Technology is prohibited.
 #include "main.h"
 #include "GameStateMgr.h"
 #include "Menu.h"
+#include "Music.h"
 
 static Menu menu;
+static Menu splashscreen;
 static Button button[4];
 static int x, y;
 static int SetWidthCursor = 1000 / 2;
@@ -34,10 +36,19 @@ static int SetHeightCursor = 700 / 2;
 void MenuLoad()
 {
 
+	
+
+	////SPLASHSCREEN
+	//splashscreen.pos = { SetWidthCursor, SetHeightCursor };
+	////splashscreen.scale = { 950.f, 650.f };
+
+	//splashscreen.pObj = sGameObjList + sGameObjNum++;
+	//splashscreen.pObj->texture = AEGfxTextureLoad("Resources/BGempty.jpg");
+
+
 	//MENU
 	menu.pos = { 0.f, 0.f };
 	menu.scale = { 950.f,650.f };
-
 
 	//MENU BG
 	menu.pObj = sGameObjList + sGameObjNum++;
@@ -155,10 +166,12 @@ void MenuLoad()
 void MenuInit()
 {
 	
+	//SoundSystem_SFX();
 }
 void MenuUpdate()
 {
-
+	
+	
 	AEGfxSetCamPosition(0,0);
 		BoundingBox();
 		AEInputGetCursorPosition(&x, &y);
@@ -178,6 +191,7 @@ void MenuUpdate()
 			{
 				if (AEInputUpdate)
 				{
+					//SoundSystem_Destroy();
 					gGameStateNext = GS_DONT_PEEK;
 					printf("BUTTON PLAY \n");
 					printf("BBMin: %f::%f\n", button[0].boundingBox.min.x, button[0].boundingBox.min.y);
@@ -242,11 +256,11 @@ void MenuDraw()
 }
 void MenuFree()
 {
-
+	
 }
 void MenuUnload()
 {
-
+	SoundSystem_Destroy();
 }
 void BoundingBox()
 {

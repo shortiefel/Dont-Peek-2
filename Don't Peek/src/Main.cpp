@@ -1,6 +1,7 @@
 #include "Main.h"
 #include "GameState_DontPeek.h"
 #include "GameStateMgr.h"
+#include "Music.h"
 #include <memory>
 
 //-----------GLOBALs-----------
@@ -27,13 +28,16 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	AESysInit(instanceH, show, 1000, 700, 1, 60, false, NULL);
 	AESysSetWindowTitle("Don't Peek");
 	AEGfxSetBackgroundColor(100.0f, 100.0f, 100.0f);
+	//SoundSystem_Init();
 
 	//MISSING GAME TIME LOOP----
+
 
 	GameStateMgrInit(GS_MENU); //for now its level one, once menu is done change it
 	
 	while (gGameStateCurr != GS_QUIT)
 	{
+
 		//reset system modules
 		AESysReset();
 
@@ -68,6 +72,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 			g_appTime += g_dt;
 		}
 
+		//SoundSystem_Destroy();
 		GameStateFree();
 
 		if (gGameStateNext != GS_RESTART)

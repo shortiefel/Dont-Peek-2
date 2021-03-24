@@ -55,6 +55,9 @@
     <ClCompile Include="src\Pause.cpp">
       <Filter>Source\Levels\Code</Filter>
     </ClCompile>
+    <ClCompile Include="src\HowToPlay2.cpp">
+      <Filter>Source\Levels\Code</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Main.h">
@@ -85,15 +88,6 @@
       <Filter>Source\Environment\Header</Filter>
     </ClInclude>
     <ClInclude Include="src\fmod_output.h">
-      <Filter>Source\Environment\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="src\fmod_studio.h">
-      <Filter>Source\Environment\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="src\fmod_studio.hpp">
-      <Filter>Source\Environment\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="src\fmod_studio_common.h">
       <Filter>Source\Environment\Header</Filter>
     </ClInclude>
     <ClInclude Include="src\GameState_DontPeek.h">
@@ -145,6 +139,12 @@
       <Filter>Source\Levels\Header</Filter>
     </ClInclude>
     <ClInclude Include="src\Pause.h">
+      <Filter>Source\Levels\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fmod.h">
+      <Filter>Source\Environment\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HowToPlay2.h">
       <Filter>Source\Levels\Header</Filter>
     </ClInclude>
   </ItemGroup>
