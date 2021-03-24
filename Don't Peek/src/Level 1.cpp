@@ -70,11 +70,11 @@ void Level1_Init()
 	//Highlighter
 	//SetHighlighterNum(2);
 	//Sharperner
-	SetSharpenerNum(1);
+	SetSharpenerNum(2);
 	//eraser
-	SetEraserNum(2);
+	SetEraserNum(1);
 	//pencil
-	SetPencilNum(2);
+	SetPencilNum(1);
 
 	//first box
 	wall.CreateWall({ -430,-235 }, { 1,0 }, 22, 30.f, PLATFORM); //floor
@@ -105,7 +105,7 @@ void Level1_Init()
 
 	door.SetDoorPosition(1, { -350 , -695 });//door 1
 	door.SetDoorPosition(2, { -20 , -695 });//door 2
-	eraser.SetEraserPosition(0, { -320, -360 }); //eraser
+	eraser.SetEraserPosition(0, { -300, -370 }); //eraser
 
 	//3rd box
 	wall.CreateWall({ 715, -790 }, { 1,0 }, 14, 30.f, PLATFORM); //floor
@@ -134,7 +134,7 @@ void Level1_Init()
 	wall.CreateWall({ 865 ,110 }, { 1,0 }, 5, 30.f, PLATFORM); //platform MID 5
 
 	door.SetDoorPosition(7, { 530 , -370 });//door 7
-	eraser.SetEraserPosition(1, { 780, 20 }); //eraser
+	sharpener.SetSharpenerPosition(1, { 780, 20 }); // sharpener
 	
 }
 void Level1_Update()

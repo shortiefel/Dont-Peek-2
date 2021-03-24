@@ -43,7 +43,7 @@ void Tutorial_Load()
 	bg.Bgscale = { 1.2 * 1760.f, 1.2* 1090.f };
 
 	bg.pBg = sGameObjList + sGameObjNum++;
-	bg.pBg->texture = AEGfxTextureLoad("Resources/level_1_layout.jpeg");
+	bg.pBg->texture = AEGfxTextureLoad("Resources/Level 1.jpg");
 	AE_ASSERT_MESG(bg.pBg->texture, "Failed to load Background!");
 
 	AEGfxMeshStart();
@@ -68,19 +68,22 @@ void Tutorial_Load()
 }
 void Tutorial_Init()
 {
+	SetWin({ 1045, 260 });
 	timer = 300.f;
 	SetDoorNum(8);
 	//Highlighter
 	SetHighlighterNum(2);
 	//Sharperner
-	SetSharpenerNum(2);
+	SetSharpenerNum(3);
+	//eraser
+	SetEraserNum(1);
+	//pencil
+	SetPencilNum(1);
 	/******************************************************************************/
 	/*!
 		FIRST BOX
 	*/
 	/******************************************************************************/
-	eraser.SetEraserPosition(0, { -200, 0 });
-	pencil.SetPencil(0, { 0, 0 }, 20, 100);
 
 	wall.CreateWall({ -390,-90 }, { 1,0 }, 20, 30.f, PLATFORM); //floor
 	wall.CreateWall({ -390,320 }, { 1,0 }, 20, 30.f, CEILING); // top wall
@@ -93,7 +96,7 @@ void Tutorial_Init()
 
 	sharpener.SetSharpenerPosition(0, { -250,-20 });
 
-	door.SetDoorPosition(0, { 120 , 170 });
+	door.SetDoorPosition(0, { 120 , 150 });
 
 	/******************************************************************************/
 	/*!
@@ -101,29 +104,33 @@ void Tutorial_Init()
 	*/
 	/******************************************************************************/
 	door.SetDoorPosition(1, { -40 , -320 });
-	door.SetDoorPosition(2, { 150 , -655 });
+	door.SetDoorPosition(2, { 150 , -650 });
 	wall.CreateWall({ -105,-720 }, { 1,0 }, 11, 30.f, PLATFORM); //floor
 	wall.CreateWall({ -105,-210 }, { 1,0 }, 11, 30.f, CEILING); // top wall
 	wall.CreateWall({ -135,-210 }, { 0,-1 }, 18, 30.f, WALL); // left wall
 	wall.CreateWall({ 210,-210 }, { 0,-1 }, 18, 30.f, WALL); // right wall
 	wall.CreateWall({ -125,-385 }, { 1,0 }, 6, 30.f, CEILING); //platform
 
+	sharpener.SetSharpenerPosition(1, { 10,-610 });
+
 	/******************************************************************************/
 	/*!
 		THIRD BOX
 	*/
 	/******************************************************************************/
-	door.SetDoorPosition(3, { 560 , -457 });
-	door.SetDoorPosition(4, { 1130 , -535 });
+	door.SetDoorPosition(3, { 560 , -457-50 });
+	door.SetDoorPosition(4, { 1130 , -535-40 });
 	wall.CreateWall({ 520,-820 }, { 1,0 }, 24, 30.f, PLATFORM); //floor
 	wall.CreateWall({ 520,-368 }, { 1,0 }, 24, 30.f, CEILING); // top wall
 	wall.CreateWall({ 490,-368 }, { 0,-1 }, 16, 30.f, WALL); // left wall
 	wall.CreateWall({ 1210,-368 }, { 0,-1 }, 16, 30.f, WALL); // right wall
-	wall.CreateWall({ 520,-505 }, { 1,0 }, 6, 30.f, CEILING); //platform left
-	wall.CreateWall({ 1060,-600 }, { 1,0 }, 5, 30.f, PLATFORM); //platform right
-	wall.CreateWall({ 670,-530 }, { 0,-1 }, 10, 30.f, WALL); //wall mid
+	wall.CreateWall({ 520,-505-70 }, { 1,0 }, 6, 30.f, CEILING); //platform left
+	wall.CreateWall({ 1060,-640 }, { 1,0 }, 5, 30.f, PLATFORM); //platform right
+	wall.CreateWall({ 670,-530-80 }, { 0,-1 }, 9, 30.f, WALL); //wall mid
 
-	
+	eraser.SetEraserPosition(0, { 900, -740 });
+	pencil.SetPencil(0, { 1100, -740 }, 20, 100);
+
 	highlighter.SetHighlighterPosition(0, { 1000, -770 });
 	highlighter.SetHighlighterPosition(1, { 1100, -770 });
 
@@ -132,19 +139,21 @@ void Tutorial_Init()
 		FOURTH BOX
 	*/
 	/******************************************************************************/
-	door.SetDoorPosition(5, { 580 , -110 });
-	door.SetDoorPosition(6, { 800 , 100 });
+	door.SetDoorPosition(5, { 570 , -110 });
+	door.SetDoorPosition(6, { 770 , 100 });
 	wall.CreateWall({ 540,-205 }, { 1,0 }, 11, 30.f, PLATFORM); //floor
 	wall.CreateWall({ 540,310 }, { 1,0 }, 11, 30.f, CEILING); //top wall
 	wall.CreateWall({ 510,310 }, { 0,-1 }, 18, 30.f, WALL); //left wall
 	wall.CreateWall({ 870,310 }, { 0,-1 }, 18, 30.f, WALL); //right wall
+	
+	sharpener.SetSharpenerPosition(2, { 760,-30 });
 
 	/******************************************************************************/
 	/*!
 		FIFTH BOX
 	*/
 	/******************************************************************************/
-	door.SetDoorPosition(7, { 990 , 100 });
+	door.SetDoorPosition(7, { 990 , 110 });
 	wall.CreateWall({ 950,35 }, { 1,0 }, 8, 30.f, PLATFORM); //floor
 	wall.CreateWall({ 950,280 }, { 1,0 }, 3, 30.f, CEILING); //ceiling
 	wall.CreateWall({ 920,280 }, { 0,-1 }, 9, 30.f, WALL); //left wall

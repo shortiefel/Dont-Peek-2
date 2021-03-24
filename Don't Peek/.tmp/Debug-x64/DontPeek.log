@@ -1,8 +1,8 @@
 ﻿  Wall.cpp
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Wall.cpp(72,20): warning C4459: declaration of 'Walltemp' hides global declaration
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Wall.cpp(30,7): message : see declaration of 'Walltemp'
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Wall.cpp(198,19): warning C4459: declaration of 'Walltemp' hides global declaration
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Wall.cpp(30,7): message : see declaration of 'Walltemp'
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Wall.cpp(204,19): warning C4459: declaration of 'Walltemp' hides global declaration
-C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Wall.cpp(30,7): message : see declaration of 'Walltemp'
-  DontPeek.vcxproj -> C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe
+C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Wall.cpp(72,20): warning C4459: declaration of 'Walltemp' hides global declaration
+C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Wall.cpp(30,7): message : see declaration of 'Walltemp'
+C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Wall.cpp(195,19): warning C4459: declaration of 'Walltemp' hides global declaration
+C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Wall.cpp(30,7): message : see declaration of 'Walltemp'
+C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Wall.cpp(201,19): warning C4459: declaration of 'Walltemp' hides global declaration
+C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Wall.cpp(30,7): message : see declaration of 'Walltemp'
+  DontPeek.vcxproj -> C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\\bin\Debug-x64\DontPeek.exe
