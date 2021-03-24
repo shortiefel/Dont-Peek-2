@@ -55,7 +55,8 @@ void Pencil::LoadPencil()
 	Pencil Init
 */
 /******************************************************************************/
-void Pencil::InitPencil() {
+void Pencil::InitPencil() 
+{
 	for (int i = 0; i < 1; i++)
 	{
 		Pencil* Penciltemp = PencilArray + i;
@@ -92,6 +93,7 @@ void Pencil::UpdatePencil()
 			if (CollisionIntersection_RectRect(Penciltemp->boundingBox, Penciltemp->vel, Erasertemp->GetEraserBoundingBox(j), Erasertemp->GetEraserVelocity(j)))
 			{
 				Penciltemp->collisionFlag = 0;
+				Penciltemp->flag = 0;
 			}
 
 		}//End of Eraser for loop
@@ -157,14 +159,24 @@ void Pencil::BoundingBox()
 	for (int i = 0; i < PencilNum; i++)
 	{
 		Pencil* Penciltemp = PencilArray + i;
-		AEMtx33Scale(&Size, Penciltemp->scaleX, Penciltemp->scaleY);
-		AEMtx33Trans(&Transform2, Penciltemp->pos.x, Penciltemp->pos.y);
-		AEMtx33Concat(&(Penciltemp->Transform), &Transform2, &Size);
+		if (Penciltemp->flag == FLAG_ACTIVE)
+		{
+			AEMtx33Scale(&Size, Penciltemp->scaleX, Penciltemp->scaleY);
+			AEMtx33Trans(&Transform2, Penciltemp->pos.x, Penciltemp->pos.y);
+			AEMtx33Concat(&(Penciltemp->Transform), &Transform2, &Size);
 
-		Penciltemp->boundingBox.min.x = Penciltemp->pos.x - Penciltemp->scaleX / 2;
-		Penciltemp->boundingBox.min.y = Penciltemp->pos.y - Penciltemp->scaleY / 2;
-		Penciltemp->boundingBox.max.x = Penciltemp->pos.x + Penciltemp->scaleX / 2;
-		Penciltemp->boundingBox.max.y = Penciltemp->pos.y + Penciltemp->scaleY / 2;
+			Penciltemp->boundingBox.min.x = Penciltemp->pos.x - Penciltemp->scaleX / 2;
+			Penciltemp->boundingBox.min.y = Penciltemp->pos.y - Penciltemp->scaleY / 2;
+			Penciltemp->boundingBox.max.x = Penciltemp->pos.x + Penciltemp->scaleX / 2;
+			Penciltemp->boundingBox.max.y = Penciltemp->pos.y + Penciltemp->scaleY / 2;
+		}
+		else
+		{
+			Penciltemp->boundingBox.min.x = 1000;
+			Penciltemp->boundingBox.min.y = 1000;
+			Penciltemp->boundingBox.max.x = 1000;
+			Penciltemp->boundingBox.max.y = 1000;
+		}
 	}
 }
 
