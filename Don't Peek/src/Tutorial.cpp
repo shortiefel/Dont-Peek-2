@@ -30,7 +30,7 @@ Technology is prohibited.
 #include "Music.h"
 
 background bg;
-float timer = 0.f;
+float timer = 0;
 void Tutorial_Load()
 {
 	bg.Bgpos= {350.f,-200.f };
@@ -67,8 +67,13 @@ void Tutorial_Init()
 	timer = 300.f;
 	SetSharpenerNum(1);
 	SetDoorNum(8);
-
+	SetEraserNum(1);
+	SetPencilNum(1);
 	//first box
+
+	eraser.SetEraserPosition(0, { -200, 0 });
+	pencil.SetPencil(0, { 0, 0 }, 20, 100);
+
 	wall.CreateWall({ -390,-90 }, { 1,0 }, 20, 30.f, PLATFORM); //floor
 	wall.CreateWall({ -390,320 }, { 1,0 }, 20, 30.f, CEILING); // top wall
 

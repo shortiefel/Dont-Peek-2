@@ -85,7 +85,7 @@ void Player::Player_Init()
 	Scale = 130.0f;
 	flag = FLAG_ACTIVE;
 	AEVec2Set(&(player.vel), 0, 0);
-	AEVec2Set(&(player.pos), 0.0f, 30.f);
+	AEVec2Set(&(player.pos), -100.0f, 30.f);
 }
 
 /******************************************************************************/

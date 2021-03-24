@@ -56,9 +56,6 @@ void Pencil::LoadPencil()
 */
 /******************************************************************************/
 void Pencil::InitPencil() {
-
-	scaleX = 20.0f;
-	scaleY = 150.0f;
 	for (int i = 0; i < 1; i++)
 	{
 		Pencil* Penciltemp = PencilArray + i;
@@ -108,7 +105,6 @@ void Pencil::UpdatePencil()
 /******************************************************************************/
 void Pencil::DrawPencil()
 {
-	
 	for (int i = 0; i < PencilNum; i++)
 	{
 		Pencil* Penciltemp = PencilArray + i;
@@ -134,7 +130,7 @@ void Pencil::DrawPencil()
 /******************************************************************************/
 void Pencil::FreePencil()
 {
-	AEGfxMeshFree(pPencil->pMesh);
+	
 }
 
 /******************************************************************************/
@@ -145,7 +141,9 @@ void Pencil::FreePencil()
 void Pencil::UnloadPencil()
 {
 	if(pPencil->texture)
-		AEGfxTextureUnload(pPencil->texture);
+	AEGfxTextureUnload(pPencil->texture);
+	if(pPencil->pMesh)
+	AEGfxMeshFree(pPencil->pMesh);
 }
 
 /******************************************************************************/
@@ -159,14 +157,14 @@ void Pencil::BoundingBox()
 	for (int i = 0; i < PencilNum; i++)
 	{
 		Pencil* Penciltemp = PencilArray + i;
-		AEMtx33Scale(&Size, scaleX, scaleY);
+		AEMtx33Scale(&Size, Penciltemp->scaleX, Penciltemp->scaleY);
 		AEMtx33Trans(&Transform2, Penciltemp->pos.x, Penciltemp->pos.y);
 		AEMtx33Concat(&(Penciltemp->Transform), &Transform2, &Size);
 
-		Penciltemp->boundingBox.min.x = Penciltemp->pos.x - scaleX / 2;
-		Penciltemp->boundingBox.min.y = Penciltemp->pos.y - scaleY / 2;
-		Penciltemp->boundingBox.max.x = Penciltemp->pos.x + scaleX / 2;
-		Penciltemp->boundingBox.max.y = Penciltemp->pos.y + scaleY / 2;
+		Penciltemp->boundingBox.min.x = Penciltemp->pos.x - Penciltemp->scaleX / 2;
+		Penciltemp->boundingBox.min.y = Penciltemp->pos.y - Penciltemp->scaleY / 2;
+		Penciltemp->boundingBox.max.x = Penciltemp->pos.x + Penciltemp->scaleX / 2;
+		Penciltemp->boundingBox.max.y = Penciltemp->pos.y + Penciltemp->scaleY / 2;
 	}
 }
 
@@ -192,10 +190,12 @@ AEVec2 Pencil::GetPencilPosition(int i)
 	Pencil* Penciltemp = PencilArray + i;
 	return Penciltemp->pos;
 }
-void Pencil::SetPencilPosition(int i, AEVec2 NewPos)
+void Pencil::SetPencil(int i, AEVec2 NewPos, float scale_X, float scale_Y)
 {
 	Pencil* Penciltemp = PencilArray + i;
 	Penciltemp->pos = NewPos;
+	Penciltemp->scaleX = scale_X;
+	Penciltemp->scaleY = scale_Y;
 }
 
 /******************************************************************************/
