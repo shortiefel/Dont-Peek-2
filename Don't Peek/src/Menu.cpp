@@ -25,6 +25,7 @@ Technology is prohibited.
 #include "Music.h"
 
 static Menu menu;
+static Menu splashscreen;
 static Button button[4];
 static int x, y;
 static int SetWidthCursor = 1000 / 2;
@@ -35,10 +36,19 @@ static int SetHeightCursor = 700 / 2;
 void MenuLoad()
 {
 
+	
+
+	//SPLASHSCREEN
+	splashscreen.pos = { SetWidthCursor, SetHeightCursor };
+	//splashscreen.scale = { 950.f, 650.f };
+
+	splashscreen.pObj = sGameObjList + sGameObjNum++;
+	splashscreen.pObj->texture = AEGfxTextureLoad("Resources/");
+
+
 	//MENU
 	menu.pos = { 0.f, 0.f };
 	menu.scale = { 950.f,650.f };
-
 
 	//MENU BG
 	menu.pObj = sGameObjList + sGameObjNum++;
