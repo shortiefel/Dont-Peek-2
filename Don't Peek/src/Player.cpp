@@ -252,11 +252,11 @@ void Player::Player_Update()
 		{
 			if (player.pos.x >= Penciltemp->GetPencilBoundingBox(i).max.x)
 			{
-				player.pos.x = (Penciltemp->GetPencilBoundingBox(i).max.x + (Scale / 5));
+				player.pos.x = (Penciltemp->GetPencilBoundingBox(i).max.x + (Scale / 4));
 			}
 			else if (player.pos.x <= Penciltemp->GetPencilBoundingBox(i).min.x)
 			{
-				player.pos.x = (Penciltemp->GetPencilBoundingBox(i).min.x - (Scale / 5));
+				player.pos.x = (Penciltemp->GetPencilBoundingBox(i).min.x - (Scale / 4));
 			}
 		}
 	}
