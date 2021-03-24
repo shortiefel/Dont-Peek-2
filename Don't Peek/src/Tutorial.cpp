@@ -62,13 +62,13 @@ void Tutorial_Load()
 }
 void Tutorial_Init()
 {
-	//SoundSystem_Init();
-
 	timer = 300.f;
-	SetSharpenerNum(1);
 	SetDoorNum(8);
-	SetEraserNum(1);
-	SetPencilNum(1);
+	//Highlighter
+	SetHighlighterNum(2);
+	//Sharperner
+	SetSharpenerNum(2);
+
 	//first box
 
 	eraser.SetEraserPosition(0, { -200, 0 });
@@ -83,7 +83,6 @@ void Tutorial_Init()
 	wall.CreateWall({ 50,105 }, { 1,0 }, 5, 30.f, CEILING); //platform
 	wall.CreateWall({ 20,75 }, { 0,-1 }, 6, 30.f, WALL); //inside wall
 
-	SetSharpenerNum(1);
 	sharpener.SetSharpenerPosition(0, { -250,-20 });
 
 	door.SetDoorPosition(0, { 120 , 170 });
@@ -98,7 +97,7 @@ void Tutorial_Init()
 	wall.CreateWall({ -125,-385 }, { 1,0 }, 6, 30.f, CEILING); //platform
 
 	//3rd box
-	door.SetDoorPosition(3, { 560 , -440 });
+	door.SetDoorPosition(3, { 560 , -457 });
 	door.SetDoorPosition(4, { 1130 , -535 });
 	wall.CreateWall({ 520,-820 }, { 1,0 }, 24, 30.f, PLATFORM); //floor
 	wall.CreateWall({ 520,-368 }, { 1,0 }, 24, 30.f, CEILING); // top wall
@@ -107,6 +106,11 @@ void Tutorial_Init()
 	wall.CreateWall({ 520,-505 }, { 1,0 }, 6, 30.f, CEILING); //platform left
 	wall.CreateWall({ 1060,-600 }, { 1,0 }, 5, 30.f, CEILING); //platform right
 	wall.CreateWall({ 670,-530 }, { 0,-1 }, 10, 30.f, WALL); //wall mid
+
+	
+	highlighter.SetHighlighterPosition(0, { 1000, -770 });
+	highlighter.SetHighlighterPosition(1, { 1100, -770 });
+
 
 	//4th box
 	door.SetDoorPosition(5, { 580 , -110 });
@@ -153,5 +157,6 @@ void Tutorial_Free()
 }
 void Tutorial_Unload()
 {
-	//SoundSystem_Destroy();
+	AEGfxMeshFree(bg.pBg->pMesh);
+	AEGfxTextureUnload(bg.pBg->texture);
 }

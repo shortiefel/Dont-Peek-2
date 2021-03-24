@@ -1,6 +1,6 @@
 /* Start Header ************************************************************************/
 /*!
-\file Level 1.h
+\file Level 1.cpp
 \team name Don't Peak
 \software name I don't want to do homework
 \authors
@@ -19,7 +19,7 @@ without the prior written consent of DigiPen Institute of
 Technology is prohibited.
 */
 /* End Header **************************************************************************/
-#include"Level 1.h"
+#include "Level 1.h"
 #include "Door.h"
 #include "Sharpener.h"
 #include "Pencil.h"
@@ -36,11 +36,11 @@ static Highlighter highlighter;
 
 void Level1_Load()
 {
-	bg.Bgpos= {350.f,-200.f };
-	bg.Bgscale = { 1760.f,1090.f };
+	bg.Bgpos = { 350.f,-200.f };
+	bg.Bgscale = { 1.2 * 1760.f, 1.2 * 1090.f };
 
 	bg.pBg = sGameObjList + sGameObjNum++;
-	bg.pBg->texture = AEGfxTextureLoad("Resources/Background.png");
+	bg.pBg->texture = AEGfxTextureLoad("Resources/Level 1_1.jpg");
 	AE_ASSERT_MESG(bg.pBg->texture, "Failed to load Background!");
 
 	AEGfxMeshStart();
@@ -62,39 +62,76 @@ void Level1_Load()
 	AEMtx33Trans(&trans, bg.Bgpos.x, bg.Bgpos.y);
 
 	AEMtx33Concat(&(bg.transform), &trans, &sc);
+
 }
 void Level1_Init()
 {
-	wall->CreateWall({ -410,-60 }, { 1,0 }, 16, 30.f, PLATFORM);
-	//wall->CreateWall({  100, 0 }, { 1,0 }, 5, 30.f, PLATFORM);
-	//wall->CreateWall({ -150,210 }, { 0,-1 }, 9, 30.f, WALL);
-	wall->CreateWall({ -410,210 }, { 1,0 }, 26, 30.f, PLATFORM);
-	wall->CreateWall({ 340,210 }, { 0,-1 }, 9, 30.f, WALL);
-
-	//Sharpener
-	SetSharpenerNum(1);
-	sharpener.SetSharpenerPosition(0, { -180,0 });
-
-	//Eraser
-	SetEraserNum(1);
-	eraser.SetEraserPosition(0, { -70,0 });
-
+	SetDoorNum(8);
 	//Highlighter
-	SetHighlighterNum(1);
-	highlighter.SetHighlighterPosition(0, { 50,0 });
+	//SetHighlighterNum(2);
+	//Sharperner
+	SetSharpenerNum(1);
+	//eraser
+	SetEraserNum(2);
 
-	//Pencil
-	SetPencilNum(1);
-	pencil.SetPencilPosition(0, { 150,50 });
 
-	//Door
-	//SetDoorNum(2);
-	//door.SetDoorPosition(0, { 300 , 0 });
-	//door.SetDoorPosition(1, { -300 , 0 });
+	//first box
+	wall->CreateWall({ -430,-235 }, { 1,0 }, 22, 30.f, PLATFORM); //floor
+	wall->CreateWall({ -430,260 }, { 1,0 }, 22, 30.f, WALL); // top wall
+	wall->CreateWall({ -460,260 }, { 0,-1 }, 17, 30.f, WALL); // left wall
+	wall->CreateWall({ -440 + 22 * 30,260 }, { 0,-1 }, 17, 30.f, WALL); // right wall
+	wall->CreateWall({ -325, -90 }, { 1,0 }, 22 , 25.f, PLATFORM); //platform
+
+	door.SetDoorPosition(0, { 110 , -160 });//door 0
+	door.SetDoorPosition(5, { -250 , 150 });//door 5
+	door.SetDoorPosition(6, { 120 , -20 });//door 6
+
+
+
+	//2nd box
+	wall->CreateWall({ -450, -765}, { 1,0 }, 18, 30.f, PLATFORM); //floor
+	wall->CreateWall({ -450, -265 }, { 1,0 }, 18, 30.f, WALL); // top wall
+	wall->CreateWall({ -440,-295 }, { 0,-1 }, 16, 30.f, WALL); // left wall
+	wall->CreateWall({ 80,-295 }, { 0,-1 }, 16, 30.f, WALL); // right wall
+
+	wall->CreateWall({ -100, -565 }, { 1,0 }, 6, 30.f, PLATFORM); //platform lowest
+	wall->CreateWall({ -210, -480 }, { 1,0 }, 3, 30.f, PLATFORM); //platform mid
+	wall->CreateWall({ -410, -410 }, { 1,0 }, 5, 30.f, PLATFORM); //platform high
+
+	door.SetDoorPosition(1, { -350 , -695 });//door 1
+	door.SetDoorPosition(2, { -20 , -695 });//door 2
+	eraser.SetEraserPosition(0, { -320, -350 }); //eraser
+
+	//3rd box
+	wall->CreateWall({ 715, -790 }, { 1,0 }, 14, 30.f, PLATFORM); //floor
+	wall->CreateWall({ 715, -465 }, { 1,0 }, 14, 30.f, WALL); // top wall
+	wall->CreateWall({ 685,-465 }, { 0,-1 }, 11, 30.f, WALL); // left wall
+	wall->CreateWall({ 715 + 14 * 30,-465 }, { 0,-1 }, 11, 30.f, WALL); // right wall
+	wall->CreateWall({ 715, -650 }, { 1,0 }, 6, 30.f, PLATFORM); //platform
+	door.SetDoorPosition(3, { 805 , -585 });//door 3
+	door.SetDoorPosition(4, { 1060 , -720 });//door 4
+	sharpener.SetSharpenerPosition(0, { 830,-720 }); // sharpener
+
+	//4th box
+	wall->CreateWall({ 450, -440 }, { 1,0 }, 24, 30.f, PLATFORM); // floor
+	wall->CreateWall({ 680, 280 }, { 1,0 }, 10, 30.f, WALL); // top wall
+	wall->CreateWall({ 650, 280 }, { 0,-1 }, 5, 30.f, WALL); // top wall
+	wall->CreateWall({ 470, 160 }, { 1,0 }, 7, 30.f, WALL); // top wall
+	wall->CreateWall({ 440, 160 }, { 0,-1 }, 21, 30.f, WALL); // left wall
+	wall->CreateWall({ 680 + 15*30, 280 }, { 0,-1 }, 24, 30.f, WALL); // right wall
+
+	wall->CreateWall({ 885 ,-340 }, { 1,0 }, 5, 30.f, PLATFORM); //platform lowest
+	wall->CreateWall({ 720 ,- 210 }, { 1,0 }, 5, 25.f, PLATFORM); //platform MID
+	wall->CreateWall({ 470 ,-250 }, { 1,0 }, 6, 30.f, PLATFORM); //platform MID 2
+	wall->CreateWall({ 470 ,-40 }, { 1,0 }, 15, 30.f, PLATFORM); //platform MID 3
+	wall->CreateWall({ 960 ,-190 }, { 1,0 }, 6, 30.f, PLATFORM); //platform MID 4
+	wall->CreateWall({ 865 ,110 }, { 1,0 }, 5, 30.f, PLATFORM); //platform MID 5
+
+	door.SetDoorPosition(7, { 530 , -370 });//door 7
+	eraser.SetEraserPosition(1, { 780, 20 }); //eraser
 }
 void Level1_Update()
 {
-
 }
 void Level1_Draw()
 {
@@ -113,5 +150,6 @@ void Level1_Free()
 }
 void Level1_Unload()
 {
-
+	AEGfxMeshFree(bg.pBg->pMesh);
+	AEGfxTextureUnload(bg.pBg->texture);
 }

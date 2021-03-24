@@ -1,6 +1,8 @@
 #include "GameStateMgr.h"
 #include "Menu.h"
 #include "HowToPlay2.h"
+#include "Tutorial.h"
+#include "Level 1.h"
 #include  "Win.h"
 #include "Lose.h"
 #include "Pause.h"
@@ -75,6 +77,15 @@ void GameStateMgrUpdate()
 		GameStateDraw = HowtoplayDraw;
 		GameStateFree = HowtoplayFree;
 		GameStateUnload = HowtoplayUnload;
+		break;
+
+	case GS_LEVEL_1:
+		GameStateLoad = Level1_Load;
+		GameStateInit = Level1_Init;
+		GameStateUpdate = Level1_Update;
+		GameStateDraw = Level1_Draw;
+		GameStateFree = Level1_Free;
+		GameStateUnload = Level1_Unload;
 		break;
 
 	case GS_DONT_PEEK:

@@ -29,6 +29,8 @@ Technology is prohibited.
 #include "Pencil.h"
 #include "Wall.h"
 #include "Tutorial.h"
+#include "Level 1.h"
+#include "Camera.h"
 #include "Win.h"
 #include "Music.h"
 
@@ -68,8 +70,9 @@ void GameStateDontPeekLoad(void)
 	// No game objects (shapes) at this point
 	sGameObjNum = 0;
 
-	Tutorial_Load();
-	wall.LoadWall();
+	//Tutorial_Load();
+	Level1_Load();
+	wwall.LoadWall();
 	sharpener.LoadSharpener();
 	eraser.LoadEraser();
 	highlighter.LoadHighlighter();
@@ -85,10 +88,11 @@ void GameStateDontPeekLoad(void)
 /******************************************************************************/
 void GameStateDontPeekInit(void)
 {
+	//Tutorial_Init();
 	SoundSystem_Init();
 	SoundSystem_SFX();
-	Tutorial_Init();
-	wall.InitWall();
+	Level1_Init();
+	wwall.InitWall();
 	sharpener.InitSharpener();
 	eraser.InitEraser();
 	highlighter.InitHighlighter();
@@ -105,7 +109,8 @@ void GameStateDontPeekInit(void)
 void GameStateDontPeekUpdate(void)
 {
 	
-	Tutorial_Update();
+	//Tutorial_Update();
+	Level1_Update();
 	sharpener.UpdateSharpener();
 	eraser.UpdateEraser();
 	highlighter.UpdateHighlighter();
@@ -123,9 +128,9 @@ void GameStateDontPeekUpdate(void)
 /******************************************************************************/
 void GameStateDontPeekDraw(void)
 {
-	Tutorial_Draw();
-	
-	wall.DrawWall();
+	//Tutorial_Draw();
+	Level1_Draw();
+	wwall.DrawWall();
 	highlighter.DrawHighlighter();
 	pencil.DrawPencil();
 	sharpener.DrawSharpener();
@@ -159,6 +164,8 @@ void GameStateDontPeekFree(void)
 /******************************************************************************/
 void GameStateDontPeekUnload(void)
 {
+	//Tutorial_Unload();
+	Level1_Unload();
 	sharpener.UnloadSharpener();
 	eraser.UnloadEraser();
 	highlighter.UnloadHighlighter();

@@ -10,6 +10,7 @@ enum
 
 	GS_LEVEL,
 	GS_CREDITS,
+	GS_LEVEL_1,
 	GS_WIN,
 	GS_LOSE,
 	GS_PAUSE,
