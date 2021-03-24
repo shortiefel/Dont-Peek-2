@@ -17,7 +17,7 @@ Technology is prohibited.
 */
 /* End Header **************************************************************************/
 
-#include "Howtoplay.h"
+#include "Howtoplay2.h"
 #include "Door.h"
 #include "Player.h"
 #include "Sharpener.h"

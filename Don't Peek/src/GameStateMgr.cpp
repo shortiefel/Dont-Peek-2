@@ -1,6 +1,6 @@
 #include "GameStateMgr.h"
 #include "Menu.h"
-#include "HowToPlay.h"
+#include "HowToPlay2.h"
 #include  "Win.h"
 #include "Lose.h"
 #include "Pause.h"
