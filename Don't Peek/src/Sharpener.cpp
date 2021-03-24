@@ -67,7 +67,7 @@ void Sharpener::LoadSharpener()
 */
 /******************************************************************************/
 void Sharpener::InitSharpener() {
-	Scale = 80.0f;
+	Scale = 100.0f;
 	
 	//AEVec2* pVel = &vel;
 	for (int i = 0; i < SharpenerNum; i++)
