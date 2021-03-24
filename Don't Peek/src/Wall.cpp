@@ -150,7 +150,7 @@ void Wall::FreeWall()
 void Wall::UnloadWall()
 {
 	AEGfxMeshFree(pWall->pMesh);
-	numberWalls = 0;
+	numberWalls = 0; //DONE BY FELICIA< JARELL< JER AND SOLVED BY US 
 	printf("free!");
 }
 
