@@ -38,12 +38,12 @@ void MenuLoad()
 
 	
 
-	//SPLASHSCREEN
-	splashscreen.pos = { SetWidthCursor, SetHeightCursor };
-	//splashscreen.scale = { 950.f, 650.f };
+	////SPLASHSCREEN
+	//splashscreen.pos = { SetWidthCursor, SetHeightCursor };
+	////splashscreen.scale = { 950.f, 650.f };
 
-	splashscreen.pObj = sGameObjList + sGameObjNum++;
-	splashscreen.pObj->texture = AEGfxTextureLoad("Resources/");
+	//splashscreen.pObj = sGameObjList + sGameObjNum++;
+	//splashscreen.pObj->texture = AEGfxTextureLoad("Resources/BGempty.jpg");
 
 
 	//MENU

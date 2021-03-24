@@ -75,7 +75,7 @@ void Tutorial_Init()
 	wall.CreateWall({ -405,320 }, { 0,-1 }, 15, 30.f, WALL); //left wall
 	wall.CreateWall({ 200,320 }, { 0,-1 }, 15, 30.f, WALL); // right wall
 
-	wall.CreateWall({ 20,105 }, { 1,0 }, 6, 30.f, PLATFORM); //platform
+	wall.CreateWall({ 50,105 }, { 1,0 }, 5, 30.f, CEILING); //platform
 	wall.CreateWall({ 20,75 }, { 0,-1 }, 6, 30.f, WALL); //inside wall
 
 	SetSharpenerNum(1);
@@ -90,7 +90,7 @@ void Tutorial_Init()
 	wall.CreateWall({ -105,-210 }, { 1,0 }, 11, 30.f, CEILING); // top wall
 	wall.CreateWall({ -135,-210 }, { 0,-1 }, 18, 30.f, WALL); // left wall
 	wall.CreateWall({ 210,-210 }, { 0,-1 }, 18, 30.f, WALL); // right wall
-	wall.CreateWall({ -125,-385 }, { 1,0 }, 6, 30.f, PLATFORM); //platform
+	wall.CreateWall({ -125,-385 }, { 1,0 }, 6, 30.f, CEILING); //platform
 
 	//3rd box
 	door.SetDoorPosition(3, { 560 , -440 });
@@ -99,8 +99,8 @@ void Tutorial_Init()
 	wall.CreateWall({ 520,-368 }, { 1,0 }, 24, 30.f, CEILING); // top wall
 	wall.CreateWall({ 490,-368 }, { 0,-1 }, 16, 30.f, WALL); // left wall
 	wall.CreateWall({ 1210,-368 }, { 0,-1 }, 16, 30.f, WALL); // right wall
-	wall.CreateWall({ 520,-505 }, { 1,0 }, 6, 30.f, PLATFORM); //platform left
-	wall.CreateWall({ 1060,-600 }, { 1,0 }, 5, 30.f, PLATFORM); //platform right
+	wall.CreateWall({ 520,-505 }, { 1,0 }, 6, 30.f, CEILING); //platform left
+	wall.CreateWall({ 1060,-600 }, { 1,0 }, 5, 30.f, CEILING); //platform right
 	wall.CreateWall({ 670,-530 }, { 0,-1 }, 10, 30.f, WALL); //wall mid
 
 	//4th box

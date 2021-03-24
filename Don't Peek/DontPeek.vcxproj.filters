@@ -55,6 +55,9 @@
     <ClCompile Include="src\Pause.cpp">
       <Filter>Source\Levels\Code</Filter>
     </ClCompile>
+    <ClCompile Include="src\HowToPlay.cpp">
+      <Filter>Source\Levels\Code</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Main.h">
@@ -140,6 +143,9 @@
     </ClInclude>
     <ClInclude Include="src\fmod.h">
       <Filter>Source\Environment\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HowToPlay.h">
+      <Filter>Source\Levels\Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
