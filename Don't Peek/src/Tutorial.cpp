@@ -65,11 +65,11 @@ void Tutorial_Load()
 }
 void Tutorial_Init()
 {
-	SetSharpenerNum(1);
 	SetDoorNum(8);
 	//Highlighter
-	//SetHighlighterrNum(1);
-	//highlighter.SetHighlighterPosition(0, { 100,0 });
+	SetHighlighterNum(2);
+	//Sharperner
+	SetSharpenerNum(2);
 
 	//first box
 	wall->CreateWall({ -390,-90 }, { 1,0 }, 20, 30.f, PLATFORM); //floor
@@ -81,7 +81,6 @@ void Tutorial_Init()
 	wall->CreateWall({ 20,105 }, { 1,0 }, 6, 30.f, PLATFORM); //platform
 	wall->CreateWall({ 20,75 }, { 0,-1 }, 6, 30.f, WALL); //inside wall
 
-	SetSharpenerNum(1);
 	sharpener.SetSharpenerPosition(0, { -250,-20 });
 
 
@@ -90,6 +89,7 @@ void Tutorial_Init()
 	//2nd box
 	door.SetDoorPosition(1, { -40 , -320 });
 	door.SetDoorPosition(2, { 150 , -655 });
+	sharpener.SetSharpenerPosition(1, { -20,-650 });
 	wall->CreateWall({ -105,-720 }, { 1,0 }, 11, 30.f, PLATFORM); //floor
 	wall->CreateWall({ -105,-210 }, { 1,0 }, 11, 30.f, WALL); // top wall
 	wall->CreateWall({ -135,-210 }, { 0,-1 }, 18, 30.f, WALL); // left wall
@@ -97,13 +97,15 @@ void Tutorial_Init()
 	wall->CreateWall({ -125,-385 }, { 1,0 }, 6, 30.f, PLATFORM); //platform
 
 	//3rd box
-	door.SetDoorPosition(3, { 560 , -440 });
+	door.SetDoorPosition(3, { 560 , -457 });
 	door.SetDoorPosition(4, { 1130 , -535 });
+	highlighter.SetHighlighterPosition(0, { 1000, -770 });
+	highlighter.SetHighlighterPosition(1, { 1100, -770 });
 	wall->CreateWall({ 520,-820 }, { 1,0 }, 24, 30.f, PLATFORM); //floor
-	wall->CreateWall({ 520,-368 }, { 1,0 }, 24, 30.f, WALL); // top wall
+	wall->CreateWall({ 520,-375 }, { 1,0 }, 24, 30.f, WALL); // top wall
 	wall->CreateWall({ 490,-368 }, { 0,-1 }, 16, 30.f, WALL); // left wall
 	wall->CreateWall({ 1210,-368 }, { 0,-1 }, 16, 30.f, WALL); // right wall
-	wall->CreateWall({ 520,-505 }, { 1,0 }, 6, 30.f, PLATFORM); //platform left
+	wall->CreateWall({ 520,-525 }, { 1,0 }, 6, 30.f, PLATFORM); //platform left
 	wall->CreateWall({ 1060,-600 }, { 1,0 }, 5, 30.f, PLATFORM); //platform right
 	wall->CreateWall({ 670,-530 }, { 0,-1 }, 10, 30.f, WALL); //wall mid
 
@@ -143,5 +145,6 @@ void Tutorial_Free()
 }
 void Tutorial_Unload()
 {
-
+	AEGfxMeshFree(bg.pBg->pMesh);
+	AEGfxTextureUnload(bg.pBg->texture);
 }

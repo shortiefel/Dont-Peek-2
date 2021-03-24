@@ -8,7 +8,7 @@ enum
 	GS_MENU,
 	GS_TUTORIAL,
 
-	GS_LEVEL,
+	GS_LEVEL_1,
 	GS_WIN,
 	GS_LOSE,
 	//Special Game State. DONT CHANGE HOR

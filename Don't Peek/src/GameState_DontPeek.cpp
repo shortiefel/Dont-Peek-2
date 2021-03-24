@@ -29,6 +29,7 @@ Technology is prohibited.
 #include "Pencil.h"
 #include "Wall.h"
 #include "Tutorial.h"
+#include "Level 1.h"
 #include "Camera.h"
 #include "Win.h"
 
@@ -79,7 +80,8 @@ void GameStateDontPeekLoad(void)
 	// No game object instances (sprites) at this point
 	sGameObjInstNum = 0;
 
-	Tutorial_Load();
+	//Tutorial_Load();
+	Level1_Load();
 	wwall.LoadWall();
 	sharpener.LoadSharpener();
 	eraser.LoadEraser();
@@ -99,7 +101,8 @@ void GameStateDontPeekLoad(void)
 /******************************************************************************/
 void GameStateDontPeekInit(void)
 {
-	Tutorial_Init();
+	//Tutorial_Init();
+	Level1_Init();
 	wwall.InitWall();
 	sharpener.InitSharpener();
 	eraser.InitEraser();
@@ -118,7 +121,8 @@ void GameStateDontPeekInit(void)
 void GameStateDontPeekUpdate(void)
 {
 	
-	Tutorial_Update();
+	//Tutorial_Update();
+	Level1_Update();
 	sharpener.UpdateSharpener();
 	eraser.UpdateEraser();
 	highlighter.UpdateHighlighter();
@@ -138,7 +142,8 @@ void GameStateDontPeekUpdate(void)
 /******************************************************************************/
 void GameStateDontPeekDraw(void)
 {
-	Tutorial_Draw();
+	//Tutorial_Draw();
+	Level1_Draw();
 	player.Player_Draw();
 	wwall.DrawWall();
 	highlighter.DrawHighlighter();
@@ -175,6 +180,8 @@ void GameStateDontPeekFree(void)
 /******************************************************************************/
 void GameStateDontPeekUnload(void)
 {
+	//Tutorial_Unload();
+	Level1_Unload();
 	sharpener.UnloadSharpener();
 	eraser.UnloadEraser();
 	highlighter.UnloadHighlighter();

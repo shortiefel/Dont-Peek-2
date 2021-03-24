@@ -66,7 +66,7 @@ void Eraser::LoadEraser() {
 */
 /******************************************************************************/
 void Eraser::InitEraser() {
-	Scale = 80.0f;
+	Scale = 100.0f;
 	AEVec2Set(&vel, 5, 0);
 	AEVec2* pVel = &vel;
 	for (int i = 0; i < EraserNum; i++)
