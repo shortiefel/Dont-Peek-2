@@ -37,7 +37,7 @@ void PauseLoad()
 
 	pause.pObj = sGameObjList + sGameObjNum++;
 	pause.pObj->texture = AEGfxTextureLoad("Resources/pause.png");
-	AE_ASSERT_MESG(pause.pObj->texture, "Failed to load win screen!");
+	AE_ASSERT_MESG(pause.pObj->texture, "Failed to load pause screen!");
 
 	AEGfxMeshStart();
 	AEGfxTriAdd(
@@ -59,78 +59,6 @@ void PauseLoad()
 
 	AEMtx33Concat(&(pause.transform), &trans, &sc);
 
-
-	//MAIN MENU BUTTON
-	Pbtn[0].pos = { -175.f, 0.f };
-	Pbtn[0].scale = { 200.f,80.f };
-	Pbtn[0].pButton = sGameObjList + sGameObjNum++;
-	Pbtn[0].pButton->texture = AEGfxTextureLoad("Resources/Resume.jpg");
-	Pbtn[0].pButton->type = TYPE_LEVEL;
-	AE_ASSERT_MESG(Pbtn[0].pButton->texture, "Failed to load Resume!");
-
-	AEGfxMeshStart();
-	AEGfxTriAdd(
-		-0.5f, -0.5f, 0x00000000, 0.0f, 1.0f,
-		0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
-		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
-
-	AEGfxTriAdd(
-		0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
-		0.5f, 0.5f, 0x00000000, 1.0f, 0.0f,
-		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
-	Pbtn[0].pButton->pMesh = AEGfxMeshEnd();
-
-	//NEXT LEVEL
-	Pbtn[1].pos = { -175.f, -100.f };
-	Pbtn[1].scale = { 200.f,80.f };
-	Pbtn[1].pButton = sGameObjList + sGameObjNum++;
-	Pbtn[1].pButton->texture = AEGfxTextureLoad("Resources/Restart.jpg");
-	Pbtn[1].pButton->type = TYPE_LEVEL;
-	AE_ASSERT_MESG(Pbtn[1].pButton->texture, "Failed to load Restart!");
-
-	AEGfxMeshStart();
-	AEGfxTriAdd(
-		-0.5f, -0.5f, 0x00000000, 0.0f, 1.0f,
-		0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
-		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
-
-	AEGfxTriAdd(
-		0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
-		0.5f, 0.5f, 0x00000000, 1.0f, 0.0f,
-		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
-	Pbtn[1].pButton->pMesh = AEGfxMeshEnd();
-
-
-	//NEXT LEVEL
-	Pbtn[2].pos = { -175.f, -200.f };
-	Pbtn[2].scale = { 200.f,80.f };
-	Pbtn[2].pButton = sGameObjList + sGameObjNum++;
-	Pbtn[2].pButton->texture = AEGfxTextureLoad("Resources/MBtn.jpg");
-	Pbtn[2].pButton->type = TYPE_LEVEL;
-	AE_ASSERT_MESG(Pbtn[2].pButton->texture, "Failed to load Restart!");
-
-	AEGfxMeshStart();
-	AEGfxTriAdd(
-		-0.5f, -0.5f, 0x00000000, 0.0f, 1.0f,
-		0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
-		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
-
-	AEGfxTriAdd(
-		0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
-		0.5f, 0.5f, 0x00000000, 1.0f, 0.0f,
-		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
-	Pbtn[2].pButton->pMesh = AEGfxMeshEnd();
-
-	for (int i = 0; i < 3; i++)
-	{
-		AEMtx33Scale(&sc, Pbtn[i].scale.x, Pbtn[i].scale.y);
-		// Compute the translation matrix
-		AEMtx33Trans(&trans, Pbtn[i].pos.x, Pbtn[i].pos.y);
-
-		AEMtx33Concat(&(Pbtn[i].transform), &trans, &sc);
-	}
-
-
 }
 
 void PauseInit()
@@ -140,53 +68,6 @@ void PauseInit()
 void PauseUpdate()
 {
 	AEGfxSetCamPosition(0, 0);
-	BoundingBoxPause();
-	AEInputGetCursorPosition(&Px, &Py);
-	if (Px >= 0 && Py >= 0)
-	{
-		Px = Px - SetWidthCursorP;
-		Py -= SetHeightCursorP;
-		Py *= -1;
-	}
-
-	if (AEInputCheckTriggered(AEVK_LBUTTON))
-	{
-		printf("Mouse: %d::%d\n", Px, Py);
-
-		if (CollisionIntersection_PointRect({ static_cast<float>(Px), static_cast<float>(Py) }, { 0,0 }, Pbtn[0].boundingBox, { 0,0 }))
-		{
-			if (AEInputUpdate)
-			{
-				//gGameStateNext = GS_MENU;
-				printf("BUTTON RESUME \n");
-				printf("BBMin: %f::%f\n", Pbtn[0].boundingBox.min.x, Pbtn[0].boundingBox.min.y);
-				printf("BBMax: %f::%f\n", Pbtn[0].boundingBox.max.x, Pbtn[0].boundingBox.max.y);
-			}
-		}
-		else if (CollisionIntersection_PointRect({ static_cast<float>(Px), static_cast<float>(Py) }, { 0,0 }, Pbtn[1].boundingBox, { 0,0 }))
-		{
-			if (AEInputUpdate)
-			{
-				//gGameStateNext = GS_DONT_PEEK;
-				printf("BUTTON RESTART \n");
-				printf("BBMin: %f::%f\n", Pbtn[1].boundingBox.min.x, Pbtn[1].boundingBox.min.y);
-				printf("BBMax: %f::%f\n", Pbtn[1].boundingBox.max.x, Pbtn[1].boundingBox.max.y);
-			}
-		}
-		else if (CollisionIntersection_PointRect({ static_cast<float>(Px), static_cast<float>(Py) }, { 0,0 }, Pbtn[2].boundingBox, { 0,0 }))
-		{
-			if (AEInputUpdate)
-			{
-				gGameStateNext = GS_MENU;
-				printf("BUTTON MAIN MENU \n");
-				printf("BBMin: %f::%f\n", Pbtn[2].boundingBox.min.x, Pbtn[2].boundingBox.min.y);
-				printf("BBMax: %f::%f\n", Pbtn[2].boundingBox.max.x, Pbtn[2].boundingBox.max.y);
-			}
-		}
-	}
-
-	if (AEInputCheckCurr(AEVK_ESCAPE))
-		gGameStateNext = GS_QUIT;
 }
 
 void PauseDraw()
@@ -199,14 +80,6 @@ void PauseDraw()
 	AEGfxSetTransform(pause.transform.m);
 	AEGfxSetTransparency(1.0f);
 	AEGfxMeshDraw(pause.pObj->pMesh, AE_GFX_MDM_TRIANGLES);
-
-	for (int i = 0; i < 3; i++)
-	{
-		AEGfxTextureSet(Pbtn[i].pButton->texture, 0, 0);
-		AEGfxSetTransform(Pbtn[i].transform.m);
-		AEGfxSetTransparency(1.0f);
-		AEGfxMeshDraw(Pbtn[i].pButton->pMesh, AE_GFX_MDM_TRIANGLES);
-	}
 }
 
 void PauseFree()
@@ -219,11 +92,4 @@ void PauseUnload()
 
 void BoundingBoxPause()
 {
-	for (int i = 0; i < 3; i++)
-	{
-		Pbtn[i].boundingBox.min.x = Pbtn[i].pos.x - Pbtn[i].scale.x / 2;
-		Pbtn[i].boundingBox.min.y = Pbtn[i].pos.y - Pbtn[i].scale.y / 2;
-		Pbtn[i].boundingBox.max.x = Pbtn[i].pos.x + Pbtn[i].scale.x / 2;
-		Pbtn[i].boundingBox.max.y = Pbtn[i].pos.y + Pbtn[i].scale.y / 2;
-	}
 }
