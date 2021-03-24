@@ -109,22 +109,6 @@ void Sharpener::UpdateSharpener()
 		/******************************************************************************/
 		if (CollisionIntersection_RectRect(player.GetBoundingBoxPlayer(), player.GetVelPlayer(), Sharpenertemp->boundingBox, Sharpenertemp->vel))
 		{
-			if ((AEInputCheckCurr(AEVK_LSHIFT) && AEInputCheckCurr(AEVK_RIGHT)) &&
-				(Sharpenertemp->boundingBox.min.x < (player.GetBoundingBoxPlayer().max.x + 5.0f)) && (Sharpenertemp->boundingBox.min.x > (player.GetBoundingBoxPlayer().max.x - 5.0f)))
-			{
-				Sharpenertemp->vel.x = SPEED;
-				right = 1;
-				left = 0;
-				printf("SHARPENER VEL RIGHT: %f\n", Sharpenertemp->vel.x);
-			}
-			if ((AEInputCheckCurr(AEVK_LSHIFT) && AEInputCheckCurr(AEVK_LEFT)) &&
-				(Sharpenertemp->boundingBox.max.x < (player.GetBoundingBoxPlayer().min.x + 5.0f)) && (Sharpenertemp->boundingBox.max.x > (player.GetBoundingBoxPlayer().min.x - 5.0f)))
-			{
-				Sharpenertemp->vel.x = -SPEED;
-				left = 1;
-				right = 0;
-				printf("SHARPENER VEL LEFT: %f\n", Sharpenertemp->vel.x);
-			}
 			for (int j = 0; j < GetEraserNum(); j++)
 			{
 				Eraser* Erasertemp = EraserArray + j;
@@ -291,6 +275,7 @@ void Sharpener::UpdateSharpener()
 					Sharpenertemp->pos = Doortemp->GetDoorPosition(j - 1);
 					Sharpenertemp->pos.x += -150;
 				}
+			
 			}
 		}//End of Door for loop
 
@@ -307,7 +292,7 @@ void Sharpener::UpdateSharpener()
 			{
 				WallCollision = true;
 				Sharpenertemp->vel.y = 0;
-				if (Walltemp->GetType(i) == WALL)
+				if (Walltemp->GetType(j) == WALL)
 				{
 					if (Sharpenertemp->pos.x >= Walltemp->GetWallBoundingBox(j).min.x)
 					{

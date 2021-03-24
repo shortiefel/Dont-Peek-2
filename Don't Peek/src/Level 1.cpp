@@ -31,6 +31,7 @@ Technology is prohibited.
 #include "Highlighter.h"
 #include "Wall.h"
 #include "Music.h"
+#include "Player.h"
 
 
 void Level1_Load()
@@ -105,7 +106,7 @@ void Level1_Init()
 
 	door.SetDoorPosition(1, { -350 , -695 });//door 1
 	door.SetDoorPosition(2, { -20 , -695 });//door 2
-	eraser.SetEraserPosition(0, { -310, -400 }); //eraser
+	eraser.SetEraserPosition(0, { -320, -360 }); //eraser
 
 	//3rd box
 	wall.CreateWall({ 715, -790 }, { 1,0 }, 14, 30.f, PLATFORM); //floor
@@ -135,6 +136,7 @@ void Level1_Init()
 
 	door.SetDoorPosition(7, { 530 , -370 });//door 7
 	eraser.SetEraserPosition(1, { 780, 20 }); //eraser
+	
 }
 void Level1_Update()
 {
@@ -152,10 +154,11 @@ void Level1_Draw()
 }
 void Level1_Free()
 {
+	AEGfxMeshFree(bg.pBg->pMesh);
 
 }
 void Level1_Unload()
 {
-	AEGfxMeshFree(bg.pBg->pMesh);
+	
 	AEGfxTextureUnload(bg.pBg->texture);
 }

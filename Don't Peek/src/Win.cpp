@@ -187,11 +187,24 @@ void WinFree()
 {
 	//free(Wbutton->pButton);
 	//free(win.pObj);
+
+	AEGfxMeshFree(win.pObj->pMesh);
+	
+	for (int i = 0; i < 2; i++)
+	{
+		if (Wbutton[i].pButton->pMesh)
+			AEGfxMeshFree(Wbutton[i].pButton->pMesh);
+	}
 }
 
 void WinUnload()
 {
-	
+	for (int i = 0; i < 2; i++)
+	{
+		if (Wbutton[i].pButton->texture)
+			AEGfxTextureUnload(Wbutton[i].pButton->texture);
+	}
+	AEGfxTextureUnload(win.pObj->texture);
 }
 
 void BoundingBoxWin()

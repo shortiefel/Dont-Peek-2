@@ -13,7 +13,7 @@ Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 \brief <give a brief description of this file>
 
 
-Copyright (C) 20xx DigiPen Institute of Technology.
+Copyright (C) 2021 DigiPen Institute of Technology.
 Reproduction or disclosure of this file or its contents
 without the prior written consent of DigiPen Institute of
 Technology is prohibited.
@@ -180,10 +180,10 @@ void Tutorial_Draw()
 }
 void Tutorial_Free()
 {
-	
+	AEGfxMeshFree(bg.pBg->pMesh);
 }
 void Tutorial_Unload()
 {
-	AEGfxMeshFree(bg.pBg->pMesh);
+
 	AEGfxTextureUnload(bg.pBg->texture);
 }
