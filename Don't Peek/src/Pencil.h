@@ -47,10 +47,13 @@ public:
 	AABB GetPencilBoundingBox(int i);
 	AEVec2 GetPencilVelocity(int i);
 	AEVec2 GetPencilPosition(int i);
-	void SetPencilPosition(int i, AEVec2 NewPos);
+	void SetPencil(int i, AEVec2 NewPos, float scale_X, float scale_Y);
 
 };
 extern Pencil PencilArray[MAX];
+extern Pencil pencil;
 
 int GetPencilNum();
 void SetPencilNum(int Num);
+
+extern Pencil pencil;

@@ -58,3 +58,4 @@ extern Door DoorArray[MAX];
 	int GetDoorNum();
 	void SetDoorNum(int Num);
 
+	extern Door door;

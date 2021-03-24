@@ -28,7 +28,9 @@ Technology is prohibited.
 #include "Highlighter.h"
 #include "Pencil.h"
 #include "Wall.h"
-#include "Level 1.h"
+#include "Tutorial.h"
+#include "Win.h"
+#include "Music.h"
 
 
 /******************************************************************************/
@@ -39,23 +41,20 @@ Technology is prohibited.
 GameObj				sGameObjList[GAME_OBJ_NUM_MAX];				// Each element in this array represents a unique game object (shape)
 unsigned long		sGameObjNum;
 
-GameObjInst			sGameObjInstList[GAME_OBJ_INST_NUM_MAX];	// Each element in this array represents a unique game object instance (sprite)
-unsigned long		sGameObjInstNum;
+/******************************************************************************/
+/*!
+	INDIVIDUAL CLASSES
+*/
+/******************************************************************************/
 
-
-GameObjInst* gameObjInstCreate(unsigned long type, float scale,
-	AEVec2* pPos, AEVec2* pVel, float dir);
-void gameObjInstDestroy(GameObjInst* pInst);
-
-//individual classes
-
-static Door door;
+Door door;
 Player player;
 Sharpener sharpener;
 Eraser eraser;
 Pencil pencil;
-static Highlighter highlighter;
-Wall wwall;
+Highlighter highlighter;
+Wall wall;
+
 
 
 /******************************************************************************/
@@ -68,19 +67,15 @@ void GameStateDontPeekLoad(void)
 	memset(sGameObjList, 0, sizeof(GameObj) * GAME_OBJ_NUM_MAX);
 	// No game objects (shapes) at this point
 	sGameObjNum = 0;
-	memset(sGameObjInstList, 0, sizeof(GameObjInst) * GAME_OBJ_INST_NUM_MAX);
-	// No game object instances (sprites) at this point
-	sGameObjInstNum = 0;
 
-	Level1_Load();
-	wwall.LoadWall();
+	Tutorial_Load();
+	wall.LoadWall();
 	sharpener.LoadSharpener();
 	eraser.LoadEraser();
 	highlighter.LoadHighlighter();
 	pencil.LoadPencil();
 	door.LoadDoor();
 	player.Player_Load();
-	
 }
 
 /******************************************************************************/
@@ -90,8 +85,10 @@ void GameStateDontPeekLoad(void)
 /******************************************************************************/
 void GameStateDontPeekInit(void)
 {
-	Level1_Init();
-	wwall.InitWall();
+	SoundSystem_Init();
+	SoundSystem_SFX();
+	Tutorial_Init();
+	wall.InitWall();
 	sharpener.InitSharpener();
 	eraser.InitEraser();
 	highlighter.InitHighlighter();
@@ -107,15 +104,17 @@ void GameStateDontPeekInit(void)
 /******************************************************************************/
 void GameStateDontPeekUpdate(void)
 {
-	Level1_Update();
+	
+	Tutorial_Update();
 	sharpener.UpdateSharpener();
 	eraser.UpdateEraser();
 	highlighter.UpdateHighlighter();
 	pencil.UpdatePencil();
 	door.UpdateDoor();
+	wall.UpdateWall();
 	player.Player_Update();
-	//wwall.UpdateWall();
 }
+
 
 /******************************************************************************/
 /*!
@@ -124,8 +123,9 @@ void GameStateDontPeekUpdate(void)
 /******************************************************************************/
 void GameStateDontPeekDraw(void)
 {
-	Level1_Draw();
-	wwall.DrawWall();
+	Tutorial_Draw();
+	
+	wall.DrawWall();
 	highlighter.DrawHighlighter();
 	pencil.DrawPencil();
 	sharpener.DrawSharpener();
@@ -141,17 +141,7 @@ void GameStateDontPeekDraw(void)
 /******************************************************************************/
 void GameStateDontPeekFree(void)
 {
-	//killing all object instances in the array 
-	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
-	{
-		GameObjInst* pInst = sGameObjInstList + i;
-
-		//ignoring non-active object
-		if ((pInst->flag & FLAG_ACTIVE) == 0)
-			continue;
-		gameObjInstDestroy(pInst);
-	}
-
+	SoundSystem_Destroy();
 	sharpener.FreeSharpener();
 	eraser.FreeEraser();
 	highlighter.FreeHighlighter();
@@ -176,50 +166,4 @@ void GameStateDontPeekUnload(void)
 	door.UnloadDoor();
 	player.Player_Unload();
 	wwall.UnloadWall();
-}
-
-void gameObjInstDestroy(GameObjInst* pInst)
-{
-	// if instance is destroyed before, just return
-	if (pInst->flag == 0)
-		return;
-
-	// zero out the flag
-	pInst->flag = 0;
-}
-
-GameObjInst* gameObjInstCreate(unsigned long type,
-	float scale,
-	AEVec2* pPos,
-	AEVec2* pVel,
-	float dir)
-{
-	AEVec2 zero;
-	AEVec2Zero(&zero);
-
-	AE_ASSERT_PARM(type < sGameObjNum);
-
-	// loop through the object instance list to find a non-used object instance
-	for (unsigned long i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
-	{
-		GameObjInst* pInst = sGameObjInstList + i;
-
-		// check if current instance is not used
-		if (pInst->flag == 0)
-		{
-			// it is not used => use it to create the new instance
-			pInst->pObject = sGameObjList + type;
-			pInst->flag = FLAG_ACTIVE;
-			pInst->scale = scale;
-			pInst->posCurr = pPos ? *pPos : zero;
-			pInst->velCurr = pVel ? *pVel : zero;
-			pInst->dirCurr = dir;
-
-			// return the newly created instance
-			return pInst;
-		}
-	}
-
-	// cannot find empty slot => return 0
-	return 0;
 }

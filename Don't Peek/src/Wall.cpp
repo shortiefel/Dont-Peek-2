@@ -25,7 +25,7 @@ Technology is prohibited.
 #include "Player.h"
 
 static int numberWalls = 0;
-static Wall WallArr[40];
+static Wall WallArr[1000];
 
 /******************************************************************************/
 /*!
@@ -118,6 +118,14 @@ void Wall::DrawWall()
 			AEGfxSetTransform(WallArr[i].transform.m);
 			// Draw the shape used by the current object instance using "AEGfxMeshDraw"
 			AEGfxSetBlendColor(1.0f, 0.f, 0.f, 1.f);
+			AEGfxMeshDraw(pWall->pMesh, AE_GFX_MDM_TRIANGLES);
+		}
+		else if (WallArr[i].Walltype == CEILING)
+		{
+			// Set the current object instance's transform matrix using "AEGfxSetTransform"
+			AEGfxSetTransform(WallArr[i].transform.m);
+			// Draw the shape used by the current object instance using "AEGfxMeshDraw"
+			AEGfxSetBlendColor(0.0f, 1.f, 0.f, 1.f);
 			AEGfxMeshDraw(pWall->pMesh, AE_GFX_MDM_TRIANGLES);
 		}
 	}

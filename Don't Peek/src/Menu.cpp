@@ -22,22 +22,37 @@ Technology is prohibited.
 #include "main.h"
 #include "GameStateMgr.h"
 #include "Menu.h"
+#include "Music.h"
 
 static Menu menu;
-Button button[4];
-int x, y;
-int SetWidthCursor = 1000 / 2;
-int SetHeightCursor = 700 / 2;
+static Menu splashscreen;
+static Button button[4];
+static int x, y;
+static int SetWidthCursor = 1000 / 2;
+static int SetHeightCursor = 700 / 2;
+
 
 
 void MenuLoad()
 {
+
+	
+
+	////SPLASHSCREEN
+	//splashscreen.pos = { SetWidthCursor, SetHeightCursor };
+	////splashscreen.scale = { 950.f, 650.f };
+
+	//splashscreen.pObj = sGameObjList + sGameObjNum++;
+	//splashscreen.pObj->texture = AEGfxTextureLoad("Resources/BGempty.jpg");
+
+
 	//MENU
 	menu.pos = { 0.f, 0.f };
 	menu.scale = { 950.f,650.f };
 
+	//MENU BG
 	menu.pObj = sGameObjList + sGameObjNum++;
-	menu.pObj->texture = AEGfxTextureLoad("Resources/Menu.png");
+	menu.pObj->texture = AEGfxTextureLoad("Resources/MenuNEW.png");
 	AE_ASSERT_MESG(menu.pObj->texture, "Failed to load Menu!");
 
 	AEGfxMeshStart();
@@ -96,7 +111,7 @@ void MenuLoad()
 	button[2].pos = { -150.f, -200.f };
 	button[2].scale = { 200.f,80.f };
 	button[2].pButton = sGameObjList + sGameObjNum++;
-	button[2].pButton->texture = AEGfxTextureLoad("Resources/Options.jpg");
+	button[2].pButton->texture = AEGfxTextureLoad("Resources/HowToPlay.jpg");
 	button[2].pButton->type = TYPE_OPTIONS;
 	AE_ASSERT_MESG(button[2].pButton->texture, "Failed to load Button2!");
 
@@ -151,58 +166,73 @@ void MenuLoad()
 void MenuInit()
 {
 	
+	//SoundSystem_SFX();
 }
 void MenuUpdate()
 {
 	
-	BoundingBox();
-	AEInputGetCursorPosition(&x, &y);
-	if (x >= 0 && y >= 0)
-	{
-		x = x - SetWidthCursor;
-		y -= SetHeightCursor;
-		y *= -1;
-	}
-		
-		
 	
+	AEGfxSetCamPosition(0,0);
+		BoundingBox();
+		AEInputGetCursorPosition(&x, &y);
+		if (x >= 0 && y >= 0)
+		{
+			x = x - SetWidthCursor;
+			y -= SetHeightCursor;
+			y *= -1;
+		}
+
+		if (AEInputCheckTriggered(AEVK_LBUTTON))
+		{
+			printf("Mouse: %d::%d\n", x, y);
 
 
-	if (AEInputCheckTriggered(AEVK_LBUTTON))
-	{
-		printf("Mouse: %d::%d\n", x, y);
+			if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[0].boundingBox, { 0,0 }))
+			{
+				if (AEInputUpdate)
+				{
+					//SoundSystem_Destroy();
+					gGameStateNext = GS_DONT_PEEK;
+					printf("BUTTON PLAY \n");
+					printf("BBMin: %f::%f\n", button[0].boundingBox.min.x, button[0].boundingBox.min.y);
+					printf("BBMax: %f::%f\n", button[0].boundingBox.max.x, button[0].boundingBox.max.y);
+				}
 
+			}
+			else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[1].boundingBox, { 0,0 }))
+			{
+				if (AEInputUpdate)
+				{
+					printf("BUTTON LEVEL \n");
+				}
+
+			}
+			
 		
-		if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[0].boundingBox, { 0,0 }))
+		
+		else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[2].boundingBox, { 0,0 }))
 		{
 			if (AEInputUpdate)
 			{
-				gGameStateNext = GS_DONT_PEEK;
-				printf("BUTTON PLAY \n");
-				printf("BBMin: %f::%f\n", button[0].boundingBox.min.x, button[0].boundingBox.min.y);
-				printf("BBMax: %f::%f\n", button[0].boundingBox.max.x, button[0].boundingBox.max.y);
+				gGameStateNext = GS_TUTORIAL;
+				printf("BUTTON HOW TO PLAY \n");
 			}
-			
-		}
-		else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[1].boundingBox, { 0,0 }))
-		{
-			//gGameStateCurr = GS_DONT_PEEK;
-			printf("BUTTON LEVEL \n");
-			
-		}
-		else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[2].boundingBox, { 0,0 }))
-		{
-			//gGameStateCurr = GS_DONT_PEEK;
-			printf("BUTTON OPTIONS \n");
 			
 		}
 		else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[3].boundingBox, { 0,0 }))
 		{
-			//gGameStateCurr = GS_DONT_PEEK;
-			printf("BUTTON CREDITS \n");
+			if (AEInputUpdate)
+			{
+				gGameStateNext = GS_CREDITS;
+				printf("BUTTON CREDITS \n");
+			}
 		}
-		else printf("DEFAULT\n");
-	}
+		}
+	if (AEInputCheckCurr(AEVK_B))
+		gGameStateNext = GS_MENU;
+
+	if (AEInputCheckCurr(AEVK_ESCAPE))
+		gGameStateNext = GS_QUIT;
 }
 void MenuDraw()
 {
@@ -226,11 +256,11 @@ void MenuDraw()
 }
 void MenuFree()
 {
-
+	
 }
 void MenuUnload()
 {
-
+	SoundSystem_Destroy();
 }
 void BoundingBox()
 {
@@ -243,3 +273,4 @@ void BoundingBox()
 	}
 		
 }
+

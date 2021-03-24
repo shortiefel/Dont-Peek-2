@@ -27,7 +27,8 @@ Technology is prohibited.
 enum wallType
 {
 	WALL,
-	PLATFORM
+	PLATFORM,
+	CEILING
 };
 
 class Wall
@@ -60,3 +61,4 @@ public:
 
 int Get_NumWalls();
 Wall* Get_WallArr();
+extern Wall wall;

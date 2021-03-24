@@ -26,7 +26,6 @@ Technology is prohibited.
 Door DoorArray[MAX];
 static int DoorNum = 0;
 
-
 /******************************************************************************/
 /*!
 	Door Load
@@ -63,7 +62,7 @@ void Door::LoadDoor()
 void Door::InitDoor()
 {	
 	
-	Scale = 50.0f;
+	Scale = 100.0f;
 	for (int i = 0; i < DoorNum; i++)
 	{
 		Door* Doortemp = DoorArray + i;
