@@ -50,6 +50,8 @@ void Wall::LoadWall()
 
 	pWall->pMesh = AEGfxMeshEnd();
 
+	numberWalls = 0;
+
 }
 
 /******************************************************************************/
@@ -163,6 +165,7 @@ void Wall::CreateWall(AEVec2 pos, AEVec2 dir, int number, float scale, wallType 
 	AEMtx33	trans, sc;
 	for (int i = 0; i <number; i++, Walltemp++)
 	{
+
 		Walltemp->Wallscale = scale;
 		// new pos = old pos + (dir * 1/2 size) * number of walls
 		Walltemp->Wallpos.x = pos.x + Walltemp->Wallscale * i * dir.x;

@@ -48,6 +48,8 @@ void Pencil::LoadPencil()
 	pPencil->pMesh = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pPencil->pMesh, "Failed to create pencil!!");
 
+	PencilNum = 0;
+
 }
 
 /******************************************************************************/

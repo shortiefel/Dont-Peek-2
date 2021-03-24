@@ -59,6 +59,8 @@ void Eraser::LoadEraser() {
 	pEraser->pMesh = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pEraser->pMesh, "Failed to create eraser!!");
 
+	EraserNum = 0;
+
 }
 
 

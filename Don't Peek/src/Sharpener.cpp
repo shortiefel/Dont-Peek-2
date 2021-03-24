@@ -59,6 +59,7 @@ void Sharpener::LoadSharpener()
 	pSharpener->pMesh = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pSharpener->pMesh, "Failed to create sharpener!!");
 
+	SharpenerNum = 0;
 }
 
 /******************************************************************************/

@@ -49,6 +49,8 @@ void Highlighter::LoadHighlighter()
 	pHighlighter->pMesh = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pHighlighter->pMesh, "Failed to create highlighter!!");
 
+	HighlighterNum = 0;
+
 }
 
 /******************************************************************************/
