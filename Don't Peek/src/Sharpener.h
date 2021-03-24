@@ -44,6 +44,7 @@ public:
 	void UnloadSharpener();
 
 	void BoundingBox();
+	void SetGravity();
 
 	AABB GetSharpenerBoundingBox(int i);
 	AEVec2 GetSharpenerVelocity(int i);

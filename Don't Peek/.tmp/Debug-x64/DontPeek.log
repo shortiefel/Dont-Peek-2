@@ -1,4 +1,10 @@
-﻿  Highlighter.cpp
-  Pencil.cpp
+﻿  Eraser.cpp
+C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Eraser.cpp(229,3): warning C4456: declaration of 'i' hides previous local declaration
+C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Eraser.cpp(95,11): message : see declaration of 'i'
+C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Eraser.cpp(256,3): warning C4456: declaration of 'i' hides previous local declaration
+C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Eraser.cpp(95,11): message : see declaration of 'i'
+  Sharpener.cpp
+C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(295,3): warning C4456: declaration of 'i' hides previous local declaration
+C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(92,11): message : see declaration of 'i'
   Generating Code...
   DontPeek.vcxproj -> C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe

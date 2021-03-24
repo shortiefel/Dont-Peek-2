@@ -44,6 +44,7 @@ public:
 	void UnloadEraser();
 
 	void BoundingBox();
+	void SetGravity();
 
 	AABB GetEraserBoundingBox(int i);
 	AEVec2 GetEraserVelocity(int i);
