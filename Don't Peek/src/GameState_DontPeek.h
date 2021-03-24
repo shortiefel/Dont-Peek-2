@@ -10,7 +10,7 @@
 
 const unsigned int	GAME_OBJ_NUM_MAX = 32;					//The total number of different objects (Shapes)
 const unsigned int	MAX = 10;
-const float			SPEED = 200.f;
+const float			SPEED = 300.f;
 
 const f32			WORLD_SCALE_X = 40;
 const f32			WORLD_SCALE_Y = 50;

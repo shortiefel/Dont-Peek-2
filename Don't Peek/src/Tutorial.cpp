@@ -62,7 +62,7 @@ void Tutorial_Load()
 }
 void Tutorial_Init()
 {
-	SoundSystem_Init();
+	//SoundSystem_Init();
 
 	timer = 300.f;
 	SetSharpenerNum(1);
@@ -121,7 +121,7 @@ void Tutorial_Init()
 
 void Tutorial_Update()
 {
-	SoundSystem_SFX();
+	//Tutorial_SFX();
 	if (timer < 0)
 	{
 		gGameStateNext = GS_LOSE;
@@ -148,5 +148,5 @@ void Tutorial_Free()
 }
 void Tutorial_Unload()
 {
-
+	//SoundSystem_Destroy();
 }

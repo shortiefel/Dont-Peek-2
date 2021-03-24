@@ -13,6 +13,7 @@
 
 void SoundSystem_Init(void);
 void SoundSystem_SFX(void);
+void Tutorial_SFX(void);
 void SoundSystem_Destroy(void);
 void SoundEraser_SFX(void);
 void SoundHighlighter_SFX(void);

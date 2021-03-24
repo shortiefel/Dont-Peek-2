@@ -56,6 +56,7 @@ Highlighter highlighter;
 Wall wall;
 
 
+
 /******************************************************************************/
 /*!
 	"LOAD" FUNCTION OF THE STATE
@@ -84,7 +85,8 @@ void GameStateDontPeekLoad(void)
 /******************************************************************************/
 void GameStateDontPeekInit(void)
 {
-	
+	SoundSystem_Init();
+	SoundSystem_SFX();
 	Tutorial_Init();
 	wall.InitWall();
 	sharpener.InitSharpener();
@@ -122,13 +124,14 @@ void GameStateDontPeekUpdate(void)
 void GameStateDontPeekDraw(void)
 {
 	Tutorial_Draw();
-	player.Player_Draw();
+	
 	wall.DrawWall();
 	highlighter.DrawHighlighter();
 	pencil.DrawPencil();
 	sharpener.DrawSharpener();
 	eraser.DrawEraser();
 	door.DrawDoor();
+	player.Player_Draw();
 }
 
 /******************************************************************************/
@@ -138,7 +141,7 @@ void GameStateDontPeekDraw(void)
 /******************************************************************************/
 void GameStateDontPeekFree(void)
 {
-
+	SoundSystem_Destroy();
 	sharpener.FreeSharpener();
 	eraser.FreeEraser();
 	highlighter.FreeHighlighter();

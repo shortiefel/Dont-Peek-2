@@ -26,10 +26,9 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 
 	//------------INITILIZATION----------------
 	AESysInit(instanceH, show, 1000, 700, 1, 60, false, NULL);
-	SoundSystem_Init();
-	SoundSystem_SFX();
 	AESysSetWindowTitle("Don't Peek");
 	AEGfxSetBackgroundColor(100.0f, 100.0f, 100.0f);
+	//SoundSystem_Init();
 
 	//MISSING GAME TIME LOOP----
 
@@ -72,7 +71,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 			g_appTime += g_dt;
 		}
 
-		SoundSystem_Destroy();
+		//SoundSystem_Destroy();
 		GameStateFree();
 
 		if (gGameStateNext != GS_RESTART)
