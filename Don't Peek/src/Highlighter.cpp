@@ -166,6 +166,7 @@ AEVec2 Highlighter::GetHighlighterPosition(int i)
 	Highlighter* Highlightertemp = HighlighterArray + i;
 	return Highlightertemp->pos;
 }
+
 void Highlighter::SetHighlighterPosition(int i, AEVec2 NewPos)
 {
 	Highlighter* Highlightertemp = HighlighterArray + i;
@@ -185,3 +186,6 @@ void SetHighlighterNum(int Num)
 {
 	HighlighterNum = Num;
 }
+
+//set pos scale type
+//remove scale in init

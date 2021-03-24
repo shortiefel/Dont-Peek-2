@@ -24,8 +24,6 @@ Technology is prohibited.
 #include "AEVec2.h"
 #include "AEInput.h"
 
-
-
 class Highlighter
 {
 private:

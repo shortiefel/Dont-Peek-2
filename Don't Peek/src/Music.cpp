@@ -47,8 +47,6 @@ void SoundSystem_Destroy()
     std::cout << "i was triggered" << "\n";
     BGSound->release();
 
-    //Eraser->release();
-    //Highlighter->release();
 }
 
 

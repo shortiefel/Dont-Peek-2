@@ -148,6 +148,7 @@ void GameStateDontPeekFree(void)
 	pencil.FreePencil();
 	door.FreeDoor();
 	player.Player_Free();
+	wall.FreeWall();
 
 }
 
@@ -164,4 +165,5 @@ void GameStateDontPeekUnload(void)
 	pencil.UnloadPencil();
 	door.UnloadDoor();
 	player.Player_Unload();
+	wall.UnloadWall();
 }

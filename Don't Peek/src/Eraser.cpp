@@ -28,6 +28,8 @@ Technology is prohibited.
 Eraser EraserArray[MAX];
 static int EraserNum;
 static int right, left;
+const int Eraser_Gravity = 8;
+float EGROUND = 0.f;
 
 /******************************************************************************/
 /*!
@@ -67,13 +69,14 @@ void Eraser::LoadEraser() {
 /******************************************************************************/
 void Eraser::InitEraser() {
 	Scale = 80.0f;
-	AEVec2Set(&vel, 5, 0);
-	AEVec2* pVel = &vel;
+	
+	//AEVec2* pVel = &vel;
 	for (int i = 0; i < EraserNum; i++)
 	{
 		Eraser* Erasertemp = EraserArray + i;
 		Erasertemp->flag = FLAG_ACTIVE;
-		Erasertemp->vel = *pVel;
+		//Erasertemp->vel = *pVel;
+		AEVec2Set(&(Erasertemp->vel), 5, 0);
 	}
 }
 
@@ -82,13 +85,26 @@ void Eraser::InitEraser() {
 	Eraser Update
 */
 /******************************************************************************/
+
 void Eraser::UpdateEraser()
 {
+	EGROUND = -100;
 	BoundingBox();
+
 
 	for (int i = 0; i < EraserNum; i++)
 	{
 		Eraser* Erasertemp = EraserArray + i;
+
+
+		if (Erasertemp->pos.y < EGROUND)
+		{
+			Erasertemp->pos.y = EGROUND;
+			Erasertemp->vel.y = 0;
+		}
+
+
+		SetGravity();
 
 		/******************************************************************************/
 		/*!
@@ -210,22 +226,22 @@ void Eraser::UpdateEraser()
 			DOOR
 		*/
 		/******************************************************************************/
-		for (int i = 0; i < Get_NumWalls(); i++)
+		for (int j = 0; j < Get_NumWalls(); j++)
 		{
-			Wall* Walltemp = Get_WallArr() + i;
+			Wall* Walltemp = Get_WallArr() + j;
 			BoundingBox();
-			if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, Walltemp->GetWallBoundingBox(i), { 0,0 }))
+			if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, Walltemp->GetWallBoundingBox(j), { 0,0 }))
 			{
 				WallCollision = true;
-				if (Walltemp->GetType(i) == WALL)
+				if (Walltemp->GetType(j) == WALL)
 				{
-					if (Erasertemp->pos.x >= Walltemp->GetWallBoundingBox(i).min.x)
+					if (Erasertemp->pos.x >= Walltemp->GetWallBoundingBox(j).min.x)
 					{
-						Erasertemp->pos.x = (Walltemp->GetWallBoundingBox(i).max.x + 30);
+						Erasertemp->pos.x = (Walltemp->GetWallBoundingBox(j).max.x + 30);
 					}
-					else if (Erasertemp->pos.x <= Walltemp->GetWallBoundingBox(i).max.x)
+					else if (Erasertemp->pos.x <= Walltemp->GetWallBoundingBox(j).max.x)
 					{
-						Erasertemp->pos.x = (Walltemp->GetWallBoundingBox(i).min.x - 30);
+						Erasertemp->pos.x = (Walltemp->GetWallBoundingBox(j).min.x - 30);
 					}
 				}
 			}
@@ -236,19 +252,38 @@ void Eraser::UpdateEraser()
 			WALLS
 		*/
 		/******************************************************************************/
+
 		for (int j = 0; j < Get_NumWalls(); j++)
 		{
 			Wall* Walltemp = Get_WallArr() + j;
+			BoundingBox();
 			if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, Walltemp->GetWallBoundingBox(j), { 0,0 }))
 			{
-				if (Erasertemp->pos.x < -370)
+				WallCollision = true;
+				Erasertemp->vel.y = 0;
+				if (Walltemp->GetType(j) == WALL)
 				{
-					Erasertemp->pos.x = -370;
+					if (Erasertemp->pos.x >= Walltemp->GetWallBoundingBox(j).min.x)
+					{
+						Erasertemp->pos.x = (Walltemp->GetWallBoundingBox(j).max.x + 30);
+					}
+					else if (Erasertemp->pos.x <= Walltemp->GetWallBoundingBox(j).max.x)
+					{
+						Erasertemp->pos.x = (Walltemp->GetWallBoundingBox(j).min.x - 30);
+					}
+				}
+				else if (Walltemp->GetType(j) == PLATFORM)
+				{
+					if (Erasertemp->pos.y >= Walltemp->GetWallBoundingBox(j).max.y + 40 && Erasertemp->vel.y < 0)
+					{
+						Erasertemp->vel.y = 0;
+						Erasertemp->pos.y = Walltemp->GetWallBoundingBox(j).max.y + 40;
+					}
 				}
 			}
 		}//End of Wall for loop
 
-		//Erasertemp->pos.x += Erasertemp->vel.x * g_dt;
+		Erasertemp->pos.y += Erasertemp->vel.y * g_dt;
 	}//End of Eraser for loop
 }
 
@@ -295,6 +330,20 @@ void Eraser::UnloadEraser() {
 
 /******************************************************************************/
 /*!
+	Eraser Gravity
+*/
+/******************************************************************************/
+void Eraser::SetGravity()
+{
+	for (int i = 0; i < EraserNum; i++)
+	{
+		Eraser* Erasertemp = EraserArray + i;
+		Erasertemp->vel.y -= 80.f * g_dt;
+	}
+}
+
+/******************************************************************************/
+/*!
 	Eraser Bounding Box
 */
 /******************************************************************************/
@@ -335,6 +384,7 @@ AEVec2 Eraser::GetEraserPosition(int i)
 	Eraser* Erasertemp = EraserArray + i;
 	return Erasertemp->pos;
 }
+
 void Eraser::SetEraserPosition(int i, AEVec2 NewPos)
 {
 	Eraser* Erasertemp = EraserArray + i;

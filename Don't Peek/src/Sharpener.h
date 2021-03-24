@@ -44,13 +44,14 @@ public:
 	void UnloadSharpener();
 
 	void BoundingBox();
+	void SetGravity();
 
 	AABB GetSharpenerBoundingBox(int i);
 	AEVec2 GetSharpenerVelocity(int i);
 	AEVec2 GetSharpenerPosition(int i);
 	void SetSharpenerPosition(int i, AEVec2 NewPos);
-	
 };
+
 extern Sharpener SharpenerArray[MAX];
 
 

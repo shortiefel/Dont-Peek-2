@@ -29,6 +29,8 @@ Technology is prohibited.
 Sharpener SharpenerArray[MAX];
 static int SharpenerNum;
 static int right, left;
+const int Sharpener_Gravity = 8;
+float SGROUND = 0.f;
 
 /******************************************************************************/
 /*!
@@ -65,14 +67,15 @@ void Sharpener::LoadSharpener()
 */
 /******************************************************************************/
 void Sharpener::InitSharpener() {
-	Scale = 110.0f;
-	AEVec2Set(&vel, 5, 0);
-	AEVec2* pVel = &vel;
+	Scale = 80.0f;
+	
+	//AEVec2* pVel = &vel;
 	for (int i = 0; i < SharpenerNum; i++)
 	{
 		Sharpener* Sharpenertemp = SharpenerArray + i;
 		Sharpenertemp->flag = FLAG_ACTIVE;
-		Sharpenertemp->vel = *pVel;
+		//Sharpenertemp->vel = *pVel;
+		AEVec2Set(&(Sharpenertemp->vel), 5, 0);
 	}
 }
 
@@ -83,11 +86,22 @@ void Sharpener::InitSharpener() {
 /******************************************************************************/
 void Sharpener::UpdateSharpener() 
 {
+	SGROUND = -100;
 	BoundingBox();
 
 	for (int i = 0; i < SharpenerNum; i++)
 	{
 		Sharpener* Sharpenertemp = SharpenerArray + i;
+
+		if (Sharpenertemp->pos.y < SGROUND)
+		{
+			Sharpenertemp->pos.y = SGROUND;
+			Sharpenertemp->vel.y = 0;
+		}
+
+
+		SetGravity();
+
 		/******************************************************************************/
 		/*!
 			PLAYER
@@ -277,27 +291,36 @@ void Sharpener::UpdateSharpener()
 			WALLS
 		*/
 		/******************************************************************************/
-		for (int i = 0; i < Get_NumWalls(); i++)
+		for (int j = 0; j < Get_NumWalls(); j++)
 		{
-			Wall* Walltemp = Get_WallArr() + i;
+			Wall* Walltemp = Get_WallArr() + j;
 			BoundingBox();
-			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, Walltemp->GetWallBoundingBox(i), { 0,0 }))
+			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, Walltemp->GetWallBoundingBox(j), { 0,0 }))
 			{
 				WallCollision = true;
+				Sharpenertemp->vel.y = 0;
 				if (Walltemp->GetType(i) == WALL)
 				{
-					if (Sharpenertemp->pos.x >= Walltemp->GetWallBoundingBox(i).min.x)
+					if (Sharpenertemp->pos.x >= Walltemp->GetWallBoundingBox(j).min.x)
 					{
-						Sharpenertemp->pos.x = (Walltemp->GetWallBoundingBox(i).max.x + 30);
+						Sharpenertemp->pos.x = (Walltemp->GetWallBoundingBox(j).max.x + 30);
 					}
-					else if (Sharpenertemp->pos.x <= Walltemp->GetWallBoundingBox(i).max.x)
+					else if (Sharpenertemp->pos.x <= Walltemp->GetWallBoundingBox(j).max.x)
 					{
-						Sharpenertemp->pos.x = (Walltemp->GetWallBoundingBox(i).min.x - 30);
+						Sharpenertemp->pos.x = (Walltemp->GetWallBoundingBox(j).min.x - 30);
+					}
+				}
+				else if (Walltemp->GetType(j) == PLATFORM)
+				{
+					if (Sharpenertemp->pos.y >= Walltemp->GetWallBoundingBox(j).max.y + 40 && Sharpenertemp->vel.y < 0)
+					{
+						Sharpenertemp->vel.y = 0;
+						Sharpenertemp->pos.y = Walltemp->GetWallBoundingBox(j).max.y + 40;
 					}
 				}
 			}
 		}//End of Wall for loop
-
+		Sharpenertemp->pos.y += Sharpenertemp->vel.y * g_dt;
 	}//End of Sharpener for loop
 }
 
@@ -340,6 +363,20 @@ void Sharpener::FreeSharpener()
 void Sharpener::UnloadSharpener() {
 
 	AEGfxTextureUnload(pSharpener->texture);
+}
+
+/******************************************************************************/
+/*!
+	Sharpener Gravity
+*/
+/******************************************************************************/
+void Sharpener::SetGravity()
+{
+	for (int i = 0; i < SharpenerNum; i++)
+	{
+		Sharpener* Sharpenertemp = SharpenerArray + i;
+		Sharpenertemp->vel.y -= 80.f * g_dt;
+	}
 }
 
 /******************************************************************************/
