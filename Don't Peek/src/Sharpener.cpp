@@ -257,16 +257,23 @@ void Sharpener::UpdateSharpener()
 			Door* Doortemp = DoorArray + j;
 			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, Doortemp->GetDoorBoundingBox(j), Doortemp->GetDoorVelocity(j)))
 			{
-				if (j % 2 == 0)
+				if (j == 4)
 				{
 					Sharpenertemp->pos = Doortemp->GetDoorPosition(j + 1);
-					Sharpenertemp->pos.x += 80;
+					Sharpenertemp->pos.y -= 120;
+					Sharpenertemp->pos.x += 100;
+				}
+				else if (j % 2 == 0)
+				{
+					Sharpenertemp->pos = Doortemp->GetDoorPosition(j + 1);
+					Sharpenertemp->pos.x += 150;
 				}
 				else
 				{
 					Sharpenertemp->pos = Doortemp->GetDoorPosition(j - 1);
-					Sharpenertemp->pos.x += -80;
+					Sharpenertemp->pos.x += -150;
 				}
+			
 			}
 		}//End of Door for loop
 

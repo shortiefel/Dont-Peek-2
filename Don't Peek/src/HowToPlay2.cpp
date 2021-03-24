@@ -78,7 +78,7 @@ void HowtoplayDraw(void)
 
 void HowtoplayFree(void)
 {
-
+	
 }
 
 void HowtoplayUnload(void)
