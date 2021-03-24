@@ -28,6 +28,7 @@ Technology is prohibited.
 #include "Highlighter.h"
 #include "Wall.h"
 #include "Music.h"
+#include "Player.h"
 
 background bg;
 float timer = 0;
@@ -69,6 +70,7 @@ void Tutorial_Init()
 	SetDoorNum(8);
 	SetEraserNum(1);
 	SetPencilNum(1);
+	SetWin({ 1150, 150 });
 	//first box
 
 	eraser.SetEraserPosition(0, { -200, 0 });
@@ -80,8 +82,8 @@ void Tutorial_Init()
 	wall.CreateWall({ -405,320 }, { 0,-1 }, 15, 30.f, WALL); //left wall
 	wall.CreateWall({ 200,320 }, { 0,-1 }, 15, 30.f, WALL); // right wall
 
-	wall.CreateWall({ 50,105 }, { 1,0 }, 5, 30.f, CEILING); //platform
-	wall.CreateWall({ 20,75 }, { 0,-1 }, 6, 30.f, WALL); //inside wall
+	wall.CreateWall({ 50,80 }, { 1,0 }, 5, 30.f, CEILING); //platform
+	wall.CreateWall({ 20,60 }, { 0,-1 }, 6, 30.f, WALL); //inside wall
 
 	SetSharpenerNum(1);
 	sharpener.SetSharpenerPosition(0, { -250,-20 });
@@ -105,7 +107,7 @@ void Tutorial_Init()
 	wall.CreateWall({ 490,-368 }, { 0,-1 }, 16, 30.f, WALL); // left wall
 	wall.CreateWall({ 1210,-368 }, { 0,-1 }, 16, 30.f, WALL); // right wall
 	wall.CreateWall({ 520,-505 }, { 1,0 }, 6, 30.f, CEILING); //platform left
-	wall.CreateWall({ 1060,-600 }, { 1,0 }, 5, 30.f, CEILING); //platform right
+	wall.CreateWall({ 1060,-600 }, { 1,0 }, 5, 30.f, PLATFORM); //platform right
 	wall.CreateWall({ 670,-530 }, { 0,-1 }, 10, 30.f, WALL); //wall mid
 
 	//4th box

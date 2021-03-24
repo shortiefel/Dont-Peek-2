@@ -40,6 +40,7 @@ float GROUND = 0.f;
 bool Movement = false;
 float CameraPosX = 0;
 float CameraPosY = 0;
+AEVec2 WinPos;
 Wall* wall_player;
 
 /******************************************************************************/
@@ -70,9 +71,6 @@ void Player::Player_Load() //drawing of character
 		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 	pPlayer->pMesh = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pPlayer->pMesh, "fail to create object!!");
-
-	
-
 }
 
 /******************************************************************************/
@@ -313,6 +311,15 @@ void Player::Player_Update()
 			}
 		}
 	}//End of Wall for loop
+	/******************************************************************************/
+	/*!
+		WIN CHECK
+	*/
+	/******************************************************************************/
+	if (CollisionIntersection_PointRect(WinPos, {0,0}, player.boundingBox, player.vel))
+	{
+		gGameStateNext = GS_WIN;
+	}
 
 	player.pos.x += player.vel.x * g_dt;
 	player.pos.y += player.vel.y * g_dt;
@@ -417,4 +424,9 @@ AEVec2 Player::GetPosPlayer() const
 bool Player::GetCanJump()
 {
 	return true;
+}
+
+void SetWin(AEVec2 Pos)
+{
+	WinPos = Pos;
 }

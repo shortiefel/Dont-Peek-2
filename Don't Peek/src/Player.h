@@ -59,4 +59,8 @@ public:
 	AEVec2 GetPosPlayer() const;
 	bool GetCanJump();
 };
+
+
+void SetWin(AEVec2 Pos);
+
 extern Player player;

@@ -1,7 +1,12 @@
-﻿  GameState_DontPeek.cpp
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\fmod_errors.h(20,20): warning C4505: 'FMOD_ErrorString': unreferenced local function has been removed
-  Win.cpp
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Win.cpp(138,8): warning C4551: function call missing argument list
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Win.cpp(148,8): warning C4551: function call missing argument list
+﻿  Eraser.cpp
+  GameState_DontPeek.cpp
+C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\Don't Peek\src\fmod_errors.h(20,20): warning C4505: 'FMOD_ErrorString': unreferenced local function has been removed
+  HowToPlay2.cpp
+  Player.cpp
+C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\Don't Peek\src\Player.cpp(135,46): warning C4244: '=': conversion from 'double' to 'f32', possible loss of data
+  Sharpener.cpp
+  Tutorial.cpp
+C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\Don't Peek\src\fmod_errors.h(20,20): warning C4505: 'FMOD_ErrorString': unreferenced local function has been removed
+  Wall.cpp
   Generating Code...
-  DontPeek.vcxproj -> C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe
+  DontPeek.vcxproj -> C:\Users\mar_t\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\Don't Peek\bin\Debug-x64\DontPeek.exe
