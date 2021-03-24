@@ -226,22 +226,22 @@ void Eraser::UpdateEraser()
 			DOOR
 		*/
 		/******************************************************************************/
-		for (int i = 0; i < Get_NumWalls(); i++)
+		for (int j = 0; j < Get_NumWalls(); j++)
 		{
-			Wall* Walltemp = Get_WallArr() + i;
+			Wall* Walltemp = Get_WallArr() + j;
 			BoundingBox();
-			if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, Walltemp->GetWallBoundingBox(i), { 0,0 }))
+			if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, Walltemp->GetWallBoundingBox(j), { 0,0 }))
 			{
 				WallCollision = true;
-				if (Walltemp->GetType(i) == WALL)
+				if (Walltemp->GetType(j) == WALL)
 				{
-					if (Erasertemp->pos.x >= Walltemp->GetWallBoundingBox(i).min.x)
+					if (Erasertemp->pos.x >= Walltemp->GetWallBoundingBox(j).min.x)
 					{
-						Erasertemp->pos.x = (Walltemp->GetWallBoundingBox(i).max.x + 30);
+						Erasertemp->pos.x = (Walltemp->GetWallBoundingBox(j).max.x + 30);
 					}
-					else if (Erasertemp->pos.x <= Walltemp->GetWallBoundingBox(i).max.x)
+					else if (Erasertemp->pos.x <= Walltemp->GetWallBoundingBox(j).max.x)
 					{
-						Erasertemp->pos.x = (Walltemp->GetWallBoundingBox(i).min.x - 30);
+						Erasertemp->pos.x = (Walltemp->GetWallBoundingBox(j).min.x - 30);
 					}
 				}
 			}
@@ -253,33 +253,32 @@ void Eraser::UpdateEraser()
 		*/
 		/******************************************************************************/
 
-		for (int i = 0; i < Get_NumWalls(); i++)
+		for (int j = 0; j < Get_NumWalls(); j++)
 		{
-			Wall* Walltemp = Get_WallArr() + i;
+			Wall* Walltemp = Get_WallArr() + j;
 			BoundingBox();
-			if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, Walltemp->GetWallBoundingBox(i), { 0,0 }))
+			if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, Walltemp->GetWallBoundingBox(j), { 0,0 }))
 			{
 				WallCollision = true;
 				Erasertemp->vel.y = 0;
-				if (Walltemp->GetType(i) == WALL)
+				if (Walltemp->GetType(j) == WALL)
 				{
-					if (Erasertemp->pos.x >= Walltemp->GetWallBoundingBox(i).min.x)
+					if (Erasertemp->pos.x >= Walltemp->GetWallBoundingBox(j).min.x)
 					{
-						Erasertemp->pos.x = (Walltemp->GetWallBoundingBox(i).max.x + 30);
+						Erasertemp->pos.x = (Walltemp->GetWallBoundingBox(j).max.x + 30);
 					}
-					else if (Erasertemp->pos.x <= Walltemp->GetWallBoundingBox(i).max.x)
+					else if (Erasertemp->pos.x <= Walltemp->GetWallBoundingBox(j).max.x)
 					{
-						Erasertemp->pos.x = (Walltemp->GetWallBoundingBox(i).min.x - 30);
+						Erasertemp->pos.x = (Walltemp->GetWallBoundingBox(j).min.x - 30);
 					}
 				}
-				else if (Walltemp->GetType(i) == PLATFORM)
+				else if (Walltemp->GetType(j) == PLATFORM)
 				{
-					if (Erasertemp->pos.y >= Walltemp->GetWallBoundingBox(i).max.y + 40 && Erasertemp->vel.y < 0)
+					if (Erasertemp->pos.y >= Walltemp->GetWallBoundingBox(j).max.y + 40 && Erasertemp->vel.y < 0)
 					{
 						Erasertemp->vel.y = 0;
-						Erasertemp->pos.y = Walltemp->GetWallBoundingBox(i).max.y + 40;
+						Erasertemp->pos.y = Walltemp->GetWallBoundingBox(j).max.y + 40;
 					}
-					//Erasertemp->pos.y += Erasertemp->vel.y * g_dt;
 				}
 			}
 		}//End of Wall for loop

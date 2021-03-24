@@ -133,14 +133,14 @@ void Highlighter::BoundingBox()
 	for (int i = 0; i < HighlighterNum; i++)
 	{
 		Highlighter* Highlightertemp = HighlighterArray + i;
-		AEMtx33Scale(&Size, highlighterScaleX, highlighterScaleY);
+		AEMtx33Scale(&Size, scaleX, scaleY);
 		AEMtx33Trans(&Transform2, Highlightertemp->pos.x, Highlightertemp->pos.y);
 		AEMtx33Concat(&(Highlightertemp->Transform), &Transform2, &Size);
 
-		Highlightertemp->boundingBox.min.x = Highlightertemp->pos.x - highlighterScaleX / 2;
-		Highlightertemp->boundingBox.min.y = Highlightertemp->pos.y - highlighterScaleY / 2;
-		Highlightertemp->boundingBox.max.x = Highlightertemp->pos.x + highlighterScaleX / 2;
-		Highlightertemp->boundingBox.max.y = Highlightertemp->pos.y + highlighterScaleY / 2;
+		Highlightertemp->boundingBox.min.x = Highlightertemp->pos.x - scaleX / 2;
+		Highlightertemp->boundingBox.min.y = Highlightertemp->pos.y - scaleY / 2;
+		Highlightertemp->boundingBox.max.x = Highlightertemp->pos.x + scaleX / 2;
+		Highlightertemp->boundingBox.max.y = Highlightertemp->pos.y + scaleY / 2;
 	}
 }
 
@@ -166,19 +166,11 @@ AEVec2 Highlighter::GetHighlighterPosition(int i)
 	Highlighter* Highlightertemp = HighlighterArray + i;
 	return Highlightertemp->pos;
 }
-void Highlighter::SetHighlighter(int num, AEVec2 NewPos, float scaleX, float scaleY, highlighterType type)
-{
-	Highlighter* Highlightertemp = HighlighterArray + HighlighterNum;
-	//Highlightertemp->pos = NewPos;
-	for (int i =0; i < num; i++, Highlightertemp++)
-	{
-		Highlightertemp->highlighterScaleX = scaleX;
-		Highlightertemp->highlighterScaleY = scaleY;
-		Highlightertemp->Highlightertype = type;
-		Highlightertemp->pos = NewPos;
 
-		HighlighterNum++;
-	}
+void Highlighter::SetHighlighterPosition(int i, AEVec2 NewPos)
+{
+	Highlighter* Highlightertemp = HighlighterArray + i;
+	Highlightertemp->pos = NewPos;
 }
 
 /******************************************************************************/

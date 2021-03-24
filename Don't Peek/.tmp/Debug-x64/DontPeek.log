@@ -1,10 +1,4 @@
-﻿  Eraser.cpp
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Eraser.cpp(229,3): warning C4456: declaration of 'i' hides previous local declaration
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Eraser.cpp(95,11): message : see declaration of 'i'
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Eraser.cpp(256,3): warning C4456: declaration of 'i' hides previous local declaration
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Eraser.cpp(95,11): message : see declaration of 'i'
-  Sharpener.cpp
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(295,3): warning C4456: declaration of 'i' hides previous local declaration
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Sharpener.cpp(92,11): message : see declaration of 'i'
-  Generating Code...
+﻿  Level 1.cpp
+C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Level 1.cpp(32,27): warning C4211: nonstandard extension used: redefined extern to static
+C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Level 1.cpp(33,21): warning C4211: nonstandard extension used: redefined extern to static
   DontPeek.vcxproj -> C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe

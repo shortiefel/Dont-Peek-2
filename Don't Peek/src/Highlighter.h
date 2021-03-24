@@ -24,14 +24,6 @@ Technology is prohibited.
 #include "AEVec2.h"
 #include "AEInput.h"
 
-
-enum highlighterType
-{
-	VERTICAL,
-	HORIZONTAL
-};
-
-
 class Highlighter
 {
 private:
@@ -40,12 +32,9 @@ private:
 	unsigned long flag;
 	float scaleX;
 	float scaleY;
-	float highlighterScaleX;
-	float highlighterScaleY;
 	AEMtx33	Transform;
 	AEVec2 vel;
 	AABB boundingBox;
-	highlighterType Highlightertype;
 
 public:
 	void LoadHighlighter();
@@ -60,7 +49,7 @@ public:
 	AABB GetHighlighterBoundingBox(int i);
 	AEVec2 GetHighlighterVelocity(int i);
 	AEVec2 GetHighlighterPosition(int i);
-	void SetHighlighter(int num, AEVec2 NewPos, float scaleX, float scaleY, highlighterType type);
+	void SetHighlighterPosition(int i, AEVec2 NewPos);
 
 };
 extern Highlighter HighlighterArray[MAX];
