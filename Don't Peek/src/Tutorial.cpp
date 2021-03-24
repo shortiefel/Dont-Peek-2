@@ -28,11 +28,17 @@ Technology is prohibited.
 #include "Highlighter.h"
 #include "Wall.h"
 #include "Music.h"
+#include "Player.h"
 
 background bg;
 float timer = 0;
 void Tutorial_Load()
 {
+	/******************************************************************************/
+	/*!
+		BACKGROUND
+	*/
+	/******************************************************************************/
 	bg.Bgpos= {350.f,-200.f };
 	bg.Bgscale = { 1.2 * 1760.f, 1.2* 1090.f };
 
@@ -68,9 +74,11 @@ void Tutorial_Init()
 	SetHighlighterNum(2);
 	//Sharperner
 	SetSharpenerNum(2);
-
-	//first box
-
+	/******************************************************************************/
+	/*!
+		FIRST BOX
+	*/
+	/******************************************************************************/
 	eraser.SetEraserPosition(0, { -200, 0 });
 	pencil.SetPencil(0, { 0, 0 }, 20, 100);
 
@@ -80,14 +88,18 @@ void Tutorial_Init()
 	wall.CreateWall({ -405,320 }, { 0,-1 }, 15, 30.f, WALL); //left wall
 	wall.CreateWall({ 200,320 }, { 0,-1 }, 15, 30.f, WALL); // right wall
 
-	wall.CreateWall({ 50,105 }, { 1,0 }, 5, 30.f, CEILING); //platform
-	wall.CreateWall({ 20,75 }, { 0,-1 }, 6, 30.f, WALL); //inside wall
+	wall.CreateWall({ 50,80 }, { 1,0 }, 5, 30.f, CEILING); //platform
+	wall.CreateWall({ 20,60 }, { 0,-1 }, 6, 30.f, WALL); //inside wall
 
 	sharpener.SetSharpenerPosition(0, { -250,-20 });
 
 	door.SetDoorPosition(0, { 120 , 170 });
 
-	//2nd box
+	/******************************************************************************/
+	/*!
+		SECOND BOX
+	*/
+	/******************************************************************************/
 	door.SetDoorPosition(1, { -40 , -320 });
 	door.SetDoorPosition(2, { 150 , -655 });
 	wall.CreateWall({ -105,-720 }, { 1,0 }, 11, 30.f, PLATFORM); //floor
@@ -96,7 +108,11 @@ void Tutorial_Init()
 	wall.CreateWall({ 210,-210 }, { 0,-1 }, 18, 30.f, WALL); // right wall
 	wall.CreateWall({ -125,-385 }, { 1,0 }, 6, 30.f, CEILING); //platform
 
-	//3rd box
+	/******************************************************************************/
+	/*!
+		THIRD BOX
+	*/
+	/******************************************************************************/
 	door.SetDoorPosition(3, { 560 , -457 });
 	door.SetDoorPosition(4, { 1130 , -535 });
 	wall.CreateWall({ 520,-820 }, { 1,0 }, 24, 30.f, PLATFORM); //floor
@@ -104,15 +120,18 @@ void Tutorial_Init()
 	wall.CreateWall({ 490,-368 }, { 0,-1 }, 16, 30.f, WALL); // left wall
 	wall.CreateWall({ 1210,-368 }, { 0,-1 }, 16, 30.f, WALL); // right wall
 	wall.CreateWall({ 520,-505 }, { 1,0 }, 6, 30.f, CEILING); //platform left
-	wall.CreateWall({ 1060,-600 }, { 1,0 }, 5, 30.f, CEILING); //platform right
+	wall.CreateWall({ 1060,-600 }, { 1,0 }, 5, 30.f, PLATFORM); //platform right
 	wall.CreateWall({ 670,-530 }, { 0,-1 }, 10, 30.f, WALL); //wall mid
 
 	
 	highlighter.SetHighlighterPosition(0, { 1000, -770 });
 	highlighter.SetHighlighterPosition(1, { 1100, -770 });
 
-
-	//4th box
+	/******************************************************************************/
+	/*!
+		FOURTH BOX
+	*/
+	/******************************************************************************/
 	door.SetDoorPosition(5, { 580 , -110 });
 	door.SetDoorPosition(6, { 800 , 100 });
 	wall.CreateWall({ 540,-205 }, { 1,0 }, 11, 30.f, PLATFORM); //floor
@@ -120,7 +139,11 @@ void Tutorial_Init()
 	wall.CreateWall({ 510,310 }, { 0,-1 }, 18, 30.f, WALL); //left wall
 	wall.CreateWall({ 870,310 }, { 0,-1 }, 18, 30.f, WALL); //right wall
 
-	//5th box
+	/******************************************************************************/
+	/*!
+		FIFTH BOX
+	*/
+	/******************************************************************************/
 	door.SetDoorPosition(7, { 990 , 100 });
 	wall.CreateWall({ 950,35 }, { 1,0 }, 8, 30.f, PLATFORM); //floor
 	wall.CreateWall({ 950,280 }, { 1,0 }, 3, 30.f, CEILING); //ceiling
@@ -130,7 +153,11 @@ void Tutorial_Init()
 
 void Tutorial_Update()
 {
-	//Tutorial_SFX();
+	/******************************************************************************/
+	/*!
+		TIMER
+	*/
+	/******************************************************************************/
 	if (timer < 0)
 	{
 		gGameStateNext = GS_LOSE;

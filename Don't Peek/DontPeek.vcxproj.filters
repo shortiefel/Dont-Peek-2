@@ -58,7 +58,11 @@
     <ClCompile Include="src\HowToPlay2.cpp">
       <Filter>Source\Levels\Code</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="src\Level 1.cpp">
+=======
+    <ClCompile Include="src\SplashScreen.cpp">
+>>>>>>> origin/DontTouch
       <Filter>Source\Levels\Code</Filter>
     </ClCompile>
   </ItemGroup>
@@ -150,7 +154,11 @@
     <ClInclude Include="src\HowToPlay2.h">
       <Filter>Source\Levels\Header</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="src\Level 1.h">
+=======
+    <ClInclude Include="src\SplashScreen.h">
+>>>>>>> origin/DontTouch
       <Filter>Source\Levels\Header</Filter>
     </ClInclude>
   </ItemGroup>

@@ -32,7 +32,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 
 	//MISSING GAME TIME LOOP----
 
-	GameStateMgrInit(GS_MENU); //for now its level one, once menu is done change it
+	GameStateMgrInit(GS_SPLASH); //for now its level one, once menu is done change it
 	
 	while (gGameStateCurr != GS_QUIT)
 	{

@@ -25,28 +25,18 @@ Technology is prohibited.
 #include "Music.h"
 
 static Menu menu;
-static Menu splashscreen;
 static Button button[4];
 static int x, y;
 static int SetWidthCursor = 1000 / 2;
 static int SetHeightCursor = 700 / 2;
 
-
-
 void MenuLoad()
 {
-
-	
-
-	////SPLASHSCREEN
-	//splashscreen.pos = { SetWidthCursor, SetHeightCursor };
-	////splashscreen.scale = { 950.f, 650.f };
-
-	//splashscreen.pObj = sGameObjList + sGameObjNum++;
-	//splashscreen.pObj->texture = AEGfxTextureLoad("Resources/BGempty.jpg");
-
-
-	//MENU
+	/******************************************************************************/
+	/*!
+		MENU
+	*/
+	/******************************************************************************/
 	menu.pos = { 0.f, 0.f };
 	menu.scale = { 950.f,650.f };
 
@@ -66,8 +56,20 @@ void MenuLoad()
 		0.5f, 0.5f, 0x00000000, 1.0f, 0.0f,
 		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 	menu.pObj->pMesh = AEGfxMeshEnd();
+	AEMtx33	trans, sc;
+	// Compute the scaling matrix
+	AEMtx33Scale(&sc, menu.scale.x, menu.scale.y);
+	// Compute the translation matrix
+	AEMtx33Trans(&trans, menu.pos.x, menu.pos.y);
 
-	// PLAY BUTTON
+	AEMtx33Concat(&(menu.transform), &trans, &sc);
+
+
+	/******************************************************************************/
+	/*!
+		PLAY BUTTON
+	*/
+	/******************************************************************************/
 	button[0].pos = { -150.f, -100.f };
 	button[0].scale = { 200.f,80.f };
 	button[0].pButton = sGameObjList + sGameObjNum++;
@@ -87,7 +89,11 @@ void MenuLoad()
 		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 	button[0].pButton->pMesh = AEGfxMeshEnd();
 
-	// LEVEL BUTTON
+	/******************************************************************************/
+	/*!
+		LEVEL BUTTON
+	*/
+	/******************************************************************************/
 	button[1].pos = { 150.f, -100.f };
 	button[1].scale = { 200.f,80.f };
 	button[1].pButton = sGameObjList + sGameObjNum++;
@@ -107,7 +113,11 @@ void MenuLoad()
 		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 	button[1].pButton->pMesh = AEGfxMeshEnd();
 
-	// OPTIONS BUTTON
+	/******************************************************************************/
+	/*!
+		OPTIONS BUTTON
+	*/
+	/******************************************************************************/
 	button[2].pos = { -150.f, -200.f };
 	button[2].scale = { 200.f,80.f };
 	button[2].pButton = sGameObjList + sGameObjNum++;
@@ -127,7 +137,11 @@ void MenuLoad()
 		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 	button[2].pButton->pMesh = AEGfxMeshEnd();
 
-	// CREDITS BUTTON
+	/******************************************************************************/
+	/*!
+		CREDITS BUTTON
+	*/
+	/******************************************************************************/
 	button[3].pos = { 150.f, -200.f };
 	button[3].scale = { 200.f,80.f };
 	button[3].pButton = sGameObjList + sGameObjNum++;
@@ -147,13 +161,6 @@ void MenuLoad()
 		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 	button[3].pButton->pMesh = AEGfxMeshEnd();
 
-	AEMtx33	trans, sc;
-	// Compute the scaling matrix
-	AEMtx33Scale(&sc, menu.scale.x, menu.scale.y);
-	// Compute the translation matrix
-	AEMtx33Trans(&trans, menu.pos.x, menu.pos.y);
-
-	AEMtx33Concat(&(menu.transform), &trans, &sc);
 	for (int i = 0; i < 4; i++)
 	{
 		AEMtx33Scale(&sc, button[i].scale.x, button[i].scale.y);
@@ -170,10 +177,9 @@ void MenuInit()
 }
 void MenuUpdate()
 {
-	
-	
 	AEGfxSetCamPosition(0,0);
 		BoundingBox();
+
 		AEInputGetCursorPosition(&x, &y);
 		if (x >= 0 && y >= 0)
 		{
@@ -207,26 +213,26 @@ void MenuUpdate()
 				}
 
 			}
-			
-		
-		
-		else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[2].boundingBox, { 0,0 }))
-		{
-			if (AEInputUpdate)
+
+
+
+			else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[2].boundingBox, { 0,0 }))
 			{
-				gGameStateNext = GS_TUTORIAL;
-				printf("BUTTON HOW TO PLAY \n");
+				if (AEInputUpdate)
+				{
+					gGameStateNext = GS_TUTORIAL;
+					printf("BUTTON HOW TO PLAY \n");
+				}
+
 			}
-			
-		}
-		else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[3].boundingBox, { 0,0 }))
-		{
-			if (AEInputUpdate)
+			else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[3].boundingBox, { 0,0 }))
 			{
-				gGameStateNext = GS_CREDITS;
-				printf("BUTTON CREDITS \n");
+				if (AEInputUpdate)
+				{
+					gGameStateNext = GS_CREDITS;
+					printf("BUTTON CREDITS \n");
+				}
 			}
-		}
 		}
 	if (AEInputCheckCurr(AEVK_B))
 		gGameStateNext = GS_MENU;
@@ -252,11 +258,10 @@ void MenuDraw()
 		AEGfxSetTransparency(1.0f);
 		AEGfxMeshDraw(button[i].pButton->pMesh, AE_GFX_MDM_TRIANGLES);
 	}
-	
 }
 void MenuFree()
 {
-	
+
 }
 void MenuUnload()
 {
@@ -271,6 +276,5 @@ void BoundingBox()
 		button[i].boundingBox.max.x = button[i].pos.x + button[i].scale.x / 2;
 		button[i].boundingBox.max.y = button[i].pos.y + button[i].scale.y / 2;
 	}
-		
 }
 
