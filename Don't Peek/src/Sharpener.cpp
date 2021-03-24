@@ -299,7 +299,7 @@ void Sharpener::UpdateSharpener()
 			{
 				WallCollision = true;
 				Sharpenertemp->vel.y = 0;
-				if (Walltemp->GetType(i) == WALL)
+				if (Walltemp->GetType(j) == WALL)
 				{
 					if (Sharpenertemp->pos.x >= Walltemp->GetWallBoundingBox(j).min.x)
 					{

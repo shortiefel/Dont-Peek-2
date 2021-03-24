@@ -216,6 +216,7 @@ void Player::Player_Update()
 				{
 					CameraPosX = player.pos.x;
 					CameraPosY = player.pos.y;
+					//AEGfxSetCamPosition(player.pos.x, player.pos.y);
 				}
 				
 			}
