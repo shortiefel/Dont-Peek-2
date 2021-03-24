@@ -138,9 +138,9 @@ void Door::BoundingBox()
 		AEMtx33Concat(&(Doortemp->Transform), &Transform2, &Size);
 
 		Doortemp->boundingBox.min.x = Doortemp->pos.x - Scale / 4;
-		Doortemp->boundingBox.min.y = Doortemp->pos.y - Scale / 2;
-		Doortemp->boundingBox.max.x = Doortemp->pos.x + Scale / 4;
-		Doortemp->boundingBox.max.y = Doortemp->pos.y + Scale / 2;
+		Doortemp->boundingBox.min.y = Doortemp->pos.y - Scale / 4;
+		Doortemp->boundingBox.max.x = Doortemp->pos.x + Scale / 6;
+		Doortemp->boundingBox.max.y = Doortemp->pos.y + Scale / 6;
 	}
 }
 

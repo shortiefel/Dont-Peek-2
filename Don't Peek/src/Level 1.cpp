@@ -23,7 +23,7 @@ Technology is prohibited.
 
 
 #include "GameStateMgr.h"
-
+#include "Player.h"
 #include "Door.h"
 #include "Sharpener.h"
 #include "Pencil.h"
@@ -65,6 +65,7 @@ void Level1_Load()
 }
 void Level1_Init()
 {
+	SetWin({ 1045, 260 });
 	SetDoorNum(8);
 	//Highlighter
 	//SetHighlighterNum(2);
@@ -80,14 +81,16 @@ void Level1_Init()
 	wall.CreateWall({ -430,260 }, { 1,0 }, 22, 30.f, CEILING); // top wall
 	wall.CreateWall({ -460,260 }, { 0,-1 }, 17, 30.f, WALL); // left wall
 	wall.CreateWall({ -440 + 22 * 30,260 }, { 0,-1 }, 17, 30.f, WALL); // right wall
-	wall.CreateWall({ -220, -90+10 }, { 1,0 }, 18 , 30.f, PLATFORM); //platform
+	wall.CreateWall({ -220, -90-10 }, { 1,0 }, 18 , 30.f, PLATFORM); //platform
+
+	wall.CreateWall({ 40, 70 }, { 1,0 }, 6, 30.f, CEILING); // cover door
 
 	door.SetDoorPosition(0, { 120 , -160 });//door 0
-	door.SetDoorPosition(5, { -220 , 180 });//door 5
-	door.SetDoorPosition(6, { 120 , -20 });//door 6
+	door.SetDoorPosition(5, { -220 , 180});//door 5
+	door.SetDoorPosition(6, { 120 , -20 - 20});//door 6
 
-	pencil.SetPencil(0, { 30, 0 }, 20, 130);
-	pencil.SetPencil(1, { 80, 0 }, 130, 20);
+	pencil.SetPencil(0, { 30, -20 }, 20, 130);
+
 
 
 	//2nd box
@@ -96,21 +99,21 @@ void Level1_Init()
 	wall.CreateWall({ -440,-295 }, { 0,-1 }, 16, 30.f, WALL); // left wall
 	wall.CreateWall({ 80,-295 }, { 0,-1 }, 16, 30.f, WALL); // right wall
 
-	wall.CreateWall({ -100, -565 }, { 1,0 }, 6, 30.f, PLATFORM); //platform lowest
-	wall.CreateWall({ -210, -480 }, { 1,0 }, 3, 30.f, PLATFORM); //platform mid
-	wall.CreateWall({ -410, -410 }, { 1,0 }, 5, 30.f, PLATFORM); //platform high
+	wall.CreateWall({ -100, -565-40 }, { 1,0 }, 6, 30.f, PLATFORM); //platform lowest
+	wall.CreateWall({ -210, -480-40 }, { 1,0 }, 3, 30.f, PLATFORM); //platform mid
+	wall.CreateWall({ -410, -410-40 }, { 1,0 }, 5, 30.f, PLATFORM); //platform high
 
 	door.SetDoorPosition(1, { -350 , -695 });//door 1
 	door.SetDoorPosition(2, { -20 , -695 });//door 2
-	eraser.SetEraserPosition(0, { -320, -400 }); //eraser
+	eraser.SetEraserPosition(0, { -310, -400 }); //eraser
 
 	//3rd box
 	wall.CreateWall({ 715, -790 }, { 1,0 }, 14, 30.f, PLATFORM); //floor
 	wall.CreateWall({ 715, -465 }, { 1,0 }, 14, 30.f, CEILING); // top wall
 	wall.CreateWall({ 685,-465 }, { 0,-1 }, 11, 30.f, WALL); // left wall
 	wall.CreateWall({ 715 + 14 * 30,-465 }, { 0,-1 }, 11, 30.f, WALL); // right wall
-	wall.CreateWall({ 715, -650+10 }, { 1,0 }, 18, 10.f, CEILING); //platform
-	door.SetDoorPosition(3, { 805 , -585 });//door 3
+	wall.CreateWall({ 715, -650+30 }, { 1,0 }, 6, 30.f, CEILING); //platform
+	door.SetDoorPosition(3, { 805 , -585+30 });//door 3
 	door.SetDoorPosition(4, { 1060 , -720 });//door 4
 	sharpener.SetSharpenerPosition(0, { 830,-720 }); // sharpener
 
@@ -126,7 +129,8 @@ void Level1_Init()
 	wall.CreateWall({ 720 ,- 210 }, { 1,0 }, 5, 25.f, PLATFORM); //platform MID
 	wall.CreateWall({ 470 ,-250 }, { 1,0 }, 6, 30.f, PLATFORM); //platform MID 2
 	wall.CreateWall({ 470 ,-40 }, { 1,0 }, 15, 30.f, PLATFORM); //platform MID 3
-	wall.CreateWall({ 960 ,-190 }, { 1,0 }, 6, 30.f, PLATFORM); //platform MID 4
+	wall.CreateWall({ 960 ,-130 }, { 1,0 }, 6, 30.f, PLATFORM); //platform MID 4
+	wall.CreateWall({ 960 ,-210 }, { 1,0 }, 6, 30.f, PLATFORM); //platform MID 4
 	wall.CreateWall({ 865 ,110 }, { 1,0 }, 5, 30.f, PLATFORM); //platform MID 5
 
 	door.SetDoorPosition(7, { 530 , -370 });//door 7
