@@ -72,24 +72,27 @@ void Level1_Init()
 	SetSharpenerNum(1);
 	//eraser
 	SetEraserNum(2);
-
+	//pencil
+	SetPencilNum(2);
 
 	//first box
 	wall.CreateWall({ -430,-235 }, { 1,0 }, 22, 30.f, PLATFORM); //floor
-	wall.CreateWall({ -430,260 }, { 1,0 }, 22, 30.f, WALL); // top wall
+	wall.CreateWall({ -430,260 }, { 1,0 }, 22, 30.f, CEILING); // top wall
 	wall.CreateWall({ -460,260 }, { 0,-1 }, 17, 30.f, WALL); // left wall
 	wall.CreateWall({ -440 + 22 * 30,260 }, { 0,-1 }, 17, 30.f, WALL); // right wall
-	wall.CreateWall({ -270, -90 }, { 1,0 }, 21 , 25.f, PLATFORM); //platform
+	wall.CreateWall({ -220, -90+10 }, { 1,0 }, 18 , 30.f, PLATFORM); //platform
 
-	door.SetDoorPosition(0, { 110 , -160 });//door 0
-	door.SetDoorPosition(5, { -250 , 150 });//door 5
+	door.SetDoorPosition(0, { 120 , -160 });//door 0
+	door.SetDoorPosition(5, { -220 , 180 });//door 5
 	door.SetDoorPosition(6, { 120 , -20 });//door 6
 
+	pencil.SetPencil(0, { 30, 0 }, 20, 130);
+	pencil.SetPencil(1, { 80, 0 }, 130, 20);
 
 
 	//2nd box
 	wall.CreateWall({ -450, -765}, { 1,0 }, 18, 30.f, PLATFORM); //floor
-	wall.CreateWall({ -450, -265 }, { 1,0 }, 18, 30.f, WALL); // top wall
+	wall.CreateWall({ -450, -265 }, { 1,0 }, 18, 30.f, CEILING); // top wall
 	wall.CreateWall({ -440,-295 }, { 0,-1 }, 16, 30.f, WALL); // left wall
 	wall.CreateWall({ 80,-295 }, { 0,-1 }, 16, 30.f, WALL); // right wall
 
@@ -103,19 +106,19 @@ void Level1_Init()
 
 	//3rd box
 	wall.CreateWall({ 715, -790 }, { 1,0 }, 14, 30.f, PLATFORM); //floor
-	wall.CreateWall({ 715, -465 }, { 1,0 }, 14, 30.f, WALL); // top wall
+	wall.CreateWall({ 715, -465 }, { 1,0 }, 14, 30.f, CEILING); // top wall
 	wall.CreateWall({ 685,-465 }, { 0,-1 }, 11, 30.f, WALL); // left wall
 	wall.CreateWall({ 715 + 14 * 30,-465 }, { 0,-1 }, 11, 30.f, WALL); // right wall
-	wall.CreateWall({ 715, -650 }, { 1,0 }, 6, 30.f, PLATFORM); //platform
+	wall.CreateWall({ 715, -650+10 }, { 1,0 }, 18, 10.f, CEILING); //platform
 	door.SetDoorPosition(3, { 805 , -585 });//door 3
 	door.SetDoorPosition(4, { 1060 , -720 });//door 4
 	sharpener.SetSharpenerPosition(0, { 830,-720 }); // sharpener
 
 	//4th box
 	wall.CreateWall({ 450, -440 }, { 1,0 }, 24, 30.f, PLATFORM); // floor
-	wall.CreateWall({ 680, 280 }, { 1,0 }, 10, 30.f, WALL); // top wall
-	wall.CreateWall({ 650, 280 }, { 0,-1 }, 5, 30.f, WALL); // top wall
-	wall.CreateWall({ 470, 160 }, { 1,0 }, 7, 30.f, WALL); // top wall
+	wall.CreateWall({ 680, 280 }, { 1,0 }, 10, 30.f, CEILING); // top wall
+	wall.CreateWall({ 650, 280 }, { 0,-1 }, 5, 30.f, CEILING); // top wall
+	wall.CreateWall({ 470, 160 }, { 1,0 }, 7, 30.f, CEILING); // top wall
 	wall.CreateWall({ 440, 160 }, { 0,-1 }, 21, 30.f, WALL); // left wall
 	wall.CreateWall({ 680 + 15*30, 280 }, { 0,-1 }, 24, 30.f, WALL); // right wall
 

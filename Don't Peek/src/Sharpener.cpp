@@ -276,12 +276,12 @@ void Sharpener::UpdateSharpener()
 				if (j % 2 == 0)
 				{
 					Sharpenertemp->pos = Doortemp->GetDoorPosition(j + 1);
-					Sharpenertemp->pos.x += 80;
+					Sharpenertemp->pos.x += 100;
 				}
 				else
 				{
 					Sharpenertemp->pos = Doortemp->GetDoorPosition(j - 1);
-					Sharpenertemp->pos.x += -80;
+					Sharpenertemp->pos.x += -100;
 				}
 			}
 		}//End of Door for loop

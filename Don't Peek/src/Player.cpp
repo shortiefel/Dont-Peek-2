@@ -300,12 +300,12 @@ void Player::Player_Update()
 				if (player.pos.y < Walltemp->GetWallBoundingBox(i).max.y)
 				{
 					vel.y -= 50.f * g_dt;
-					player.pos.y = Walltemp->GetWallBoundingBox(i).min.y - player.Scale / 2;
+					player.pos.y = Walltemp->GetWallBoundingBox(i).min.y - player.Scale / 4;
 				}
 				else if(player.pos.y >= Walltemp->GetWallBoundingBox(i).max.y + player.Scale / 2 - 10 && player.vel.y < 0)
 				{
 					player.vel.y = 0;
-					player.pos.y = Walltemp->GetWallBoundingBox(i).max.y + player.Scale / 2 - 10;
+					player.pos.y = Walltemp->GetWallBoundingBox(i).max.y + player.Scale / 4 - 10;
 					CanJump = true;
 				}
 			}
