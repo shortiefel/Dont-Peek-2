@@ -79,7 +79,7 @@ void Level1_Init()
 	wall.CreateWall({ -430,260 }, { 1,0 }, 22, 30.f, WALL); // top wall
 	wall.CreateWall({ -460,260 }, { 0,-1 }, 17, 30.f, WALL); // left wall
 	wall.CreateWall({ -440 + 22 * 30,260 }, { 0,-1 }, 17, 30.f, WALL); // right wall
-	wall.CreateWall({ -325, -90 }, { 1,0 }, 22 , 25.f, PLATFORM); //platform
+	wall.CreateWall({ -270, -90 }, { 1,0 }, 21 , 25.f, PLATFORM); //platform
 
 	door.SetDoorPosition(0, { 110 , -160 });//door 0
 	door.SetDoorPosition(5, { -250 , 150 });//door 5
