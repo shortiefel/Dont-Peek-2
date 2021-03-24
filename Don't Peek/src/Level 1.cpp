@@ -31,7 +31,6 @@ Technology is prohibited.
 #include "Highlighter.h"
 #include "Wall.h"
 #include "Music.h"
-#include "Player.h"
 
 
 void Level1_Load()
