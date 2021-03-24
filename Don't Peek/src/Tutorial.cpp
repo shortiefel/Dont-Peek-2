@@ -180,10 +180,10 @@ void Tutorial_Draw()
 }
 void Tutorial_Free()
 {
-	
+	AEGfxMeshFree(bg.pBg->pMesh);
 }
 void Tutorial_Unload()
 {
-	AEGfxMeshFree(bg.pBg->pMesh);
+
 	AEGfxTextureUnload(bg.pBg->texture);
 }

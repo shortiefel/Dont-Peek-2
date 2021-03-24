@@ -87,10 +87,14 @@ void SSDraw()
 
 void SSFree()
 {
+	if (splashscreen.pObj->pMesh)
+		AEGfxMeshFree(splashscreen.pObj->pMesh);
 
 }
 
 void SSUnload()
 {
+	if (splashscreen.pObj->texture)
+		AEGfxTextureUnload(splashscreen.pObj->texture);
 
 }

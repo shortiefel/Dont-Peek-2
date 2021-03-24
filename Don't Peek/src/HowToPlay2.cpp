@@ -78,7 +78,13 @@ void HowtoplayDraw(void)
 
 void HowtoplayFree(void)
 {
-	
+	sharpener.FreeSharpener();
+	eraser.FreeEraser();
+	highlighter.FreeHighlighter();
+	pencil.FreePencil();
+	door.FreeDoor();
+	player.Player_Free();
+	wall.FreeWall();
 }
 
 void HowtoplayUnload(void)
@@ -89,4 +95,5 @@ void HowtoplayUnload(void)
 	pencil.UnloadPencil();
 	door.UnloadDoor();
 	player.Player_Unload();
+	wall.UnloadWall();
 }

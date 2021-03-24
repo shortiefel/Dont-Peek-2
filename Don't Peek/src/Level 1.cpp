@@ -148,10 +148,11 @@ void Level1_Draw()
 }
 void Level1_Free()
 {
+	AEGfxMeshFree(bg.pBg->pMesh);
 
 }
 void Level1_Unload()
 {
-	AEGfxMeshFree(bg.pBg->pMesh);
+	
 	AEGfxTextureUnload(bg.pBg->texture);
 }

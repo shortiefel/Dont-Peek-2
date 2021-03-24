@@ -213,12 +213,18 @@ void CreditsDraw()
 
 void CreditsFree()
 {
-
+	if (button.pButton->pMesh)
+		AEGfxMeshFree(button.pButton->pMesh);
+	if (credit[element].pObj->pMesh)
+		AEGfxMeshFree(credit[element].pObj->pMesh);
 }
 
 void CreditsUnload()
 {
-
+	if (credit[element].pObj->texture)
+		AEGfxTextureUnload(credit[element].pObj->texture);
+	if (button.pButton->texture)
+		AEGfxTextureUnload(button.pButton->texture);
 }
 
 void BoundingBox1()
