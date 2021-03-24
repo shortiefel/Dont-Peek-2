@@ -26,6 +26,7 @@ Technology is prohibited.
 #include "GameStateMgr.h"
 #include "Menu.h"
 #include <math.h>
+#include "HowToPlay2.h"
 
 
 /******************************************************************************/
@@ -145,8 +146,13 @@ void Player::Player_Update()
 		SetGravity();
 
 
-	if (AEInputCheckCurr(AEVK_B))
-		gGameStateNext = GS_MENU;
+		if (AEInputCheckCurr(AEVK_B))
+		{
+			//HowtoplayFree();
+			//HowtoplayUnload();
+			gGameStateNext = GS_MENU;
+		}
+		
 
 	if (AEInputCheckCurr(AEVK_ESCAPE))
 		gGameStateNext = GS_QUIT;

@@ -78,6 +78,7 @@ void HowtoplayDraw(void)
 
 void HowtoplayFree(void)
 {
+	printf("TUT IS FREEING\n");
 	sharpener.FreeSharpener();
 	eraser.FreeEraser();
 	highlighter.FreeHighlighter();
@@ -89,6 +90,7 @@ void HowtoplayFree(void)
 
 void HowtoplayUnload(void)
 {
+	printf("TUT IS UNLOADING\n");
 	sharpener.UnloadSharpener();
 	eraser.UnloadEraser();
 	highlighter.UnloadHighlighter();

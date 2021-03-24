@@ -1,42 +1,8 @@
-﻿  Collision.cpp
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Collision.cpp(141,34): warning C4100: 'vel2': unreferenced formal parameter
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Collision.cpp(140,73): warning C4100: 'vel1': unreferenced formal parameter
-  Credits.cpp
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Credits.cpp(174,9): warning C4551: function call missing argument list
-  Door.cpp
-  Eraser.cpp
-  GameStateMgr.cpp
-  GameState_DontPeek.cpp
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\fmod_errors.h(20,20): warning C4505: 'FMOD_ErrorString': unreferenced local function has been removed
-  Highlighter.cpp
-  HowToPlay2.cpp
-  Level 1.cpp
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\fmod_errors.h(20,20): warning C4505: 'FMOD_ErrorString': unreferenced local function has been removed
-  Lose.cpp
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Lose.cpp(139,8): warning C4551: function call missing argument list
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Lose.cpp(149,8): warning C4551: function call missing argument list
-  Main.cpp
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\fmod_errors.h(20,20): warning C4505: 'FMOD_ErrorString': unreferenced local function has been removed
-  Menu.cpp
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Menu.cpp(198,9): warning C4551: function call missing argument list
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Menu.cpp(210,9): warning C4551: function call missing argument list
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Menu.cpp(221,9): warning C4551: function call missing argument list
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Menu.cpp(230,9): warning C4551: function call missing argument list
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\fmod_errors.h(20,20): warning C4505: 'FMOD_ErrorString': unreferenced local function has been removed
-  Music.cpp
-  Pause.cpp
-  Pencil.cpp
-  Player.cpp
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Player.cpp(135,46): warning C4244: '=': conversion from 'double' to 'f32', possible loss of data
-  Sharpener.cpp
-  SplashScreen.cpp
-  Tutorial.cpp
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\fmod_errors.h(20,20): warning C4505: 'FMOD_ErrorString': unreferenced local function has been removed
-  Wall.cpp
-  Generating Code...
-  Compiling...
-  Win.cpp
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Win.cpp(138,8): warning C4551: function call missing argument list
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Win.cpp(148,8): warning C4551: function call missing argument list
-  Generating Code...
-  DontPeek.vcxproj -> C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe
+﻿  Wall.cpp
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Wall.cpp(72,20): warning C4459: declaration of 'Walltemp' hides global declaration
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Wall.cpp(30,7): message : see declaration of 'Walltemp'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Wall.cpp(198,19): warning C4459: declaration of 'Walltemp' hides global declaration
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Wall.cpp(30,7): message : see declaration of 'Walltemp'
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Wall.cpp(204,19): warning C4459: declaration of 'Walltemp' hides global declaration
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Wall.cpp(30,7): message : see declaration of 'Walltemp'
+  DontPeek.vcxproj -> C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe

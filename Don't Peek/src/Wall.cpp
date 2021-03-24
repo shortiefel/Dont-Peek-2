@@ -23,9 +23,11 @@ Technology is prohibited.
 #include "Wall.h"
 #include "Collision.h"
 #include "Player.h"
+#include <iostream>
 
 static int numberWalls = 0;
 static Wall WallArr[1000];
+Wall *Walltemp = new Wall[1000];
 
 /******************************************************************************/
 /*!
@@ -138,7 +140,6 @@ void Wall::DrawWall()
 /******************************************************************************/
 void Wall::FreeWall()
 {
-	AEGfxMeshFree(pWall->pMesh);
 }
 
 /******************************************************************************/
@@ -148,8 +149,9 @@ void Wall::FreeWall()
 /******************************************************************************/
 void Wall::UnloadWall()
 {
-	if (pWall->texture)
-		AEGfxTextureUnload(pWall->texture);
+	AEGfxMeshFree(pWall->pMesh);
+	numberWalls = 0;
+	printf("free!");
 }
 
 /******************************************************************************/
@@ -159,7 +161,9 @@ void Wall::UnloadWall()
 /******************************************************************************/
 void Wall::CreateWall(AEVec2 pos, AEVec2 dir, int number, float scale, wallType type)
 {
-	Wall *Walltemp = WallArr + numberWalls;
+
+
+	Walltemp = WallArr + numberWalls;
 	AEMtx33	trans, sc;
 	for (int i = 0; i <number; i++, Walltemp++)
 	{
