@@ -105,7 +105,6 @@ void Pencil::UpdatePencil()
 /******************************************************************************/
 void Pencil::DrawPencil()
 {
-	
 	for (int i = 0; i < PencilNum; i++)
 	{
 		Pencil* Penciltemp = PencilArray + i;
@@ -131,7 +130,7 @@ void Pencil::DrawPencil()
 /******************************************************************************/
 void Pencil::FreePencil()
 {
-	AEGfxMeshFree(pPencil->pMesh);
+	
 }
 
 /******************************************************************************/
@@ -142,7 +141,9 @@ void Pencil::FreePencil()
 void Pencil::UnloadPencil()
 {
 	if(pPencil->texture)
-		AEGfxTextureUnload(pPencil->texture);
+	AEGfxTextureUnload(pPencil->texture);
+	if(pPencil->pMesh)
+	AEGfxMeshFree(pPencil->pMesh);
 }
 
 /******************************************************************************/
@@ -156,7 +157,7 @@ void Pencil::BoundingBox()
 	for (int i = 0; i < PencilNum; i++)
 	{
 		Pencil* Penciltemp = PencilArray + i;
-		AEMtx33Scale(&Size, scaleX, scaleY);
+		AEMtx33Scale(&Size, Penciltemp->scaleX, Penciltemp->scaleY);
 		AEMtx33Trans(&Transform2, Penciltemp->pos.x, Penciltemp->pos.y);
 		AEMtx33Concat(&(Penciltemp->Transform), &Transform2, &Size);
 
