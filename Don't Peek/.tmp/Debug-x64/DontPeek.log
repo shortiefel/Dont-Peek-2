@@ -1,2 +1,15 @@
-﻿  HowToPlay2.cpp
+﻿  GameState_DontPeek.cpp
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\fmod_errors.h(20,20): warning C4505: 'FMOD_ErrorString': unreferenced local function has been removed
+  Main.cpp
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\fmod_errors.h(20,20): warning C4505: 'FMOD_ErrorString': unreferenced local function has been removed
+  Menu.cpp
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Menu.cpp(192,9): warning C4551: function call missing argument list
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Menu.cpp(204,9): warning C4551: function call missing argument list
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Menu.cpp(215,8): warning C4551: function call missing argument list
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Menu.cpp(224,8): warning C4551: function call missing argument list
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\fmod_errors.h(20,20): warning C4505: 'FMOD_ErrorString': unreferenced local function has been removed
+  Music.cpp
+  Tutorial.cpp
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\fmod_errors.h(20,20): warning C4505: 'FMOD_ErrorString': unreferenced local function has been removed
+  Generating Code...
   DontPeek.vcxproj -> C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe

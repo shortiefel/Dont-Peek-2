@@ -23,9 +23,8 @@ void SoundSystem_Init()
     audio->createChannelGroup("CE", &CEraser);
     audio->createChannelGroup("CH", &CHighligther);
 
-    audio->createSound("Resources/music/BGMusic.wav", FMOD_LOOP_NORMAL, 0, &BGSound);
-    audio->createSound("Resources/music/EraserSound.wav", FMOD_DEFAULT, 0, &Eraser);
-    audio->createSound("Resources/music/HighlighterSound.wav", FMOD_DEFAULT, 0, &Highlighter);
+    audio->createSound("Resources/BGMusic.wav", FMOD_LOOP_NORMAL, 0, &BGSound);
+
 
     audio->update();
 
@@ -43,17 +42,6 @@ void Tutorial_SFX()
 
 }
 
-void SoundEraser_SFX(void)
-{
-
-    audio->playSound(Eraser, CEraser, false, 0);
-}
-
-void SoundHighlighter_SFX(void)
-{
-    audio->playSound(Highlighter, CHighligther, false, 0);
-
-}
 
 
 void SoundSystem_Destroy()
@@ -61,8 +49,6 @@ void SoundSystem_Destroy()
     std::cout << "i was triggered" << "\n";
     BGSound->release();
 
-    //Eraser->release();
-    //Highlighter->release();
 }
 
 
