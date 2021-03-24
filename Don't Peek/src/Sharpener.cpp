@@ -292,31 +292,31 @@ void Sharpener::UpdateSharpener()
 			WALLS
 		*/
 		/******************************************************************************/
-		for (int i = 0; i < Get_NumWalls(); i++)
+		for (int j = 0; j < Get_NumWalls(); j++)
 		{
-			Wall* Walltemp = Get_WallArr() + i;
+			Wall* Walltemp = Get_WallArr() + j;
 			BoundingBox();
-			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, Walltemp->GetWallBoundingBox(i), { 0,0 }))
+			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, Walltemp->GetWallBoundingBox(j), { 0,0 }))
 			{
 				WallCollision = true;
 				Sharpenertemp->vel.y = 0;
 				if (Walltemp->GetType(i) == WALL)
 				{
-					if (Sharpenertemp->pos.x >= Walltemp->GetWallBoundingBox(i).min.x)
+					if (Sharpenertemp->pos.x >= Walltemp->GetWallBoundingBox(j).min.x)
 					{
-						Sharpenertemp->pos.x = (Walltemp->GetWallBoundingBox(i).max.x + 30);
+						Sharpenertemp->pos.x = (Walltemp->GetWallBoundingBox(j).max.x + 30);
 					}
-					else if (Sharpenertemp->pos.x <= Walltemp->GetWallBoundingBox(i).max.x)
+					else if (Sharpenertemp->pos.x <= Walltemp->GetWallBoundingBox(j).max.x)
 					{
-						Sharpenertemp->pos.x = (Walltemp->GetWallBoundingBox(i).min.x - 30);
+						Sharpenertemp->pos.x = (Walltemp->GetWallBoundingBox(j).min.x - 30);
 					}
 				}
-				else if (Walltemp->GetType(i) == PLATFORM)
+				else if (Walltemp->GetType(j) == PLATFORM)
 				{
-					if (Sharpenertemp->pos.y >= Walltemp->GetWallBoundingBox(i).max.y + 40 && Sharpenertemp->vel.y < 0)
+					if (Sharpenertemp->pos.y >= Walltemp->GetWallBoundingBox(j).max.y + 40 && Sharpenertemp->vel.y < 0)
 					{
 						Sharpenertemp->vel.y = 0;
-						Sharpenertemp->pos.y = Walltemp->GetWallBoundingBox(i).max.y + 40;
+						Sharpenertemp->pos.y = Walltemp->GetWallBoundingBox(j).max.y + 40;
 					}
 				}
 			}
