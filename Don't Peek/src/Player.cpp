@@ -214,11 +214,11 @@ void Player::Player_Update()
 				}
 				else
 				{
-					CameraPosX = player.pos.x;
-					CameraPosY = player.pos.y;
+					CameraPosX = (Doortemp->GetDoorPosition(i + 1).x + WinPos.x) / 2;
+					CameraPosY = (Doortemp->GetDoorPosition(i + 1).y + WinPos.y) / 2;
 					//AEGfxSetCamPosition(player.pos.x, player.pos.y);
 				}
-				
+
 			}
 			else
 			{

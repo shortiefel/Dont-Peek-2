@@ -121,7 +121,7 @@ void Level1_Init()
 	wall.CreateWall({ 440, 160 }, { 0,-1 }, 21, 30.f, WALL); // left wall
 	wall.CreateWall({ 680 + 15*30, 280 }, { 0,-1 }, 24, 30.f, WALL); // right wall
 
-	wall.CreateWall({ 885 ,-340 }, { 1,0 }, 5, 30.f, CEILING); //platform lowest
+	wall.CreateWall({ 885 ,-340 }, { 1,0 }, 5, 30.f, PLATFORM); //platform lowest
 	wall.CreateWall({ 720 ,- 210 }, { 1,0 }, 5, 25.f, PLATFORM); //platform MID
 	wall.CreateWall({ 470 ,-250 }, { 1,0 }, 6, 30.f, PLATFORM); //platform MID 2
 	wall.CreateWall({ 470 ,-40 }, { 1,0 }, 15, 30.f, PLATFORM); //platform MID 3
