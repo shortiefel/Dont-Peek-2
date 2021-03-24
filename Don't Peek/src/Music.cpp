@@ -25,7 +25,6 @@ void SoundSystem_Init()
 
     audio->createSound("Resources/BGMusic.wav", FMOD_LOOP_NORMAL, 0, &BGSound);
 
-
     audio->update();
 
 }
@@ -41,7 +40,6 @@ void Tutorial_SFX()
     audio->playSound(BGSound, bgmGroup, false, 0);
 
 }
-
 
 
 void SoundSystem_Destroy()
