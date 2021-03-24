@@ -52,7 +52,6 @@ void Door::LoadDoor()
 	pDoor->texture = AEGfxTextureLoad("Resources/Door.png");
 	AE_ASSERT_MESG(pDoor->texture, "Failed to create texture1!!");
 
-	DoorNum = 0;
 }
 
 /******************************************************************************/
@@ -95,6 +94,7 @@ void Door::DrawDoor()
 	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 	for (int i = 0; i < DoorNum; i++)
 	{
+
 		Door* Doortemp = DoorArray + i;
 		AEGfxSetPosition(Doortemp->pos.x, Doortemp->pos.y);
 		AEGfxTextureSet(pDoor->texture, 0, 0);
@@ -121,6 +121,7 @@ void Door::FreeDoor()
 void Door::UnloadDoor()
 {
 	AEGfxTextureUnload(pDoor->texture);
+	DoorNum = 0;
 }
 
 /******************************************************************************/

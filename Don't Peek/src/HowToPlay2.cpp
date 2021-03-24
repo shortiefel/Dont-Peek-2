@@ -89,4 +89,5 @@ void HowtoplayUnload(void)
 	pencil.UnloadPencil();
 	door.UnloadDoor();
 	player.Player_Unload();
+	wall.UnloadWall();
 }

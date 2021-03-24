@@ -50,8 +50,6 @@ void Wall::LoadWall()
 
 	pWall->pMesh = AEGfxMeshEnd();
 
-	numberWalls = 0;
-
 }
 
 /******************************************************************************/
@@ -140,7 +138,7 @@ void Wall::DrawWall()
 /******************************************************************************/
 void Wall::FreeWall()
 {
-	AEGfxMeshFree(pWall->pMesh);
+
 }
 
 /******************************************************************************/
@@ -150,8 +148,9 @@ void Wall::FreeWall()
 /******************************************************************************/
 void Wall::UnloadWall()
 {
-	if (pWall->texture)
-		AEGfxTextureUnload(pWall->texture);
+	//AEGfxTextureUnload(pWall->texture);
+	AEGfxMeshFree(pWall->pMesh);
+	numberWalls = 0;
 }
 
 /******************************************************************************/
