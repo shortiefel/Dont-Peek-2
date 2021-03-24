@@ -1,2 +1,5 @@
-﻿  Sharpener.cpp
+﻿  Pause.cpp
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Pause.cpp(158,8): warning C4551: function call missing argument list
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Pause.cpp(168,8): warning C4551: function call missing argument list
+C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\src\Pause.cpp(178,8): warning C4551: function call missing argument list
   DontPeek.vcxproj -> C:\Users\ASUS\OneDrive\Desktop\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe
