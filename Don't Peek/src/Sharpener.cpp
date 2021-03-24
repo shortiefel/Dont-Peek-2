@@ -86,7 +86,7 @@ void Sharpener::InitSharpener() {
 /******************************************************************************/
 void Sharpener::UpdateSharpener() 
 {
-	SGROUND = -100;
+	SGROUND = -1000;
 	BoundingBox();
 
 	for (int i = 0; i < SharpenerNum; i++)
@@ -276,12 +276,12 @@ void Sharpener::UpdateSharpener()
 				if (j % 2 == 0)
 				{
 					Sharpenertemp->pos = Doortemp->GetDoorPosition(j + 1);
-					Sharpenertemp->pos.x += 50;
+					Sharpenertemp->pos.x += 80;
 				}
 				else
 				{
 					Sharpenertemp->pos = Doortemp->GetDoorPosition(j - 1);
-					Sharpenertemp->pos.x += -50;
+					Sharpenertemp->pos.x += -80;
 				}
 			}
 		}//End of Door for loop

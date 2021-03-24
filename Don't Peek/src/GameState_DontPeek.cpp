@@ -30,7 +30,6 @@ Technology is prohibited.
 #include "Wall.h"
 #include "Tutorial.h"
 #include "Level 1.h"
-#include "Camera.h"
 #include "Win.h"
 #include "Music.h"
 
@@ -72,7 +71,7 @@ void GameStateDontPeekLoad(void)
 
 	//Tutorial_Load();
 	Level1_Load();
-	wwall.LoadWall();
+	wall.LoadWall();
 	sharpener.LoadSharpener();
 	eraser.LoadEraser();
 	highlighter.LoadHighlighter();
@@ -88,11 +87,14 @@ void GameStateDontPeekLoad(void)
 /******************************************************************************/
 void GameStateDontPeekInit(void)
 {
-	//Tutorial_Init();
+
+
 	SoundSystem_Init();
 	SoundSystem_SFX();
+
+
 	Level1_Init();
-	wwall.InitWall();
+	wall.InitWall();
 	sharpener.InitSharpener();
 	eraser.InitEraser();
 	highlighter.InitHighlighter();
@@ -130,7 +132,7 @@ void GameStateDontPeekDraw(void)
 {
 	//Tutorial_Draw();
 	Level1_Draw();
-	wwall.DrawWall();
+	wall.DrawWall();
 	highlighter.DrawHighlighter();
 	pencil.DrawPencil();
 	sharpener.DrawSharpener();

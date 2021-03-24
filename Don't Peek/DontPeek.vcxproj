@@ -98,6 +98,7 @@
     <ClCompile Include="src\GameState_DontPeek.cpp" />
     <ClCompile Include="src\Highlighter.cpp" />
     <ClCompile Include="src\HowToPlay2.cpp" />
+    <ClCompile Include="src\Level 1.cpp" />
     <ClCompile Include="src\Lose.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Menu.cpp" />
@@ -129,6 +130,7 @@
     <ClInclude Include="src\GameState_DontPeek.h" />
     <ClInclude Include="src\Highlighter.h" />
     <ClInclude Include="src\HowToPlay2.h" />
+    <ClInclude Include="src\Level 1.h" />
     <ClInclude Include="src\Lose.h" />
     <ClInclude Include="src\Menu.h" />
     <ClInclude Include="src\Music.h" />

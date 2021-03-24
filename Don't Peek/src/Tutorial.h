@@ -31,7 +31,7 @@ struct background
 	AEMtx33	transform;	// object transformation matrix
 	GameObj* pBg;
 };
-
+extern background bg;
 void Tutorial_Load();
 void Tutorial_Init();
 void Tutorial_Update();
