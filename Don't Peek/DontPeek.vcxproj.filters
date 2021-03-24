@@ -58,6 +58,9 @@
     <ClCompile Include="src\HowToPlay2.cpp">
       <Filter>Source\Levels\Code</Filter>
     </ClCompile>
+    <ClCompile Include="src\SplashScreen.cpp">
+      <Filter>Source\Levels\Code</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Main.h">
@@ -145,6 +148,9 @@
       <Filter>Source\Environment\Header</Filter>
     </ClInclude>
     <ClInclude Include="src\HowToPlay2.h">
+      <Filter>Source\Levels\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SplashScreen.h">
       <Filter>Source\Levels\Header</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,10 +1,12 @@
 #include "GameStateMgr.h"
+#include "SplashScreen.h"
 #include "Menu.h"
 #include "HowToPlay2.h"
 #include  "Win.h"
 #include "Lose.h"
 #include "Pause.h"
 #include "Credits.h"
+
 
 /******************************************************************************/
 /*!
@@ -59,6 +61,14 @@ void GameStateMgrUpdate()
 
 	switch (gGameStateCurr)
 	{
+	case GS_SPLASH:
+		GameStateLoad = SSLoad;
+		GameStateInit = SSInit;
+		GameStateUpdate = SSUpdate;
+		GameStateDraw = SSDraw;
+		GameStateFree = SSFree;
+		GameStateUnload = SSUnload;
+		break;
 	case GS_MENU:
 		GameStateLoad = MenuLoad;
 		GameStateInit = MenuInit;
