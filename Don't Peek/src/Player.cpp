@@ -118,7 +118,7 @@ void Player::Player_Update()
 	}
 	else if (AEInputCheckCurr(AEVK_RIGHT))
 	{
-		
+
 		player.vel.x = SPEED;
 	}
 	else
@@ -143,16 +143,16 @@ void Player::Player_Update()
 		CanJump = true;
 		player.vel.y = 0;
 	}
-		SetGravity();
+	SetGravity();
 
 
-		if (AEInputCheckCurr(AEVK_B))
-		{
-			//HowtoplayFree();
-			//HowtoplayUnload();
-			gGameStateNext = GS_MENU;
-		}
-		
+	if (AEInputCheckCurr(AEVK_B))
+	{
+		//HowtoplayFree();
+		//HowtoplayUnload();
+		gGameStateNext = GS_MENU;
+	}
+
 
 	if (AEInputCheckCurr(AEVK_ESCAPE))
 		gGameStateNext = GS_QUIT;
@@ -172,11 +172,11 @@ void Player::Player_Update()
 			if (player.pos.y >= Sharpenertemp->GetSharpenerBoundingBox(i).max.y + (Scale / 6) && player.vel.y < 0)
 			{
 				player.vel.y = 0;
-				player.pos.y = Sharpenertemp->GetSharpenerBoundingBox(i).max.y + (Scale/6);
+				player.pos.y = Sharpenertemp->GetSharpenerBoundingBox(i).max.y + (Scale / 6);
 				CanJump = true;
 			}
 		}
-		
+
 	}//End of Sharpener for loop
 
 	/******************************************************************************/
@@ -241,7 +241,7 @@ void Player::Player_Update()
 					CameraPosY = player.pos.y;
 				}
 			}
-				AEGfxSetCamPosition(CameraPosX, CameraPosY);
+			AEGfxSetCamPosition(CameraPosX, CameraPosY);
 		}
 
 	}//End of Door for loop
@@ -251,7 +251,7 @@ void Player::Player_Update()
 		PENCIL
 	*/
 	/******************************************************************************/
-	for (int i =0; i< GetPencilNum(); i++)
+	for (int i = 0; i < GetPencilNum(); i++)
 	{
 		Pencil* Penciltemp = PencilArray + i;
 		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Penciltemp->GetPencilBoundingBox(i), { 0,0 }))
@@ -278,13 +278,13 @@ void Player::Player_Update()
 		Wall* Walltemp = Get_WallArr() + i;
 		BoundingBox();
 		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Walltemp->GetWallBoundingBox(i), { 0,0 }))
-		{	
+		{
 			WallCollision = true;
 			if (Walltemp->GetType(i) == WALL)
 			{
 				if (player.pos.x >= Walltemp->GetWallBoundingBox(i).min.x)
 				{
-					player.pos.x = (Walltemp->GetWallBoundingBox(i).max.x + Scale / 3 );
+					player.pos.x = (Walltemp->GetWallBoundingBox(i).max.x + Scale / 3);
 				}
 				else if (player.pos.x <= Walltemp->GetWallBoundingBox(i).max.x)
 				{
@@ -294,7 +294,7 @@ void Player::Player_Update()
 			else if (Walltemp->GetType(i) == PLATFORM)
 			{
 
-				if (player.pos.y >= Walltemp->GetWallBoundingBox(i).max.y + player.Scale/2 - 10 && player.vel.y < 0)
+				if (player.pos.y >= Walltemp->GetWallBoundingBox(i).max.y + player.Scale / 2 - 10 && player.vel.y < 0)
 				{
 					//GROUND = 
 					player.vel.y = 0;
@@ -309,13 +309,13 @@ void Player::Player_Update()
 					vel.y -= 50.f * g_dt;
 					player.pos.y = Walltemp->GetWallBoundingBox(i).min.y - player.Scale / 2;
 				}
-				else if(player.pos.y >= Walltemp->GetWallBoundingBox(i).max.y + player.Scale / 2 - 10 && player.vel.y < 0)
+				else if (player.pos.y >= Walltemp->GetWallBoundingBox(i).max.y + player.Scale / 2 - 10 && player.vel.y < 0)
 				{
 					player.vel.y = 0;
 					player.pos.y = Walltemp->GetWallBoundingBox(i).max.y + player.Scale / 2 - 10;
 					CanJump = true;
 				}
-		
+
 			}
 		}
 	}//End of Wall for loop
@@ -324,7 +324,7 @@ void Player::Player_Update()
 		WIN CHECK
 	*/
 	/******************************************************************************/
-	if (CollisionIntersection_PointRect(WinPos, {0,0}, player.boundingBox, player.vel))
+	if (CollisionIntersection_PointRect(WinPos, { 0,0 }, player.boundingBox, player.vel))
 	{
 		gGameStateNext = GS_WIN;
 	}
@@ -348,7 +348,7 @@ void Player::Player_Draw()
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
 	AEGfxTextureSet(pPlayer->texture, 0, 0);
 	AEGfxSetTransform(Transform.m);
-	
+
 	AEGfxSetTransparency(1.0f);
 	AEGfxMeshDraw(pPlayer->pMesh, AE_GFX_MDM_TRIANGLES);
 
@@ -400,7 +400,7 @@ void Player::BoundingBox()
 
 	player.boundingBox.min.x = player.pos.x - Scale / 4;// 5;
 	player.boundingBox.min.y = player.pos.y - Scale / 2;
-	player.boundingBox.max.x = player.pos.x + Scale / 4;// 5;
+	player.boundingBox.max.x = player.pos.x + Scale / 4 - 10.f;// 5;
 	player.boundingBox.max.y = player.pos.y + Scale / 2;
 }
 
