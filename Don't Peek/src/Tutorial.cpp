@@ -31,7 +31,7 @@ Technology is prohibited.
 #include "Player.h"
 
 background bg;
-float timer = 0;
+static float timer = 0;
 void Tutorial_Load()
 {
 	/******************************************************************************/
@@ -69,7 +69,7 @@ void Tutorial_Load()
 void Tutorial_Init()
 {
 	SetWin({ 1045, 260 });
-	timer = 300.f;
+	//timer = 50.f;
 	SetDoorNum(8);
 	//Highlighter
 	SetHighlighterNum(2);
@@ -167,6 +167,7 @@ void Tutorial_Update()
 		TIMER
 	*/
 	/******************************************************************************/
+	/*printf("timer: %f \n", timer);
 	if (timer < 0)
 	{
 		gGameStateNext = GS_LOSE;
@@ -174,7 +175,7 @@ void Tutorial_Update()
 	else
 	{
 		timer -= g_dt;
-	}
+	}*/
 }
 void Tutorial_Draw()
 {
@@ -193,6 +194,6 @@ void Tutorial_Free()
 }
 void Tutorial_Unload()
 {
-
+	timer = 50.f;
 	AEGfxTextureUnload(bg.pBg->texture);
 }
