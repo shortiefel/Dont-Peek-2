@@ -68,10 +68,10 @@ void HowtoplayDraw(void)
 {
 	Tutorial_Draw();
 	wall.DrawWall();
-	sharpener.DrawSharpener();
-	eraser.DrawEraser();
 	highlighter.DrawHighlighter();
 	pencil.DrawPencil();
+	sharpener.DrawSharpener();
+	eraser.DrawEraser();
 	door.DrawDoor();
 	player.Player_Draw();
 }
