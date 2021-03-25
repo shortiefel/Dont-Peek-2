@@ -124,8 +124,8 @@ void Tutorial_Init()
 	wall.CreateWall({ 520,-368 }, { 1,0 }, 24, 30.f, CEILING); // top wall
 	wall.CreateWall({ 490,-368 }, { 0,-1 }, 16, 30.f, WALL); // left wall
 	wall.CreateWall({ 1210,-368 }, { 0,-1 }, 16, 30.f, WALL); // right wall
-	wall.CreateWall({ 520,-505-70 }, { 1,0 }, 6, 30.f, CEILING); //platform left
-	wall.CreateWall({ 1060,-640 }, { 1,0 }, 5, 30.f, PLATFORM); //platform right
+	wall.CreateWall({ 520,-505-75 }, { 1,0 }, 6, 30.f, CEILING); //platform left
+	wall.CreateWall({ 1060,-640 }, { 1,0 }, 6, 30.f, PLATFORM); //platform right
 	wall.CreateWall({ 670,-530-80 }, { 0,-1 }, 9, 30.f, WALL); //wall mid
 
 	eraser.SetEraserPosition(0, { 900, -740 });
