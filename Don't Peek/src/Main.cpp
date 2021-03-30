@@ -7,6 +7,7 @@
 //-----------GLOBALs-----------
 float g_dt;
 double g_appTime;
+bool CheckPause;
 
 /******************************************************************************/
 /*!
@@ -33,7 +34,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	//MISSING GAME TIME LOOP----
 
 
-	GameStateMgrInit(GS_SPLASH); //for now its level one, once menu is done change it
+	GameStateMgrInit(GS_PAUSE); //for now its level one, once menu is done change it
 
 	//GameStateMgrInit(GS_PAUSE); //for now its level one, once menu is done change it
 

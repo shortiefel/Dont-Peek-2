@@ -187,11 +187,17 @@ void CreditsUpdate()
 				}
 			}
 		}
-	if (AEInputCheckCurr(AEVK_B))
-		gGameStateNext = GS_MENU;
 
-	if (AEInputCheckCurr(AEVK_ESCAPE))
-		gGameStateNext = GS_QUIT;
+		//MAIN BUTTONS
+		if (AEInputCheckCurr(AEVK_ESCAPE))
+			gGameStateNext = GS_QUIT;
+
+		if (AEInputCheckCurr(AEVK_B))
+			gGameStateNext = GS_MENU;
+
+		if (AEInputCheckCurr(AEVK_P))
+			gGameStateNext = GS_PAUSE;
+
 }
 
 void CreditsDraw()

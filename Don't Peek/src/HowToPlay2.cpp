@@ -62,6 +62,7 @@ void HowtoplayUpdate(void)
 	pencil.UpdatePencil();
 	door.UpdateDoor();
 	player.Player_Update();
+
 }
 
 void HowtoplayDraw(void)

@@ -146,16 +146,15 @@ void Player::Player_Update()
 		SetGravity();
 
 
-		if (AEInputCheckCurr(AEVK_B))
-		{
-			//HowtoplayFree();
-			//HowtoplayUnload();
-			gGameStateNext = GS_MENU;
-		}
-		
+		//MAIN BUTTONS
+		if (AEInputCheckCurr(AEVK_ESCAPE))
+			gGameStateNext = GS_QUIT;
 
-	if (AEInputCheckCurr(AEVK_ESCAPE))
-		gGameStateNext = GS_QUIT;
+		if (AEInputCheckCurr(AEVK_B))
+			gGameStateNext = GS_MENU;
+
+		if (AEInputCheckCurr(AEVK_P))
+			gGameStateNext = GS_PAUSE;
 
 	BoundingBox();
 	/******************************************************************************/
