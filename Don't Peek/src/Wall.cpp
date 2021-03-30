@@ -100,19 +100,50 @@ void Wall::UpdateWall()
 /******************************************************************************/
 void Wall::DrawWall()
 {	
-	/*
+
 	AEGfxSetBlendMode(AE_GFX_BM_NONE);	
 	AEGfxSetRenderMode(AE_GFX_RM_COLOR);
 	for (int i = 0; i < numberWalls; i++)
 	{
 		//printf("print wall");
 		// Drawing object 1
-		if (WallArr[i].Walltype == WALL)
+		switch (WallArr[i].Walltype)
+		{
+			case WALL:
+				// Set the current object instance's transform matrix using "AEGfxSetTransform"
+				AEGfxSetTransform(WallArr[i].transform.m);
+				// Draw the shape used by the current object instance using "AEGfxMeshDraw"
+				AEGfxSetBlendColor(0.f, 0.f, 0.f, 1.f);
+				AEGfxMeshDraw(pWall->pMesh, AE_GFX_MDM_TRIANGLES);
+				break;
+			case PLATFORM:
+				// Set the current object instance's transform matrix using "AEGfxSetTransform"
+				AEGfxSetTransform(WallArr[i].transform.m);
+				// Draw the shape used by the current object instance using "AEGfxMeshDraw"
+				AEGfxSetBlendColor(1.0f, 0.f, 0.f, 1.f);
+				AEGfxMeshDraw(pWall->pMesh, AE_GFX_MDM_TRIANGLES);
+				break;
+			case CEILING:
+				// Set the current object instance's transform matrix using "AEGfxSetTransform"
+				AEGfxSetTransform(WallArr[i].transform.m);
+				// Draw the shape used by the current object instance using "AEGfxMeshDraw"
+				AEGfxSetBlendColor(0.0f, 1.f, 0.f, 1.f);
+				AEGfxMeshDraw(pWall->pMesh, AE_GFX_MDM_TRIANGLES);
+				break;
+			case OBJWALL:
+				// Set the current object instance's transform matrix using "AEGfxSetTransform"
+				AEGfxSetTransform(WallArr[i].transform.m);
+				// Draw the shape used by the current object instance using "AEGfxMeshDraw"
+				AEGfxSetBlendColor(0.0f, 1.f, 1.f, 1.f);
+				AEGfxMeshDraw(pWall->pMesh, AE_GFX_MDM_TRIANGLES);
+				break;
+		}
+		/*if (WallArr[i].Walltype == WALL)
 		{
 			// Set the current object instance's transform matrix using "AEGfxSetTransform"
 			AEGfxSetTransform(WallArr[i].transform.m);
 			// Draw the shape used by the current object instance using "AEGfxMeshDraw"
-			AEGfxSetBlendColor(0.f, 0.f, 0.f, 0.f);
+			AEGfxSetBlendColor(0.f, 0.f, 0.f, 1.f);
 			AEGfxMeshDraw(pWall->pMesh, AE_GFX_MDM_TRIANGLES);
 		}
 		else if (WallArr[i].Walltype == PLATFORM)
@@ -120,7 +151,7 @@ void Wall::DrawWall()
 			// Set the current object instance's transform matrix using "AEGfxSetTransform"
 			AEGfxSetTransform(WallArr[i].transform.m);
 			// Draw the shape used by the current object instance using "AEGfxMeshDraw"
-			AEGfxSetBlendColor(1.0f, 0.f, 0.f, 0.f);
+			AEGfxSetBlendColor(1.0f, 0.f, 0.f, 1.f);
 			AEGfxMeshDraw(pWall->pMesh, AE_GFX_MDM_TRIANGLES);
 		}
 		else if (WallArr[i].Walltype == CEILING)
@@ -128,10 +159,10 @@ void Wall::DrawWall()
 			// Set the current object instance's transform matrix using "AEGfxSetTransform"
 			AEGfxSetTransform(WallArr[i].transform.m);
 			// Draw the shape used by the current object instance using "AEGfxMeshDraw"
-			AEGfxSetBlendColor(0.0f, 1.f, 0.f, 0.f);
+			AEGfxSetBlendColor(0.0f, 1.f, 0.f, 1.f);
 			AEGfxMeshDraw(pWall->pMesh, AE_GFX_MDM_TRIANGLES);
-		}
-	}*/
+		}*/
+	}
 }
 
 /******************************************************************************/

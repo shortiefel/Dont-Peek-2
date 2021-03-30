@@ -322,6 +322,19 @@ void Sharpener::UpdateSharpener()
 						Sharpenertemp->pos.x = (Walltemp->GetWallBoundingBox(j).min.x - 30);
 					}
 				}
+				else if (Walltemp->GetType(j) == Walltemp->GetType(j) == OBJWALL)
+				{
+					if (Sharpenertemp->pos.x >= Walltemp->GetWallBoundingBox(j).min.x)
+					{
+						Sharpenertemp->pos.x = (Walltemp->GetWallBoundingBox(j).max.x + 35);
+						Sharpenertemp->vel.y = -SPEED;
+					}
+					else if (Sharpenertemp->pos.x <= Walltemp->GetWallBoundingBox(j).max.x)
+					{
+						Sharpenertemp->pos.x = (Walltemp->GetWallBoundingBox(j).min.x - 35);
+						Sharpenertemp->vel.y = -SPEED;
+					}
+				}
 				else if (Walltemp->GetType(j) == PLATFORM)
 				{
 					if (Sharpenertemp->pos.y >= Walltemp->GetWallBoundingBox(j).max.y + 40 && Sharpenertemp->vel.y < 0)

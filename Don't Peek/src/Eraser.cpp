@@ -277,7 +277,7 @@ void Eraser::UpdateEraser()
 			{
 				WallCollision = true;
 				Erasertemp->vel.y = 0;
-				if (Walltemp->GetType(j) == WALL)
+				if (Walltemp->GetType(j) == WALL || Walltemp->GetType(j) == OBJWALL)
 				{
 					if (Erasertemp->pos.x >= Walltemp->GetWallBoundingBox(j).min.x)
 					{

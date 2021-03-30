@@ -1,27 +1,3 @@
-<<<<<<< HEAD
-﻿  Collision.cpp
-C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Collision.cpp(141,34): warning C4100: 'vel2': unreferenced formal parameter
-C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Collision.cpp(140,73): warning C4100: 'vel1': unreferenced formal parameter
-  Level 1.cpp
+﻿  Level 1.cpp
 C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\fmod_errors.h(20,20): warning C4505: 'FMOD_ErrorString': unreferenced local function has been removed
-  Lose.cpp
-C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Lose.cpp(139,8): warning C4551: function call missing argument list
-C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Lose.cpp(149,8): warning C4551: function call missing argument list
-  Wall.cpp
-C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Wall.cpp(72,20): warning C4459: declaration of 'Walltemp' hides global declaration
-C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Wall.cpp(30,7): message : see declaration of 'Walltemp'
-C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Wall.cpp(194,19): warning C4459: declaration of 'Walltemp' hides global declaration
-C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Wall.cpp(30,7): message : see declaration of 'Walltemp'
-C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Wall.cpp(200,19): warning C4459: declaration of 'Walltemp' hides global declaration
-C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Wall.cpp(30,7): message : see declaration of 'Walltemp'
-  Generating Code...
-=======
-﻿  Wall.cpp
-C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Wall.cpp(72,20): warning C4459: declaration of 'Walltemp' hides global declaration
-C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Wall.cpp(30,7): message : see declaration of 'Walltemp'
-C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Wall.cpp(195,19): warning C4459: declaration of 'Walltemp' hides global declaration
-C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Wall.cpp(30,7): message : see declaration of 'Walltemp'
-C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Wall.cpp(201,19): warning C4459: declaration of 'Walltemp' hides global declaration
-C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Wall.cpp(30,7): message : see declaration of 'Walltemp'
->>>>>>> ALPHA
   DontPeek.vcxproj -> C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\\bin\Debug-x64\DontPeek.exe

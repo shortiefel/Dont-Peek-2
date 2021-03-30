@@ -81,9 +81,12 @@ void Level1_Init()
 	wall.CreateWall({ -430,260 }, { 1,0 }, 22, 30.f, CEILING); // top wall
 	wall.CreateWall({ -460,260 }, { 0,-1 }, 17, 30.f, WALL); // left wall
 	wall.CreateWall({ -440 + 22 * 30,260 }, { 0,-1 }, 17, 30.f, WALL); // right wall
-	wall.CreateWall({ -220, -90-10 }, { 1,0 }, 18 , 30.f, PLATFORM); //platform
+	wall.CreateWall({ -200, -90-10 }, { 1,0 }, 17 , 30.f, PLATFORM); //platform
 
 	wall.CreateWall({ 40, 70 }, { 1,0 }, 6, 30.f, CEILING); // cover door
+
+	//preventing softlocks
+	wall.CreateWall({ -360, 70 }, { 0,-1 }, 10, 30.f, OBJWALL); // cover door
 
 	door.SetDoorPosition(0, { 120 , -160 });//door 0
 	door.SetDoorPosition(5, { -220 , 180});//door 5

@@ -28,7 +28,8 @@ enum wallType
 {
 	WALL,
 	PLATFORM,
-	CEILING
+	CEILING,
+	OBJWALL
 };
 
 class Wall
