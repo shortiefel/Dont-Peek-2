@@ -28,6 +28,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	AESysInit(instanceH, show, 1000, 700, 1, 60, false, NULL);
 	AESysSetWindowTitle("Don't Peek");
 	AEGfxSetBackgroundColor(100.0f, 100.0f, 100.0f);
+	Fonts = AEGfxCreateFont("Resources/Arial Italic.ttf", 25);
 	//SoundSystem_Init();
 
 	//MISSING GAME TIME LOOP----
@@ -37,7 +38,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 
 	//GameStateMgrInit(GS_PAUSE); //for now its level one, once menu is done change it
 
-	
+		Fonts = AEGfxCreateFont("Resources/Arial Italic.ttf", 25);
 	while (gGameStateCurr != GS_QUIT)
 	{
 

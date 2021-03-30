@@ -33,6 +33,8 @@ Technology is prohibited.
 #include "Music.h"
 
 static float timer = 0;
+char strBuffer[100];
+char Fonts;
 void Level1_Load()
 {
 	bg.Bgpos = { 350.f,-200.f };
@@ -155,6 +157,7 @@ void Level1_Update()
 	{
 		timer -= g_dt;
 	}
+	
 }
 void Level1_Draw()
 {
@@ -166,6 +169,9 @@ void Level1_Draw()
 	AEGfxSetTransform(bg.transform.m);
 	AEGfxSetTransparency(1.0f);
 	AEGfxMeshDraw(bg.pBg->pMesh, AE_GFX_MDM_TRIANGLES);
+	AEGfxSetTransparency(0.0f);
+	sprintf_s(strBuffer, "Timer: %d", (int)timer);
+	AEGfxPrint(Fonts, strBuffer, -1.0f, 0.9f, 1.0f, 0.0f, 0.0f, 0.0f);
 }
 void Level1_Free()
 {

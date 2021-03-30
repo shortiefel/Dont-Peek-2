@@ -9,6 +9,7 @@
 
 extern float g_dt;
 extern double g_appTime;
+extern char Fonts;
 
 ///-------INCLUDES-----------
 
