@@ -24,6 +24,7 @@ Technology is prohibited.
 #include "Collision.h"
 #include "Player.h"
 #include <iostream>
+#include "GameStateMgr.h"
 
 static int numberWalls = 0;
 static Wall WallArr[1000];
@@ -150,9 +151,17 @@ void Wall::FreeWall()
 /******************************************************************************/
 void Wall::UnloadWall()
 {
-	AEGfxMeshFree(pWall->pMesh);
-	numberWalls = 0; //DONE BY FELICIA< JARELL< JER AND SOLVED BY US 
-	printf("free!");
+	if (AEInputCheckCurr(AEVK_P))
+	{
+		gGameStateNext = GS_PAUSE;
+	}
+	else
+	{
+		AEGfxMeshFree(pWall->pMesh);
+		numberWalls = 0; //DONE BY FELICIA< JARELL< JER AND SOLVED BY US 
+		printf("free!");
+	}
+	
 }
 
 /******************************************************************************/

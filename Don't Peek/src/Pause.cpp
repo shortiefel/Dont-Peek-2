@@ -140,6 +140,8 @@ void PauseInit()
 
 void PauseUpdate()
 {
+	CheckPause = true;
+
 	AEGfxSetCamPosition(0, 0);
 	BoundingBoxPause();
 	AEInputGetCursorPosition(&Px, &Py);
@@ -150,68 +152,70 @@ void PauseUpdate()
 		Py *= -1;
 	}
 
-	if (CheckPause = true)
+	
+	
+	if (AEInputCheckTriggered(AEVK_LBUTTON))
 	{
-		if (AEInputCheckTriggered(AEVK_LBUTTON))
+		printf("Mouse: %d::%d\n", Px, Py);
+
+		if (CollisionIntersection_PointRect({ static_cast<float>(Px), static_cast<float>(Py) }, { 0,0 }, Pbtn[0].boundingBox, { 0,0 }))
 		{
-			printf("Mouse: %d::%d\n", Px, Py);
 
-			if (CollisionIntersection_PointRect({ static_cast<float>(Px), static_cast<float>(Py) }, { 0,0 }, Pbtn[0].boundingBox, { 0,0 }))
+			if (gGameStatePrev == GS_TUTORIAL)
 			{
 				if (AEInputUpdate)
 				{
-					//gGameStateNext = GS_MENU;
-					printf("BUTTON RESUME \n");
-					printf("BBMin: %f::%f\n", Pbtn[0].boundingBox.min.x, Pbtn[0].boundingBox.min.y);
-					printf("BBMax: %f::%f\n", Pbtn[0].boundingBox.max.x, Pbtn[0].boundingBox.max.y);
-
-					if (gGameStateCurr == GS_TUTORIAL)
-					{
-
-						gAEGameStateCurr = GS_TUTORIAL;
-						printf("Go tutorial");
-					}
-					else if (gGameStateCurr == GS_DONT_PEEK)
-					{
-						gGameStateCurr == GS_DONT_PEEK;
-						printf("Go level");
-					}
+					gGameStateCurr = GS_TUTORIAL;
+					printf("Go tutorial");
 				}
+					
 			}
-			else if (CollisionIntersection_PointRect({ static_cast<float>(Px), static_cast<float>(Py) }, { 0,0 }, Pbtn[1].boundingBox, { 0,0 }))
+			else if (gGameStatePrev == GS_DONT_PEEK)
 			{
 				if (AEInputUpdate)
 				{
-					//gGameStateNext = GS_DONT_PEEK;
-					printf("BUTTON RESTART \n");
-					printf("BBMin: %f::%f\n", Pbtn[1].boundingBox.min.x, Pbtn[1].boundingBox.min.y);
-					printf("BBMax: %f::%f\n", Pbtn[1].boundingBox.max.x, Pbtn[1].boundingBox.max.y);
-
-					if (gGameStateCurr == GS_TUTORIAL)
-					{
-
-						gAEGameStateNext = GS_TUTORIAL;
-						printf("Go tutorial");
-					}
-					else if (gGameStateCurr == GS_DONT_PEEK)
-					{
-						gGameStateNext == GS_DONT_PEEK;
-						printf("Go level");
-					}
+					gGameStateCurr = GS_DONT_PEEK;
+					printf("Go level");
 				}
+					
 			}
-			else if (CollisionIntersection_PointRect({ static_cast<float>(Px), static_cast<float>(Py) }, { 0,0 }, Pbtn[2].boundingBox, { 0,0 }))
+				
+				
+		}
+		else if (CollisionIntersection_PointRect({ static_cast<float>(Px), static_cast<float>(Py) }, { 0,0 }, Pbtn[1].boundingBox, { 0,0 }))
+		{
+
+			if (gGameStatePrev == GS_TUTORIAL)
 			{
 				if (AEInputUpdate)
 				{
-					gGameStateNext = GS_MENU;
-					printf("BUTTON MAIN MENU \n");
-					printf("BBMin: %f::%f\n", Pbtn[2].boundingBox.min.x, Pbtn[2].boundingBox.min.y);
-					printf("BBMax: %f::%f\n", Pbtn[2].boundingBox.max.x, Pbtn[2].boundingBox.max.y);
+					gGameStateNext = GS_TUTORIAL;
+					printf("Go tutorial");
 				}
+						
+			}
+			else if (gGameStatePrev == GS_DONT_PEEK)
+			{
+				if (AEInputUpdate)
+				{
+					gGameStateNext = GS_DONT_PEEK;
+					printf("Go level");
+				}
+						
+			}
+		}
+		else if (CollisionIntersection_PointRect({ static_cast<float>(Px), static_cast<float>(Py) }, { 0,0 }, Pbtn[2].boundingBox, { 0,0 }))
+		{
+			if (AEInputUpdate)
+			{
+				gGameStateNext = GS_MENU;
+				printf("BUTTON MAIN MENU \n");
+				printf("BBMin: %f::%f\n", Pbtn[2].boundingBox.min.x, Pbtn[2].boundingBox.min.y);
+				printf("BBMax: %f::%f\n", Pbtn[2].boundingBox.max.x, Pbtn[2].boundingBox.max.y);
 			}
 		}
 	}
+
 
 	
 	//MAIN BUTTONS

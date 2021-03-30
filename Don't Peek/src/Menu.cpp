@@ -242,9 +242,6 @@ void MenuUpdate()
 		if (AEInputCheckCurr(AEVK_B))
 			gGameStateNext = GS_MENU;
 
-		if (AEInputCheckCurr(AEVK_P))
-			gGameStateNext = GS_PAUSE;
-
 }
 void MenuDraw()
 {

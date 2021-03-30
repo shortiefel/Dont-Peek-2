@@ -44,6 +44,7 @@ float CameraPosY = 0;
 AEVec2 WinPos;
 Wall* wall_player;
 
+
 /******************************************************************************/
 /*!
 	Player Load
@@ -94,6 +95,8 @@ void Player::Player_Init()
 /******************************************************************************/
 void Player::Player_Update()
 {
+	CheckPause = false;
+
 	//FAKE GROUND
 	GROUND = -1000; //For Player To Fall
 	/******************************************************************************/
@@ -146,7 +149,7 @@ void Player::Player_Update()
 		SetGravity();
 
 
-		//MAIN BUTTONS
+	//MAIN BUTTONS
 		if (AEInputCheckCurr(AEVK_ESCAPE))
 			gGameStateNext = GS_QUIT;
 
@@ -154,7 +157,11 @@ void Player::Player_Update()
 			gGameStateNext = GS_MENU;
 
 		if (AEInputCheckCurr(AEVK_P))
+		{
+			CheckPause = true;
 			gGameStateNext = GS_PAUSE;
+		}
+			
 
 	BoundingBox();
 	/******************************************************************************/
@@ -360,7 +367,12 @@ void Player::Player_Draw()
 /******************************************************************************/
 void Player::Player_Free()
 {
-	AEGfxMeshFree(pPlayer->pMesh);
+	if (AEInputCheckCurr(AEVK_P))
+	{
+		gGameStateNext = GS_PAUSE;
+	}
+	else
+		AEGfxMeshFree(pPlayer->pMesh);
 }
 
 /******************************************************************************/
@@ -370,7 +382,12 @@ void Player::Player_Free()
 /******************************************************************************/
 void Player::Player_Unload()
 {
-	AEGfxTextureUnload(pPlayer->texture);
+	if (AEInputCheckCurr(AEVK_P))
+	{
+		gGameStateNext = GS_PAUSE;
+	}
+	else
+		AEGfxTextureUnload(pPlayer->texture);
 }
 
 
