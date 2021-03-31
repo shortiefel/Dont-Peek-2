@@ -32,7 +32,9 @@ Technology is prohibited.
 #include "Wall.h"
 #include "Music.h"
 
-
+static float timer = 0;
+char strBuffer[100];
+char Fonts;
 void Level1_Load()
 {
 	bg.Bgpos = { 350.f,-200.f };
@@ -136,9 +138,26 @@ void Level1_Init()
 	door.SetDoorPosition(7, { 530 , -370 });//door 7
 	sharpener.SetSharpenerPosition(1, { 780, 20 }); // sharpener
 	
+	//timer
+	timer = 150.f;
 }
 void Level1_Update()
 {
+	/******************************************************************************/
+	/*!
+		TIMER
+	*/
+	/******************************************************************************/
+	printf("timer: %f \n", timer);
+	if (timer < 0)
+	{
+		gGameStateNext = GS_LOSE;
+	}
+	else
+	{
+		timer -= g_dt;
+	}
+	
 }
 void Level1_Draw()
 {
@@ -150,6 +169,9 @@ void Level1_Draw()
 	AEGfxSetTransform(bg.transform.m);
 	AEGfxSetTransparency(1.0f);
 	AEGfxMeshDraw(bg.pBg->pMesh, AE_GFX_MDM_TRIANGLES);
+	AEGfxSetTransparency(0.0f);
+	sprintf_s(strBuffer, "Timer: %d", (int)timer);
+	AEGfxPrint(Fonts, strBuffer, -1.0f, 0.9f, 1.0f, 0.0f, 0.0f, 0.0f);
 }
 void Level1_Free()
 {
@@ -158,6 +180,6 @@ void Level1_Free()
 }
 void Level1_Unload()
 {
-	
+	timer = 100.f;
 	AEGfxTextureUnload(bg.pBg->texture);
 }

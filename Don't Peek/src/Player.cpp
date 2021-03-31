@@ -136,7 +136,7 @@ void Player::Player_Update()
 		CanJump = false;
 		//Position.y += Velocity.y * 4;
 		float g = 65.f * g_dt;
-		player.vel.y = static_cast<double>((2 * g) * (500 - 440));
+		player.vel.y = static_cast<double>((2 * g) * (140 - 0));
 		//printf("PosY: %f, %f\n", pos.x, pos.y);
 	}
 	else if (player.pos.y < GROUND)
@@ -399,7 +399,7 @@ void Player::Player_Unload()
 /******************************************************************************/
 void Player::SetGravity()
 {
-	vel.y -= 65.f * g_dt;
+	vel.y -= 450.0f * g_dt;
 }
 
 /******************************************************************************/

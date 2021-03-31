@@ -10,6 +10,7 @@
 extern float g_dt;
 extern double g_appTime;
 extern bool CheckPause;
+extern char Fonts;
 
 ///-------INCLUDES-----------
 
