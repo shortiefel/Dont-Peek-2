@@ -21,6 +21,7 @@ Technology is prohibited.
 /* End Header **************************************************************************/
 
 #include "GameState_DontPeek.h"
+#include "GameStateMgr.h"
 #include "Door.h"
 #include "Player.h"
 #include "Sharpener.h"
@@ -148,14 +149,20 @@ void GameStateDontPeekDraw(void)
 /******************************************************************************/
 void GameStateDontPeekFree(void)
 {
-	SoundSystem_Destroy();
-	sharpener.FreeSharpener();
-	eraser.FreeEraser();
-	highlighter.FreeHighlighter();
-	pencil.FreePencil();
-	door.FreeDoor();
-	player.Player_Free();
-	wall.FreeWall();
+	if (AEInputCheckCurr(AEVK_P))
+		gGameStateNext = GS_PAUSE;
+	else
+	{
+		SoundSystem_Destroy();
+		sharpener.FreeSharpener();
+		eraser.FreeEraser();
+		highlighter.FreeHighlighter();
+		pencil.FreePencil();
+		door.FreeDoor();
+		player.Player_Free();
+		wall.FreeWall();
+	}
+	
 
 }
 
@@ -166,13 +173,19 @@ void GameStateDontPeekFree(void)
 /******************************************************************************/
 void GameStateDontPeekUnload(void)
 {
+	if (AEInputCheckCurr(AEVK_P))
+		gGameStateNext = GS_PAUSE;
+	else
+	{
+		Level1_Unload();
+		sharpener.UnloadSharpener();
+		eraser.UnloadEraser();
+		highlighter.UnloadHighlighter();
+		pencil.UnloadPencil();
+		door.UnloadDoor();
+		player.Player_Unload();
+		wall.UnloadWall();
+	}
 	//Tutorial_Unload();
-	Level1_Unload();
-	sharpener.UnloadSharpener();
-	eraser.UnloadEraser();
-	highlighter.UnloadHighlighter();
-	pencil.UnloadPencil();
-	door.UnloadDoor();
-	player.Player_Unload();
-	wall.UnloadWall();
+	
 }

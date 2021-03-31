@@ -135,7 +135,7 @@ void Player::Player_Update()
 		//printf("jumping \n");
 		CanJump = false;
 		//Position.y += Velocity.y * 4;
-		float g = 65.f * g_dt;
+		float g = 68.f * g_dt;
 		player.vel.y = static_cast<double>((2 * g) * (140 - 0));
 		//printf("PosY: %f, %f\n", pos.x, pos.y);
 	}

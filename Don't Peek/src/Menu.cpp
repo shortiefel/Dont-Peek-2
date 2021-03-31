@@ -198,7 +198,8 @@ void MenuUpdate()
 				if (AEInputUpdate)
 				{
 					//SoundSystem_Destroy();
-					gGameStateNext = GS_DONT_PEEK;
+					
+					gGameStateNext = GS_TUTORIAL;
 					printf("BUTTON PLAY \n");
 					printf("BBMin: %f::%f\n", button[0].boundingBox.min.x, button[0].boundingBox.min.y);
 					printf("BBMax: %f::%f\n", button[0].boundingBox.max.x, button[0].boundingBox.max.y);
