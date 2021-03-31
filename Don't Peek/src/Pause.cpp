@@ -22,6 +22,7 @@ Technology is prohibited.
 #include "Win.h"
 #include "Pause.h"
 #include "Menu.h"
+#include "Player.h"
 
 
 Pause pause;
@@ -165,7 +166,10 @@ void PauseUpdate()
 			{
 				if (AEInputUpdate)
 				{
-					gGameStateCurr = GS_TUTORIAL;
+					AEGfxSetCamPosition(player.GetPosPlayer().x, player.GetPosPlayer().y);
+					player.GetPlayerObj();
+					player.GetBoundingBoxPlayer();
+					gGameStateNext = GS_TUTORIAL;
 					printf("Go tutorial");
 				}
 					
@@ -174,7 +178,10 @@ void PauseUpdate()
 			{
 				if (AEInputUpdate)
 				{
-					gGameStateCurr = GS_DONT_PEEK;
+					AEGfxSetCamPosition(player.GetPosPlayer().x, player.GetPosPlayer().y);
+					player.GetPlayerObj();
+					player.GetBoundingBoxPlayer();
+					gGameStateNext = GS_DONT_PEEK;
 					printf("Go level");
 				}
 					
