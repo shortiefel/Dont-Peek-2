@@ -166,6 +166,7 @@ void PauseUpdate()
 			{
 				if (AEInputUpdate)
 				{
+					player.Player_Draw();
 					AEGfxSetCamPosition(player.GetPosPlayer().x, player.GetPosPlayer().y);
 					player.GetPlayerObj();
 					player.GetBoundingBoxPlayer();
