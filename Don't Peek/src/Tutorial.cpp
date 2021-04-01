@@ -32,6 +32,7 @@ Technology is prohibited.
 
 background bg;
 static float timer = 0;
+
 void Tutorial_Load()
 {
 	/******************************************************************************/
@@ -74,7 +75,7 @@ void Tutorial_Init()
 	//Highlighter
 	SetHighlighterNum(2);
 	//Sharperner
-	SetSharpenerNum(3);
+	SetSharpenerNum(2);
 	//eraser
 	SetEraserNum(1);
 	//pencil
@@ -118,35 +119,33 @@ void Tutorial_Init()
 		THIRD BOX
 	*/
 	/******************************************************************************/
-	door.SetDoorPosition(3, { 560 , -457-50 });
+	door.SetDoorPosition(3, { 560 , -750 });
 	door.SetDoorPosition(4, { 1130 , -535-40 });
 	wall.CreateWall({ 520,-820 }, { 1,0 }, 24, 30.f, PLATFORM); //floor
 	wall.CreateWall({ 520,-368 }, { 1,0 }, 24, 30.f, CEILING); // top wall
 	wall.CreateWall({ 490,-368 }, { 0,-1 }, 16, 30.f, WALL); // left wall
 	wall.CreateWall({ 1210,-368 }, { 0,-1 }, 16, 30.f, WALL); // right wall
-	wall.CreateWall({ 520,-505-75 }, { 1,0 }, 6, 30.f, CEILING); //platform left
 	wall.CreateWall({ 1060,-640 }, { 1,0 }, 6, 30.f, PLATFORM); //platform right
-	wall.CreateWall({ 670,-530-80 }, { 0,-1 }, 9, 30.f, WALL); //wall mid
 
-	eraser.SetEraserPosition(0, { 900, -740 });
-	pencil.SetPencil(0, { 1100, -740 }, 20, 100);
 
-	highlighter.SetHighlighterPosition(0, { 1000, -770 });
-	highlighter.SetHighlighterPosition(1, { 1100, -770 });
+	highlighter.SetHighlighterPosition(0, { 850, -770 });
+	highlighter.SetHighlighterPosition(1, { 950, -770 });
 
 	/******************************************************************************/
 	/*!
 		FOURTH BOX
 	*/
 	/******************************************************************************/
-	door.SetDoorPosition(5, { 570 , -110 });
-	door.SetDoorPosition(6, { 770 , 100 });
+	door.SetDoorPosition(5, { 570 , 180 });
+	door.SetDoorPosition(6, { 800 , -140 });
 	wall.CreateWall({ 540,-205 }, { 1,0 }, 11, 30.f, PLATFORM); //floor
 	wall.CreateWall({ 540,310 }, { 1,0 }, 11, 30.f, CEILING); //top wall
 	wall.CreateWall({ 510,310 }, { 0,-1 }, 18, 30.f, WALL); //left wall
 	wall.CreateWall({ 870,310 }, { 0,-1 }, 18, 30.f, WALL); //right wall
-	
-	sharpener.SetSharpenerPosition(2, { 760,-30 });
+
+	eraser.SetEraserPosition(0, {650, -80 });
+	//pencil not showing
+	pencil.SetPencil(0, { 710, -80 }, 20, 100);
 
 	/******************************************************************************/
 	/*!
