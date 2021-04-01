@@ -16,6 +16,8 @@ without the prior written consent of DigiPen Institute of
 Technology is prohibited.
 */
 /* End Header **************************************************************************/
+
+#include "GameStateMgr.h"
 #include "GameState_DontPeek.h"
 #include "Collision.h"
 #include "Sharpener.h"
@@ -365,7 +367,7 @@ void Sharpener::DrawSharpener()
 /******************************************************************************/
 void Sharpener::FreeSharpener()
 {
-	AEGfxMeshFree(pSharpener->pMesh);
+
 }
 
 /******************************************************************************/
@@ -375,8 +377,9 @@ void Sharpener::FreeSharpener()
 /******************************************************************************/
 void Sharpener::UnloadSharpener() {
 
-	AEGfxTextureUnload(pSharpener->texture);
-	SharpenerNum = 0;
+		AEGfxMeshFree(pSharpener->pMesh);
+		AEGfxTextureUnload(pSharpener->texture);
+		SharpenerNum = 0;
 }
 
 /******************************************************************************/

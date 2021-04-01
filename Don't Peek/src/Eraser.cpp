@@ -16,6 +16,8 @@ without the prior written consent of DigiPen Institute of
 Technology is prohibited.
 */
 /* End Header **************************************************************************/
+
+#include "GameStateMgr.h"
 #include "GameState_DontPeek.h"
 #include "Collision.h"
 #include "Sharpener.h"
@@ -331,7 +333,7 @@ void Eraser::DrawEraser()
 /******************************************************************************/
 void Eraser::FreeEraser()
 {
-	AEGfxMeshFree(pEraser->pMesh);
+	
 }
 
 /******************************************************************************/
@@ -341,8 +343,10 @@ void Eraser::FreeEraser()
 /******************************************************************************/
 void Eraser::UnloadEraser() {
 
-	AEGfxTextureUnload(pEraser->texture);
-	EraserNum = 0;
+
+		AEGfxTextureUnload(pEraser->texture);
+		AEGfxMeshFree(pEraser->pMesh);
+		EraserNum = 0;
 }
 
 /******************************************************************************/

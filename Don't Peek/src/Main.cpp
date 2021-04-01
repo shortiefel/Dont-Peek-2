@@ -68,7 +68,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 			AESysFrameEnd();
 
 			//checking if application is being forced to quit
-			if ((AESysDoesWindowExist() == false || AEInputCheckTriggered(AEVK_ESCAPE)))
+			if ((AESysDoesWindowExist() == false))
 			{
 				gGameStateNext = GS_QUIT;
 			}
