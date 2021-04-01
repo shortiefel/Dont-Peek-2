@@ -89,11 +89,8 @@ void GameStateDontPeekLoad(void)
 /******************************************************************************/
 void GameStateDontPeekInit(void)
 {
-
-
 	SoundSystem_Init();
 	SoundSystem_SFX();
-
 
 	Level1_Init();
 	wall.InitWall();
@@ -167,7 +164,6 @@ void GameStateDontPeekDraw(void)
 /******************************************************************************/
 void GameStateDontPeekFree(void)
 {
-
 	SoundSystem_Destroy();
 	sharpener.FreeSharpener();
 	eraser.FreeEraser();
@@ -176,9 +172,6 @@ void GameStateDontPeekFree(void)
 	door.FreeDoor();
 	player.Player_Free();
 	wall.FreeWall();
-
-	
-
 }
 
 /******************************************************************************/

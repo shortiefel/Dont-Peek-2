@@ -163,6 +163,7 @@ void PauseUpdate()
 				if (AEInputUpdate)
 				{
 					CheckPause = false;
+					AEGfxSetCamPosition(player.GetPosPlayer().x, player.GetPosPlayer().y);
 					/*AEGfxSetCamPosition(player.GetPosPlayer().x, player.GetPosPlayer().y);
 					player.Player_Update();
 					gGameStateNext = GS_TUTORIAL;
