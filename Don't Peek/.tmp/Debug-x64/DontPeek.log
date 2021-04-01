@@ -1,8 +1,5 @@
-﻿  Wall.cpp
-C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Wall.cpp(72,20): warning C4459: declaration of 'Walltemp' hides global declaration
-C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Wall.cpp(30,7): message : see declaration of 'Walltemp'
-C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Wall.cpp(195,19): warning C4459: declaration of 'Walltemp' hides global declaration
-C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Wall.cpp(30,7): message : see declaration of 'Walltemp'
-C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Wall.cpp(201,19): warning C4459: declaration of 'Walltemp' hides global declaration
-C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Wall.cpp(30,7): message : see declaration of 'Walltemp'
+﻿  Level Select.cpp
+C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Level Select.cpp(18,2): warning C4091: 'static ': ignored on left of 'LevelScreen' when no variable is declared
+C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Level Select.cpp(123,8): warning C4551: function call missing argument list
+C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Level Select.cpp(135,8): warning C4551: function call missing argument list
   DontPeek.vcxproj -> C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\\bin\Debug-x64\DontPeek.exe

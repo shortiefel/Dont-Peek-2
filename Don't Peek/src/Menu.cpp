@@ -210,6 +210,7 @@ void MenuUpdate()
 				if (AEInputUpdate)
 				{
 					printf("BUTTON LEVEL \n");
+					gGameStateNext = GS_LEVEL;
 				}
 
 			}
