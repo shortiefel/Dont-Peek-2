@@ -62,6 +62,9 @@
     <ClCompile Include="src\Win.cpp">
       <Filter>Source\Environment\Code</Filter>
     </ClCompile>
+    <ClCompile Include="src\Level Select.cpp">
+      <Filter>Source\Level\Code</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Main.h" />
@@ -154,6 +157,9 @@
     </ClInclude>
     <ClInclude Include="src\Win.h">
       <Filter>Source\Environment\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Level Select.h">
+      <Filter>Source\Level\Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
