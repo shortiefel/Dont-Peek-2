@@ -104,7 +104,7 @@ void Tutorial_Init()
 		SECOND BOX
 	*/
 	/******************************************************************************/
-	door.SetDoorPosition(1, { -40 , -320 });
+	door.SetDoorPosition(1, { -40 , -315 });
 	door.SetDoorPosition(2, { 150 , -650 });
 	wall.CreateWall({ -105,-720 }, { 1,0 }, 11, 30.f, PLATFORM); //floor
 	wall.CreateWall({ -105,-210 }, { 1,0 }, 11, 30.f, CEILING); // top wall
@@ -139,13 +139,14 @@ void Tutorial_Init()
 	door.SetDoorPosition(5, { 570 , 180 });
 	door.SetDoorPosition(6, { 800 , -140 });
 	wall.CreateWall({ 540,-205 }, { 1,0 }, 11, 30.f, PLATFORM); //floor
+	wall.CreateWall({ 540, 115 }, { 1,0 }, 5, 30.f, PLATFORM); //below door
 	wall.CreateWall({ 540,310 }, { 1,0 }, 11, 30.f, CEILING); //top wall
 	wall.CreateWall({ 510,310 }, { 0,-1 }, 18, 30.f, WALL); //left wall
 	wall.CreateWall({ 870,310 }, { 0,-1 }, 18, 30.f, WALL); //right wall
 
 	eraser.SetEraserPosition(0, {650, -80 });
 	//pencil not showing
-	pencil.SetPencil(0, { 710, -80 }, 20, 100);
+	pencil.SetPencil(0, { 730, -130 }, 20, 100);
 
 	/******************************************************************************/
 	/*!
