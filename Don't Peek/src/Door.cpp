@@ -61,7 +61,6 @@ void Door::LoadDoor()
 /******************************************************************************/
 void Door::InitDoor()
 {	
-	
 	Scale = 100.0f;
 	for (int i = 0; i < DoorNum; i++)
 	{

@@ -44,7 +44,6 @@ float CameraPosY = 0;
 AEVec2 WinPos;
 Wall* wall_player;
 
-
 /******************************************************************************/
 /*!
 	Player Load
@@ -95,8 +94,6 @@ void Player::Player_Init()
 /******************************************************************************/
 void Player::Player_Update()
 {
-	CheckPause = false;
-
 	//FAKE GROUND
 	GROUND = -1000; //For Player To Fall
 	/******************************************************************************/
@@ -135,7 +132,7 @@ void Player::Player_Update()
 		//printf("jumping \n");
 		CanJump = false;
 		//Position.y += Velocity.y * 4;
-		float g = 68.f * g_dt;
+		float g = 65.f * g_dt;
 		player.vel.y = static_cast<double>((2 * g) * (140 - 0));
 		//printf("PosY: %f, %f\n", pos.x, pos.y);
 	}
@@ -149,19 +146,16 @@ void Player::Player_Update()
 		SetGravity();
 
 
-	//MAIN BUTTONS
-		if (AEInputCheckCurr(AEVK_ESCAPE))
-			gGameStateNext = GS_QUIT;
-
 		if (AEInputCheckCurr(AEVK_B))
-			gGameStateNext = GS_MENU;
-
-		if (AEInputCheckCurr(AEVK_P))
 		{
-			CheckPause = true;
-			gGameStateNext = GS_PAUSE;
+			//HowtoplayFree();
+			//HowtoplayUnload();
+			gGameStateNext = GS_MENU;
 		}
-			
+		
+
+	if (AEInputCheckCurr(AEVK_ESCAPE))
+		gGameStateNext = GS_QUIT;
 
 	BoundingBox();
 	/******************************************************************************/
@@ -230,7 +224,6 @@ void Player::Player_Update()
 					CameraPosY = (Doortemp->GetDoorPosition(i + 1).y + WinPos.y) / 2;
 					//AEGfxSetCamPosition(player.pos.x, player.pos.y);
 				}
-
 			}
 			else
 			{
@@ -367,12 +360,7 @@ void Player::Player_Draw()
 /******************************************************************************/
 void Player::Player_Free()
 {
-	if (AEInputCheckCurr(AEVK_P))
-	{
-		gGameStateNext = GS_PAUSE;
-	}
-	else
-		AEGfxMeshFree(pPlayer->pMesh);
+	AEGfxMeshFree(pPlayer->pMesh);
 }
 
 /******************************************************************************/
@@ -382,12 +370,7 @@ void Player::Player_Free()
 /******************************************************************************/
 void Player::Player_Unload()
 {
-	if (AEInputCheckCurr(AEVK_P))
-	{
-		gGameStateNext = GS_PAUSE;
-	}
-	else
-		AEGfxTextureUnload(pPlayer->texture);
+	AEGfxTextureUnload(pPlayer->texture);
 }
 
 
