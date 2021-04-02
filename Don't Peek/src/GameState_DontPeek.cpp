@@ -33,6 +33,7 @@ Technology is prohibited.
 #include "Level 1.h"
 #include "Win.h"
 #include "Music.h"
+#include "Pause.h"
 
 
 /******************************************************************************/
@@ -88,11 +89,8 @@ void GameStateDontPeekLoad(void)
 /******************************************************************************/
 void GameStateDontPeekInit(void)
 {
-
-
 	SoundSystem_Init();
 	SoundSystem_SFX();
-
 
 	Level1_Init();
 	wall.InitWall();
@@ -111,16 +109,26 @@ void GameStateDontPeekInit(void)
 /******************************************************************************/
 void GameStateDontPeekUpdate(void)
 {
-	
-	//Tutorial_Update();
-	Level1_Update();
-	sharpener.UpdateSharpener();
-	eraser.UpdateEraser();
-	highlighter.UpdateHighlighter();
-	pencil.UpdatePencil();
-	door.UpdateDoor();
-	wall.UpdateWall();
-	player.Player_Update();
+	if (AEInputCheckCurr(AEVK_P))
+	{
+		CheckPause = true;
+	}
+
+	if (CheckPause == true)
+	{
+		PauseUpdate();
+	}
+	else if (CheckPause == false)
+	{
+		Level1_Update();
+		sharpener.UpdateSharpener();
+		eraser.UpdateEraser();
+		highlighter.UpdateHighlighter();
+		pencil.UpdatePencil();
+		door.UpdateDoor();
+		wall.UpdateWall();
+		player.Player_Update();
+	}
 }
 
 
@@ -131,15 +139,22 @@ void GameStateDontPeekUpdate(void)
 /******************************************************************************/
 void GameStateDontPeekDraw(void)
 {
-	//Tutorial_Draw();
-	Level1_Draw();
-	wall.DrawWall();
-	highlighter.DrawHighlighter();
-	pencil.DrawPencil();
-	sharpener.DrawSharpener();
-	eraser.DrawEraser();
-	door.DrawDoor();
-	player.Player_Draw();
+	if (CheckPause == true)
+	{
+		PauseDraw();
+	}
+	else if (CheckPause == false)
+	{
+		Level1_Draw();
+		wall.DrawWall();
+		highlighter.DrawHighlighter();
+		pencil.DrawPencil();
+		sharpener.DrawSharpener();
+		eraser.DrawEraser();
+		door.DrawDoor();
+		player.Player_Draw();
+	}
+
 }
 
 /******************************************************************************/
@@ -149,21 +164,14 @@ void GameStateDontPeekDraw(void)
 /******************************************************************************/
 void GameStateDontPeekFree(void)
 {
-	if (AEInputCheckCurr(AEVK_P))
-		gGameStateNext = GS_PAUSE;
-	else
-	{
-		SoundSystem_Destroy();
-		sharpener.FreeSharpener();
-		eraser.FreeEraser();
-		highlighter.FreeHighlighter();
-		pencil.FreePencil();
-		door.FreeDoor();
-		player.Player_Free();
-		wall.FreeWall();
-	}
-	
-
+	SoundSystem_Destroy();
+	sharpener.FreeSharpener();
+	eraser.FreeEraser();
+	highlighter.FreeHighlighter();
+	pencil.FreePencil();
+	door.FreeDoor();
+	player.Player_Free();
+	wall.FreeWall();
 }
 
 /******************************************************************************/
@@ -173,19 +181,13 @@ void GameStateDontPeekFree(void)
 /******************************************************************************/
 void GameStateDontPeekUnload(void)
 {
-	if (AEInputCheckCurr(AEVK_P))
-		gGameStateNext = GS_PAUSE;
-	else
-	{
-		Level1_Unload();
-		sharpener.UnloadSharpener();
-		eraser.UnloadEraser();
-		highlighter.UnloadHighlighter();
-		pencil.UnloadPencil();
-		door.UnloadDoor();
-		player.Player_Unload();
-		wall.UnloadWall();
-	}
-	//Tutorial_Unload();
-	
+
+	Level1_Unload();
+	sharpener.UnloadSharpener();
+	eraser.UnloadEraser();
+	highlighter.UnloadHighlighter();
+	pencil.UnloadPencil();
+	door.UnloadDoor();
+	player.Player_Unload();
+	wall.UnloadWall();
 }

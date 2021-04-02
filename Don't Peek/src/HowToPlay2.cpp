@@ -27,9 +27,11 @@ Technology is prohibited.
 #include "Wall.h"
 #include "Tutorial.h"
 #include "Win.h"
+#include "Pause.h"
 
 void HowtoplayLoad(void)
 {
+	PauseLoad();
 	Tutorial_Load();
 	wall.LoadWall();
 	sharpener.LoadSharpener();
@@ -54,27 +56,45 @@ void HowtoplayInit(void)
 
 void HowtoplayUpdate(void)
 {
-	Tutorial_Update();
-	wall.UpdateWall();
-	sharpener.UpdateSharpener();
-	eraser.UpdateEraser();
-	highlighter.UpdateHighlighter();
-	pencil.UpdatePencil();
-	door.UpdateDoor();
-	player.Player_Update();
+	if (AEInputCheckCurr(AEVK_P))
+	{
+		CheckPause = true;
+	}
 
+	if (CheckPause == true)
+	{
+		PauseUpdate();
+	}
+	else if (CheckPause == false)
+	{
+		Tutorial_Update();
+		wall.UpdateWall();
+		sharpener.UpdateSharpener();
+		eraser.UpdateEraser();
+		highlighter.UpdateHighlighter();
+		pencil.UpdatePencil();
+		door.UpdateDoor();
+		player.Player_Update();
+	}
 }
 
 void HowtoplayDraw(void)
 {
-	Tutorial_Draw();
-	wall.DrawWall();
-	highlighter.DrawHighlighter();
-	pencil.DrawPencil();
-	sharpener.DrawSharpener();
-	eraser.DrawEraser();
-	door.DrawDoor();
-	player.Player_Draw();
+	if (CheckPause == true)
+	{
+		PauseDraw();
+	}
+	else if (CheckPause == false)
+	{
+		Tutorial_Draw();
+		wall.DrawWall();
+		highlighter.DrawHighlighter();
+		pencil.DrawPencil();
+		sharpener.DrawSharpener();
+		eraser.DrawEraser();
+		door.DrawDoor();
+		player.Player_Draw();
+	}
 }
 
 void HowtoplayFree(void)
@@ -91,6 +111,7 @@ void HowtoplayFree(void)
 
 void HowtoplayUnload(void)
 {
+	PauseUnload();
 	printf("TUT IS UNLOADING\n");
 	sharpener.UnloadSharpener();
 	eraser.UnloadEraser();

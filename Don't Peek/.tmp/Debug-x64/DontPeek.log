@@ -1,3 +1,7 @@
-﻿  Player.cpp
-D:\CSD 1450\Dont-Peek-2\Don't Peek\src\Player.cpp(139,46): warning C4244: '=': conversion from 'double' to 'f32', possible loss of data
+﻿  Pause.cpp
+D:\CSD 1450\Dont-Peek-2\Don't Peek\src\Pause.cpp(163,9): warning C4551: function call missing argument list
+D:\CSD 1450\Dont-Peek-2\Don't Peek\src\Pause.cpp(183,9): warning C4551: function call missing argument list
+D:\CSD 1450\Dont-Peek-2\Don't Peek\src\Pause.cpp(203,9): warning C4551: function call missing argument list
+D:\CSD 1450\Dont-Peek-2\Don't Peek\src\Pause.cpp(212,9): warning C4551: function call missing argument list
+D:\CSD 1450\Dont-Peek-2\Don't Peek\src\Pause.cpp(222,8): warning C4551: function call missing argument list
   DontPeek.vcxproj -> D:\CSD 1450\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe

@@ -147,15 +147,14 @@ void Player::Player_Update()
 
 
 		if (AEInputCheckCurr(AEVK_B))
-		{
-			//HowtoplayFree();
-			//HowtoplayUnload();
 			gGameStateNext = GS_MENU;
-		}
-		
 
-	if (AEInputCheckCurr(AEVK_ESCAPE))
-		gGameStateNext = GS_QUIT;
+		//if (AEInputCheckCurr(AEVK_P))
+		//{
+		//	CheckPause = true;
+		//	gGameStateNext = GS_PAUSE;
+		//}
+			
 
 	BoundingBox();
 	/******************************************************************************/
@@ -360,7 +359,8 @@ void Player::Player_Draw()
 /******************************************************************************/
 void Player::Player_Free()
 {
-	AEGfxMeshFree(pPlayer->pMesh);
+
+		
 }
 
 /******************************************************************************/
@@ -370,7 +370,16 @@ void Player::Player_Free()
 /******************************************************************************/
 void Player::Player_Unload()
 {
-	AEGfxTextureUnload(pPlayer->texture);
+	if (AEInputCheckCurr(AEVK_P))
+	{
+		gGameStateNext = GS_PAUSE;
+	}
+	else
+	{
+		AEGfxTextureUnload(pPlayer->texture);
+		AEGfxMeshFree(pPlayer->pMesh);
+	}
+		
 }
 
 

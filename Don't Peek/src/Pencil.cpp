@@ -17,6 +17,7 @@ Technology is prohibited.
 */
 /* End Header **************************************************************************/
 
+#include "GameStateMgr.h"
 #include "GameState_DontPeek.h"
 #include "Pencil.h"
 #include "Eraser.h"
@@ -132,8 +133,7 @@ void Pencil::DrawPencil()
 /******************************************************************************/
 void Pencil::FreePencil()
 {
-	if (pPencil->pMesh)
-		AEGfxMeshFree(pPencil->pMesh);
+	
 }
 
 /******************************************************************************/
@@ -143,10 +143,13 @@ void Pencil::FreePencil()
 /******************************************************************************/
 void Pencil::UnloadPencil()
 {
-	if(pPencil->texture)
-	AEGfxTextureUnload(pPencil->texture);
+		if (pPencil->texture)
+			AEGfxTextureUnload(pPencil->texture);
 
-	PencilNum = 0;
+		if (pPencil->pMesh)
+			AEGfxMeshFree(pPencil->pMesh);
+
+		PencilNum = 0;
 }
 
 /******************************************************************************/

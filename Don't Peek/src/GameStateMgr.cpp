@@ -8,6 +8,7 @@
 #include "Lose.h"
 #include "Pause.h"
 #include "Credits.h"
+#include "Level Select.h"
 
 
 /******************************************************************************/
@@ -141,6 +142,15 @@ void GameStateMgrUpdate()
 		GameStateDraw = CreditsDraw;
 		GameStateFree = CreditsFree;
 		GameStateUnload = CreditsUnload;
+		break;
+
+	case GS_LEVEL:
+		GameStateLoad = LevelSelectLoad;
+		GameStateInit = LevelSelectInit;
+		GameStateUpdate = LevelSelectUpdate;
+		GameStateDraw = LevelSelectDraw;
+		GameStateFree = LevelSelectFree;
+		GameStateUnload = LevelSelectUnload;
 		break;
 
 

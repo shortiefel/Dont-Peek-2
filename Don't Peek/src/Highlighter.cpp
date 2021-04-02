@@ -19,8 +19,10 @@ without the prior written consent of DigiPen Institute of
 Technology is prohibited.
 */
 /* End Header **************************************************************************/
+#include "GameStateMgr.h"
 #include "GameState_DontPeek.h"
 #include "Highlighter.h"
+
 
 Highlighter HighlighterArray[MAX];
 static int HighlighterNum = 0;
@@ -110,7 +112,7 @@ void Highlighter::DrawHighlighter()
 /******************************************************************************/
 void Highlighter::FreeHighlighter()
 {
-	AEGfxMeshFree(pHighlighter->pMesh);
+	
 }
 
 /******************************************************************************/
@@ -120,8 +122,10 @@ void Highlighter::FreeHighlighter()
 /******************************************************************************/
 void Highlighter::UnloadHighlighter() 
 {
-	if (pHighlighter-> texture)
-	AEGfxTextureUnload(pHighlighter->texture);
+
+		AEGfxMeshFree(pHighlighter->pMesh);
+		if (pHighlighter->texture)
+			AEGfxTextureUnload(pHighlighter->texture);
 }
 
 /******************************************************************************/
