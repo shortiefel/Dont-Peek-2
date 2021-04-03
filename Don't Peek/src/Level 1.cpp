@@ -74,22 +74,25 @@ void Level1_Init()
 	//eraser
 	SetEraserNum(1);
 	//pencil
-	SetPencilNum(1);
+	SetPencilNum(2);
 
 	//first box
 	wall.CreateWall({ -430,-235 }, { 1,0 }, 22, 30.f, PLATFORM); //floor
 	wall.CreateWall({ -430,260 }, { 1,0 }, 22, 30.f, CEILING); // top wall
 	wall.CreateWall({ -460,260 }, { 0,-1 }, 17, 30.f, WALL); // left wall
 	wall.CreateWall({ -440 + 22 * 30,260 }, { 0,-1 }, 17, 30.f, WALL); // right wall
-	wall.CreateWall({ -220, -90-10 }, { 1,0 }, 18 , 30.f, PLATFORM); //platform
+	wall.CreateWall({ 0, -90 }, { 1,0 }, 20 , 10.f, CEILING); //platform
+	wall.CreateWall({ -190, -90 }, { 1,0 }, 23, 10.f, PLATFORM); //platform
 
-	wall.CreateWall({ 40, 70 }, { 1,0 }, 6, 30.f, CEILING); // cover door
+	//wall.CreateWall({ 40, 70 }, { 1,0 }, 6, 30.f, CEILING); // cover door
 
 	door.SetDoorPosition(0, { 120 , -160 });//door 0
 	door.SetDoorPosition(5, { -220 , 180});//door 5
-	door.SetDoorPosition(6, { 120 , -20 - 20});//door 6
+	door.SetDoorPosition(6, { 120 , -20 - 10});//door 6
 
-	pencil.SetPencil(0, { 30, -20 }, 20, 130);
+	pencil.SetPencil(0, { 30, -10 }, 20, 160);
+	pencil.SetPencil(1, { 120, 60 }, 160, 20);
+	wall.CreateWall({ 40, 65 }, { 1,0 }, 21, 10.f, PLATFORM); //cover door
 
 
 
@@ -112,7 +115,7 @@ void Level1_Init()
 	wall.CreateWall({ 715, -465 }, { 1,0 }, 14, 30.f, CEILING); // top wall
 	wall.CreateWall({ 685,-465 }, { 0,-1 }, 11, 30.f, WALL); // left wall
 	wall.CreateWall({ 715 + 14 * 30,-465 }, { 0,-1 }, 11, 30.f, WALL); // right wall
-	wall.CreateWall({ 715, -650+30 }, { 1,0 }, 6, 30.f, CEILING); //platform
+	wall.CreateWall({ 715, -650+30 }, { 1,0 }, 6, 30.f, PLATFORM); //platform
 	door.SetDoorPosition(3, { 805 , -585+30 });//door 3
 	door.SetDoorPosition(4, { 1060 , -720 });//door 4
 	sharpener.SetSharpenerPosition(0, { 830,-720 }); // sharpener
