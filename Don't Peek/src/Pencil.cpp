@@ -58,7 +58,7 @@ void Pencil::LoadPencil()
 /******************************************************************************/
 void Pencil::InitPencil() 
 {
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < PencilNum; i++)
 	{
 		Pencil* Penciltemp = PencilArray + i;
 
