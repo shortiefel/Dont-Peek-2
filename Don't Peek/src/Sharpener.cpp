@@ -37,7 +37,7 @@ float SGROUND = 0.f;
 	Sharpener Load
 */
 /******************************************************************************/
-void Sharpener::LoadSharpener() 
+void Sharpener::LoadSharpener()
 {
 	pSharpener = sGameObjList + sGameObjNum++;
 	pSharpener->type = TYPE_SHARPENER;
@@ -68,14 +68,14 @@ void Sharpener::LoadSharpener()
 /******************************************************************************/
 void Sharpener::InitSharpener() {
 	Scale = 100.0f;
-	
+
 	//AEVec2* pVel = &vel;
 	for (int i = 0; i < SharpenerNum; i++)
 	{
 		Sharpener* Sharpenertemp = SharpenerArray + i;
 		Sharpenertemp->flag = FLAG_ACTIVE;
 		//Sharpenertemp->vel = *pVel;
-		AEVec2Set(&(Sharpenertemp->vel), 5, 0);
+		AEVec2Set(&(Sharpenertemp->vel), 0, 0);
 	}
 }
 
@@ -84,7 +84,7 @@ void Sharpener::InitSharpener() {
 	Sharpener Update
 */
 /******************************************************************************/
-void Sharpener::UpdateSharpener() 
+void Sharpener::UpdateSharpener()
 {
 	SGROUND = -1000;
 	BoundingBox();
@@ -109,73 +109,90 @@ void Sharpener::UpdateSharpener()
 		/******************************************************************************/
 		if (CollisionIntersection_RectRect(player.GetBoundingBoxPlayer(), player.GetVelPlayer(), Sharpenertemp->boundingBox, Sharpenertemp->vel))
 		{
-			if ((AEInputCheckCurr(AEVK_LSHIFT) && AEInputCheckCurr(AEVK_RIGHT)) &&
-				(Sharpenertemp->boundingBox.min.x < (player.GetBoundingBoxPlayer().max.x + 5.0f)) &&
-				(Sharpenertemp->boundingBox.min.x > (player.GetBoundingBoxPlayer().max.x - 5.0f)))
+			if (GetEraserNum() == 0)
 			{
-				Sharpenertemp->vel.x = SPEED;
-
-				right = 1;
-				left = 0;
-				printf("SHARPENER VEL RIGHT: %f\n", Sharpenertemp->vel.x);
-			}
-			if ((AEInputCheckCurr(AEVK_LSHIFT) && AEInputCheckCurr(AEVK_LEFT)) &&
-				(Sharpenertemp->boundingBox.max.x < (player.GetBoundingBoxPlayer().min.x + 5.0f)) && (Sharpenertemp->boundingBox.max.x > (player.GetBoundingBoxPlayer().min.x - 5.0f)))
-			{
-				Sharpenertemp->vel.x = -SPEED;
-				left = 1;
-				right = 0;
-				printf("SHARPENER VEL LEFT: %f\n", Sharpenertemp->vel.x);
-			}
-
-			for (int j = 0; j < GetEraserNum(); j++)
-			{
-				Eraser* Erasertemp = EraserArray + j;
-				if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, Erasertemp->GetEraserBoundingBox(j), Erasertemp->GetEraserVelocity(j)) == 0)
+				if ((AEInputCheckCurr(AEVK_LSHIFT) && AEInputCheckCurr(AEVK_RIGHT)) &&
+					(player.GetBoundingBoxPlayer().max.x > (Sharpenertemp->boundingBox.min.x - 15.0f)) &&
+					(player.GetBoundingBoxPlayer().max.x < (Sharpenertemp->boundingBox.min.x + 30.0f)))
 				{
-					if ((AEInputCheckCurr(AEVK_LSHIFT) && AEInputCheckCurr(AEVK_RIGHT)) && 
-						(Sharpenertemp->boundingBox.min.x < (player.GetBoundingBoxPlayer().max.x + 5.0f)) && 
-						(Sharpenertemp->boundingBox.min.x > (player.GetBoundingBoxPlayer().max.x - 5.0f)))
-					{		
-						Sharpenertemp->vel.x = SPEED;
-						
-						right = 1;
-						left = 0;
-						printf("SHARPENER VEL RIGHT: %f\n", Sharpenertemp->vel.x);
-					}
-					if ((AEInputCheckCurr(AEVK_LSHIFT) && AEInputCheckCurr(AEVK_LEFT)) && 
-						(Sharpenertemp->boundingBox.max.x < (player.GetBoundingBoxPlayer().min.x + 5.0f)) && (Sharpenertemp->boundingBox.max.x >(player.GetBoundingBoxPlayer().min.x - 5.0f)))
-					{
-						Sharpenertemp->vel.x = -SPEED;
-						left = 1;
-						right = 0;
-						printf("SHARPENER VEL LEFT: %f\n", Sharpenertemp->vel.x);
-					}
+					Sharpenertemp->vel.x = SPEED;
+					right = 1;
+					left = 0;
+					//printf("SHARPENER VEL RIGHT: %f\n", Sharpenertemp->vel.x);
 				}
-				else if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, Erasertemp->GetEraserBoundingBox(j), Erasertemp->GetEraserVelocity(j)))
+				if ((AEInputCheckCurr(AEVK_LSHIFT) && AEInputCheckCurr(AEVK_LEFT)) &&
+					(player.GetBoundingBoxPlayer().min.x > (Sharpenertemp->boundingBox.max.x - 30.0f)) &&
+					(player.GetBoundingBoxPlayer().min.x < (Sharpenertemp->boundingBox.max.x + 15.0f)))
 				{
-					if ((AEInputCheckCurr(AEVK_RIGHT) && AEInputCheckCurr(AEVK_LSHIFT))
-						&& (eraser.GetEraserBoundingBox(j).max.x >= Sharpenertemp->boundingBox.min.x) && (Sharpenertemp->boundingBox.max.x > eraser.GetEraserBoundingBox(j).min.x)
-						&& (Sharpenertemp->boundingBox.min.x < (player.GetBoundingBoxPlayer().max.x + 5.0f)) && (Sharpenertemp->boundingBox.min.x > (player.GetBoundingBoxPlayer().max.x - 5.0f)))
+					Sharpenertemp->vel.x = -SPEED;
+					left = 1;
+					right = 0;
+					//printf("SHARPENER VEL LEFT: %f\n", Sharpenertemp->vel.x);
+				}
+			}
+			else
+			{
+				for (int j = 0; j < GetEraserNum(); j++)
+				{
+					Eraser* Erasertemp = EraserArray + j;
+					if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, Erasertemp->GetEraserBoundingBox(j), Erasertemp->GetEraserVelocity(j)) == 0)
 					{
-						Sharpenertemp->vel.x = SPEED;
-						right = 1;
-						left = 0;
-						("ELSE -- SHARPENER VEL RIGHT: %f\n", Sharpenertemp->vel.x);
+						if ((AEInputCheckCurr(AEVK_LSHIFT) && AEInputCheckCurr(AEVK_RIGHT)) &&
+							(player.GetBoundingBoxPlayer().max.x > (Sharpenertemp->boundingBox.min.x - 15.0f)) &&
+							(player.GetBoundingBoxPlayer().max.x < (Sharpenertemp->boundingBox.min.x + 30.0f)))
+						{
+							Sharpenertemp->vel.x = SPEED;
+							right = 1;
+							left = 0;
+							printf("SHARPENER VEL RIGHT: %f\n", Sharpenertemp->vel.x);
+						}
+						if ((AEInputCheckCurr(AEVK_LSHIFT) && AEInputCheckCurr(AEVK_LEFT)) &&
+							(player.GetBoundingBoxPlayer().min.x > (Sharpenertemp->boundingBox.max.x - 30.0f)) &&
+							(player.GetBoundingBoxPlayer().min.x < (Sharpenertemp->boundingBox.max.x + 15.0f)))
+						{
+							Sharpenertemp->vel.x = -SPEED;
+							left = 1;
+							right = 0;
+							printf("SHARPENER VEL LEFT: %f\n", Sharpenertemp->vel.x);
+						}
 					}
-					else if ((AEInputCheckCurr(AEVK_LEFT) && AEInputCheckCurr(AEVK_LSHIFT))
-						&& (eraser.GetEraserBoundingBox(j).min.x <= Sharpenertemp->boundingBox.max.x) && (eraser.GetEraserBoundingBox(j).max.x > Sharpenertemp->boundingBox.min.x)
-						&& (Sharpenertemp->boundingBox.max.x < (player.GetBoundingBoxPlayer().min.x + 5.0f)) && (Sharpenertemp->boundingBox.max.x > (player.GetBoundingBoxPlayer().min.x - 5.0f)))
+					if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, Erasertemp->GetEraserBoundingBox(j), Erasertemp->GetEraserVelocity(j)))
 					{
-						Sharpenertemp->vel.x = -SPEED;
-						left = 1;
-						right = 0;
-						printf("ELSE -- SHARPENER VEL LEFT: %f\n", Sharpenertemp->vel.x);
-					}
-					else
-					{
-						Sharpenertemp->vel.x = 0;
-						printf("sharpener -> IS VEL 0: %f\n", Sharpenertemp->vel.x);
+						Sharpenertemp->vel.x = 0.f;
+						if (AEInputCheckCurr(AEVK_RIGHT) && AEInputCheckCurr(AEVK_LSHIFT)
+							&& (Erasertemp->GetEraserBoundingBox(j).max.x >= (Sharpenertemp->boundingBox.min.x - 15.0f))
+							&& (Erasertemp->GetEraserBoundingBox(j).max.x <= (Sharpenertemp->boundingBox.min.x + 15.0f))
+							//&& (Sharpenertemp->boundingBox.max.x > Erasertemp->GetEraserBoundingBox(j).min.x)
+							/*&& (Sharpenertemp->boundingBox.min.x < (player.GetBoundingBoxPlayer().max.x + 15.0f))
+							&& (Sharpenertemp->boundingBox.min.x > (player.GetBoundingBoxPlayer().max.x - 15.0f)))*/
+							&& (player.GetBoundingBoxPlayer().max.x > (Sharpenertemp->boundingBox.min.x - 15.0f)) &&
+							(player.GetBoundingBoxPlayer().max.x < (Sharpenertemp->boundingBox.min.x + 30.0f)))
+						{
+							Sharpenertemp->vel.x = SPEED;
+							right = 1;
+							left = 0;
+							printf("ELSE -- SHARPENER VEL RIGHT: %f\n", Sharpenertemp->vel.x);
+						}
+						else if (AEInputCheckCurr(AEVK_LEFT) && AEInputCheckCurr(AEVK_LSHIFT)
+							&& (Erasertemp->GetEraserBoundingBox(j).min.x <= (Sharpenertemp->boundingBox.max.x + 15.0f))
+							&& (Erasertemp->GetEraserBoundingBox(j).min.x >= (Sharpenertemp->boundingBox.max.x - 15.0f))
+							//&& (Erasertemp->GetEraserBoundingBox(j).max.x > Sharpenertemp->boundingBox.min.x)
+							/*&& (Sharpenertemp->boundingBox.max.x > (player.GetBoundingBoxPlayer().min.x - 15.0f))
+							&& (Sharpenertemp->boundingBox.max.x < (player.GetBoundingBoxPlayer().min.x + 15.0f)))*/
+							&&(player.GetBoundingBoxPlayer().min.x > (Sharpenertemp->boundingBox.max.x - 30.0f)) &&
+							(player.GetBoundingBoxPlayer().min.x < (Sharpenertemp->boundingBox.max.x + 15.0f)))
+						{
+							Sharpenertemp->vel.x = -SPEED;
+							left = 1;
+							right = 0;
+							printf("ELSE -- SHARPENER VEL LEFT: %f\n", Sharpenertemp->vel.x);
+						}
+						else
+						{
+							Sharpenertemp->vel.x = 0;
+							Sharpenertemp->pos.x += Sharpenertemp->vel.x;
+							printf("sharpener -> IS VEL 0: %f\n", Sharpenertemp->vel.x);
+						}
 					}
 				}
 			}
@@ -194,19 +211,30 @@ void Sharpener::UpdateSharpener()
 			if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, eraser.GetEraserBoundingBox(j), eraser.GetEraserVelocity(j)))
 			{
 				Sharpenertemp->vel.x = 0;
-				if ((player.GetBoundingBoxPlayer().max.x <= Erasertemp->GetEraserBoundingBox(j).max.x) &&
-					(player.GetBoundingBoxPlayer().max.x > (Sharpenertemp->boundingBox.min.x - 5.0f)) && (player.GetBoundingBoxPlayer().max.x < (Sharpenertemp->boundingBox.max.x + 5.0f)))
+				if ((player.GetBoundingBoxPlayer().max.x <= Erasertemp->GetEraserBoundingBox(j).max.x) 
+					&& (player.GetBoundingBoxPlayer().max.x > Erasertemp->GetEraserBoundingBox(j).min.x)
+					/*&& (player.GetBoundingBoxPlayer().max.x > (Sharpenertemp->boundingBox.min.x - 5.0f)) 
+					&& (player.GetBoundingBoxPlayer().max.x < (Sharpenertemp->boundingBox.max.x + 5.0f))*/
+					&& (player.GetBoundingBoxPlayer().max.x > (Sharpenertemp->boundingBox.min.x - 15.0f)) &&
+					(player.GetBoundingBoxPlayer().max.x < (Sharpenertemp->boundingBox.min.x + 30.0f))
+					&& (AEInputCheckCurr(AEVK_RIGHT) && AEInputCheckCurr(AEVK_LSHIFT)))
 				{
 					Sharpenertemp->vel.x = SPEED;
 				}
-				else if ((player.GetBoundingBoxPlayer().min.x >= Erasertemp->GetEraserBoundingBox(j).min.x) && 
-					(player.GetBoundingBoxPlayer().min.x > (Sharpenertemp->boundingBox.max.x - 5.0f)) && (player.GetBoundingBoxPlayer().min.x < (Sharpenertemp->boundingBox.max.x + 5.0f)))
+				else if ((player.GetBoundingBoxPlayer().min.x >= Erasertemp->GetEraserBoundingBox(j).min.x) 
+					&& (player.GetBoundingBoxPlayer().min.x < Erasertemp->GetEraserBoundingBox(j).max.x)
+				/*	&& (player.GetBoundingBoxPlayer().min.x > (Sharpenertemp->boundingBox.max.x - 5.0f)) 
+					&& (player.GetBoundingBoxPlayer().min.x < (Sharpenertemp->boundingBox.max.x + 5.0f))*/
+					&& (player.GetBoundingBoxPlayer().min.x > (Sharpenertemp->boundingBox.max.x - 30.0f)) &&
+					(player.GetBoundingBoxPlayer().min.x < (Sharpenertemp->boundingBox.max.x + 15.0f))
+					&& (AEInputCheckCurr(AEVK_LEFT) && AEInputCheckCurr(AEVK_LSHIFT)))
 				{
-					Sharpenertemp->vel.x = SPEED;
+					Sharpenertemp->vel.x = -SPEED;
 				}
 				else
 				{
-					Sharpenertemp->vel.x = SPEED;
+					//Sharpenertemp->vel.x = SPEED;
+					Sharpenertemp->vel.x += 0.f;
 
 				}
 			}
@@ -248,7 +276,7 @@ void Sharpener::UpdateSharpener()
 							if (CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, eraser.GetEraserBoundingBox(j), eraser.GetEraserVelocity(j)) == 0
 								&& CollisionIntersection_RectRect(Sharpenertemp->boundingBox, Sharpenertemp->vel, Penciltemp->GetPencilBoundingBox(s), Penciltemp->GetPencilVelocity(s)) == 0)
 							{
-								Sharpenertemp->vel.x = SPEED;;
+								Sharpenertemp->vel.x = SPEED;
 							}
 						}
 					}
@@ -294,7 +322,7 @@ void Sharpener::UpdateSharpener()
 					Sharpenertemp->pos = Doortemp->GetDoorPosition(j - 1);
 					Sharpenertemp->pos.x += -150;
 				}
-			
+
 			}
 		}//End of Door for loop
 
@@ -315,11 +343,11 @@ void Sharpener::UpdateSharpener()
 				{
 					if (Sharpenertemp->pos.x >= Walltemp->GetWallBoundingBox(j).min.x)
 					{
-						Sharpenertemp->pos.x = (Walltemp->GetWallBoundingBox(j).max.x + 30);
+						Sharpenertemp->pos.x = (Walltemp->GetWallBoundingBox(j).max.x + Scale / 3);
 					}
 					else if (Sharpenertemp->pos.x <= Walltemp->GetWallBoundingBox(j).max.x)
 					{
-						Sharpenertemp->pos.x = (Walltemp->GetWallBoundingBox(j).min.x - 30);
+						Sharpenertemp->pos.x = (Walltemp->GetWallBoundingBox(j).min.x - Scale / 3);
 					}
 				}
 				else if (Walltemp->GetType(j) == PLATFORM)
@@ -342,7 +370,7 @@ void Sharpener::UpdateSharpener()
 	Sharpener Draw
 */
 /******************************************************************************/
-void Sharpener::DrawSharpener() 
+void Sharpener::DrawSharpener()
 {
 	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 	AEGfxSetTransparency(1.0f);
@@ -389,7 +417,7 @@ void Sharpener::SetGravity()
 	for (int i = 0; i < SharpenerNum; i++)
 	{
 		Sharpener* Sharpenertemp = SharpenerArray + i;
-		Sharpenertemp->vel.y -= 80.f * g_dt;
+		Sharpenertemp->vel.y -= 450.f * g_dt;
 	}
 }
 
