@@ -182,11 +182,12 @@ void PauseUpdate()
 			{
 				if (AEInputUpdate)
 				{
+					CheckPause = false;
 					AEGfxSetCamPosition(player.GetPosPlayer().x, player.GetPosPlayer().y);
-					player.GetPlayerObj();
+					/*player.GetPlayerObj();
 					
 					player.GetBoundingBoxPlayer();
-					player.Player_Draw();
+					player.Player_Draw();*/
 					gGameStateNext = GS_DONT_PEEK;
 					printf("Go level");
 				}
@@ -202,6 +203,7 @@ void PauseUpdate()
 			{
 				if (AEInputUpdate)
 				{
+					CheckPause = false;
 					gGameStateNext = GS_TUTORIAL;
 					printf("Go tutorial");
 				}
@@ -211,6 +213,7 @@ void PauseUpdate()
 			{
 				if (AEInputUpdate)
 				{
+					CheckPause = false;
 					gGameStateNext = GS_DONT_PEEK;
 					printf("Go level");
 				}
