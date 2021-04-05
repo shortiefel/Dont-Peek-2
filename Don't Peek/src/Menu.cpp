@@ -222,7 +222,7 @@ void MenuUpdate()
 			{
 				if (AEInputUpdate)
 				{
-					gGameStateNext = GS_TUTORIAL;
+					gGameStateNext = GS_RULE;
 					printf("BUTTON HOW TO PLAY \n");
 				}
 

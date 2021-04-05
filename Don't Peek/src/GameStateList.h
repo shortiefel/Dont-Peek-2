@@ -15,6 +15,7 @@ enum
 	GS_WIN,
 	GS_LOSE,
 	GS_PAUSE,
+	GS_RULE,
 	//Special Game State. DONT CHANGE HOR
 	GS_RESTART,
 	GS_QUIT,

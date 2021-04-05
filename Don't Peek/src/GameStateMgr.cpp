@@ -10,6 +10,7 @@
 #include "Credits.h"
 #include "Level Select.h"
 #include "Restart.h"
+#include "Rules.h"
 
 
 /******************************************************************************/
@@ -163,6 +164,16 @@ void GameStateMgrUpdate()
 		GameStateDraw = RestartDraw;
 		GameStateFree = RestartFree;
 		GameStateUnload = RestartUnload;
+		break;
+
+	case GS_RULE:
+		GameStateLoad = RulesLoad;
+		GameStateInit = RulesInit;
+		GameStateUpdate = RulesUpdate;
+		GameStateDraw = RulesDraw;
+		GameStateFree = RulesFree;
+		GameStateUnload = RulesUnload;
+		break;
 
 	default:
 		AE_FATAL_ERROR("invalid state!!");
