@@ -121,7 +121,6 @@ void Pencil::DrawPencil()
 		AEGfxSetRenderMode(AE_GFX_RM_COLOR);
 		AEGfxSetPosition(Penciltemp->pos.x, Penciltemp->pos.y);
 		AEGfxSetTransform(Penciltemp->Transform.m);
-		//AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 		AEGfxMeshDraw(pPencil->pMesh, AE_GFX_MDM_TRIANGLES);
 	}
 }
