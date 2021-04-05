@@ -185,20 +185,19 @@ void WinDraw()
 
 void WinFree()
 {
-	//free(Wbutton->pButton);
-	//free(win.pObj);
 
-	AEGfxMeshFree(win.pObj->pMesh);
 	
+}
+
+void WinUnload()
+{
 	for (int i = 0; i < 2; i++)
 	{
 		if (Wbutton[i].pButton->pMesh)
 			AEGfxMeshFree(Wbutton[i].pButton->pMesh);
 	}
-}
+	AEGfxMeshFree(win.pObj->pMesh);
 
-void WinUnload()
-{
 	for (int i = 0; i < 2; i++)
 	{
 		if (Wbutton[i].pButton->texture)

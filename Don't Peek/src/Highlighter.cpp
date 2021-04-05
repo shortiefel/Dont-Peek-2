@@ -98,7 +98,6 @@ void Highlighter::DrawHighlighter()
 		Highlighter* Highlightertemp = HighlighterArray + i;
 		AEGfxSetPosition(Highlightertemp->pos.x, Highlightertemp->pos.y);
 		AEGfxSetTransform(Highlightertemp->Transform.m);
-		//AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 		AEGfxMeshDraw(pHighlighter->pMesh, AE_GFX_MDM_TRIANGLES);
 	}
 }
@@ -110,7 +109,7 @@ void Highlighter::DrawHighlighter()
 /******************************************************************************/
 void Highlighter::FreeHighlighter()
 {
-	AEGfxMeshFree(pHighlighter->pMesh);
+	HighlighterNum = 0;
 }
 
 /******************************************************************************/
@@ -120,8 +119,11 @@ void Highlighter::FreeHighlighter()
 /******************************************************************************/
 void Highlighter::UnloadHighlighter() 
 {
+	if (pHighlighter->pMesh)
+		AEGfxMeshFree(pHighlighter->pMesh);
+
 	if (pHighlighter-> texture)
-	AEGfxTextureUnload(pHighlighter->texture);
+		AEGfxTextureUnload(pHighlighter->texture);
 }
 
 /******************************************************************************/
@@ -188,6 +190,3 @@ void SetHighlighterNum(int Num)
 {
 	HighlighterNum = Num;
 }
-
-//set pos scale type
-//remove scale in init

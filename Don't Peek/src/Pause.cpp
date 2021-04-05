@@ -84,14 +84,15 @@ void PauseDraw()
 
 void PauseFree()
 {
-	if (pause.pObj->pMesh)
-		AEGfxMeshFree(pause.pObj->pMesh);
+	
 }
 
 void PauseUnload()
 {
 	if (pause.pObj->texture)
 		AEGfxTextureUnload(pause.pObj->texture);
+	if (pause.pObj->pMesh)
+		AEGfxMeshFree(pause.pObj->pMesh);
 }
 
 void BoundingBoxPause()

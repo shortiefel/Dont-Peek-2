@@ -158,6 +158,8 @@ void Tutorial_Init()
 	wall.CreateWall({ 950,280 }, { 1,0 }, 3, 30.f, CEILING); //ceiling
 	wall.CreateWall({ 920,280 }, { 0,-1 }, 9, 30.f, WALL); //left wall
 	wall.CreateWall({ 1190,280 }, { 0,-1 }, 9, 30.f, WALL); //left wall
+
+	timer = 50.f;
 }
 
 void Tutorial_Update()
@@ -190,10 +192,13 @@ void Tutorial_Draw()
 }
 void Tutorial_Free()
 {
-	AEGfxMeshFree(bg.pBg->pMesh);
 }
+
 void Tutorial_Unload()
 {
-	timer = 50.f;
-	AEGfxTextureUnload(bg.pBg->texture);
+	if(bg.pBg->texture)
+		AEGfxTextureUnload(bg.pBg->texture);
+	
+	if(bg.pBg->pMesh)
+		AEGfxMeshFree(bg.pBg->pMesh);
 }

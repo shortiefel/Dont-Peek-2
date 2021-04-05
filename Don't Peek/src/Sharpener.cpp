@@ -410,7 +410,7 @@ void Sharpener::DrawSharpener()
 /******************************************************************************/
 void Sharpener::FreeSharpener()
 {
-	AEGfxMeshFree(pSharpener->pMesh);
+	SharpenerNum = 0;
 }
 
 /******************************************************************************/
@@ -418,10 +418,12 @@ void Sharpener::FreeSharpener()
 	Sharpener Unload
 */
 /******************************************************************************/
-void Sharpener::UnloadSharpener() {
-
-	AEGfxTextureUnload(pSharpener->texture);
-	SharpenerNum = 0;
+void Sharpener::UnloadSharpener() 
+{
+	if (pSharpener->pMesh)
+		AEGfxMeshFree(pSharpener->pMesh);
+	if (pSharpener->texture)
+		AEGfxTextureUnload(pSharpener->texture);
 }
 
 /******************************************************************************/

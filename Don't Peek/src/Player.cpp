@@ -361,7 +361,7 @@ void Player::Player_Draw()
 /******************************************************************************/
 void Player::Player_Free()
 {
-	AEGfxMeshFree(pPlayer->pMesh);
+	
 }
 
 /******************************************************************************/
@@ -371,7 +371,10 @@ void Player::Player_Free()
 /******************************************************************************/
 void Player::Player_Unload()
 {
-	AEGfxTextureUnload(pPlayer->texture);
+	if (pPlayer->pMesh)
+		AEGfxMeshFree(pPlayer->pMesh);
+	if (pPlayer->texture)
+		AEGfxTextureUnload(pPlayer->texture);
 }
 
 

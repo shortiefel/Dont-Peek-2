@@ -1,4 +1,9 @@
-﻿  Eraser.cpp
+﻿  Door.cpp
+  Eraser.cpp
+  Highlighter.cpp
+  Pencil.cpp
+  Player.cpp
+C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Player.cpp(136,46): warning C4244: '=': conversion from 'double' to 'f32', possible loss of data
   Sharpener.cpp
   Generating Code...
   DontPeek.vcxproj -> C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe

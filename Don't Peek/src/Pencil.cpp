@@ -131,8 +131,7 @@ void Pencil::DrawPencil()
 /******************************************************************************/
 void Pencil::FreePencil()
 {
-	if (pPencil->pMesh)
-		AEGfxMeshFree(pPencil->pMesh);
+	PencilNum = 0;
 }
 
 /******************************************************************************/
@@ -142,10 +141,11 @@ void Pencil::FreePencil()
 /******************************************************************************/
 void Pencil::UnloadPencil()
 {
+	if (pPencil->pMesh)
+		AEGfxMeshFree(pPencil->pMesh);
+
 	if(pPencil->texture)
 		AEGfxTextureUnload(pPencil->texture);
-
-	PencilNum = 0;
 }
 
 /******************************************************************************/

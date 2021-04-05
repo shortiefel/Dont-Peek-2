@@ -92,9 +92,9 @@ void Door::DrawDoor()
 	AEGfxSetTransparency(1.0f);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
 	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
+
 	for (int i = 0; i < DoorNum; i++)
 	{
-
 		Door* Doortemp = DoorArray + i;
 		AEGfxSetPosition(Doortemp->pos.x, Doortemp->pos.y);
 		AEGfxTextureSet(pDoor->texture, 0, 0);
@@ -110,10 +110,7 @@ void Door::DrawDoor()
 /******************************************************************************/
 void Door::FreeDoor()
 {
-	
-	AEGfxMeshFree(pDoor->pMesh);
-
-	
+	DoorNum = 0;
 }
 
 /******************************************************************************/
@@ -123,8 +120,10 @@ void Door::FreeDoor()
 /******************************************************************************/
 void Door::UnloadDoor()
 {
-	AEGfxTextureUnload(pDoor->texture);
-	DoorNum = 0;
+	if (pDoor->pMesh)
+		AEGfxMeshFree(pDoor->pMesh);
+	if (pDoor->texture)
+		AEGfxTextureUnload(pDoor->texture);
 }
 
 /******************************************************************************/

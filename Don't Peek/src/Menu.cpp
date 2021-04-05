@@ -261,13 +261,7 @@ void MenuDraw()
 }
 void MenuFree()
 {
-	for (int i = 0; i < 2; i++)
-	{
-		if (button[i].pButton->pMesh)
-			AEGfxMeshFree(button[i].pButton->pMesh);
-	}
-	if (menu.pObj->pMesh)
-		AEGfxMeshFree(menu.pObj->pMesh);
+	
 }
 void MenuUnload()
 {
@@ -279,6 +273,13 @@ void MenuUnload()
 	}
 	if (menu.pObj->texture)
 		AEGfxTextureUnload(menu.pObj->texture);
+	for (int i = 0; i < 2; i++)
+	{
+		if (button[i].pButton->pMesh)
+			AEGfxMeshFree(button[i].pButton->pMesh);
+	}
+	if (menu.pObj->pMesh)
+		AEGfxMeshFree(menu.pObj->pMesh);
 }
 void BoundingBox()
 {

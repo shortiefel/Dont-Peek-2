@@ -389,7 +389,7 @@ void Eraser::DrawEraser()
 /******************************************************************************/
 void Eraser::FreeEraser()
 {
-	AEGfxMeshFree(pEraser->pMesh);
+	EraserNum = 0;
 }
 
 /******************************************************************************/
@@ -397,10 +397,14 @@ void Eraser::FreeEraser()
 	Eraser Unload
 */
 /******************************************************************************/
-void Eraser::UnloadEraser() {
+void Eraser::UnloadEraser() 
+{
+	if (pEraser->pMesh)
+		AEGfxMeshFree(pEraser->pMesh);
 
+	if (pEraser->texture)
 	AEGfxTextureUnload(pEraser->texture);
-	EraserNum = 0;
+	
 }
 
 /******************************************************************************/
