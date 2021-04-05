@@ -2,11 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-<<<<<<< HEAD
       <FullPath>D:\CSD 1450\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe</FullPath>
-=======
-      <FullPath>C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe</FullPath>
->>>>>>> origin/mcmuffinstack
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
