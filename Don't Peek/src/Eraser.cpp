@@ -120,7 +120,7 @@ void Eraser::UpdateEraser()
 				//{
 				if ((AEInputCheckCurr(AEVK_LSHIFT) && AEInputCheckCurr(AEVK_RIGHT)) &&
 					(player.GetBoundingBoxPlayer().max.x > (Erasertemp->boundingBox.min.x - 15.0f)) &&
-					(player.GetBoundingBoxPlayer().max.x < (Erasertemp->boundingBox.min.x + 30.0f)))
+					(player.GetBoundingBoxPlayer().max.x < (Erasertemp->boundingBox.min.x + 40.0f)))
 				{
 					//Erasertemp->pos.x += Erasertemp->vel.x;
 					Erasertemp->vel.x = SPEED;
@@ -132,7 +132,7 @@ void Eraser::UpdateEraser()
 					(Erasertemp->boundingBox.max.x > (player.GetBoundingBoxPlayer().min.x - 15.0f)) &&
 					(Erasertemp->boundingBox.max.x < (player.GetBoundingBoxPlayer().min.x + 15.0f)))*/
 				if ((AEInputCheckCurr(AEVK_LSHIFT) && AEInputCheckCurr(AEVK_LEFT)) &&
-					(player.GetBoundingBoxPlayer().min.x > (Erasertemp->boundingBox.max.x - 30.0f)) &&
+					(player.GetBoundingBoxPlayer().min.x > (Erasertemp->boundingBox.max.x - 40.0f)) &&
 					(player.GetBoundingBoxPlayer().min.x < (Erasertemp->boundingBox.max.x + 15.0f)))
 				{
 					//Erasertemp->pos.x -= Erasertemp->vel.x;
@@ -155,7 +155,7 @@ void Eraser::UpdateEraser()
 						//	(Erasertemp->boundingBox.min.x > (player.GetBoundingBoxPlayer().max.x - 15.0f)))
 						if ((AEInputCheckCurr(AEVK_LSHIFT) && AEInputCheckCurr(AEVK_RIGHT)) &&
 							(player.GetBoundingBoxPlayer().max.x > (Erasertemp->boundingBox.min.x - 15.0f)) &&
-							(player.GetBoundingBoxPlayer().max.x < (Erasertemp->boundingBox.min.x + 30.0f)))
+							(player.GetBoundingBoxPlayer().max.x < (Erasertemp->boundingBox.min.x + 40.0f)))
 						{
 							//Erasertemp->pos.x += Erasertemp->vel.x;
 							Erasertemp->vel.x = SPEED;
@@ -167,7 +167,7 @@ void Eraser::UpdateEraser()
 						//	(Erasertemp->boundingBox.max.x > (player.GetBoundingBoxPlayer().min.x - 15.0f)) &&
 						//	(Erasertemp->boundingBox.max.x < (player.GetBoundingBoxPlayer().min.x + 15.0f)))
 							if ((AEInputCheckCurr(AEVK_LSHIFT) && AEInputCheckCurr(AEVK_LEFT)) &&
-								(player.GetBoundingBoxPlayer().min.x > (Erasertemp->boundingBox.max.x - 30.0f)) &&
+								(player.GetBoundingBoxPlayer().min.x > (Erasertemp->boundingBox.max.x - 40.0f)) &&
 								(player.GetBoundingBoxPlayer().min.x < (Erasertemp->boundingBox.max.x + 15.0f)))
 						{
 							//Erasertemp->pos.x -= Erasertemp->vel.x;
@@ -187,7 +187,7 @@ void Eraser::UpdateEraser()
 							/*&& (Erasertemp->boundingBox.min.x < (player.GetBoundingBoxPlayer().max.x + 15.0f))
 							&& (Erasertemp->boundingBox.min.x > (player.GetBoundingBoxPlayer().max.x - 15.0f)))*/
 							&& (player.GetBoundingBoxPlayer().max.x > (Erasertemp->boundingBox.min.x - 15.0f)) &&
-							(player.GetBoundingBoxPlayer().max.x < (Erasertemp->boundingBox.min.x + 30.0f)))
+							(player.GetBoundingBoxPlayer().max.x < (Erasertemp->boundingBox.min.x + 40.0f)))
 						{
 							//Erasertemp->pos.x += Erasertemp->vel.x;
 							Erasertemp->vel.x = SPEED;
@@ -201,7 +201,7 @@ void Eraser::UpdateEraser()
 							//&& (Sharpenertemp->GetSharpenerBoundingBox(j).max.x > Erasertemp->boundingBox.min.x)
 							/*&& (Erasertemp->boundingBox.max.x > (player.GetBoundingBoxPlayer().min.x - 15.0f))
 							&& (Erasertemp->boundingBox.max.x < (player.GetBoundingBoxPlayer().min.x + 15.0f)))*/
-							&&(player.GetBoundingBoxPlayer().min.x > (Erasertemp->boundingBox.max.x - 30.0f)) &&
+							&&(player.GetBoundingBoxPlayer().min.x > (Erasertemp->boundingBox.max.x - 40.0f)) &&
 							(player.GetBoundingBoxPlayer().min.x < (Erasertemp->boundingBox.max.x + 15.0f)))
 						{
 							//Erasertemp->pos.x -= Erasertemp->vel.x;

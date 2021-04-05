@@ -113,7 +113,7 @@ void Sharpener::UpdateSharpener()
 			{
 				if ((AEInputCheckCurr(AEVK_LSHIFT) && AEInputCheckCurr(AEVK_RIGHT)) &&
 					(player.GetBoundingBoxPlayer().max.x > (Sharpenertemp->boundingBox.min.x - 15.0f)) &&
-					(player.GetBoundingBoxPlayer().max.x < (Sharpenertemp->boundingBox.min.x + 30.0f)))
+					(player.GetBoundingBoxPlayer().max.x < (Sharpenertemp->boundingBox.min.x + 40.0f)))
 				{
 					Sharpenertemp->vel.x = SPEED;
 					right = 1;
@@ -121,7 +121,7 @@ void Sharpener::UpdateSharpener()
 					//printf("SHARPENER VEL RIGHT: %f\n", Sharpenertemp->vel.x);
 				}
 				if ((AEInputCheckCurr(AEVK_LSHIFT) && AEInputCheckCurr(AEVK_LEFT)) &&
-					(player.GetBoundingBoxPlayer().min.x > (Sharpenertemp->boundingBox.max.x - 30.0f)) &&
+					(player.GetBoundingBoxPlayer().min.x > (Sharpenertemp->boundingBox.max.x - 40.0f)) &&
 					(player.GetBoundingBoxPlayer().min.x < (Sharpenertemp->boundingBox.max.x + 15.0f)))
 				{
 					Sharpenertemp->vel.x = -SPEED;
@@ -139,7 +139,7 @@ void Sharpener::UpdateSharpener()
 					{
 						if ((AEInputCheckCurr(AEVK_LSHIFT) && AEInputCheckCurr(AEVK_RIGHT)) &&
 							(player.GetBoundingBoxPlayer().max.x > (Sharpenertemp->boundingBox.min.x - 15.0f)) &&
-							(player.GetBoundingBoxPlayer().max.x < (Sharpenertemp->boundingBox.min.x + 30.0f)))
+							(player.GetBoundingBoxPlayer().max.x < (Sharpenertemp->boundingBox.min.x + 40.0f)))
 						{
 							Sharpenertemp->vel.x = SPEED;
 							right = 1;
@@ -147,7 +147,7 @@ void Sharpener::UpdateSharpener()
 							printf("SHARPENER VEL RIGHT: %f\n", Sharpenertemp->vel.x);
 						}
 						if ((AEInputCheckCurr(AEVK_LSHIFT) && AEInputCheckCurr(AEVK_LEFT)) &&
-							(player.GetBoundingBoxPlayer().min.x > (Sharpenertemp->boundingBox.max.x - 30.0f)) &&
+							(player.GetBoundingBoxPlayer().min.x > (Sharpenertemp->boundingBox.max.x - 40.0f)) &&
 							(player.GetBoundingBoxPlayer().min.x < (Sharpenertemp->boundingBox.max.x + 15.0f)))
 						{
 							Sharpenertemp->vel.x = -SPEED;
@@ -166,7 +166,7 @@ void Sharpener::UpdateSharpener()
 							/*&& (Sharpenertemp->boundingBox.min.x < (player.GetBoundingBoxPlayer().max.x + 15.0f))
 							&& (Sharpenertemp->boundingBox.min.x > (player.GetBoundingBoxPlayer().max.x - 15.0f)))*/
 							&& (player.GetBoundingBoxPlayer().max.x > (Sharpenertemp->boundingBox.min.x - 15.0f)) &&
-							(player.GetBoundingBoxPlayer().max.x < (Sharpenertemp->boundingBox.min.x + 30.0f)))
+							(player.GetBoundingBoxPlayer().max.x < (Sharpenertemp->boundingBox.min.x + 40.0f)))
 						{
 							Sharpenertemp->vel.x = SPEED;
 							right = 1;
@@ -179,7 +179,7 @@ void Sharpener::UpdateSharpener()
 							//&& (Erasertemp->GetEraserBoundingBox(j).max.x > Sharpenertemp->boundingBox.min.x)
 							/*&& (Sharpenertemp->boundingBox.max.x > (player.GetBoundingBoxPlayer().min.x - 15.0f))
 							&& (Sharpenertemp->boundingBox.max.x < (player.GetBoundingBoxPlayer().min.x + 15.0f)))*/
-							&&(player.GetBoundingBoxPlayer().min.x > (Sharpenertemp->boundingBox.max.x - 30.0f)) &&
+							&&(player.GetBoundingBoxPlayer().min.x > (Sharpenertemp->boundingBox.max.x - 40.0f)) &&
 							(player.GetBoundingBoxPlayer().min.x < (Sharpenertemp->boundingBox.max.x + 15.0f)))
 						{
 							Sharpenertemp->vel.x = -SPEED;
@@ -216,7 +216,7 @@ void Sharpener::UpdateSharpener()
 					/*&& (player.GetBoundingBoxPlayer().max.x > (Sharpenertemp->boundingBox.min.x - 5.0f)) 
 					&& (player.GetBoundingBoxPlayer().max.x < (Sharpenertemp->boundingBox.max.x + 5.0f))*/
 					&& (player.GetBoundingBoxPlayer().max.x > (Sharpenertemp->boundingBox.min.x - 15.0f)) &&
-					(player.GetBoundingBoxPlayer().max.x < (Sharpenertemp->boundingBox.min.x + 30.0f))
+					(player.GetBoundingBoxPlayer().max.x < (Sharpenertemp->boundingBox.min.x + 40.0f))
 					&& (AEInputCheckCurr(AEVK_RIGHT) && AEInputCheckCurr(AEVK_LSHIFT)))
 				{
 					Sharpenertemp->vel.x = SPEED;
@@ -225,7 +225,7 @@ void Sharpener::UpdateSharpener()
 					&& (player.GetBoundingBoxPlayer().min.x < Erasertemp->GetEraserBoundingBox(j).max.x)
 				/*	&& (player.GetBoundingBoxPlayer().min.x > (Sharpenertemp->boundingBox.max.x - 5.0f)) 
 					&& (player.GetBoundingBoxPlayer().min.x < (Sharpenertemp->boundingBox.max.x + 5.0f))*/
-					&& (player.GetBoundingBoxPlayer().min.x > (Sharpenertemp->boundingBox.max.x - 30.0f)) &&
+					&& (player.GetBoundingBoxPlayer().min.x > (Sharpenertemp->boundingBox.max.x - 40.0f)) &&
 					(player.GetBoundingBoxPlayer().min.x < (Sharpenertemp->boundingBox.max.x + 15.0f))
 					&& (AEInputCheckCurr(AEVK_LEFT) && AEInputCheckCurr(AEVK_LSHIFT)))
 				{
