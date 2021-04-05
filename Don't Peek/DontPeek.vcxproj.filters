@@ -65,6 +65,9 @@
     <ClCompile Include="src\Level Select.cpp">
       <Filter>Source\Level\Code</Filter>
     </ClCompile>
+    <ClCompile Include="src\Restart.cpp">
+      <Filter>Source\Level\Code</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Main.h" />
@@ -159,6 +162,9 @@
       <Filter>Source\Environment\Header</Filter>
     </ClInclude>
     <ClInclude Include="src\Level Select.h">
+      <Filter>Source\Level\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Restart.h">
       <Filter>Source\Level\Header</Filter>
     </ClInclude>
   </ItemGroup>

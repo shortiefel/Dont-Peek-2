@@ -51,8 +51,6 @@ void Highlighter::LoadHighlighter()
 	pHighlighter->pMesh = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pHighlighter->pMesh, "Failed to create highlighter!!");
 
-	HighlighterNum = 0;
-
 }
 
 /******************************************************************************/
@@ -64,7 +62,7 @@ void Highlighter::InitHighlighter() {
 
 	scaleX = 150.0f;
 	scaleY = 50.0f;
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < HighlighterNum; i++)
 	{
 		Highlighter* Highlightertemp = HighlighterArray + i;
 
@@ -112,7 +110,7 @@ void Highlighter::DrawHighlighter()
 /******************************************************************************/
 void Highlighter::FreeHighlighter()
 {
-	
+	HighlighterNum = 0;
 }
 
 /******************************************************************************/
@@ -122,10 +120,10 @@ void Highlighter::FreeHighlighter()
 /******************************************************************************/
 void Highlighter::UnloadHighlighter() 
 {
-
+	if (pHighlighter->pMesh)
 		AEGfxMeshFree(pHighlighter->pMesh);
-		if (pHighlighter->texture)
-			AEGfxTextureUnload(pHighlighter->texture);
+	if (pHighlighter->texture)
+		AEGfxTextureUnload(pHighlighter->texture);
 }
 
 /******************************************************************************/

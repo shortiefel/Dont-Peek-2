@@ -109,6 +109,7 @@
     <ClCompile Include="src\Pause.cpp" />
     <ClCompile Include="src\Pencil.cpp" />
     <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\Restart.cpp" />
     <ClCompile Include="src\Sharpener.cpp" />
     <ClCompile Include="src\SplashScreen.cpp" />
     <ClCompile Include="src\Tutorial.cpp" />
@@ -142,6 +143,7 @@
     <ClInclude Include="src\Pause.h" />
     <ClInclude Include="src\Pencil.h" />
     <ClInclude Include="src\Player.h" />
+    <ClInclude Include="src\Restart.h" />
     <ClInclude Include="src\Sharpener.h" />
     <ClInclude Include="src\SplashScreen.h" />
     <ClInclude Include="src\Tutorial.h" />

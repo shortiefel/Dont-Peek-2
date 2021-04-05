@@ -189,6 +189,7 @@ void LevelSelectDraw()
 void LevelSelectFree()
 {
 	CurrentScreen = TUT;
+	CurrentScreen == LV1;
 }
 void LevelSelectUnload()
 {

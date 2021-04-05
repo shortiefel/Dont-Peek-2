@@ -9,6 +9,7 @@ float g_dt;
 double g_appTime;
 bool CheckPause;
 
+
 /******************************************************************************/
 /*!
 	STARTING POINT OF THE APPLICATION

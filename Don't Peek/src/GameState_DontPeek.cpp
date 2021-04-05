@@ -91,7 +91,7 @@ void GameStateDontPeekInit(void)
 {
 	SoundSystem_Init();
 	SoundSystem_SFX();
-
+	CheckPause = false;
 	Level1_Init();
 	wall.InitWall();
 	sharpener.InitSharpener();
@@ -129,6 +129,8 @@ void GameStateDontPeekUpdate(void)
 		wall.UpdateWall();
 		player.Player_Update();
 	}
+
+
 }
 
 

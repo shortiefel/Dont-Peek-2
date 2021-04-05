@@ -178,7 +178,7 @@ void PauseUpdate()
 				}
 					
 			}
-			else if (gGameStatePrev == GS_DONT_PEEK)
+			else if (gGameStateCurr == GS_DONT_PEEK)
 			{
 				if (AEInputUpdate)
 				{
@@ -188,37 +188,19 @@ void PauseUpdate()
 					
 					player.GetBoundingBoxPlayer();
 					player.Player_Draw();*/
-					gGameStateNext = GS_DONT_PEEK;
+					//gGameStateNext = GS_DONT_PEEK;
 					printf("Go level");
 				}
-					
 			}
-				
-				
 		}
 		else if (CollisionIntersection_PointRect({ static_cast<float>(Px), static_cast<float>(Py) }, { 0,0 }, Pbtn[1].boundingBox, { 0,0 }))
 		{
-
-			if (gGameStatePrev == GS_TUTORIAL)
-			{
 				if (AEInputUpdate)
 				{
 					CheckPause = false;
-					gGameStateNext = GS_TUTORIAL;
-					printf("Go tutorial");
+					gGameStateNext = GS_RESTART;
+					printf("Restarting \n");
 				}
-						
-			}
-			else if (gGameStatePrev == GS_DONT_PEEK)
-			{
-				if (AEInputUpdate)
-				{
-					CheckPause = false;
-					gGameStateNext = GS_DONT_PEEK;
-					printf("Go level");
-				}
-						
-			}
 		}
 		else if (CollisionIntersection_PointRect({ static_cast<float>(Px), static_cast<float>(Py) }, { 0,0 }, Pbtn[2].boundingBox, { 0,0 }))
 		{
@@ -262,6 +244,7 @@ void PauseDraw()
 
 void PauseFree()
 {
+
 }
 
 void PauseUnload()

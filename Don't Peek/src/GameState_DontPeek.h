@@ -8,7 +8,7 @@
 */
 /******************************************************************************/
 
-const unsigned int	GAME_OBJ_NUM_MAX = 32;					//The total number of different objects (Shapes)
+const unsigned int	GAME_OBJ_NUM_MAX = 50;					//The total number of different objects (Shapes)
 const unsigned int	MAX = 10;
 const float			SPEED = 300.f;
 

@@ -142,6 +142,7 @@ void Wall::DrawWall()
 /******************************************************************************/
 void Wall::FreeWall()
 {
+	numberWalls = 0; //DONE BY FELICIA< JARELL< JER AND SOLVED BY US 
 }
 
 /******************************************************************************/
@@ -158,7 +159,7 @@ void Wall::UnloadWall()
 	else
 	{
 		AEGfxMeshFree(pWall->pMesh);
-		numberWalls = 0; //DONE BY FELICIA< JARELL< JER AND SOLVED BY US 
+		//numberWalls = 0; //DONE BY FELICIA< JARELL< JER AND SOLVED BY US 
 		printf("free!");
 	}
 	

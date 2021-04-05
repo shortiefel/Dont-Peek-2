@@ -1,7 +1,8 @@
-﻿  Pause.cpp
-D:\CSD 1450\Dont-Peek-2\Don't Peek\src\Pause.cpp(163,9): warning C4551: function call missing argument list
-D:\CSD 1450\Dont-Peek-2\Don't Peek\src\Pause.cpp(183,9): warning C4551: function call missing argument list
-D:\CSD 1450\Dont-Peek-2\Don't Peek\src\Pause.cpp(204,9): warning C4551: function call missing argument list
-D:\CSD 1450\Dont-Peek-2\Don't Peek\src\Pause.cpp(214,9): warning C4551: function call missing argument list
-D:\CSD 1450\Dont-Peek-2\Don't Peek\src\Pause.cpp(225,8): warning C4551: function call missing argument list
+﻿  Wall.cpp
+D:\CSD 1450\Dont-Peek-2\Don't Peek\src\Wall.cpp(73,20): warning C4459: declaration of 'Walltemp' hides global declaration
+D:\CSD 1450\Dont-Peek-2\Don't Peek\src\Wall.cpp(31,7): message : see declaration of 'Walltemp'
+D:\CSD 1450\Dont-Peek-2\Don't Peek\src\Wall.cpp(205,19): warning C4459: declaration of 'Walltemp' hides global declaration
+D:\CSD 1450\Dont-Peek-2\Don't Peek\src\Wall.cpp(31,7): message : see declaration of 'Walltemp'
+D:\CSD 1450\Dont-Peek-2\Don't Peek\src\Wall.cpp(211,19): warning C4459: declaration of 'Walltemp' hides global declaration
+D:\CSD 1450\Dont-Peek-2\Don't Peek\src\Wall.cpp(31,7): message : see declaration of 'Walltemp'
   DontPeek.vcxproj -> D:\CSD 1450\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe

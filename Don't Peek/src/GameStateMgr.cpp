@@ -9,6 +9,7 @@
 #include "Pause.h"
 #include "Credits.h"
 #include "Level Select.h"
+#include "Restart.h"
 
 
 /******************************************************************************/
@@ -154,8 +155,15 @@ void GameStateMgrUpdate()
 		break;
 
 
-		//case GS_RESTART:
-			//GameStateInit = GameStateDontPeekInit;
+	case GS_RESTART:
+
+		GameStateLoad = RestartLoad;
+		GameStateInit = RestartInit;
+		GameStateUpdate = RestartUpdate;
+		GameStateDraw = RestartDraw;
+		GameStateFree = RestartFree;
+		GameStateUnload = RestartUnload;
+
 	default:
 		AE_FATAL_ERROR("invalid state!!");
 	}
