@@ -100,24 +100,26 @@ void HowtoplayDraw(void)
 void HowtoplayFree(void)
 {
 	printf("TUT IS FREEING\n");
+	Tutorial_Free();
+	wall.FreeWall();
 	sharpener.FreeSharpener();
 	eraser.FreeEraser();
 	highlighter.FreeHighlighter();
 	pencil.FreePencil();
 	door.FreeDoor();
 	player.Player_Free();
-	wall.FreeWall();
 }
 
 void HowtoplayUnload(void)
 {
 	PauseUnload();
 	printf("TUT IS UNLOADING\n");
+	Tutorial_Unload();
+	wall.UnloadWall();
 	sharpener.UnloadSharpener();
 	eraser.UnloadEraser();
 	highlighter.UnloadHighlighter();
 	pencil.UnloadPencil();
 	door.UnloadDoor();
 	player.Player_Unload();
-	wall.UnloadWall();
 }

@@ -381,6 +381,7 @@ void Player::Player_Free()
 /******************************************************************************/
 void Player::Player_Unload()
 {
+	// potentially more memory leak
 	if (AEInputCheckCurr(AEVK_P))
 	{
 		gGameStateNext = GS_PAUSE;

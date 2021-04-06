@@ -271,7 +271,7 @@ void MenuFree()
 void MenuUnload()
 {
 	SoundSystem_Destroy();
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 4; i++)
 	{
 		if (button[i].pButton->pMesh)
 			AEGfxMeshFree(button[i].pButton->pMesh);
