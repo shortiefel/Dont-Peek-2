@@ -22,6 +22,7 @@ Technology is prohibited.
 #include "main.h"
 #include "GameStateMgr.h"
 #include "Rules.h"
+#include "Music.h"
 
 Rule rule;
 
@@ -56,7 +57,8 @@ void RulesLoad()
 }
 void RulesInit()
 {
-
+	SoundSystem_Init();
+	SoundSystem_SFX();
 }
 void RulesUpdate()
 {
@@ -82,7 +84,7 @@ void RulesDraw()
 }
 void RulesFree()
 {
-
+	SoundSystem_Destroy();
 }
 void RulesUnload()
 {

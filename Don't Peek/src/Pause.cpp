@@ -9,7 +9,10 @@ Margaret Teo Boon See	Teo.b@digipen.edu
 Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 \date 24/03/2021
-\brief This is the player file. It contains all the player function
+\brief This file is done by felicia. It contains the different functions such as resume, restart, 
+main menu. 
+
+
 Copyright (C) 2021 DigiPen Institute of Technology.
 Reproduction or disclosure of this file or its contents
 without the prior written consent of DigiPen Institute of
