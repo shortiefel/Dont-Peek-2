@@ -34,6 +34,7 @@ Technology is prohibited.
 #include "Win.h"
 #include "Music.h"
 #include "Pause.h"
+#include "Animation.h"
 
 
 /******************************************************************************/
@@ -57,7 +58,7 @@ Eraser eraser;
 Pencil pencil;
 Highlighter highlighter;
 Wall wall;
-
+Sprite anim;
 
 
 /******************************************************************************/
@@ -80,6 +81,7 @@ void GameStateDontPeekLoad(void)
 	pencil.LoadPencil();
 	door.LoadDoor();
 	player.Player_Load();
+	anim.Anim_Load();
 }
 
 /******************************************************************************/
@@ -100,6 +102,7 @@ void GameStateDontPeekInit(void)
 	pencil.InitPencil();
 	door.InitDoor();
 	player.Player_Init();
+	anim.Anim_Init();
 }
 
 /******************************************************************************/
@@ -130,7 +133,6 @@ void GameStateDontPeekUpdate(void)
 		player.Player_Update();
 	}
 
-
 }
 
 
@@ -155,6 +157,7 @@ void GameStateDontPeekDraw(void)
 		eraser.DrawEraser();
 		door.DrawDoor();
 		player.Player_Draw();
+		anim.Anim_Update();
 	}
 
 }
@@ -174,6 +177,7 @@ void GameStateDontPeekFree(void)
 	door.FreeDoor();
 	player.Player_Free();
 	wall.FreeWall();
+	anim.Anim_Free();
 }
 
 /******************************************************************************/
@@ -192,4 +196,5 @@ void GameStateDontPeekUnload(void)
 	door.UnloadDoor();
 	player.Player_Unload();
 	wall.UnloadWall();
+	anim.Anim_Unload();
 }
