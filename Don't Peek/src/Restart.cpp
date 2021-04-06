@@ -87,6 +87,8 @@ void RestartFree()
 
 void RestartUnload()
 {
+	if (restart.pObj->pMesh)
+		AEGfxMeshFree(restart.pObj->pMesh);
 	if (restart.pObj->texture)
 		AEGfxTextureUnload(restart.pObj->texture);
 }

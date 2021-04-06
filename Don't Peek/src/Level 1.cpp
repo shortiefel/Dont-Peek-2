@@ -178,11 +178,14 @@ void Level1_Draw()
 }
 void Level1_Free()
 {
-	AEGfxMeshFree(bg.pBg->pMesh);
+	
 
 }
 void Level1_Unload()
 {
-	timer = 100.f;
-	AEGfxTextureUnload(bg.pBg->texture);
+	//timer = 100.f;
+	if (bg.pBg->pMesh)
+		AEGfxMeshFree(bg.pBg->pMesh);
+	if (bg.pBg->texture)
+		AEGfxTextureUnload(bg.pBg->texture);
 }

@@ -244,11 +244,22 @@ void PauseDraw()
 
 void PauseFree()
 {
-
+	
 }
 
 void PauseUnload()
 {
+	for (int i = 0; i < 3; i++)
+	{
+		if (Pbtn[i].pButton->pMesh)
+			AEGfxMeshFree(Pbtn[i].pButton->pMesh);
+		if (Pbtn[i].pButton->texture)
+			AEGfxTextureUnload(Pbtn[i].pButton->texture);
+	}
+	if (pause.pObj->pMesh)
+		AEGfxMeshFree(pause.pObj->pMesh);
+	if (pause.pObj->texture)
+		AEGfxTextureUnload(pause.pObj->texture);
 }
 
 void BoundingBoxPause()

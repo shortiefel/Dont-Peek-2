@@ -52,6 +52,7 @@ public:
 	void UnloadWall();
 
 	void CreateWall(AEVec2 pos, AEVec2 dir, int number, float scale, wallType type);
+
 	wallType GetType(int i);
 
 	AABB GetWallBoundingBox(int i);

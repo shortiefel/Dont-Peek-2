@@ -186,17 +186,14 @@ void LoseDraw()
 
 void LoseFree()
 {
-	for (int i = 0; i < 2; i++)
-	{
-		if (Wbutton[i].pButton->pMesh)
-			AEGfxMeshFree(Wbutton[i].pButton->pMesh);
-	}
 }
 
 void LoseUnload()
 {
 	for (int i = 0; i < 2; i++)
 	{
+		if (Wbutton[i].pButton->pMesh)
+			AEGfxMeshFree(Wbutton[i].pButton->pMesh);
 		if (Wbutton[i].pButton->texture)
 			AEGfxTextureUnload(Wbutton[i].pButton->texture);
 	}

@@ -110,7 +110,7 @@ void Door::DrawDoor()
 /******************************************************************************/
 void Door::FreeDoor()
 {
-	
+	DoorNum = 0;
 }
 
 /******************************************************************************/
@@ -120,9 +120,10 @@ void Door::FreeDoor()
 /******************************************************************************/
 void Door::UnloadDoor()
 {
-	AEGfxMeshFree(pDoor->pMesh);
-	AEGfxTextureUnload(pDoor->texture);
-	DoorNum = 0;
+	if (pDoor->pMesh)
+		AEGfxMeshFree(pDoor->pMesh);
+	if(pDoor->texture)
+		AEGfxTextureUnload(pDoor->texture);
 }
 
 /******************************************************************************/

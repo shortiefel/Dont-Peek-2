@@ -387,8 +387,11 @@ void Player::Player_Unload()
 	}
 	else
 	{
-		AEGfxTextureUnload(pPlayer->texture);
-		AEGfxMeshFree(pPlayer->pMesh);
+		if (pPlayer->pMesh)
+			AEGfxMeshFree(pPlayer->pMesh);
+		if (pPlayer->texture)
+			AEGfxTextureUnload(pPlayer->texture);
+		
 	}
 		
 }

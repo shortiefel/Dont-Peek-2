@@ -1,2 +1,34 @@
-﻿  Rules.cpp
-  DontPeek.vcxproj -> D:\CSD 1450\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe
+﻿  Credits.cpp
+C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Credits.cpp(174,9): warning C4551: function call missing argument list
+  Door.cpp
+  Eraser.cpp
+C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Eraser.cpp(408,3): warning C4551: function call missing argument list
+  Level 1.cpp
+C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\fmod_errors.h(20,20): warning C4505: 'FMOD_ErrorString': unreferenced local function has been removed
+  Lose.cpp
+C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Lose.cpp(139,8): warning C4551: function call missing argument list
+C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Lose.cpp(149,8): warning C4551: function call missing argument list
+  Menu.cpp
+C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Menu.cpp(198,9): warning C4551: function call missing argument list
+C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Menu.cpp(211,9): warning C4551: function call missing argument list
+C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Menu.cpp(223,9): warning C4551: function call missing argument list
+C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Menu.cpp(232,9): warning C4551: function call missing argument list
+C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\fmod_errors.h(20,20): warning C4505: 'FMOD_ErrorString': unreferenced local function has been removed
+  Pause.cpp
+C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Pause.cpp(163,9): warning C4551: function call missing argument list
+C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Pause.cpp(183,9): warning C4551: function call missing argument list
+C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Pause.cpp(198,9): warning C4551: function call missing argument list
+C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Pause.cpp(207,8): warning C4551: function call missing argument list
+  Pencil.cpp
+  Player.cpp
+C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Player.cpp(142,46): warning C4244: '=': conversion from 'double' to 'f32', possible loss of data
+  Restart.cpp
+  Sharpener.cpp
+  SplashScreen.cpp
+  Tutorial.cpp
+C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\fmod_errors.h(20,20): warning C4505: 'FMOD_ErrorString': unreferenced local function has been removed
+  Win.cpp
+C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Win.cpp(138,8): warning C4551: function call missing argument list
+C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Win.cpp(148,8): warning C4551: function call missing argument list
+  Generating Code...
+  DontPeek.vcxproj -> C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe
