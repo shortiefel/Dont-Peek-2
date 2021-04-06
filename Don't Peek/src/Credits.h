@@ -29,7 +29,7 @@ struct Credits
 	AEVec2 pos;
 	AEVec2 scale;
 	AEMtx33 transform; //object transformation matrix
-	GameObj* pObj;
+	GameObj* pObj;// = 0;
 };
 
 struct Button1

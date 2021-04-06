@@ -31,7 +31,7 @@ Technology is prohibited.
 #include "Player.h"
 
 background bg;
-static float timer = 0;
+//static float timer = 0;
 
 void Tutorial_Load()
 {
@@ -160,7 +160,7 @@ void Tutorial_Init()
 	wall.CreateWall({ 1190,280 }, { 0,-1 }, 9, 30.f, WALL); //left wall
 
 	//timer
-	timer = 50.f;
+	//timer = 50.f;
 }
 
 void Tutorial_Update()
@@ -201,4 +201,5 @@ void Tutorial_Unload()
 		AEGfxMeshFree(bg.pBg->pMesh);
 	if (bg.pBg->texture)
 		AEGfxTextureUnload(bg.pBg->texture);
+	printf("tutorial screen DESTROY\n");
 }

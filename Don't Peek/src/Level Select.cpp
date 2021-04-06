@@ -194,13 +194,16 @@ void LevelSelectFree()
 	CurrentScreen = TUT;
 	CurrentScreen == LV1;
 	SoundSystem_Destroy();
+	
 }
 void LevelSelectUnload()
 {
+	
 	if (button.pButton->pMesh)
 		AEGfxMeshFree(button.pButton->pMesh);
 	if (button.pButton->texture)
 		AEGfxTextureUnload(button.pButton->texture);
+	printf("levelselect button DESTROY\n");
 
 	for (int i = 0; i < 2; i++)
 	{
@@ -208,5 +211,6 @@ void LevelSelectUnload()
 			AEGfxMeshFree(screen[i].pObj->pMesh);
 		if (screen[i].pObj->texture)
 			AEGfxTextureUnload(screen[i].pObj->texture);
+		printf("levelselect screen DESTROY\n");
 	}
 }

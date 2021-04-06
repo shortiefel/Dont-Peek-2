@@ -405,8 +405,8 @@ void Eraser::UnloadEraser()
 	if (pEraser->pMesh)
 		AEGfxMeshFree(pEraser->pMesh);
 	if (pEraser->texture)
-		AEGfxTextureUnload;
-		
+		AEGfxTextureUnload(pEraser->texture);
+	printf("eraser DESTROY\n");
 }
 
 /******************************************************************************/

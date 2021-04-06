@@ -183,7 +183,7 @@ void GameStateDontPeekFree(void)
 /******************************************************************************/
 void GameStateDontPeekUnload(void)
 {
-
+	
 	Level1_Unload();
 	sharpener.UnloadSharpener();
 	eraser.UnloadEraser();

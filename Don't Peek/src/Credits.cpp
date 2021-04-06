@@ -222,15 +222,25 @@ void CreditsDraw()
 void CreditsFree()
 {
 	SoundSystem_Destroy();
+}
+
+void CreditsUnload()
+{
+	
+	for (int i = 0; i < 4; i++)
+	{
+		if (credit[i].pObj->pMesh)
+			AEGfxMeshFree(credit[i].pObj->pMesh);
+		if (credit[i].pObj->texture)
+			AEGfxTextureUnload(credit[i].pObj->texture);
+		printf("credit page DESTROY\n");
+	}
+
 	if (button.pButton->pMesh)
 		AEGfxMeshFree(button.pButton->pMesh);
-	if (credit[element].pObj->pMesh)
-		AEGfxMeshFree(credit[element].pObj->pMesh);
-
-	if (credit[element].pObj->texture)
-		AEGfxTextureUnload(credit[element].pObj->texture);
 	if (button.pButton->texture)
 		AEGfxTextureUnload(button.pButton->texture);
+	printf("credit button DESTROY\n");
 }
 
 void BoundingBox1()

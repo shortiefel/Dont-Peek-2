@@ -66,7 +66,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 
 	//GameStateMgrInit(GS_PAUSE); //for now its level one, once menu is done change it
 
-		Fonts = AEGfxCreateFont("Resources/Arial Italic.ttf", 25);
+		//Fonts = AEGfxCreateFont("Resources/Arial Italic.ttf", 25);
 	while (gGameStateCurr != GS_QUIT)
 	{
 
@@ -113,7 +113,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 		gGameStatePrev = gGameStateCurr;
 		gGameStateCurr = gGameStateNext;
 	}
-
+	
 	//freeing the system
 	AESysExit();
 }

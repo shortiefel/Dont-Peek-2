@@ -197,8 +197,13 @@ void LoseUnload()
 			AEGfxMeshFree(Wbutton[i].pButton->pMesh);
 		if (Wbutton[i].pButton->texture)
 			AEGfxTextureUnload(Wbutton[i].pButton->texture);
+		printf("lose buttons DESTROY\n");
 	}
-
+	if (win.pObj->pMesh)
+		AEGfxMeshFree(win.pObj->pMesh);
+	if(win.pObj->texture)
+		AEGfxTextureUnload(win.pObj->texture);
+	printf("lose screen DESTROY\n");
 }
 
 void BoundingBoxLose()

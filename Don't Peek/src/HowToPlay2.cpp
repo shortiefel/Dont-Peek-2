@@ -102,7 +102,8 @@ void HowtoplayDraw(void)
 
 void HowtoplayFree(void)
 {
-	printf("TUT IS FREEING\n");
+	SoundSystem_Destroy();
+	//printf("TUT IS FREEING\n");
 	Tutorial_Free();
 	wall.FreeWall();
 	sharpener.FreeSharpener();
@@ -111,13 +112,14 @@ void HowtoplayFree(void)
 	pencil.FreePencil();
 	door.FreeDoor();
 	player.Player_Free();
-	SoundSystem_Destroy();
+	
 }
 
 void HowtoplayUnload(void)
 {
+	
 	PauseUnload();
-	printf("TUT IS UNLOADING\n");
+	//printf("TUT IS UNLOADING\n");
 	Tutorial_Unload();
 	wall.UnloadWall();
 	sharpener.UnloadSharpener();

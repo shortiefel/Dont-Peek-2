@@ -426,6 +426,7 @@ void Sharpener::UnloadSharpener()
 		AEGfxMeshFree(pSharpener->pMesh);
 	if (pSharpener->texture)
 		AEGfxTextureUnload(pSharpener->texture);
+	printf("sharpener DESTROY\n");
 
 }
 

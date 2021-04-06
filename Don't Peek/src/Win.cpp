@@ -191,17 +191,21 @@ void WinFree()
 
 void WinUnload()
 {
-
 	for (int i = 0; i < 2; i++)
 	{
 		if (Wbutton[i].pButton->pMesh)
 			AEGfxMeshFree(Wbutton[i].pButton->pMesh);
 		if (Wbutton[i].pButton->texture)
 			AEGfxTextureUnload(Wbutton[i].pButton->texture);
+		printf("win buttons DESTROY\n");
 	}
 
-	AEGfxMeshFree(win.pObj->pMesh);
-	AEGfxTextureUnload(win.pObj->texture);
+	if (win.pObj->pMesh)
+		AEGfxMeshFree(win.pObj->pMesh);
+	if(win.pObj->texture)	
+		AEGfxTextureUnload(win.pObj->texture);
+
+	printf("win screen DESTROY\n");
 }
 
 void BoundingBoxWin()

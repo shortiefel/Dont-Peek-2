@@ -124,6 +124,7 @@ void Door::UnloadDoor()
 		AEGfxMeshFree(pDoor->pMesh);
 	if(pDoor->texture)
 		AEGfxTextureUnload(pDoor->texture);
+	printf("door DESTROY\n");
 }
 
 /******************************************************************************/

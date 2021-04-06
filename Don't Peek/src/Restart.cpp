@@ -91,4 +91,5 @@ void RestartUnload()
 		AEGfxMeshFree(restart.pObj->pMesh);
 	if (restart.pObj->texture)
 		AEGfxTextureUnload(restart.pObj->texture);
+	printf("restart DESTROY\n");
 }

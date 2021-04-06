@@ -178,14 +178,16 @@ void Level1_Draw()
 }
 void Level1_Free()
 {
-	
-
+	SoundSystem_Destroy();
 }
+
 void Level1_Unload()
 {
+	
 	//timer = 100.f;
 	if (bg.pBg->pMesh)
 		AEGfxMeshFree(bg.pBg->pMesh);
 	if (bg.pBg->texture)
 		AEGfxTextureUnload(bg.pBg->texture);
+	printf("level1 background DESTROY\n");
 }

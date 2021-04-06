@@ -395,7 +395,7 @@ void Player::Player_Unload()
 			AEGfxMeshFree(pPlayer->pMesh);
 		if (pPlayer->texture)
 			AEGfxTextureUnload(pPlayer->texture);
-		
+		printf("player DESTROY\n");
 	}
 		
 }

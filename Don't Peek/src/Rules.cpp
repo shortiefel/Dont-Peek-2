@@ -86,10 +86,13 @@ void RulesFree()
 {
 	SoundSystem_Destroy();
 }
+
 void RulesUnload()
 {
+	
 	if (rule.pObj->pMesh)
 		AEGfxMeshFree(rule.pObj->pMesh);
 	if (rule.pObj->texture)
 		AEGfxTextureUnload(rule.pObj->texture);
+	printf("rules DESTROY\n");
 }

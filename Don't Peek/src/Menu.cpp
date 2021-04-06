@@ -266,23 +266,26 @@ void MenuDraw()
 }
 void MenuFree()
 {
+	SoundSystem_Destroy();
 }
 
 void MenuUnload()
 {
-	SoundSystem_Destroy();
+	
 	for (int i = 0; i < 4; i++)
 	{
 		if (button[i].pButton->pMesh)
 			AEGfxMeshFree(button[i].pButton->pMesh);
 		if (button[i].pButton->texture)
 			AEGfxTextureUnload(button[i].pButton->texture);
+		printf("menu button DESTROY\n");
 	}
 
 	if (menu.pObj->pMesh)
 		AEGfxMeshFree(menu.pObj->pMesh);
 	if (menu.pObj->texture)
 		AEGfxTextureUnload(menu.pObj->texture);
+	printf("menu screen DESTROY\n");
 
 }
 

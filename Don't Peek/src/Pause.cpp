@@ -258,11 +258,14 @@ void PauseUnload()
 			AEGfxMeshFree(Pbtn[i].pButton->pMesh);
 		if (Pbtn[i].pButton->texture)
 			AEGfxTextureUnload(Pbtn[i].pButton->texture);
+		printf("pause buttons DESTROY\n");
 	}
 	if (pause.pObj->pMesh)
 		AEGfxMeshFree(pause.pObj->pMesh);
 	if (pause.pObj->texture)
 		AEGfxTextureUnload(pause.pObj->texture);
+	printf("pause screen DESTROY\n");
+
 }
 
 void BoundingBoxPause()

@@ -62,7 +62,7 @@ void Tutorial_SFX()
 
 void SoundSystem_Destroy()
 {
-    std::cout << "i was triggered" << "\n";
+    //std::cout << "i was triggered" << "\n";
     static bool playing = false;
     bgmGroup->isPlaying(&playing);
         
@@ -72,7 +72,7 @@ void SoundSystem_Destroy()
     FMOD_RESULT result = BGSound->release();
     if (result != FMOD_OK)
         std::cout << "Release failed\n";
-
+    printf("music DESTROY\n");
 }
 
 

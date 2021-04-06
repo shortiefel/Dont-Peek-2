@@ -98,5 +98,6 @@ void SSUnload()
 
 	if (splashscreen.pObj->texture)
 		AEGfxTextureUnload(splashscreen.pObj->texture);
+	printf("splash screen DESTROY\n");
 
 }

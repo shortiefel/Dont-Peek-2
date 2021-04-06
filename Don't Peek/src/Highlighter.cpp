@@ -88,14 +88,15 @@ void Highlighter::UpdateHighlighter()
 /******************************************************************************/
 void Highlighter::DrawHighlighter() 
 {
-	AEGfxSetBlendMode(AE_GFX_BM_NONE);
-	AEGfxSetBlendColor(0.0f, 0.f, 0.f, 0.f);
-	AEGfxSetTransparency(1.0f);
-	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
-	AEGfxSetRenderMode(AE_GFX_RM_COLOR);
+	
 	for (int i = 0; i < HighlighterNum; i++)
 	{
 		Highlighter* Highlightertemp = HighlighterArray + i;
+		AEGfxSetBlendMode(AE_GFX_BM_NONE);
+		//AEGfxSetBlendColor(0.0f, 0.f, 0.f, 0.f);
+		AEGfxSetTransparency(1.0f);
+		AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
+		AEGfxSetRenderMode(AE_GFX_RM_COLOR);
 		AEGfxSetPosition(Highlightertemp->pos.x, Highlightertemp->pos.y);
 		AEGfxSetTransform(Highlightertemp->Transform.m);
 		//AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
@@ -118,12 +119,14 @@ void Highlighter::FreeHighlighter()
 	Highlighter Unload
 */
 /******************************************************************************/
-void Highlighter::UnloadHighlighter() 
+void Highlighter::UnloadHighlighter()
 {
 	if (pHighlighter->pMesh)
 		AEGfxMeshFree(pHighlighter->pMesh);
+
 	if (pHighlighter->texture)
 		AEGfxTextureUnload(pHighlighter->texture);
+	printf("highlighter DESTROY\n");
 }
 
 /******************************************************************************/
