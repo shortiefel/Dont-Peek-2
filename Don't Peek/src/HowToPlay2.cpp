@@ -28,6 +28,7 @@ Technology is prohibited.
 #include "Tutorial.h"
 #include "Win.h"
 #include "Pause.h"
+#include "Music.h"
 
 void HowtoplayLoad(void)
 {
@@ -44,6 +45,8 @@ void HowtoplayLoad(void)
 
 void HowtoplayInit(void)
 {
+	SoundSystem_Init();
+	SoundSystem_SFX();
 	Tutorial_Init();
 	wall.InitWall();
 	sharpener.InitSharpener();
@@ -108,6 +111,7 @@ void HowtoplayFree(void)
 	pencil.FreePencil();
 	door.FreeDoor();
 	player.Player_Free();
+	SoundSystem_Destroy();
 }
 
 void HowtoplayUnload(void)

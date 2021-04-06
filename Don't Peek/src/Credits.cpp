@@ -23,6 +23,7 @@ Technology is prohibited.
 #include "GameStateMgr.h"
 #include "Credits.h"
 #include "Menu.h"
+#include "Music.h"
 
 
 static Credits credit[4];
@@ -152,7 +153,8 @@ void CreditsLoad()
 
 void CreditsInit()
 {
-
+	SoundSystem_Init();
+	SoundSystem_SFX();
 }
 
 void CreditsUpdate()
@@ -219,11 +221,7 @@ void CreditsDraw()
 
 void CreditsFree()
 {
-	
-}
-
-void CreditsUnload()
-{
+	SoundSystem_Destroy();
 	if (button.pButton->pMesh)
 		AEGfxMeshFree(button.pButton->pMesh);
 	if (credit[element].pObj->pMesh)

@@ -172,8 +172,8 @@ void MenuLoad()
 }
 void MenuInit()
 {
-	
-	//SoundSystem_SFX();
+	SoundSystem_Init();
+	SoundSystem_SFX();
 }
 void MenuUpdate()
 {
@@ -283,6 +283,7 @@ void MenuUnload()
 		AEGfxMeshFree(menu.pObj->pMesh);
 	if (menu.pObj->texture)
 		AEGfxTextureUnload(menu.pObj->texture);
+
 }
 
 void BoundingBox()
