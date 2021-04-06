@@ -3,11 +3,8 @@
 const int MAX_CHANNELS = 64;
 FMOD::System* audio;
 FMOD::ChannelGroup* bgmGroup;
-FMOD::ChannelGroup* CEraser;
-FMOD::ChannelGroup* CHighligther;
 FMOD::Sound* BGSound;
-FMOD::Sound* Eraser;
-FMOD::Sound* Highlighter;
+
 
 void SoundSystem_Init()
 {
@@ -20,8 +17,6 @@ void SoundSystem_Init()
     audio->init(MAX_CHANNELS, FMOD_INIT_NORMAL, NULL);
 
     audio->createChannelGroup("BGM", &bgmGroup);
-    audio->createChannelGroup("CE", &CEraser);
-    audio->createChannelGroup("CH", &CHighligther);
 
     audio->createSound("Resources/BGMusic.wav", FMOD_LOOP_NORMAL, 0, &BGSound);
 
@@ -45,7 +40,15 @@ void Tutorial_SFX()
 void SoundSystem_Destroy()
 {
     std::cout << "i was triggered" << "\n";
-    BGSound->release();
+    static bool playing = false;
+    bgmGroup->isPlaying(&playing);
+        
+    if(playing) 
+        bgmGroup->stop();
+
+    FMOD_RESULT result = BGSound->release();
+    if (result != FMOD_OK)
+        std::cout << "Release failed\n";
 
 }
 
