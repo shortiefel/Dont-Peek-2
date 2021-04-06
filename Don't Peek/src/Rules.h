@@ -10,7 +10,8 @@ Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 
 \date 22/01/2021
-\brief <give a brief description of this file>
+\brief This file is done by Felicia. In this file, it contains a simple screen that shows
+the different movement player can do and the special keys available 
 
 
 Copyright (C) 2021 DigiPen Institute of Technology.
