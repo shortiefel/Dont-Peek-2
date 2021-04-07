@@ -81,7 +81,6 @@ void GameStateDontPeekLoad(void)
 	pencil.LoadPencil();
 	door.LoadDoor();
 	player.Player_Load();
-	anim.Anim_Load();
 }
 
 /******************************************************************************/
@@ -102,7 +101,6 @@ void GameStateDontPeekInit(void)
 	pencil.InitPencil();
 	door.InitDoor();
 	player.Player_Init();
-	anim.Anim_Init();
 }
 
 /******************************************************************************/
@@ -157,7 +155,6 @@ void GameStateDontPeekDraw(void)
 		eraser.DrawEraser();
 		door.DrawDoor();
 		player.Player_Draw();
-		anim.Anim_Update();
 	}
 
 }
@@ -177,7 +174,6 @@ void GameStateDontPeekFree(void)
 	door.FreeDoor();
 	player.Player_Free();
 	wall.FreeWall();
-	anim.Anim_Free();
 }
 
 /******************************************************************************/
@@ -196,5 +192,4 @@ void GameStateDontPeekUnload(void)
 	door.UnloadDoor();
 	player.Player_Unload();
 	wall.UnloadWall();
-	anim.Anim_Unload();
 }
