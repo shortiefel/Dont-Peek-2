@@ -10,8 +10,8 @@ Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 
 \date 22/01/2021
-\brief <give a brief description of this file>
-
+\brief In this file, it contains the declaration of
+functions found in Collision.cpp
 
 Copyright (C) 20xx DigiPen Institute of Technology.
 Reproduction or disclosure of this file or its contents
@@ -23,8 +23,6 @@ Technology is prohibited.
 
 #include "Main.h"
 
-
-
 struct AABB
 {
 	AEVec2	min;
@@ -33,10 +31,6 @@ struct AABB
 
 bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1,
 	const AABB& aabb2, const AEVec2& vel2);
-//void BoundingBox();
-
-//bool CollisionIntersection_PointLine(const AEVec2& point, const AEVec2& vel1,
-	//const AEVec2& line, const AEVec2& vel2);
 
 bool CollisionIntersection_PointRect(const AEVec2& point, const AEVec2& vel1,
 	const AABB& Rect, const AEVec2& vel2);

@@ -10,7 +10,11 @@ Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 
 \date 22/02/2021
-\brief <give a brief description of this file>
+\brief 
+This file contains all the functions that is required for our collision.
+This is all AABB collision.
+Collision between 2 rectangular object.
+Collision between a point and a rectangular object.
 
 
 Copyright (C) 20xx DigiPen Institute of Technology.
@@ -30,6 +34,11 @@ bool collideTop = false;
 bool collideBtm = false;
 
 
+/******************************************************************************/
+/*!
+	Collision Between 2 Rectangular Object
+*/
+/******************************************************************************/
 bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1,
 									const AABB& aabb2, const AEVec2& vel2)
 {
@@ -130,13 +139,11 @@ bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1,
 	}
 }
 
-//bool CollisionIntersection_PointLine(const AEVec2& point, const AEVec2& vel1,
-//	const AABB& line, const AEVec2& vel2)
-//{
-//	float buffer = 0.1;
-//	
-//}
-
+/******************************************************************************/
+/*!
+	Collision Between A Point And A Rectangular Object [Used for mouse clicking]
+*/
+/******************************************************************************/
 bool CollisionIntersection_PointRect(const AEVec2& point, const AEVec2& vel1,
 	const AABB& Rect, const AEVec2& vel2)
 {

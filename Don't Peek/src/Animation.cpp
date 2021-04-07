@@ -1,6 +1,33 @@
+/* Start Header ************************************************************************/
+/*!
+\file Animation.cpp
+\team name Don't Peak
+\software name I don't want to do homework
+\authors
+Tan Wei Ling Felicia	weilingfelicia.tan@digipen.edu
+Margaret Teo Boon See	Teo.b@digipen.edu
+Loh Yun Yi Tessa	tessa.loh@digipen.edu
+Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
+
+\date 22/01/2021
+\brief
+This file contains all the functions that is required for our animations.
+
+
+Copyright (C) 20xx DigiPen Institute of Technology.
+Reproduction or disclosure of this file or its contents
+without the prior written consent of DigiPen Institute of
+Technology is prohibited.
+*/
+/* End Header **************************************************************************/
 #include"Animation.h"
 #include<iostream>
 
+/******************************************************************************/
+/*!
+	Animation Load
+*/
+/******************************************************************************/
 void Sprite::Anim_Load(GameObj* txtObj, const char* filename, float spritesheetWidth, TYPE type)
 {
 	txtObj->type = type;
@@ -22,6 +49,12 @@ void Sprite::Anim_Load(GameObj* txtObj, const char* filename, float spritesheetW
 	txtObj->pMesh = AEGfxMeshEnd();
 	AE_ASSERT_MESG(txtObj->pMesh, "fail to create object!!");
 }
+
+/******************************************************************************/
+/*!
+	Animation Init
+*/
+/******************************************************************************/
 void Sprite::Anim_Init(int maxframe, float time)
 {
 	max_frame = maxframe;
@@ -29,6 +62,12 @@ void Sprite::Anim_Init(int maxframe, float time)
 	curr_frame = 0;
 	counter = 0.f;
 }
+
+/******************************************************************************/
+/*!
+	Animation Update
+*/
+/******************************************************************************/
 void Sprite::Anim_Update(GameObj* txtObj, AEMtx33 transform)
 {
 	counter += g_dt;
@@ -57,10 +96,22 @@ void Sprite::Anim_Update(GameObj* txtObj, AEMtx33 transform)
 	if (curr_frame == max_frame)
 		curr_frame = 0;
 }
+
+/******************************************************************************/
+/*!
+	Animation Free
+*/
+/******************************************************************************/
 void Sprite::Anim_Free()
 {
 
 }
+
+/******************************************************************************/
+/*!
+	Animation Unload
+*/
+/******************************************************************************/
 void Sprite::Anim_Unload(GameObj* txtObj)
 {
 	AEGfxTextureUnload(txtObj->texture);
