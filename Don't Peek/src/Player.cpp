@@ -9,7 +9,10 @@ Margaret Teo Boon See	Teo.b@digipen.edu
 Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 \date 22/01/2021
-\brief This is the player file. It contains all the player function
+\brief This file is done by Felicia. In this file, it contains the different movement a player
+has and the collision with different objects. 
+
+
 Copyright (C) 2021 DigiPen Institute of Technology.
 Reproduction or disclosure of this file or its contents
 without the prior written consent of DigiPen Institute of
@@ -27,6 +30,7 @@ Technology is prohibited.
 #include "Menu.h"
 #include <math.h>
 #include "HowToPlay2.h"
+#include "Animation.h"
 
 
 /******************************************************************************/
@@ -43,6 +47,7 @@ float CameraPosX = 0;
 float CameraPosY = 0;
 AEVec2 WinPos;
 Wall* wall_player;
+Sprite idle;
 
 /******************************************************************************/
 /*!
@@ -53,25 +58,27 @@ void Player::Player_Load() //drawing of character
 {
 
 	pPlayer = sGameObjList + sGameObjNum++;
-	pPlayer->type = TYPE_PLAYER;
+	//pPlayer->type = TYPE_PLAYER;
 
-	pPlayer->texture = AEGfxTextureLoad("Resources/Player.png");
-	AE_ASSERT_MESG(pPlayer->texture, "Failed to load Player!");
+	//pPlayer->texture = AEGfxTextureLoad("Resources/Player.png");
+	//AE_ASSERT_MESG(pPlayer->texture, "Failed to load Player!");
 
 
-	//Drawing of Player
-	AEGfxMeshStart();
-	AEGfxTriAdd(
-		-0.5f, -0.5f, 0x00000000, 0.0f, 1.0f,
-		0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
-		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
+	////Drawing of Player
+	//AEGfxMeshStart();
+	//AEGfxTriAdd(
+	//	-0.5f, -0.5f, 0x00000000, 0.0f, 1.0f,
+	//	0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
+	//	-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 
-	AEGfxTriAdd(
-		0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
-		0.5f, 0.5f, 0x00000000, 1.0f, 0.0f,
-		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
-	pPlayer->pMesh = AEGfxMeshEnd();
-	AE_ASSERT_MESG(pPlayer->pMesh, "fail to create object!!");
+	//AEGfxTriAdd(
+	//	0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
+	//	0.5f, 0.5f, 0x00000000, 1.0f, 0.0f,
+	//	-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
+	//pPlayer->pMesh = AEGfxMeshEnd();
+	//AE_ASSERT_MESG(pPlayer->pMesh, "fail to create object!!");
+
+	idle.Anim_Load(pPlayer, "Resources/idle sprite sheet 1800 x 600 72dpi.png", 1.f/3.f , TYPE_PLAYER);
 }
 
 /******************************************************************************/
@@ -85,6 +92,11 @@ void Player::Player_Init()
 	flag = FLAG_ACTIVE;
 	AEVec2Set(&(player.vel), 0, 0);
 	AEVec2Set(&(player.pos), -100.0f, 30.f);
+
+	if (gGameStateCurr == GS_RESTART)
+		AEVec2Set(&(player.pos), -100.0f, 30.f);
+
+	idle.Anim_Init(3, 0.2f);
 }
 
 /******************************************************************************/
@@ -339,7 +351,7 @@ void Player::Player_Update()
 /******************************************************************************/
 void Player::Player_Draw()
 {
-	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
+	/*AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 
 	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 	AEGfxSetPosition(pos.x, pos.y);
@@ -348,7 +360,9 @@ void Player::Player_Draw()
 	AEGfxSetTransform(Transform.m);
 	
 	AEGfxSetTransparency(1.0f);
-	AEGfxMeshDraw(pPlayer->pMesh, AE_GFX_MDM_TRIANGLES);
+	AEGfxMeshDraw(pPlayer->pMesh, AE_GFX_MDM_TRIANGLES);*/
+
+	idle.Anim_Update(pPlayer, Transform);
 
 }
 
@@ -376,8 +390,9 @@ void Player::Player_Unload()
 	}
 	else
 	{
-		AEGfxTextureUnload(pPlayer->texture);
-		AEGfxMeshFree(pPlayer->pMesh);
+		/*AEGfxTextureUnload(pPlayer->texture);
+		AEGfxMeshFree(pPlayer->pMesh);*/
+		idle.Anim_Unload(pPlayer);
 	}
 		
 }

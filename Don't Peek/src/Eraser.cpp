@@ -26,12 +26,14 @@ Technology is prohibited.
 #include "Player.h"
 #include "Wall.h"
 #include "Eraser.h"
+#include "Animation.h"
 
 Eraser EraserArray[MAX];
 static int EraserNum;
 static int right, left;
 const int Eraser_Gravity = 8;
 float EGROUND = 0.f;
+Sprite EraserAnim;
 
 /******************************************************************************/
 /*!
@@ -42,7 +44,7 @@ float EGROUND = 0.f;
 void Eraser::LoadEraser() {
 
 	pEraser = sGameObjList + sGameObjNum++;
-	pEraser->type = TYPE_ERASER;
+	/*pEraser->type = TYPE_ERASER;
 
 	pEraser->texture = AEGfxTextureLoad("Resources/eraser.png");
 	AE_ASSERT_MESG(pEraser->texture, "Failed to load eraser!!");
@@ -59,8 +61,8 @@ void Eraser::LoadEraser() {
 		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 
 	pEraser->pMesh = AEGfxMeshEnd();
-	AE_ASSERT_MESG(pEraser->pMesh, "Failed to create eraser!!");
-
+	AE_ASSERT_MESG(pEraser->pMesh, "Failed to create eraser!!");*/
+	EraserAnim.Anim_Load(pEraser, "Resources/eraser sprite sheet 1800 x 600 72dpi.png", 1.f / 3.f, TYPE_ERASER);
 }
 
 
@@ -69,17 +71,17 @@ void Eraser::LoadEraser() {
 	Eraser Init
 */
 /******************************************************************************/
-void Eraser::InitEraser() {
+void Eraser::InitEraser() 
+{
 	Scale = 100.0f;
-	
-	//AEVec2* pVel = &vel;
+
 	for (int i = 0; i < EraserNum; i++)
 	{
 		Eraser* Erasertemp = EraserArray + i;
 		Erasertemp->flag = FLAG_ACTIVE;
-		//Erasertemp->vel = *pVel;
-		AEVec2Set(&(Erasertemp->vel), 5, 0);
+		AEVec2Set(&(Erasertemp->vel), 0, 0);
 	}
+	EraserAnim.Anim_Init(3, 0.5f);
 }
 
 /******************************************************************************/
@@ -98,13 +100,12 @@ void Eraser::UpdateEraser()
 	{
 		Eraser* Erasertemp = EraserArray + i;
 
-
 		if (Erasertemp->pos.y < EGROUND)
 		{
 			Erasertemp->pos.y = EGROUND;
-			Erasertemp->vel.y = 0;
+			Erasertemp->vel.y = 0.f;
 		}
-
+		Erasertemp->vel.x = 0.f;
 
 		SetGravity();
 
@@ -115,59 +116,105 @@ void Eraser::UpdateEraser()
 		/******************************************************************************/
 		if (CollisionIntersection_RectRect(player.GetBoundingBoxPlayer(), player.GetVelPlayer(), Erasertemp->boundingBox, Erasertemp->vel))
 		{
-			for (int j = 0; j < GetSharpenerNum(); j++)
+			/*======================================
+			/ IF: LEVEL HAS NO SHARPENER
+			=======================================*/
+			if (GetSharpenerNum() == 0) 
 			{
-				Sharpener* Sharpenertemp = SharpenerArray + j;
-				if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, 
-					Sharpenertemp->GetSharpenerBoundingBox(j), Sharpenertemp->GetSharpenerVelocity(j)) == 0)
+				/*==================================================================
+				/ RIGHT: check if Player BB max is within range of Eraser BB min
+				/ LEFT : check if Player BB min is within range of Eraser BB max
+				====================================================================*/
+
+				if ((AEInputCheckCurr(AEVK_LSHIFT) && AEInputCheckCurr(AEVK_RIGHT)) &&
+					(player.GetBoundingBoxPlayer().max.x > (Erasertemp->boundingBox.min.x - 15.0f)) &&
+					(player.GetBoundingBoxPlayer().max.x < (Erasertemp->boundingBox.min.x + 40.0f)))
 				{
-					if ((AEInputCheckCurr(AEVK_LSHIFT) && AEInputCheckCurr(AEVK_RIGHT)) && 
-						(Erasertemp->boundingBox.min.x < (player.GetBoundingBoxPlayer().max.x + 15.0f)) &&
-						(Erasertemp->boundingBox.min.x > (player.GetBoundingBoxPlayer().max.x - 15.0f)))
-					{
-						Erasertemp->pos.x += Erasertemp->vel.x;
-						right = 1;
-						left = 0;
-						printf("ERASER VEL RIGHT: %f\n", Erasertemp->vel.x);
-					}
-					if ((AEInputCheckCurr(AEVK_LSHIFT) && AEInputCheckCurr(AEVK_LEFT)) && 
-						(Erasertemp->boundingBox.max.x > (player.GetBoundingBoxPlayer().min.x - 15.0f)) &&
-						(Erasertemp->boundingBox.max.x < (player.GetBoundingBoxPlayer().min.x + 15.0f)))
-					{
-						Erasertemp->pos.x -= Erasertemp->vel.x;
-						left = 1;
-						right = 0;
-						printf("ERASER VEL LEFT: %f\n", Erasertemp->vel.x);
-					}
+					Erasertemp->vel.x = SPEED;
+					right = 1;
+					left = 0;
 				}
-				else if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, Sharpenertemp->GetSharpenerBoundingBox(j), Sharpenertemp->GetSharpenerVelocity(j)))
+				if ((AEInputCheckCurr(AEVK_LSHIFT) && AEInputCheckCurr(AEVK_LEFT)) &&
+					(player.GetBoundingBoxPlayer().min.x > (Erasertemp->boundingBox.max.x - 40.0f)) &&
+					(player.GetBoundingBoxPlayer().min.x < (Erasertemp->boundingBox.max.x + 15.0f)))
 				{
-					if (AEInputCheckCurr(AEVK_RIGHT) && AEInputCheckCurr(AEVK_LSHIFT)
-						&& (sharpener.GetSharpenerBoundingBox(j).max.x >= Erasertemp->boundingBox.min.x) && 
-						(Erasertemp->boundingBox.max.x > sharpener.GetSharpenerBoundingBox(j).min.x)
-						&& (Erasertemp->boundingBox.min.x < (player.GetBoundingBoxPlayer().max.x + 15.0f)) &&
-						(Erasertemp->boundingBox.min.x > (player.GetBoundingBoxPlayer().max.x - 15.0f)))
+					Erasertemp->vel.x = -SPEED;
+					left = 1;
+					right = 0;
+				}
+
+			}
+			/*=====================================
+			/ ELSE: LEVEL HAS SHARPENER
+			=====================================*/
+			else
+			{
+				for (int j = 0; j < GetSharpenerNum(); j++)
+				{
+					Sharpener* Sharpenertemp = SharpenerArray + j;
+
+					/*=================================================================
+					/ IF: Sharpener and Eraser are NOT colliding
+					/      -> Player can push Eraser as per normal
+					/
+					/ RIGHT: check if player BB max is within range of Eraser BB min
+					/ LEFT: check if player BB min is within range of Eraser BB max
+					=================================================================*/
+					if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, Sharpenertemp->GetSharpenerBoundingBox(j), Sharpenertemp->GetSharpenerVelocity(j)) == 0)
 					{
-						Erasertemp->pos.x += Erasertemp->vel.x;
-						right = 1;
-						left = 0;
-						printf("ELSE -- ERASER VEL RIGHT: %f\n", Erasertemp->vel.x);
+						if ((AEInputCheckCurr(AEVK_LSHIFT) && AEInputCheckCurr(AEVK_RIGHT)) &&
+							(player.GetBoundingBoxPlayer().max.x > (Erasertemp->boundingBox.min.x - 15.0f)) &&
+							(player.GetBoundingBoxPlayer().max.x < (Erasertemp->boundingBox.min.x + 40.0f)))
+						{
+							Erasertemp->vel.x = SPEED;
+							right = 1;
+							left = 0;
+						}
+						if ((AEInputCheckCurr(AEVK_LSHIFT) && AEInputCheckCurr(AEVK_LEFT)) &&
+							(player.GetBoundingBoxPlayer().min.x > (Erasertemp->boundingBox.max.x - 40.0f)) &&
+							(player.GetBoundingBoxPlayer().min.x < (Erasertemp->boundingBox.max.x + 15.0f)))
+						{
+							Erasertemp->vel.x = -SPEED;
+							left = 1;
+							right = 0;
+						}
 					}
-					else if (AEInputCheckCurr(AEVK_LEFT) && AEInputCheckCurr(AEVK_LSHIFT)
-						&& (sharpener.GetSharpenerBoundingBox(j).min.x <= Erasertemp->boundingBox.max.x) && 
-						(sharpener.GetSharpenerBoundingBox(j).max.x > Erasertemp->boundingBox.min.x)
-						&& (Erasertemp->boundingBox.max.x > (player.GetBoundingBoxPlayer().min.x - 15.0f)) &&
-						(Erasertemp->boundingBox.max.x < (player.GetBoundingBoxPlayer().min.x + 15.0f)))
+					/*==============================================================================
+					/ IF: Sharpener and Eraser ARE colliding
+					/      -> Player only can push Eraser towards direction away from Sharpener
+					/         else cannot push
+					/
+					/ RIGHT: check if Player BB max is within range of Eraser BB min
+					/ LEFT: check if Player BB min is within range of Eraser BB max
+					===============================================================================*/
+					if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, Sharpenertemp->GetSharpenerBoundingBox(j), Sharpenertemp->GetSharpenerVelocity(j)))
 					{
-						Erasertemp->pos.x -= Erasertemp->vel.x;
-						left = 1;
-						right = 0;
-						printf("ELSE -- ERASER VEL LEFT: %f\n", Erasertemp->vel.x);
-					}
-					else
-					{
-						Erasertemp->vel.x = 0;
-						printf("eraser -> IS VEL 0: %f\n", Erasertemp->vel.x);
+						Erasertemp->vel.x = 0.f;
+						if (AEInputCheckCurr(AEVK_RIGHT) && AEInputCheckCurr(AEVK_LSHIFT)
+							&& (Sharpenertemp->GetSharpenerBoundingBox(j).max.x >= (Erasertemp->boundingBox.min.x - 15.0f))
+							&& (Sharpenertemp->GetSharpenerBoundingBox(j).max.x <= (Erasertemp->boundingBox.min.x + 15.0f))
+							&& (player.GetBoundingBoxPlayer().max.x > (Erasertemp->boundingBox.min.x - 15.0f))
+							&& (player.GetBoundingBoxPlayer().max.x < (Erasertemp->boundingBox.min.x + 40.0f)))
+						{
+							Erasertemp->vel.x = SPEED;
+							right = 1;
+							left = 0;
+						}
+						else if (AEInputCheckCurr(AEVK_LEFT) && AEInputCheckCurr(AEVK_LSHIFT)
+							&& (Sharpenertemp->GetSharpenerBoundingBox(j).min.x <= (Erasertemp->boundingBox.max.x + 15.0f))
+							&& (Sharpenertemp->GetSharpenerBoundingBox(j).min.x >= (Erasertemp->boundingBox.max.x - 15.0f))
+							&& (player.GetBoundingBoxPlayer().min.x > (Erasertemp->boundingBox.max.x - 40.0f))
+							&& (player.GetBoundingBoxPlayer().min.x < (Erasertemp->boundingBox.max.x + 15.0f)))
+						{
+							Erasertemp->vel.x = -SPEED;
+							left = 1;
+							right = 0;
+						}
+						else
+						{
+							Erasertemp->vel.x = 0.f;
+							Erasertemp->pos.x += Erasertemp->vel.x;
+						}
 					}
 				}
 			}
@@ -181,25 +228,34 @@ void Eraser::UpdateEraser()
 		for (int j = 0; j < GetSharpenerNum(); j++)
 		{
 			Sharpener* Sharpenertemp = SharpenerArray + j;
-			if (CollisionIntersection_RectRect(Erasertemp->boundingBox, 
-				Erasertemp->vel, Sharpenertemp->GetSharpenerBoundingBox(j), Sharpenertemp->GetSharpenerVelocity(j)))
+			if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, Sharpenertemp->GetSharpenerBoundingBox(j), Sharpenertemp->GetSharpenerVelocity(j)))
 			{
-				Erasertemp->vel.x = 0;
-				if ((player.GetBoundingBoxPlayer().max.x <= Sharpenertemp->GetSharpenerBoundingBox(j).max.x) &&
-					(player.GetBoundingBoxPlayer().max.x < (Erasertemp->boundingBox.min.x + 15.0f))
+				Erasertemp->vel.x = 0.f;
+
+				/*=======================================================================================
+				/ Player only can push Eraser towards direction away from Sharpener	else cannot push
+				/		-> RIGHT: check if Player BB max is within range of Eraser BB min
+				/		-> LEFT : check if Player BB min is within range of Eraser BB max
+				=======================================================================================*/
+				if ((AEInputCheckCurr(AEVK_RIGHT) && AEInputCheckCurr(AEVK_LSHIFT))
+					&& (player.GetBoundingBoxPlayer().max.x <= Sharpenertemp->GetSharpenerBoundingBox(j).max.x)
+					&& (player.GetBoundingBoxPlayer().max.x > Sharpenertemp->GetSharpenerBoundingBox(j).min.x)
+					&& (player.GetBoundingBoxPlayer().max.x < (Erasertemp->boundingBox.min.x + 30.0f))
 					&& (player.GetBoundingBoxPlayer().max.x > (Erasertemp->boundingBox.min.x - 15.0f)))
 				{
-					Erasertemp->vel.x = 5.f;
+					Erasertemp->vel.x = SPEED;
 				}
-				else if ((player.GetBoundingBoxPlayer().min.x >= Sharpenertemp->GetSharpenerBoundingBox(j).min.x) &&
-					(player.GetBoundingBoxPlayer().min.x > (Erasertemp->boundingBox.max.x - 15.0f)) && 
-					(player.GetBoundingBoxPlayer().min.x < (Erasertemp->boundingBox.max.x + 15.0f)))
+				else if ((AEInputCheckCurr(AEVK_LEFT) && AEInputCheckCurr(AEVK_LSHIFT))
+					&& (player.GetBoundingBoxPlayer().min.x >= Sharpenertemp->GetSharpenerBoundingBox(j).min.x)
+					&& (player.GetBoundingBoxPlayer().min.x < Sharpenertemp->GetSharpenerBoundingBox(j).max.x)
+					&& (player.GetBoundingBoxPlayer().min.x > (Erasertemp->boundingBox.max.x - 30.0f)) 
+					&& (player.GetBoundingBoxPlayer().min.x < (Erasertemp->boundingBox.max.x + 15.0f)))
 				{
-					Erasertemp->vel.x = 5.f;
+					Erasertemp->vel.x = -SPEED;
 				}
 				else
 				{
-					Erasertemp->vel.x = 5.f;
+					Erasertemp->vel.x += 0.f;
 				}
 			}
 
@@ -216,20 +272,21 @@ void Eraser::UpdateEraser()
 			for (int s = 0; s < GetSharpenerNum(); s++)
 			{
 				if (right == 1) {
-					if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, 
-						highlightertemp->GetHighlighterBoundingBox(j), highlightertemp->GetHighlighterVelocity(j)))
+					if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, highlightertemp->GetHighlighterBoundingBox(j), highlightertemp->GetHighlighterVelocity(j)))
 					{
-						if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, 
-							sharpener.GetSharpenerBoundingBox(s), sharpener.GetSharpenerVelocity(s)) == 0)
-							Erasertemp->pos.x += 5.f;
+						if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, sharpener.GetSharpenerBoundingBox(s), sharpener.GetSharpenerVelocity(s)) == 0)
+						{
+							Erasertemp->vel.x = SPEED;
+						}
 					}
 				}
 				else if (left == 1) {
-					if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, 
-						highlightertemp->GetHighlighterBoundingBox(j), highlightertemp->GetHighlighterVelocity(j)))
+					if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, highlightertemp->GetHighlighterBoundingBox(j), highlightertemp->GetHighlighterVelocity(j)))
 					{
 						if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, sharpener.GetSharpenerBoundingBox(s), sharpener.GetSharpenerVelocity(s)) == 0)
-							Erasertemp->pos.x -= 5.f;
+						{
+							Erasertemp->vel.x = SPEED;
+						}
 					}
 				}
 			}
@@ -275,33 +332,37 @@ void Eraser::UpdateEraser()
 		{
 			Wall* Walltemp = Get_WallArr() + j;
 			BoundingBox();
+
 			if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, Walltemp->GetWallBoundingBox(j), { 0,0 }))
 			{
 				WallCollision = true;
-				Erasertemp->vel.y = 0;
+				Erasertemp->vel.y = 0.f;
+
 				if (Walltemp->GetType(j) == WALL)
 				{
 					if (Erasertemp->pos.x >= Walltemp->GetWallBoundingBox(j).min.x)
 					{
-						Erasertemp->pos.x = (Walltemp->GetWallBoundingBox(j).max.x + 30);
+						Erasertemp->pos.x = (Walltemp->GetWallBoundingBox(j).max.x + Scale / 3);
 					}
 					else if (Erasertemp->pos.x <= Walltemp->GetWallBoundingBox(j).max.x)
 					{
-						Erasertemp->pos.x = (Walltemp->GetWallBoundingBox(j).min.x - 30);
+						Erasertemp->pos.x = (Walltemp->GetWallBoundingBox(j).min.x - Scale / 3);
 					}
 				}
 				else if (Walltemp->GetType(j) == PLATFORM)
 				{
 					if (Erasertemp->pos.y >= Walltemp->GetWallBoundingBox(j).max.y + 40 && Erasertemp->vel.y < 0)
 					{
-						Erasertemp->vel.y = 0;
+						Erasertemp->vel.y = 0.f;
 						Erasertemp->pos.y = Walltemp->GetWallBoundingBox(j).max.y + 40;
 					}
 				}
 			}
 		}//End of Wall for loop
 
+		Erasertemp->pos.x += Erasertemp->vel.x * g_dt;
 		Erasertemp->pos.y += Erasertemp->vel.y * g_dt;
+
 	}//End of Eraser for loop
 }
 
@@ -312,17 +373,18 @@ void Eraser::UpdateEraser()
 /******************************************************************************/
 void Eraser::DrawEraser()
 {
-	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
+	/*AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 	AEGfxSetTransparency(1.0f);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
-	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
+	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);*/
 	for (int i = 0; i < EraserNum; i++)
 	{
 		Eraser* Erasertemp = EraserArray + i;
-		AEGfxSetPosition(Erasertemp->pos.x, Erasertemp->pos.y);
+		EraserAnim.Anim_Update(pEraser, Erasertemp->Transform);
+		/*AEGfxSetPosition(Erasertemp->pos.x, Erasertemp->pos.y);
 		AEGfxTextureSet(pEraser->texture, 0, 0);
 		AEGfxSetTransform(Erasertemp->Transform.m);
-		AEGfxMeshDraw(pEraser->pMesh, AE_GFX_MDM_TRIANGLES);
+		AEGfxMeshDraw(pEraser->pMesh, AE_GFX_MDM_TRIANGLES);*/
 	}
 }
 
@@ -344,8 +406,9 @@ void Eraser::FreeEraser()
 void Eraser::UnloadEraser() {
 
 
-		AEGfxTextureUnload(pEraser->texture);
-		AEGfxMeshFree(pEraser->pMesh);
+		/*AEGfxTextureUnload(pEraser->texture);
+		AEGfxMeshFree(pEraser->pMesh);*/
+	EraserAnim.Anim_Unload(pEraser);
 		EraserNum = 0;
 }
 
@@ -359,7 +422,7 @@ void Eraser::SetGravity()
 	for (int i = 0; i < EraserNum; i++)
 	{
 		Eraser* Erasertemp = EraserArray + i;
-		Erasertemp->vel.y -= 80.f * g_dt;
+		Erasertemp->vel.y -= 450.f * g_dt;
 	}
 }
 
@@ -378,9 +441,9 @@ void Eraser::BoundingBox()
 		AEMtx33Trans(&Transform2, Erasertemp->pos.x, Erasertemp->pos.y);
 		AEMtx33Concat(&(Erasertemp->Transform), &Transform2, &Size);
 
-		Erasertemp->boundingBox.min.x = Erasertemp->pos.x - Scale / 2;// 4;
+		Erasertemp->boundingBox.min.x = Erasertemp->pos.x - Scale / 2;
 		Erasertemp->boundingBox.min.y = Erasertemp->pos.y - Scale / 2;
-		Erasertemp->boundingBox.max.x = Erasertemp->pos.x + Scale / 2;// 4;
+		Erasertemp->boundingBox.max.x = Erasertemp->pos.x + Scale / 2;
 		Erasertemp->boundingBox.max.y = Erasertemp->pos.y + Scale / 2;
 	}
 

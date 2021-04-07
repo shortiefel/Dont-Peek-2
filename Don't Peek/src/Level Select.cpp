@@ -2,6 +2,7 @@
 #include "GameStateMgr.h"
 #include "Menu.h"
 #include "Level Select.h"
+#include "Music.h"
 
 static Level_Select screen[2];
 static Button button;
@@ -103,6 +104,8 @@ void LevelSelectLoad()
 void LevelSelectInit()
 {
 	CurrentScreen = TUT;
+	SoundSystem_Init();
+	SoundSystem_SFX();
 }
 void LevelSelectUpdate()
 {
@@ -189,6 +192,8 @@ void LevelSelectDraw()
 void LevelSelectFree()
 {
 	CurrentScreen = TUT;
+	CurrentScreen == LV1;
+	SoundSystem_Destroy();
 }
 void LevelSelectUnload()
 {

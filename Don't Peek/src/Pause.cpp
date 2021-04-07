@@ -9,7 +9,10 @@ Margaret Teo Boon See	Teo.b@digipen.edu
 Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 \date 24/03/2021
-\brief This is the player file. It contains all the player function
+\brief This file is done by felicia. It contains the different functions such as resume, restart, 
+main menu. 
+
+
 Copyright (C) 2021 DigiPen Institute of Technology.
 Reproduction or disclosure of this file or its contents
 without the prior written consent of DigiPen Institute of
@@ -178,44 +181,29 @@ void PauseUpdate()
 				}
 					
 			}
-			else if (gGameStatePrev == GS_DONT_PEEK)
+			else if (gGameStateCurr == GS_DONT_PEEK)
 			{
 				if (AEInputUpdate)
 				{
+					CheckPause = false;
 					AEGfxSetCamPosition(player.GetPosPlayer().x, player.GetPosPlayer().y);
-					player.GetPlayerObj();
+					/*player.GetPlayerObj();
 					
 					player.GetBoundingBoxPlayer();
-					player.Player_Draw();
-					gGameStateNext = GS_DONT_PEEK;
+					player.Player_Draw();*/
+					//gGameStateNext = GS_DONT_PEEK;
 					printf("Go level");
 				}
-					
 			}
-				
-				
 		}
 		else if (CollisionIntersection_PointRect({ static_cast<float>(Px), static_cast<float>(Py) }, { 0,0 }, Pbtn[1].boundingBox, { 0,0 }))
 		{
-
-			if (gGameStatePrev == GS_TUTORIAL)
-			{
 				if (AEInputUpdate)
 				{
-					gGameStateNext = GS_TUTORIAL;
-					printf("Go tutorial");
+					CheckPause = false;
+					gGameStateNext = GS_RESTART;
+					printf("Restarting \n");
 				}
-						
-			}
-			else if (gGameStatePrev == GS_DONT_PEEK)
-			{
-				if (AEInputUpdate)
-				{
-					gGameStateNext = GS_DONT_PEEK;
-					printf("Go level");
-				}
-						
-			}
 		}
 		else if (CollisionIntersection_PointRect({ static_cast<float>(Px), static_cast<float>(Py) }, { 0,0 }, Pbtn[2].boundingBox, { 0,0 }))
 		{
@@ -259,6 +247,7 @@ void PauseDraw()
 
 void PauseFree()
 {
+
 }
 
 void PauseUnload()

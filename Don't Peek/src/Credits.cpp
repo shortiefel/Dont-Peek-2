@@ -23,9 +23,10 @@ Technology is prohibited.
 #include "GameStateMgr.h"
 #include "Credits.h"
 #include "Menu.h"
+#include "Music.h"
 
 
-static Credits credit[4];
+static Credits credit[5];
 static Button1 button;
 static int element = 0;
 static int x, y;
@@ -38,7 +39,7 @@ void CreditsLoad()
 	credit[0].scale = { 950.f, 650.f };
 
 	credit[0].pObj = sGameObjList + sGameObjNum++;
-	credit[0].pObj->texture = AEGfxTextureLoad("Resources/Credit1.png");
+	credit[0].pObj->texture = AEGfxTextureLoad("Resources/Credit1.jpg");
 	AE_ASSERT_MESG(credit[0].pObj->texture, "Failed to load credit screen!");
 
 	AEGfxMeshStart();
@@ -58,7 +59,7 @@ void CreditsLoad()
 	credit[1].scale = { 950.f, 650.f };
 
 	credit[1].pObj = sGameObjList + sGameObjNum++;
-	credit[1].pObj->texture = AEGfxTextureLoad("Resources/Credit2.png");
+	credit[1].pObj->texture = AEGfxTextureLoad("Resources/Credit2.jpg");
 	AE_ASSERT_MESG(credit[1].pObj->texture, "Failed to load credit screen!");
 
 	AEGfxMeshStart();
@@ -78,7 +79,7 @@ void CreditsLoad()
 	credit[2].scale = { 950.f, 650.f };
 
 	credit[2].pObj = sGameObjList + sGameObjNum++;
-	credit[2].pObj->texture = AEGfxTextureLoad("Resources/Credit3.png");
+	credit[2].pObj->texture = AEGfxTextureLoad("Resources/Credit3.jpg");
 	AE_ASSERT_MESG(credit[2].pObj->texture, "Failed to load credit screen!");
 
 	AEGfxMeshStart();
@@ -98,7 +99,7 @@ void CreditsLoad()
 	credit[3].scale = { 950.f, 650.f };
 
 	credit[3].pObj = sGameObjList + sGameObjNum++;
-	credit[3].pObj->texture = AEGfxTextureLoad("Resources/Credit4.png");
+	credit[3].pObj->texture = AEGfxTextureLoad("Resources/Credit4.jpg");
 	AE_ASSERT_MESG(credit[3].pObj->texture, "Failed to load credit screen!");
 
 	AEGfxMeshStart();
@@ -113,8 +114,28 @@ void CreditsLoad()
 		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 	credit[3].pObj->pMesh = AEGfxMeshEnd();
 
+	//CREDITS 5
+	credit[4].pos = { 0.f, 0.f };
+	credit[4].scale = { 950.f, 650.f };
+
+	credit[4].pObj = sGameObjList + sGameObjNum++;
+	credit[4].pObj->texture = AEGfxTextureLoad("Resources/Credit5.jpg");
+	AE_ASSERT_MESG(credit[4].pObj->texture, "Failed to load credit screen!");
+
+	AEGfxMeshStart();
+	AEGfxTriAdd(
+		-0.5f, -0.5f, 0x00000000, 0.0f, 1.0f,
+		0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
+		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
+
+	AEGfxTriAdd(
+		0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
+		0.5f, 0.5f, 0x00000000, 1.0f, 0.0f,
+		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
+	credit[4].pObj->pMesh = AEGfxMeshEnd();
+
 	// NEXT BUTTON
-	button.pos = { 0.f, -300.f };
+	button.pos = { 0.f, -200.f };
 	button.scale = { 200.f,80.f };
 	button.pButton = sGameObjList + sGameObjNum++;
 	button.pButton->texture = AEGfxTextureLoad("Resources/Next.png");
@@ -135,7 +156,7 @@ void CreditsLoad()
 
 	AEMtx33	trans, sc;
 	// Compute the scaling matrix
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 5; i++)
 	{ 
 		AEMtx33Scale(&sc, credit[i].scale.x, credit[i].scale.y);
 		// Compute the translation matrix
@@ -152,7 +173,8 @@ void CreditsLoad()
 
 void CreditsInit()
 {
-
+	SoundSystem_Init();
+	SoundSystem_SFX();
 }
 
 void CreditsUpdate()
@@ -176,7 +198,7 @@ void CreditsUpdate()
 					printf("BUTTON NEXT");
 					printf("BBMin: %f::%f\n", button.boundingBox.min.x, button.boundingBox.min.y);
 					printf("BBMax: %f::%f\n", button.boundingBox.max.x, button.boundingBox.max.y);
-					if (element < 3)
+					if (element < 4)
 					{
 						element++;
 					}
@@ -219,6 +241,7 @@ void CreditsDraw()
 
 void CreditsFree()
 {
+	SoundSystem_Destroy();
 	if (button.pButton->pMesh)
 		AEGfxMeshFree(button.pButton->pMesh);
 	if (credit[element].pObj->pMesh)

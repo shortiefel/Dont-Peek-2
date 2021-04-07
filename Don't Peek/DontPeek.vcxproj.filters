@@ -65,6 +65,15 @@
     <ClCompile Include="src\Level Select.cpp">
       <Filter>Source\Level\Code</Filter>
     </ClCompile>
+    <ClCompile Include="src\Restart.cpp">
+      <Filter>Source\Level\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Rules.cpp">
+      <Filter>Source\Level\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Animation.cpp">
+      <Filter>Source\Interaction\Code</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Main.h" />
@@ -160,6 +169,15 @@
     </ClInclude>
     <ClInclude Include="src\Level Select.h">
       <Filter>Source\Level\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Restart.h">
+      <Filter>Source\Level\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Rules.h">
+      <Filter>Source\Level\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Animation.h">
+      <Filter>Source\Interaction\Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

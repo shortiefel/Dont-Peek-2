@@ -1,6 +1,6 @@
 /* Start Header ************************************************************************/
 /*!
-\file Lose.h
+\file Rules.h
 \team name Don't Peak
 \software name I don't want to do homework
 \authors
@@ -10,8 +10,8 @@ Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 
 \date 22/01/2021
-\brief This file is done by felicia. In this file, it contains the declaration of what
-Losr.cpp contains
+\brief This file is done by Felicia. In this file, it contains a simple screen that shows
+the different movement player can do and the special keys available 
 
 
 Copyright (C) 2021 DigiPen Institute of Technology.
@@ -21,15 +21,22 @@ Technology is prohibited.
 */
 /* End Header **************************************************************************/
 #pragma once
+
 #include "Main.h"
 #include "GameState_DontPeek.h"
 
+struct Rule
+{
+	AEVec2 pos;
+	AEVec2 scale;
+	AEMtx33	transform;	// object transformation matrix
+	GameObj* pObj;
+	
+};
 
-void LoseLoad();
-void LoseInit();
-void LoseUpdate();
-void LoseDraw();
-void LoseFree();
-void LoseUnload();
-
-void BoundingBoxLose();
+void RulesLoad();
+void RulesInit();
+void RulesUpdate();
+void RulesDraw();
+void RulesFree();
+void RulesUnload();

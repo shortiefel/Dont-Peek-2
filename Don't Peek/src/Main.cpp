@@ -1,3 +1,29 @@
+/* Start Header ************************************************************************/
+/*!
+\file Main.h
+\team name Don't Peak
+\software name I don't want to do homework
+\authors
+
+Tan Wei Ling Felicia	weilingfelicia.tan@digipen.edu
+Margaret Teo Boon See	Teo.b@digipen.edu
+Loh Yun Yi Tessa	tessa.loh@digipen.edu
+Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
+
+\date 22/01/2021
+\brief This file is done by Felicia. In this file, it contains the function which enable the
+the windows to appear and the states of how the gamestate will run.
+
+
+Copyright (C) 2021 DigiPen Institute of Technology.
+Reproduction or disclosure of this file or its contents
+without the prior written consent of DigiPen Institute of
+Technology is prohibited.
+*/
+/* End Header **************************************************************************/
+
+
+
 #include "Main.h"
 #include "GameState_DontPeek.h"
 #include "GameStateMgr.h"
@@ -8,6 +34,7 @@
 float g_dt;
 double g_appTime;
 bool CheckPause;
+
 
 /******************************************************************************/
 /*!

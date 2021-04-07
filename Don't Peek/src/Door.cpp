@@ -22,8 +22,10 @@ Technology is prohibited.
 
 #include "GameState_DontPeek.h"
 #include "Door.h"
+#include "Animation.h"
 
 Door DoorArray[MAX];
+Sprite DoorAnim;
 static int DoorNum = 0;
 
 /******************************************************************************/
@@ -34,7 +36,7 @@ static int DoorNum = 0;
 void Door::LoadDoor()
 {
 	pDoor = sGameObjList + sGameObjNum++ ;
-	pDoor->type = TYPE_DOOR;
+	/*pDoor->type = TYPE_DOOR;
 
 	AEGfxMeshStart();
 	AEGfxTriAdd(
@@ -49,8 +51,10 @@ void Door::LoadDoor()
 	pDoor->pMesh = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pDoor->pMesh, "fail to create object!!");
 
-	pDoor->texture = AEGfxTextureLoad("Resources/Door.png");
-	AE_ASSERT_MESG(pDoor->texture, "Failed to create texture1!!");
+	pDoor->texture = AEGfxTextureLoad("Resources/door sprite sheet 1800 x 600 72dpi.png");
+	AE_ASSERT_MESG(pDoor->texture, "Failed to create texture1!!");*/
+
+	DoorAnim.Anim_Load(pDoor, "Resources/door sprite sheet 1800 x 600 72dpi.png", 1.f / 3.f, TYPE_DOOR);
 
 }
 
@@ -68,6 +72,7 @@ void Door::InitDoor()
 		Doortemp->flag = FLAG_ACTIVE;
 		Doortemp->vel = {0,0};
 	}
+	DoorAnim.Anim_Init(3, 2.f);
 }
 
 /******************************************************************************/
@@ -87,18 +92,20 @@ void Door::UpdateDoor()
 /******************************************************************************/
 void Door::DrawDoor()
 {
-	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
+	/*AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 	AEGfxSetTransparency(1.0f);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
-	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
+	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);*/
 	for (int i = 0; i < DoorNum; i++)
 	{
 
 		Door* Doortemp = DoorArray + i;
-		AEGfxSetPosition(Doortemp->pos.x, Doortemp->pos.y);
+
+		DoorAnim.Anim_Update(pDoor, Doortemp->Transform);
+		/*AEGfxSetPosition(Doortemp->pos.x, Doortemp->pos.y);
 		AEGfxTextureSet(pDoor->texture, 0, 0);
 		AEGfxSetTransform(Doortemp->Transform.m);
-		AEGfxMeshDraw(pDoor->pMesh, AE_GFX_MDM_TRIANGLES);
+		AEGfxMeshDraw(pDoor->pMesh, AE_GFX_MDM_TRIANGLES);*/
 	}
 }
 
@@ -110,9 +117,6 @@ void Door::DrawDoor()
 void Door::FreeDoor()
 {
 	
-	AEGfxMeshFree(pDoor->pMesh);
-
-	
 }
 
 /******************************************************************************/
@@ -122,7 +126,9 @@ void Door::FreeDoor()
 /******************************************************************************/
 void Door::UnloadDoor()
 {
-	AEGfxTextureUnload(pDoor->texture);
+	DoorAnim.Anim_Unload(pDoor);
+	/*AEGfxMeshFree(pDoor->pMesh);
+	AEGfxTextureUnload(pDoor->texture);*/
 	DoorNum = 0;
 }
 
