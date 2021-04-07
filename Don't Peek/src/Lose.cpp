@@ -189,7 +189,7 @@ void LoseUpdate()
 	if (AEInputCheckCurr(AEVK_ESCAPE))	//Close the game
 		gGameStateNext = GS_QUIT;
 
-	if (AEInputCheckCurr(AEVK_B))	//Goes back to main menu
+	if (AEInputCheckCurr(AEVK_B))		//Goes back to main menu
 		gGameStateNext = GS_MENU;
 }
 
