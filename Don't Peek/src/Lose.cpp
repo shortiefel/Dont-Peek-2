@@ -10,7 +10,7 @@ Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 
 \date 22/01/2021
-\brief This file is done by felicia. 
+\brief 
 In this file, it contains the lose screen, and 2
 different buttons which allows players to navigate.
 
@@ -22,15 +22,14 @@ Technology is prohibited.
 */
 /* End Header **************************************************************************/
 
-#include "main.h"
 #include "GameStateMgr.h"
 #include "Win.h"
 #include "Lose.h"
 #include "Menu.h"
 
 //Initalization
-static Win lose;
-static ButtonW Wbutton[2];
+static Win lose; //Used Win.h struct for screen
+static ButtonW Wbutton[2];	//Used Win.h struct for buttons
 static int lose_x, lose_y;
 static int SetWidthCursorWin = 1000 / 2;
 static int SetHeightCursorWin = 700 / 2;
@@ -63,6 +62,7 @@ void LoseLoad()
 		0.5f, 0.5f, 0x00000000, 1.0f, 0.0f,
 		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 	lose.pObj->pMesh = AEGfxMeshEnd();
+
 	/*===============================================================================
 		SCALING/TRANSFORMATION/CONCAT FOR LOSE SCREEN
 	=================================================================================*/
@@ -134,7 +134,7 @@ void LoseLoad()
 
 /******************************************************************************/
 /*!
-	Lose Initalized
+	Lose Initalization
 */
 /******************************************************************************/
 void LoseInit()

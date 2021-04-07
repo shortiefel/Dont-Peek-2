@@ -10,7 +10,8 @@ Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 
 \date 22/01/2021
-\brief <give a brief description of this file>
+\brief 
+This file contains all the functions that is required for our wall/ceiling/platform object.
 
 
 Copyright (C) 20xx DigiPen Institute of Technology.
@@ -20,6 +21,7 @@ Technology is prohibited.
 */
 /* End Header **************************************************************************/
 
+//Initalization
 #include "Wall.h"
 #include "Collision.h"
 #include "Player.h"
@@ -200,13 +202,13 @@ void Wall::CreateWall(AEVec2 pos, AEVec2 dir, int number, float scale, wallType 
 	Wall Getter & Setter Functions
 */
 /******************************************************************************/
-AABB Wall::GetWallBoundingBox(int i)
+AABB Wall::GetWallBoundingBox(int i)	//Allow other files to use wall boundingbox without changing it.
 {
 	Wall* Walltemp = WallArr + i;
 	return Walltemp->boundingBox;
 }
 
-wallType Wall::GetType(int i)
+wallType Wall::GetType(int i)		//Allow other files to check wall type without changing it.
 {
 	Wall* Walltemp = WallArr + i;
 	return Walltemp->Walltype;
@@ -217,12 +219,12 @@ wallType Wall::GetType(int i)
 	Wall External Functions
 */
 /******************************************************************************/
-int Get_NumWalls()
+int Get_NumWalls()	//Allow other files to run through a loop of all the walls. [E.g. to detect collision of all walls]
 {
 	return numberWalls;
 }
 
-Wall* Get_WallArr()
+Wall* Get_WallArr()	//Set the number of wall object to be created. [This is used for level design]
 {
 	return WallArr;
 }

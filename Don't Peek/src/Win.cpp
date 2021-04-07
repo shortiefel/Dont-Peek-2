@@ -22,7 +22,6 @@ Technology is prohibited.
 */
 /* End Header **************************************************************************/
 
-#include "main.h"
 #include "GameStateMgr.h"
 #include "Win.h"
 #include "Menu.h"
@@ -134,7 +133,7 @@ void WinLoad()
 
 /******************************************************************************/
 /*!
-	Win Initalized
+	Win Initalization
 */
 /******************************************************************************/
 void WinInit()

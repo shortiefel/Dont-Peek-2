@@ -1,6 +1,6 @@
 /* Start Header ************************************************************************/
 /*!
-\file Music.h
+\file Music.cpp
 \team name Don't Peak
 \software name I don't want to do homework
 \authors
@@ -10,7 +10,8 @@ Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 
 \date 22/01/2021
-\brief This file is done by felicia. In this file, it contains the functions for music. It
+\brief This file is done by felicia. 
+In this file, it contains the functions for music. It
 uses FMOD API to load and play the music.
 
 
@@ -23,12 +24,17 @@ Technology is prohibited.
 
 #include "Music.h"
 
+//Initalization
 const int MAX_CHANNELS = 64;
 FMOD::System* audio;
 FMOD::ChannelGroup* bgmGroup;
 FMOD::Sound* BGSound;
 
-
+/******************************************************************************/
+/*!
+    Sound System Initalization
+*/
+/******************************************************************************/
 void SoundSystem_Init()
 {
     FMOD_RESULT result = FMOD::System_Create(&audio);
@@ -47,19 +53,33 @@ void SoundSystem_Init()
 
 }
 
+/******************************************************************************/
+/*!
+    Sound System SFX
+*/
+/******************************************************************************/
 void SoundSystem_SFX()
 {
     audio->playSound(BGSound, bgmGroup, false, 0);
 
 }
 
+/******************************************************************************/
+/*!
+    Tutorial SFX
+*/
+/******************************************************************************/
 void Tutorial_SFX()
 {
     audio->playSound(BGSound, bgmGroup, false, 0);
 
 }
 
-
+/******************************************************************************/
+/*!
+    Sound System Destory
+*/
+/******************************************************************************/
 void SoundSystem_Destroy()
 {
     std::cout << "i was triggered" << "\n";

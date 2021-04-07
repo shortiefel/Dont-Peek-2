@@ -10,8 +10,9 @@ Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 
 \date 22/01/2021
-\brief This file is done by felicia. In this file, it contains the declaration of what
-Losr.cpp contains
+\brief 
+In this file, it contains the declaration of 
+functions found in Lose.cpp
 
 
 Copyright (C) 2021 DigiPen Institute of Technology.
