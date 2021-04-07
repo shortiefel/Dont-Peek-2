@@ -26,12 +26,14 @@ Technology is prohibited.
 #include "Player.h"
 #include "Wall.h"
 #include "Eraser.h"
+#include "Animation.h"
 
 Eraser EraserArray[MAX];
 static int EraserNum;
 static int right, left;
 const int Eraser_Gravity = 8;
 float EGROUND = 0.f;
+Sprite EraserAnim;
 
 /******************************************************************************/
 /*!
@@ -42,7 +44,7 @@ float EGROUND = 0.f;
 void Eraser::LoadEraser() {
 
 	pEraser = sGameObjList + sGameObjNum++;
-	pEraser->type = TYPE_ERASER;
+	/*pEraser->type = TYPE_ERASER;
 
 	pEraser->texture = AEGfxTextureLoad("Resources/eraser.png");
 	AE_ASSERT_MESG(pEraser->texture, "Failed to load eraser!!");
@@ -59,8 +61,8 @@ void Eraser::LoadEraser() {
 		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 
 	pEraser->pMesh = AEGfxMeshEnd();
-	AE_ASSERT_MESG(pEraser->pMesh, "Failed to create eraser!!");
-
+	AE_ASSERT_MESG(pEraser->pMesh, "Failed to create eraser!!");*/
+	EraserAnim.Anim_Load(pEraser, "Resources/eraser sprite sheet 1800 x 600 72dpi.png", 1.f / 3.f, TYPE_ERASER);
 }
 
 
@@ -79,6 +81,7 @@ void Eraser::InitEraser()
 		Erasertemp->flag = FLAG_ACTIVE;
 		AEVec2Set(&(Erasertemp->vel), 0, 0);
 	}
+	EraserAnim.Anim_Init(3, 0.5f);
 }
 
 /******************************************************************************/
@@ -370,17 +373,18 @@ void Eraser::UpdateEraser()
 /******************************************************************************/
 void Eraser::DrawEraser()
 {
-	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
+	/*AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 	AEGfxSetTransparency(1.0f);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
-	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
+	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);*/
 	for (int i = 0; i < EraserNum; i++)
 	{
 		Eraser* Erasertemp = EraserArray + i;
-		AEGfxSetPosition(Erasertemp->pos.x, Erasertemp->pos.y);
+		EraserAnim.Anim_Update(pEraser, Erasertemp->Transform);
+		/*AEGfxSetPosition(Erasertemp->pos.x, Erasertemp->pos.y);
 		AEGfxTextureSet(pEraser->texture, 0, 0);
 		AEGfxSetTransform(Erasertemp->Transform.m);
-		AEGfxMeshDraw(pEraser->pMesh, AE_GFX_MDM_TRIANGLES);
+		AEGfxMeshDraw(pEraser->pMesh, AE_GFX_MDM_TRIANGLES);*/
 	}
 }
 
@@ -402,8 +406,9 @@ void Eraser::FreeEraser()
 void Eraser::UnloadEraser() {
 
 
-		AEGfxTextureUnload(pEraser->texture);
-		AEGfxMeshFree(pEraser->pMesh);
+		/*AEGfxTextureUnload(pEraser->texture);
+		AEGfxMeshFree(pEraser->pMesh);*/
+	EraserAnim.Anim_Unload(pEraser);
 		EraserNum = 0;
 }
 

@@ -33,10 +33,10 @@ void SSLoad()
 	*/
 	/******************************************************************************/
 	splashscreen.pos = { 0, 0 };
-	splashscreen.scale = { 600.f, 300.f };
+	splashscreen.scale = { 1000.f,700.f };
 
 	splashscreen.pObj = sGameObjList + sGameObjNum++;
-	splashscreen.pObj->texture = AEGfxTextureLoad("Resources/DigiPen_BLACK.png");
+	splashscreen.pObj->texture = AEGfxTextureLoad("Resources/DigiPen.jpg");
 	AE_ASSERT_MESG(splashscreen.pObj->texture, "Failed to load SplashScreen!");
 
 	AEGfxMeshStart();
