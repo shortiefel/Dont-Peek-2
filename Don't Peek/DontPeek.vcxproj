@@ -92,6 +92,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Animation.cpp" />
     <ClCompile Include="src\Collision.cpp" />
     <ClCompile Include="src\Credits.cpp" />
     <ClCompile Include="src\Door.cpp" />
@@ -118,6 +119,7 @@
     <ClCompile Include="src\Win.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Animation.h" />
     <ClInclude Include="src\Collision.h" />
     <ClInclude Include="src\Credits.h" />
     <ClInclude Include="src\Door.h" />

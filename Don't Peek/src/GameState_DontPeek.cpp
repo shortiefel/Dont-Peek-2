@@ -34,6 +34,7 @@ Technology is prohibited.
 #include "Win.h"
 #include "Music.h"
 #include "Pause.h"
+#include "Animation.h"
 
 
 /******************************************************************************/
@@ -57,7 +58,7 @@ Eraser eraser;
 Pencil pencil;
 Highlighter highlighter;
 Wall wall;
-
+Sprite anim;
 
 
 /******************************************************************************/
@@ -129,7 +130,6 @@ void GameStateDontPeekUpdate(void)
 		wall.UpdateWall();
 		player.Player_Update();
 	}
-
 
 }
 

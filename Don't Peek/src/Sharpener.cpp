@@ -27,12 +27,14 @@ Technology is prohibited.
 #include "Player.h"
 #include "Pencil.h"
 #include "Wall.h"
+#include "Animation.h"
 
 Sharpener SharpenerArray[MAX];
 static int SharpenerNum;
 static int right, left;
 const int Sharpener_Gravity = 8;
 float SGROUND = 0.f;
+Sprite SharpenerAnim;
 
 /******************************************************************************/
 /*!
@@ -42,7 +44,7 @@ float SGROUND = 0.f;
 void Sharpener::LoadSharpener()
 {
 	pSharpener = sGameObjList + sGameObjNum++;
-	pSharpener->type = TYPE_SHARPENER;
+	/*pSharpener->type = TYPE_SHARPENER;
 
 	pSharpener->texture = AEGfxTextureLoad("Resources/Sharpener_Animation.png");
 	AE_ASSERT_MESG(pSharpener->texture, "Failed to load sharpener!!");
@@ -59,7 +61,8 @@ void Sharpener::LoadSharpener()
 		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 
 	pSharpener->pMesh = AEGfxMeshEnd();
-	AE_ASSERT_MESG(pSharpener->pMesh, "Failed to create sharpener!!");
+	AE_ASSERT_MESG(pSharpener->pMesh, "Failed to create sharpener!!");*/
+	SharpenerAnim.Anim_Load(pSharpener, "Resources/sharpener sprite sheet 1800 x 600 72dpi.png", 1.f / 3.f, TYPE_SHARPENER);
 
 }
 
@@ -78,6 +81,7 @@ void Sharpener::InitSharpener()
 		Sharpenertemp->flag = FLAG_ACTIVE;
 		AEVec2Set(&(Sharpenertemp->vel), 0, 0);
 	}
+	SharpenerAnim.Anim_Init(3, 0.5f);
 }
 
 /******************************************************************************/
@@ -391,17 +395,18 @@ void Sharpener::UpdateSharpener()
 /******************************************************************************/
 void Sharpener::DrawSharpener()
 {
-	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
+	/*AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 	AEGfxSetTransparency(1.0f);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
-	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
+	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);*/
 	for (int i = 0; i < SharpenerNum; i++)
 	{
 		Sharpener* Sharpenertemp = SharpenerArray + i;
-		AEGfxSetPosition(Sharpenertemp->pos.x, Sharpenertemp->pos.y);
+		SharpenerAnim.Anim_Update(pSharpener, Sharpenertemp->Transform);
+		/*AEGfxSetPosition(Sharpenertemp->pos.x, Sharpenertemp->pos.y);
 		AEGfxTextureSet(pSharpener->texture, 0, 0);
 		AEGfxSetTransform(Sharpenertemp->Transform.m);
-		AEGfxMeshDraw(pSharpener->pMesh, AE_GFX_MDM_TRIANGLES);
+		AEGfxMeshDraw(pSharpener->pMesh, AE_GFX_MDM_TRIANGLES);*/
 	}
 }
 
@@ -422,8 +427,9 @@ void Sharpener::FreeSharpener()
 /******************************************************************************/
 void Sharpener::UnloadSharpener() {
 
-		AEGfxMeshFree(pSharpener->pMesh);
-		AEGfxTextureUnload(pSharpener->texture);
+		/*AEGfxMeshFree(pSharpener->pMesh);
+		AEGfxTextureUnload(pSharpener->texture);*/
+	SharpenerAnim.Anim_Unload(pSharpener);
 		SharpenerNum = 0;
 }
 
