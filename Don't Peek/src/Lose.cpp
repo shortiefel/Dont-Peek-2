@@ -165,6 +165,9 @@ void LoseUpdate()
 	{
 		//printf("Mouse: %d::%d\n", lose_x, lose_y);	//USED TO CHECK FOR MOUSE POSITION
 
+		/*===============================================================================
+			MAIN MENU BUTTON
+		=================================================================================*/
 		if (CollisionIntersection_PointRect({ static_cast<float>(lose_x), static_cast<float>(lose_y) }, { 0,0 }, Wbutton[0].boundingBox, { 0,0 }))
 		{
 			if (AEInputUpdate)
@@ -174,6 +177,9 @@ void LoseUpdate()
 				//printf("BBMax: %f::%f\n", Wbutton[0].boundingBox.max.x, Wbutton[0].boundingBox.max.y);
 			}
 		}
+		/*===============================================================================
+			NEXT LEVEL BUTTON
+		=================================================================================*/
 		else if (CollisionIntersection_PointRect({ static_cast<float>(lose_x), static_cast<float>(lose_y) }, { 0,0 }, Wbutton[0].boundingBox, { 0,0 }))
 		{
 			if (AEInputUpdate)
