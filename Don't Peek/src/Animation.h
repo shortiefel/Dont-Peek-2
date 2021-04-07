@@ -8,7 +8,6 @@ private:
 	float spritesheet_width;
 	int max_frame;
 	int curr_frame;
-	//float frame_width, frame_height;
 	float duration;
 	float counter;
 	AEMtx33	Transform;

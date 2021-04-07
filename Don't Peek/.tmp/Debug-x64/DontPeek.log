@@ -1,3 +1,2 @@
-﻿  Player.cpp
-C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Player.cpp(150,46): warning C4244: '=': conversion from 'double' to 'f32', possible loss of data
+﻿  Highlighter.cpp
   DontPeek.vcxproj -> C:\Users\lohyu\Documents\GitHub\Dont-Peek-2\Don't Peek\\bin\Debug-x64\DontPeek.exe

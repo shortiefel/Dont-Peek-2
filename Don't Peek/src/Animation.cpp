@@ -7,7 +7,7 @@ void Sprite::Anim_Load(GameObj* txtObj, const char* filename, float spritesheetW
 	spritesheet_width = spritesheetWidth;
 
 	txtObj->texture = AEGfxTextureLoad(filename);
-	AE_ASSERT_MESG(txtObj->texture, "Failed to load Player!");
+	AE_ASSERT_MESG(txtObj->texture, "Failed to load Texture!");
 
 	AEGfxMeshStart();
 	AEGfxTriAdd(
@@ -35,7 +35,7 @@ void Sprite::Anim_Update(GameObj* txtObj, AEMtx33 transform)
 	Transform = transform;
 	if (curr_frame < max_frame && txtObj)
 	{
-		std::cout << "print" << std::endl;
+		//std::cout << "print" << std::endl;
 		AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 
 		AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
@@ -49,7 +49,7 @@ void Sprite::Anim_Update(GameObj* txtObj, AEMtx33 transform)
 	}
 	if (counter > duration)
 	{
-		std::cout << "curr frame: " << curr_frame << std::endl;
+		//std::cout << "curr frame: " << curr_frame << std::endl;
 		curr_frame++;
 		counter = 0.f;
 	}
