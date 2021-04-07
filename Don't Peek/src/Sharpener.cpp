@@ -9,7 +9,12 @@ Margaret Teo Boon See	Teo.b@digipen.edu
 Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 \date 22/01/2021
-\brief <give a brief description of this file>
+\brief 
+This file contains all the functions that is required for our object sharpener.
+The sharpener is an object that can be pushed around by the player. 
+Player can also jump on top of the object.
+
+
 Copyright (C) 2021 DigiPen Institute of Technology.
 Reproduction or disclosure of this file or its contents
 without the prior written consent of DigiPen Institute of
@@ -29,7 +34,8 @@ Technology is prohibited.
 #include "Wall.h"
 #include "Animation.h"
 
-Sharpener SharpenerArray[MAX];
+//Initialization
+Sharpener SharpenerArray[MAX]; //Array is global as all other files need to use the information inside the array.
 static int SharpenerNum;
 static int right, left;
 const int Sharpener_Gravity = 8;
@@ -474,22 +480,22 @@ void Sharpener::BoundingBox()
 	Sharpener Getter & Setter Functions
 */
 /******************************************************************************/
-AABB Sharpener::GetSharpenerBoundingBox(int i)
+AABB Sharpener::GetSharpenerBoundingBox(int i)	//Allow other files to use sharpener boundingbox without changing it.
 {
 	Sharpener* Sharpenertemp = SharpenerArray + i;
 	return Sharpenertemp->boundingBox;
 }
-AEVec2 Sharpener::GetSharpenerVelocity(int i)
+AEVec2 Sharpener::GetSharpenerVelocity(int i)	//Allow other files to use sharpener velocity without changing it.
 {
 	Sharpener* Sharpenertemp = SharpenerArray + i;
 	return Sharpenertemp->vel;
 }
-AEVec2 Sharpener::GetSharpenerPosition(int i)
+AEVec2 Sharpener::GetSharpenerPosition(int i)	//Allow other files to use sharpener position without changing it.
 {
 	Sharpener* Sharpenertemp = SharpenerArray + i;
 	return Sharpenertemp->pos;
 }
-void Sharpener::SetSharpenerPosition(int i, AEVec2 NewPos)
+void Sharpener::SetSharpenerPosition(int i, AEVec2 NewPos)	//Allow other files to set the sharpener position. [This is used for level design]
 {
 	Sharpener* Sharpenertemp = SharpenerArray + i;
 	Sharpenertemp->pos = NewPos;
@@ -500,11 +506,11 @@ void Sharpener::SetSharpenerPosition(int i, AEVec2 NewPos)
 	Sharpener External Functions
 */
 /******************************************************************************/
-int GetSharpenerNum()
+int GetSharpenerNum()	//Allow other files to run through a loop of all the sharpener. [E.g. to detect collision of all sharpener]
 {
 	return SharpenerNum;
 }
-void SetSharpenerNum(int Num)
+void SetSharpenerNum(int Num)	//Set the number of sharpener object to be created. [This is used for level design]
 {
 	SharpenerNum = Num;
 }

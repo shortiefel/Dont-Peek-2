@@ -26,11 +26,11 @@ Technology is prohibited.
 #include "Win.h"
 #include "Menu.h"
 
-Win win;
+static Win win;
 static ButtonW Wbutton[2];
-int Win_x, Win_y;
-int SetWidthCursorWin = 1000 / 2;
-int SetHeightCursorWin = 700 / 2;
+static int Win_x, Win_y;
+static int SetWidthCursorWin = 1000 / 2;
+static int SetHeightCursorWin = 700 / 2;
 
 void WinLoad()
 {

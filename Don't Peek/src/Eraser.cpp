@@ -1,6 +1,6 @@
 /* Start Header ************************************************************************/
 /*!
-\file Sharpener.cpp
+\file Eraser.cpp
 \team name Don't Peak
 \software name I don't want to do homework
 \authors
@@ -9,7 +9,13 @@ Margaret Teo Boon See	Teo.b@digipen.edu
 Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 \date 22/01/2021
-\brief <give a brief description of this file>
+\brief 
+This file contains all the functions that is required for our object eraser.
+The eraser is an object that can be pushed around by the player.
+Player can also jump on top of the object.
+The eraser can also remove temporary wall [Pencil] when they collide.
+
+
 Copyright (C) 2021 DigiPen Institute of Technology.
 Reproduction or disclosure of this file or its contents
 without the prior written consent of DigiPen Institute of
@@ -453,23 +459,23 @@ void Eraser::BoundingBox()
 	Eraser Getter & Setter Functions
 */
 /******************************************************************************/
-AABB Eraser::GetEraserBoundingBox(int i)
+AABB Eraser::GetEraserBoundingBox(int i)				//Allow other files to use eraser boundingbox without changing it.
 {
 	Eraser* Erasertemp = EraserArray + i;
 	return Erasertemp->boundingBox;
 }
-AEVec2 Eraser::GetEraserVelocity(int i)
+AEVec2 Eraser::GetEraserVelocity(int i)					//Allow other files to use eraser velocity without changing it.
 {
 	Eraser* Erasertemp = EraserArray + i;
 	return Erasertemp->vel;
 }
-AEVec2 Eraser::GetEraserPosition(int i)
+AEVec2 Eraser::GetEraserPosition(int i)					//Allow other files to use eraser position without changing it.
 {
 	Eraser* Erasertemp = EraserArray + i;
 	return Erasertemp->pos;
 }
 
-void Eraser::SetEraserPosition(int i, AEVec2 NewPos)
+void Eraser::SetEraserPosition(int i, AEVec2 NewPos)	//Allow other files to set the eraser position. [This is used for level design]
 {
 	Eraser* Erasertemp = EraserArray + i;
 	Erasertemp->pos = NewPos;
@@ -480,11 +486,11 @@ void Eraser::SetEraserPosition(int i, AEVec2 NewPos)
 	Eraser External Functions
 */
 /******************************************************************************/
-int GetEraserNum()
+int GetEraserNum()				//Allow other files to run through a loop of all the eraser. [E.g. to detect collision of all eraser]
 {
 	return EraserNum;
 }
-void SetEraserNum(int Num)
+void SetEraserNum(int Num)		//Set the number of eraser object to be created. [This is used for level design]
 {
 	EraserNum = Num;
 }
