@@ -41,8 +41,12 @@ Technology is prohibited.
 /******************************************************************************/
 void HowtoplayLoad(void)
 {
-	PauseLoad();
+	memset(sGameObjList, 0, sizeof(GameObj) * GAME_OBJ_NUM_MAX);
+	// No game objects (shapes) at this point
+	sGameObjNum = 0;
+
 	Tutorial_Load();
+	PauseLoad();
 	wall.LoadWall();
 	sharpener.LoadSharpener();
 	eraser.LoadEraser();
@@ -59,8 +63,10 @@ void HowtoplayLoad(void)
 /******************************************************************************/
 void HowtoplayInit(void)
 {
+	CheckPause = false;
 	SoundSystem_Init();
 	SoundSystem_SFX();
+
 	Tutorial_Init();
 	wall.InitWall();
 	sharpener.InitSharpener();
@@ -117,10 +123,10 @@ void HowtoplayDraw(void)
 	{
 		Tutorial_Draw();
 		wall.DrawWall();
-		highlighter.DrawHighlighter();
-		pencil.DrawPencil();
 		sharpener.DrawSharpener();
 		eraser.DrawEraser();
+		highlighter.DrawHighlighter();
+		pencil.DrawPencil();	
 		door.DrawDoor();
 		player.Player_Draw();
 	}
@@ -134,7 +140,7 @@ void HowtoplayDraw(void)
 void HowtoplayFree(void)
 {
 	SoundSystem_Destroy();
-	//printf("TUT IS FREEING\n");
+
 	Tutorial_Free();
 	wall.FreeWall();
 	sharpener.FreeSharpener();
@@ -143,7 +149,6 @@ void HowtoplayFree(void)
 	pencil.FreePencil();
 	door.FreeDoor();
 	player.Player_Free();
-	
 }
 
 /******************************************************************************/
@@ -153,9 +158,9 @@ void HowtoplayFree(void)
 /******************************************************************************/
 void HowtoplayUnload(void)
 {
-	//printf("TUT IS UNLOADING\n");
 	Tutorial_Unload();
 	PauseUnload();
+
 	wall.UnloadWall();
 	sharpener.UnloadSharpener();
 	eraser.UnloadEraser();

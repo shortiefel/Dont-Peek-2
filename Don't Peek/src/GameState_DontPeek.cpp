@@ -35,7 +35,6 @@ Technology is prohibited.
 #include "Win.h"
 #include "Music.h"
 #include "Pause.h"
-#include "Animation.h"
 
 
 /******************************************************************************/
@@ -59,7 +58,6 @@ Eraser eraser;
 Pencil pencil;
 Highlighter highlighter;
 Wall wall;
-Sprite anim;
 
 
 /******************************************************************************/
@@ -91,9 +89,10 @@ void GameStateDontPeekLoad(void)
 /******************************************************************************/
 void GameStateDontPeekInit(void)
 {
+	CheckPause = false;
 	SoundSystem_Init();
 	SoundSystem_SFX();
-	CheckPause = false;
+	
 	Level1_Init();
 	wall.InitWall();
 	sharpener.InitSharpener();
@@ -124,15 +123,14 @@ void GameStateDontPeekUpdate(void)
 	else if (CheckPause == false)
 	{
 		Level1_Update();
+		wall.UpdateWall();
 		sharpener.UpdateSharpener();
 		eraser.UpdateEraser();
 		highlighter.UpdateHighlighter();
 		pencil.UpdatePencil();
 		door.UpdateDoor();
-		wall.UpdateWall();
 		player.Player_Update();
 	}
-
 }
 
 
@@ -152,14 +150,13 @@ void GameStateDontPeekDraw(void)
 	{
 		Level1_Draw();
 		wall.DrawWall();
-		highlighter.DrawHighlighter();
-		pencil.DrawPencil();
 		sharpener.DrawSharpener();
 		eraser.DrawEraser();
+		highlighter.DrawHighlighter();
+		pencil.DrawPencil();
 		door.DrawDoor();
 		player.Player_Draw();
 	}
-
 }
 
 /******************************************************************************/
@@ -170,14 +167,15 @@ void GameStateDontPeekDraw(void)
 void GameStateDontPeekFree(void)
 {
 	SoundSystem_Destroy();
+
 	Level1_Free();
+	wall.FreeWall();
 	sharpener.FreeSharpener();
 	eraser.FreeEraser();
 	highlighter.FreeHighlighter();
 	pencil.FreePencil();
 	door.FreeDoor();
 	player.Player_Free();
-	wall.FreeWall();
 }
 
 /******************************************************************************/
@@ -189,11 +187,12 @@ void GameStateDontPeekUnload(void)
 {
 	Level1_Unload();
 	PauseUnload();
+
+	wall.UnloadWall();
 	sharpener.UnloadSharpener();
 	eraser.UnloadEraser();
 	highlighter.UnloadHighlighter();
 	pencil.UnloadPencil();
 	door.UnloadDoor();
 	player.Player_Unload();
-	wall.UnloadWall();
 }

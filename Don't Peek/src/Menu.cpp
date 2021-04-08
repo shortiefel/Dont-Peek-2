@@ -21,7 +21,7 @@ without the prior written consent of DigiPen Institute of
 Technology is prohibited.
 */
 /* End Header **************************************************************************/
-#include "main.h"
+
 #include "GameStateMgr.h"
 #include "Menu.h"
 #include "Music.h"
@@ -220,9 +220,9 @@ void MenuUpdate()
 				//SoundSystem_Destroy();
 
 				gGameStateNext = GS_TUTORIAL;
-				printf("BUTTON PLAY \n");
-				printf("BBMin: %f::%f\n", button[0].boundingBox.min.x, button[0].boundingBox.min.y);
-				printf("BBMax: %f::%f\n", button[0].boundingBox.max.x, button[0].boundingBox.max.y);
+				//printf("BUTTON PLAY \n");
+				//printf("BBMin: %f::%f\n", button[0].boundingBox.min.x, button[0].boundingBox.min.y);
+				//printf("BBMax: %f::%f\n", button[0].boundingBox.max.x, button[0].boundingBox.max.y);
 			}
 
 		}
@@ -233,7 +233,7 @@ void MenuUpdate()
 		{
 			if (AEInputUpdate)
 			{
-				printf("BUTTON LEVEL \n");
+				//printf("BUTTON LEVEL \n");
 				gGameStateNext = GS_LEVEL;
 			}
 
@@ -246,7 +246,7 @@ void MenuUpdate()
 			if (AEInputUpdate)
 			{
 				gGameStateNext = GS_RULE;
-				printf("BUTTON HOW TO PLAY \n");
+				//printf("BUTTON HOW TO PLAY \n");
 			}
 
 		}
@@ -258,7 +258,7 @@ void MenuUpdate()
 			if (AEInputUpdate)
 			{
 				gGameStateNext = GS_CREDITS;
-				printf("BUTTON CREDITS \n");
+				//printf("BUTTON CREDITS \n");
 			}
 		}
 	}

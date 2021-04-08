@@ -30,7 +30,7 @@ Technology is prohibited.
 #include "Music.h"
 #include "Player.h"
 
-background bg;
+static background bg;
 //static float timer = 0;
 
 /******************************************************************************/
@@ -204,6 +204,7 @@ void Tutorial_Draw()
 	AEGfxSetTransform(bg.transform.m);
 	AEGfxSetTransparency(1.0f);
 	AEGfxMeshDraw(bg.pBg->pMesh, AE_GFX_MDM_TRIANGLES);
+	AEGfxSetTransparency(0.0f);
 }
 
 /******************************************************************************/
