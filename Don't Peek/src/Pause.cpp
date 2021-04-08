@@ -134,8 +134,6 @@ void PauseLoad()
 
 		AEMtx33Concat(&(Pbtn[i].transform), &trans, &sc);
 	}
-
-
 }
 
 void PauseInit()

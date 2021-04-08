@@ -22,6 +22,7 @@ Technology is prohibited.
 
 
 static Restart restart;
+static float restarttimer;
 
 void RestartLoad()
 {
@@ -59,10 +60,15 @@ void RestartInit()
 
 void RestartUpdate()
 {
-	if (gGameStatePrev == GS_TUTORIAL)
-		gGameStateNext = GS_TUTORIAL;
-	else if (gGameStatePrev == GS_DONT_PEEK)
-		gGameStateNext = GS_DONT_PEEK;
+	if (restarttimer < 0)
+	{
+		if (gGameStatePrev == GS_TUTORIAL)
+			gGameStateNext = GS_TUTORIAL;
+		else if (gGameStatePrev == GS_DONT_PEEK)
+			gGameStateNext = GS_DONT_PEEK;
+	}
+	else
+		restarttimer -= g_dt;
 }
 
 void RestartDraw()

@@ -180,6 +180,4 @@ void GameStateMgrUpdate()
 	default:
 		AE_FATAL_ERROR("invalid state!!");
 	}
-
-
 }

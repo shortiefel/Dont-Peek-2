@@ -10,7 +10,7 @@ Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 
 \date 22/01/2021
-\brief <give a brief description of this file>
+\brief This file contains a struct with functions that is needed to loading
 
 
 Copyright (C) 2021 DigiPen Institute of Technology.
