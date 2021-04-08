@@ -226,7 +226,7 @@ void PauseUpdate()
 				{
 					CheckPause = false;
 					gGameStateNext = GS_RESTART;
-					printf("Restarting \n");
+					//printf("Restarting \n");
 				}
 		}
 		/*===============================================================================
@@ -237,9 +237,9 @@ void PauseUpdate()
 			if (AEInputUpdate)
 			{
 				gGameStateNext = GS_MENU;
-				printf("BUTTON MAIN MENU \n");
-				printf("BBMin: %f::%f\n", Pbtn[2].boundingBox.min.x, Pbtn[2].boundingBox.min.y);
-				printf("BBMax: %f::%f\n", Pbtn[2].boundingBox.max.x, Pbtn[2].boundingBox.max.y);
+				//printf("BUTTON MAIN MENU \n");
+				//printf("BBMin: %f::%f\n", Pbtn[2].boundingBox.min.x, Pbtn[2].boundingBox.min.y);
+				//printf("BBMax: %f::%f\n", Pbtn[2].boundingBox.max.x, Pbtn[2].boundingBox.max.y);
 			}
 		}
 	}

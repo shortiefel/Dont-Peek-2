@@ -237,7 +237,7 @@ void CreditsUpdate()
 			{
 				if (AEInputUpdate)
 				{
-					printf("BUTTON NEXT");
+					//printf("BUTTON NEXT");
 					//printf("BBMin: %f::%f\n", button.boundingBox.min.x, button.boundingBox.min.y); //Checks for button bounding box.
 					//printf("BBMax: %f::%f\n", button.boundingBox.max.x, button.boundingBox.max.y);
 

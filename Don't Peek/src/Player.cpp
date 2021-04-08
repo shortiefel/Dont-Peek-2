@@ -143,7 +143,7 @@ void Player::Player_Update()
 	----------------------------------*/
 	if (AEInputCheckTriggered(AEVK_SPACE) && CanJump == true)
 	{
-		printf("jump \n");
+		//printf("jump \n");
 		//printf("jumping \n");
 		CanJump = false;
 		//Position.y += Velocity.y * 4;
@@ -153,7 +153,7 @@ void Player::Player_Update()
 	}
 	else if (player.pos.y < GROUND)
 	{
-		printf("ground \n");
+		//printf("ground \n");
 		player.pos.y = GROUND;
 		CanJump = true;
 		player.vel.y = 0;

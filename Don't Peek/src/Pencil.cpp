@@ -53,7 +53,7 @@ void Pencil::LoadPencil()
 
 	pPencil->pMesh = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pPencil->pMesh, "Failed to create pencil!!");
-	printf("pencil LOAD\n");
+	//printf("pencil LOAD\n");
 }
 
 /******************************************************************************/
@@ -71,7 +71,7 @@ void Pencil::InitPencil()
 		Penciltemp->vel = { 0,0 };
 		Penciltemp->collisionFlag = 1;
 	}
-	printf("pencil INIT\n");
+	//printf("pencil INIT\n");
 }
 
 /******************************************************************************/
@@ -151,7 +151,7 @@ void Pencil::UnloadPencil()
 
 	if (pPencil->texture)
 		AEGfxTextureUnload(pPencil->texture);
-	printf("pencil DESTROY\n");
+	//printf("pencil DESTROY\n");
 }
 
 /******************************************************************************/
