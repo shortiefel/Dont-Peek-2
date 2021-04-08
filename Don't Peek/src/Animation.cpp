@@ -26,6 +26,14 @@ Technology is prohibited.
 /******************************************************************************/
 /*!
 	Animation Load
+	\brief Loads textures into the game based on their spritesheet
+	\param GameObj* txtObj
+		This pointer holds the texture and type of the object
+	\param const char* filename
+		This is the direction to the spritesheet in the folder
+	\param float spritesheetWidth
+		This is the width
+	\param TYPE type of object
 */
 /******************************************************************************/
 void Sprite::Anim_Load(GameObj* txtObj, const char* filename, float spritesheetWidth, TYPE type)

@@ -79,7 +79,7 @@ void Tutorial_Init()
 	//eraser
 	SetEraserNum(1);
 	//pencil
-	SetPencilNum(1);
+	SetPencilNum(2);
 	/******************************************************************************/
 	/*!
 		FIRST BOX
@@ -137,16 +137,18 @@ void Tutorial_Init()
 	*/
 	/******************************************************************************/
 	door.SetDoorPosition(5, { 570 , 180 });
-	door.SetDoorPosition(6, { 800 , -140 });
+	door.SetDoorPosition(6, { 800 , -135 });
 	wall.CreateWall({ 540,-205 }, { 1,0 }, 11, 30.f, PLATFORM); //floor
 	wall.CreateWall({ 540, 115 }, { 1,0 }, 5, 30.f, PLATFORM); //below door
 	wall.CreateWall({ 540,310 }, { 1,0 }, 11, 30.f, CEILING); //top wall
 	wall.CreateWall({ 510,310 }, { 0,-1 }, 18, 30.f, WALL); //left wall
 	wall.CreateWall({ 870,310 }, { 0,-1 }, 18, 30.f, WALL); //right wall
+	wall.CreateWall({ 730,-40 }, { 1,0 }, 15, 10.f, PLATFORM); //Pencil Line
 
 	eraser.SetEraserPosition(0, {650, -80 });
 	//pencil not showing
-	pencil.SetPencil(0, { 730, -130 }, 20, 100);
+	pencil.SetPencil(0, { 730, -130 }, 20, 130);
+	pencil.SetPencil(1, { 780, -50 }, 120, 20);
 
 	/******************************************************************************/
 	/*!
