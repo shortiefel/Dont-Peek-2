@@ -1,8 +1,8 @@
 /* Start Header ************************************************************************/
 /*!
 \file Credits.cpp
-\team name Don't Peak
-\software name I don't want to do homework
+\team name Don't Peek
+\software name I Don't Wanna Do My Homework
 \authors
 Tan Wei Ling Felicia	weilingfelicia.tan@digipen.edu
 Margaret Teo Boon See	Teo.b@digipen.edu
@@ -149,14 +149,12 @@ void CreditsLoad()
 	AEMtx33Trans(&trans, button.pos.x, button.pos.y);
 
 	AEMtx33Concat(&(button.transform), &trans, &sc);
-	printf("credit LOAD\n");
 }
 
 void CreditsInit()
 {
 	SoundSystem_Init();
 	SoundSystem_SFX();
-	printf("credit INIT\n");
 }
 
 void CreditsUpdate()
@@ -235,14 +233,12 @@ void CreditsUnload()
 			AEGfxMeshFree(credit[i].pObj->pMesh);
 		if (credit[i].pObj->texture)
 			AEGfxTextureUnload(credit[i].pObj->texture);
-		printf("credit page DESTROY\n");
 	}
 
 	if (button.pButton->pMesh)
 		AEGfxMeshFree(button.pButton->pMesh);
 	if (button.pButton->texture)
 		AEGfxTextureUnload(button.pButton->texture);
-	printf("credit button DESTROY\n");
 }
 
 void BoundingBox1()

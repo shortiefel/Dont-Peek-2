@@ -1,8 +1,8 @@
 /* Start Header ************************************************************************/
 /*!
 \file Win.cpp
-\team name Don't Peak
-\software name I don't want to do homework
+\team name Don't Peek
+\software name I Don't Wanna Do My Homework
 \authors
 Tan Wei Ling Felicia	weilingfelicia.tan@digipen.edu
 Margaret Teo Boon See	Teo.b@digipen.edu
@@ -112,12 +112,10 @@ void WinLoad()
 
 		AEMtx33Concat(&(Wbutton[i].transform), &trans, &sc);
 	}
-	printf("win LOAD\n");
 }
 
 void WinInit()
 {
-	printf("win INIT\n");
 }
 
 void WinUpdate()
@@ -199,15 +197,12 @@ void WinUnload()
 			AEGfxMeshFree(Wbutton[i].pButton->pMesh);
 		if (Wbutton[i].pButton->texture)
 			AEGfxTextureUnload(Wbutton[i].pButton->texture);
-		printf("win buttons DESTROY\n");
 	}
 
 	if (win.pObj->pMesh)
 		AEGfxMeshFree(win.pObj->pMesh);
 	if(win.pObj->texture)	
 		AEGfxTextureUnload(win.pObj->texture);
-
-	printf("win screen DESTROY\n");
 }
 
 void BoundingBoxWin()

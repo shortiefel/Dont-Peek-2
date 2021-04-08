@@ -1,8 +1,8 @@
 /* Start Header ************************************************************************/
 /*!
-\file Level 1.h
-\team name Don't Peak
-\software name I don't want to do homework
+\file Tutorial.cpp
+\team name Don't Peek
+\software name I Don't Wanna Do My Homework
 \authors
 Tan Wei Ling Felicia	weilingfelicia.tan@digipen.edu
 Margaret Teo Boon See	Teo.b@digipen.edu
@@ -66,7 +66,6 @@ void Tutorial_Load()
 	AEMtx33Trans(&trans, bg.Bgpos.x, bg.Bgpos.y);
 
 	AEMtx33Concat(&(bg.transform), &trans, &sc);
-	printf("tutorial LOAD\n");
 }
 
 void Tutorial_Init()
@@ -163,7 +162,6 @@ void Tutorial_Init()
 
 	//timer
 	//timer = 50.f;
-	printf("tutorial INIT\n");
 }
 
 void Tutorial_Update()
@@ -204,5 +202,4 @@ void Tutorial_Unload()
 		AEGfxMeshFree(bg.pBg->pMesh);
 	if (bg.pBg->texture)
 		AEGfxTextureUnload(bg.pBg->texture);
-	printf("tutorial screen DESTROY\n");
 }

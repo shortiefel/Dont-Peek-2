@@ -1,8 +1,8 @@
 /* Start Header ************************************************************************/
 /*!
 \file Main.h
-\team name Don't Peak
-\software name I don't want to do homework
+\team name Don't Peek
+\software name I Don't Wanna Do My Homework
 \authors
 
 Tan Wei Ling Felicia	weilingfelicia.tan@digipen.edu

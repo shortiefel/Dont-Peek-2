@@ -1,8 +1,8 @@
 /* Start Header ************************************************************************/
 /*!
 \file Wall.cpp
-\team name Don't Peak
-\software name I don't want to do homework
+\team name Don't Peek
+\software name I Don't Wanna Do My Homework
 \authors
 Tan Wei Ling Felicia	weilingfelicia.tan@digipen.edu
 Margaret Teo Boon See	Teo.b@digipen.edu
@@ -13,7 +13,7 @@ Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 \brief <give a brief description of this file>
 
 
-Copyright (C) 20xx DigiPen Institute of Technology.
+Copyright (C) 2021 DigiPen Institute of Technology.
 Reproduction or disclosure of this file or its contents
 without the prior written consent of DigiPen Institute of
 Technology is prohibited.
@@ -28,7 +28,6 @@ Technology is prohibited.
 
 static int numberWalls = 0;
 static Wall WallArr[1000];
-//Wall* Walltemp = new Wall[1000];
 Wall* Walltemp = nullptr;
 
 /******************************************************************************/
@@ -54,7 +53,6 @@ void Wall::LoadWall()
 		-0.5f, 0.5f, 0x0000000, 0.0f, 0.0f);
 
 	pWall->pMesh = AEGfxMeshEnd();
-	printf("wall LOAD\n");
 }
 
 /******************************************************************************/
@@ -84,7 +82,6 @@ void Wall::InitWall()
 		//printf("bounding box min x %f \n", Walltemp->boundingBox.min.x);
 	
 	}
-	printf("wall INIT\n");
 }
 
 /******************************************************************************/

@@ -1,8 +1,8 @@
 /* Start Header ************************************************************************/
 /*!
 \file SplashScreen.cpp
-\team name Don't Peak
-\software name I don't want to do homework
+\team name Don't Peek
+\software name I Don't Wanna Do My Homework
 \authors
 Tan Wei Ling Felicia	weilingfelicia.tan@digipen.edu
 Margaret Teo Boon See	Teo.b@digipen.edu
@@ -58,13 +58,11 @@ void SSLoad()
 	AEMtx33Trans(&trans, splashscreen.pos.x, splashscreen.pos.y);
 
 	AEMtx33Concat(&(splashscreen.transform), &trans, &sc);
-	printf("splashscreen LOAD\n");
 }
 
 void SSInit()
 {
 	splashscreentimer = 3;
-	printf("splashscreen INIT\n");
 }
 
 void SSUpdate()
@@ -100,6 +98,5 @@ void SSUnload()
 
 	if (splashscreen.pObj->texture)
 		AEGfxTextureUnload(splashscreen.pObj->texture);
-	printf("splash screen DESTROY\n");
 
 }

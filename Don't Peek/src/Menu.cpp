@@ -1,8 +1,8 @@
 /* Start Header ************************************************************************/
 /*!
 \file Menu.cpp
-\team name Don't Peak
-\software name I don't want to do homework
+\team name Don't Peek
+\software name I Don't Wanna Do My Homework
 \authors
 Tan Wei Ling Felicia	weilingfelicia.tan@digipen.edu
 Margaret Teo Boon See	Teo.b@digipen.edu
@@ -169,14 +169,12 @@ void MenuLoad()
 
 		AEMtx33Concat(&(button[i].transform), &trans, &sc);
 	}
-	printf("menu LOAD\n");
 }
 
 void MenuInit()
 {
 	SoundSystem_Init();
 	SoundSystem_SFX();
-	printf("menu INIT\n");
 }
 
 void MenuUpdate()
@@ -275,22 +273,18 @@ void MenuFree()
 
 void MenuUnload()
 {
-	
 	for (int i = 0; i < 4; i++)
 	{
 		if (button[i].pButton->pMesh)
 			AEGfxMeshFree(button[i].pButton->pMesh);
 		if (button[i].pButton->texture)
 			AEGfxTextureUnload(button[i].pButton->texture);
-		printf("menu button DESTROY\n");
 	}
 
 	if (menu.pObj->pMesh)
 		AEGfxMeshFree(menu.pObj->pMesh);
 	if (menu.pObj->texture)
 		AEGfxTextureUnload(menu.pObj->texture);
-	printf("menu screen DESTROY\n");
-
 }
 
 void BoundingBox()

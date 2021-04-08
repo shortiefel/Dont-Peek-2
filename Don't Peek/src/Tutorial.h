@@ -1,9 +1,9 @@
 #pragma once
 /* Start Header ************************************************************************/
 /*!
-\file Level 1.h
-\team name Don't Peak
-\software name I don't want to do homework
+\file Tutorial.h
+\team name Don't Peek
+\software name I Don't Wanna Do My Homework
 \authors
 Tan Wei Ling Felicia	weilingfelicia.tan@digipen.edu
 Margaret Teo Boon See	Teo.b@digipen.edu
@@ -14,7 +14,7 @@ Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 \brief <give a brief description of this file>
 
 
-Copyright (C) 20xx DigiPen Institute of Technology.
+Copyright (C) 2021 DigiPen Institute of Technology.
 Reproduction or disclosure of this file or its contents
 without the prior written consent of DigiPen Institute of
 Technology is prohibited.

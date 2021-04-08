@@ -1,8 +1,8 @@
 /* Start Header ************************************************************************/
 /*!
 \file Pause.cpp
-\team name Don't Peak
-\software name I don't want to do homework
+\team name Don't Peek
+\software name I Don't Wanna Do My Homework
 \authors
 Tan Wei Ling Felicia	weilingfelicia.tan@digipen.edu
 Margaret Teo Boon See	Teo.b@digipen.edu
@@ -134,13 +134,10 @@ void PauseLoad()
 
 		AEMtx33Concat(&(Pbtn[i].transform), &trans, &sc);
 	}
-	printf("pause LOAD\n");
-
 }
 
 void PauseInit()
 {
-	printf("pause INIT\n");
 }
 
 void PauseUpdate()
@@ -259,13 +256,11 @@ void PauseUnload()
 			AEGfxMeshFree(Pbtn[i].pButton->pMesh);
 		if (Pbtn[i].pButton->texture)
 			AEGfxTextureUnload(Pbtn[i].pButton->texture);
-		printf("pause buttons DESTROY\n");
 	}
 	if (pause.pObj->pMesh)
 		AEGfxMeshFree(pause.pObj->pMesh);
 	if (pause.pObj->texture)
 		AEGfxTextureUnload(pause.pObj->texture);
-	printf("pause screen DESTROY\n");
 
 }
 

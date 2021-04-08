@@ -1,8 +1,8 @@
 /* Start Header ************************************************************************/
 /*!
 \file Lose.cpp
-\team name Don't Peak
-\software name I don't want to do homework
+\team name Don't Peek
+\software name I Don't Wanna Do My Homework
 \authors
 Tan Wei Ling Felicia	weilingfelicia.tan@digipen.edu
 Margaret Teo Boon See	Teo.b@digipen.edu
@@ -113,12 +113,10 @@ void LoseLoad()
 
 		AEMtx33Concat(&(Wbutton[i].transform), &trans, &sc);
 	}
-	printf("lose LOAD\n");
 }
 
 void LoseInit()
 {
-	printf("lose INIT\n");
 }
 
 void LoseUpdate()
@@ -199,13 +197,11 @@ void LoseUnload()
 			AEGfxMeshFree(Wbutton[i].pButton->pMesh);
 		if (Wbutton[i].pButton->texture)
 			AEGfxTextureUnload(Wbutton[i].pButton->texture);
-		printf("lose buttons DESTROY\n");
 	}
 	if (win.pObj->pMesh)
 		AEGfxMeshFree(win.pObj->pMesh);
 	if(win.pObj->texture)
 		AEGfxTextureUnload(win.pObj->texture);
-	printf("lose screen DESTROY\n");
 }
 
 void BoundingBoxLose()
