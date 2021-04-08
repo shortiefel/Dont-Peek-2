@@ -1,19 +1,15 @@
 /* Start Header************************************************************************ /
 /*!
-\file HowToPlay2.cpp
-\team name Don't Peek
-\software name I Don't Wanna Do My Homework
+\file Howtoplay.cpp
+\team name Don't Peak
+\software name I don't want to do homework
 \authors
 Tan Wei Ling Felicia	weilingfelicia.tan@digipen.edu
 Margaret Teo Boon See	Teo.b@digipen.edu
 Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 \date 22/01/2021
-\brief 
-This file contains all the functions that is required for our Tutorial game state.
-It will call each individual objects that is required to build the Tutorial.
-
-
+\brief <give a brief description of this file>
 Copyright (C) 2021 DigiPen Institute of Technology.
 Reproduction or disclosure of this file or its contents
 without the prior written consent of DigiPen Institute of
@@ -40,11 +36,6 @@ Loading loading;
 
 float static loadingTime = 2;
 
-/******************************************************************************/
-/*!
-	"LOAD" FUNCTION OF THE STATE
-*/
-/******************************************************************************/
 void HowtoplayLoad(void)
 {
 	/******************************************************************************/
@@ -96,11 +87,6 @@ void HowtoplayLoad(void)
 	player.Player_Load();
 }
 
-/******************************************************************************/
-/*!
-	"INIT" FUNCTION OF THE STATE
-*/
-/******************************************************************************/
 void HowtoplayInit(void)
 {
 	SoundSystem_Init();
@@ -115,15 +101,10 @@ void HowtoplayInit(void)
 	player.Player_Init();
 }
 
-/******************************************************************************/
-/*!
-	"UPDATE" FUNCTION OF THE STATE
-*/
-/******************************************************************************/
 void HowtoplayUpdate(void)
 {
 	totaltime += g_dt;
-	
+
 	if (AEInputCheckCurr(AEVK_P))
 	{
 		CheckPause = true;
@@ -146,11 +127,6 @@ void HowtoplayUpdate(void)
 	}
 }
 
-/******************************************************************************/
-/*!
-	"DRAW" FUNCTION OF THE STATE
-*/
-/******************************************************************************/
 void HowtoplayDraw(void)
 {
 	if (totaltime > loadingTime)
@@ -184,42 +160,31 @@ void HowtoplayDraw(void)
 	}
 }
 
-/******************************************************************************/
-/*!
-	"FREE" FUNCTION OF THE STATE
-*/
-/******************************************************************************/
 void HowtoplayFree(void)
 {
-	SoundSystem_Destroy();
-	//printf("TUT IS FREEING\n");
-	Tutorial_Free();
-	wall.FreeWall();
+	printf("TUT IS FREEING\n");
 	sharpener.FreeSharpener();
 	eraser.FreeEraser();
 	highlighter.FreeHighlighter();
 	pencil.FreePencil();
 	door.FreeDoor();
 	player.Player_Free();
-	
+	wall.FreeWall();
+	SoundSystem_Destroy();
 }
 
-/******************************************************************************/
-/*!
-	"UNLOAD" FUNCTION OF THE STATE
-*/
-/******************************************************************************/
 void HowtoplayUnload(void)
 {
 	if (loading.pObj->texture)
 		AEGfxTextureUnload(loading.pObj->texture);
 
 	PauseUnload();
-	wall.UnloadWall();
+	printf("TUT IS UNLOADING\n");
 	sharpener.UnloadSharpener();
 	eraser.UnloadEraser();
 	highlighter.UnloadHighlighter();
 	pencil.UnloadPencil();
 	door.UnloadDoor();
 	player.Player_Unload();
+	wall.UnloadWall();
 }

@@ -1,4 +1,3 @@
-﻿  Credits.cpp
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\Credits.cpp(237,9): warning C4551: function call missing argument list
-C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\src\fmod_errors.h(20,20): warning C4505: 'FMOD_ErrorString': unreferenced local function has been removed
-  DontPeek.vcxproj -> C:\Users\ameli\OneDrive\Documents\GitHub\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe
+﻿  Menu.cpp
+D:\CSD 1450\Dont-Peek-2\Don't Peek\src\fmod_errors.h(20,20): warning C4505: 'FMOD_ErrorString': unreferenced local function has been removed
+  DontPeek.vcxproj -> D:\CSD 1450\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe
