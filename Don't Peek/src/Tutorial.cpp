@@ -1,6 +1,6 @@
 /* Start Header ************************************************************************/
 /*!
-\file Level 1.h
+\file Level 1.cpp
 \team name Don't Peak
 \software name I don't want to do homework
 \authors
@@ -33,6 +33,12 @@ Technology is prohibited.
 background bg;
 static float timer = 0;
 
+/******************************************************************************/
+/*!
+	Tutorial Load
+	/brief loads background for level
+*/
+/******************************************************************************/
 void Tutorial_Load()
 {
 	/******************************************************************************/
@@ -67,6 +73,13 @@ void Tutorial_Load()
 
 	AEMtx33Concat(&(bg.transform), &trans, &sc);
 }
+
+/******************************************************************************/
+/*!
+	Tutorial Init
+	/brief inits all objects for level
+*/
+/******************************************************************************/
 void Tutorial_Init()
 {
 	SetWin({ 1045, 260 });
@@ -162,6 +175,12 @@ void Tutorial_Init()
 	wall.CreateWall({ 1190,280 }, { 0,-1 }, 9, 30.f, WALL); //left wall
 }
 
+/******************************************************************************/
+/*!
+	Tutorial Update
+	/brief updates timer
+*/
+/******************************************************************************/
 void Tutorial_Update()
 {
 	/******************************************************************************/
@@ -179,6 +198,13 @@ void Tutorial_Update()
 		timer -= g_dt;
 	}*/
 }
+
+/******************************************************************************/
+/*!
+	Tutorial Draw
+	\brief draws background
+*/
+/******************************************************************************/
 void Tutorial_Draw()
 {
 	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
@@ -190,10 +216,23 @@ void Tutorial_Draw()
 	AEGfxSetTransparency(1.0f);
 	AEGfxMeshDraw(bg.pBg->pMesh, AE_GFX_MDM_TRIANGLES);
 }
+
+/******************************************************************************/
+/*!
+	Tutorial Free
+	\brief free background
+*/
+/******************************************************************************/
 void Tutorial_Free()
 {
 	AEGfxMeshFree(bg.pBg->pMesh);
 }
+/******************************************************************************/
+/*!
+	Tutorial Unload
+	\brief unload background
+*/
+/******************************************************************************/
 void Tutorial_Unload()
 {
 	timer = 50.f;

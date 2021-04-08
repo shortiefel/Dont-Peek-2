@@ -61,6 +61,11 @@ void Sprite::Anim_Load(GameObj* txtObj, const char* filename, float spritesheetW
 /******************************************************************************/
 /*!
 	Animation Init
+	\brief Initialises variables in the class
+	\param int maxframe
+		This holds the maximum number of frames
+	\param float time
+		This is the direction to the spritesheet in the folder
 */
 /******************************************************************************/
 void Sprite::Anim_Init(int maxframe, float time)
@@ -74,6 +79,11 @@ void Sprite::Anim_Init(int maxframe, float time)
 /******************************************************************************/
 /*!
 	Animation Update
+	\brief Updates frames based on a timer
+	\param GameObj* txtObj
+		This holds the textures
+	\param AEMtx33 transform
+		This holds the transform matrix
 */
 /******************************************************************************/
 void Sprite::Anim_Update(GameObj* txtObj, AEMtx33 transform)
@@ -118,6 +128,9 @@ void Sprite::Anim_Free()
 /******************************************************************************/
 /*!
 	Animation Unload
+	\brief Unloads textures
+	\param GameObj* txtObj
+		This holds the textures
 */
 /******************************************************************************/
 void Sprite::Anim_Unload(GameObj* txtObj)
