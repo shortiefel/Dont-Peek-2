@@ -11,7 +11,8 @@ Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 
 \date 22/01/2021
-\brief This file is done by Felicia. In this file, it contains the function which enable the
+\brief
+This file is done by Felicia. In this file, it contains the function which enable the
 the windows to appear and the states of how the gamestate will run.
 
 

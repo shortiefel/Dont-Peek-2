@@ -1,6 +1,6 @@
 /* Start Header ************************************************************************/
 /*!
-\file Sharpener.cpp
+\file Eraser.cpp
 \team name Don't Peek
 \software name I Don't Wanna Do My Homework
 \authors
@@ -9,7 +9,13 @@ Margaret Teo Boon See	Teo.b@digipen.edu
 Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 \date 22/01/2021
-\brief <give a brief description of this file>
+\brief 
+This file contains all the functions that is required for our object eraser.
+The eraser is an object that can be pushed around by the player.
+Player can also jump on top of the object.
+The eraser can also remove temporary wall [Pencil] when they collide.
+
+
 Copyright (C) 2021 DigiPen Institute of Technology.
 Reproduction or disclosure of this file or its contents
 without the prior written consent of DigiPen Institute of
@@ -26,23 +32,25 @@ Technology is prohibited.
 #include "Player.h"
 #include "Wall.h"
 #include "Eraser.h"
+#include "Animation.h"
 
+//Initialization
 Eraser EraserArray[MAX];
 static int EraserNum;
 static int right, left;
 const int Eraser_Gravity = 8;
 float EGROUND = 0.f;
+Sprite EraserAnim;
 
 /******************************************************************************/
 /*!
 	Eraser Load
 */
 /******************************************************************************/
-
 void Eraser::LoadEraser() {
 
 	pEraser = sGameObjList + sGameObjNum++;
-	pEraser->type = TYPE_ERASER;
+	/*pEraser->type = TYPE_ERASER;
 
 	pEraser->texture = AEGfxTextureLoad("Resources/eraser.png");
 	AE_ASSERT_MESG(pEraser->texture, "Failed to load eraser!!");
@@ -59,8 +67,8 @@ void Eraser::LoadEraser() {
 		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 
 	pEraser->pMesh = AEGfxMeshEnd();
-	AE_ASSERT_MESG(pEraser->pMesh, "Failed to create eraser!!");
-	printf("eraser LOAD\n");
+	AE_ASSERT_MESG(pEraser->pMesh, "Failed to create eraser!!");*/
+	EraserAnim.Anim_Load(pEraser, "Resources/eraser sprite sheet 1800 x 600 72dpi.png", 1.f / 3.f, TYPE_ERASER);
 }
 
 
@@ -79,7 +87,7 @@ void Eraser::InitEraser()
 		Erasertemp->flag = FLAG_ACTIVE;
 		AEVec2Set(&(Erasertemp->vel), 0, 0);
 	}
-	printf("eraser INIT\n");
+	EraserAnim.Anim_Init(3, 0.5f);
 }
 
 /******************************************************************************/
@@ -107,11 +115,9 @@ void Eraser::UpdateEraser()
 
 		SetGravity();
 
-		/******************************************************************************/
-		/*!
+		/*===============================================================================
 			PLAYER
-		*/
-		/******************************************************************************/
+		=================================================================================*/
 		if (CollisionIntersection_RectRect(player.GetBoundingBoxPlayer(), player.GetVelPlayer(), Erasertemp->boundingBox, Erasertemp->vel))
 		{
 			/*======================================
@@ -218,11 +224,9 @@ void Eraser::UpdateEraser()
 			}
 		}//End of Player for loop
 
-		/******************************************************************************/
-		/*!
+		/*===============================================================================
 			SHARPENER
-		*/
-		/******************************************************************************/
+		=================================================================================*/
 		for (int j = 0; j < GetSharpenerNum(); j++)
 		{
 			Sharpener* Sharpenertemp = SharpenerArray + j;
@@ -259,16 +263,17 @@ void Eraser::UpdateEraser()
 
 		}//End of Sharpener for loop
 
-		/******************************************************************************/
-		/*!
+		/*===============================================================================
 			HIGHLIGHTER
-		*/
-		/******************************************************************************/
+		=================================================================================*/
 		for (int j = 0; j < GetHighlighterNum(); j++)
 		{
 			Highlighter* highlightertemp = HighlighterArray + j;
 			for (int s = 0; s < GetSharpenerNum(); s++)
 			{
+				/*----------------------------------
+					PUSHED FROM THE RIGHT
+				----------------------------------*/
 				if (right == 1) {
 					if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, highlightertemp->GetHighlighterBoundingBox(j), highlightertemp->GetHighlighterVelocity(j)))
 					{
@@ -278,6 +283,9 @@ void Eraser::UpdateEraser()
 						}
 					}
 				}
+				/*----------------------------------
+					PUSHED FROM THE LEFT
+				----------------------------------*/
 				else if (left == 1) {
 					if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, highlightertemp->GetHighlighterBoundingBox(j), highlightertemp->GetHighlighterVelocity(j)))
 					{
@@ -290,12 +298,9 @@ void Eraser::UpdateEraser()
 			}
 		}//End of Highlighter for loop
 
-
-		/******************************************************************************/
-		/*!
+		/*===============================================================================
 			DOOR
-		*/
-		/******************************************************************************/
+		=================================================================================*/
 		for (int j = 0; j < GetDoorNum(); j++)
 		{
 			Door* Doortemp = DoorArray + j;
@@ -320,12 +325,9 @@ void Eraser::UpdateEraser()
 			}
 		}//End of Door for loop
 
-		/******************************************************************************/
-		/*!
-			WALLS
-		*/
-		/******************************************************************************/
-
+		/*===============================================================================
+			WALLS/PLATFORM/CEILING
+		=================================================================================*/
 		for (int j = 0; j < Get_NumWalls(); j++)
 		{
 			Wall* Walltemp = Get_WallArr() + j;
@@ -335,18 +337,29 @@ void Eraser::UpdateEraser()
 			{
 				WallCollision = true;
 				Erasertemp->vel.y = 0.f;
-
+				/*----------------------------------
+					WALLS
+				----------------------------------*/
 				if (Walltemp->GetType(j) == WALL)
 				{
+					/*----------------------------------
+						PUSHED FROM THE RIGHT
+					----------------------------------*/
 					if (Erasertemp->pos.x >= Walltemp->GetWallBoundingBox(j).min.x)
 					{
 						Erasertemp->pos.x = (Walltemp->GetWallBoundingBox(j).max.x + Scale / 3);
 					}
+					/*----------------------------------
+						PUSHED FROM THE LEFT
+					----------------------------------*/
 					else if (Erasertemp->pos.x <= Walltemp->GetWallBoundingBox(j).max.x)
 					{
 						Erasertemp->pos.x = (Walltemp->GetWallBoundingBox(j).min.x - Scale / 3);
 					}
 				}
+				/*----------------------------------
+					PLATFORM
+				----------------------------------*/
 				else if (Walltemp->GetType(j) == PLATFORM)
 				{
 					if (Erasertemp->pos.y >= Walltemp->GetWallBoundingBox(j).max.y + 40 && Erasertemp->vel.y < 0)
@@ -371,17 +384,18 @@ void Eraser::UpdateEraser()
 /******************************************************************************/
 void Eraser::DrawEraser()
 {
-	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
+	/*AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 	AEGfxSetTransparency(1.0f);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
-	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
+	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);*/
 	for (int i = 0; i < EraserNum; i++)
 	{
 		Eraser* Erasertemp = EraserArray + i;
-		AEGfxSetPosition(Erasertemp->pos.x, Erasertemp->pos.y);
+		EraserAnim.Anim_Update(pEraser, Erasertemp->Transform);
+		/*AEGfxSetPosition(Erasertemp->pos.x, Erasertemp->pos.y);
 		AEGfxTextureSet(pEraser->texture, 0, 0);
 		AEGfxSetTransform(Erasertemp->Transform.m);
-		AEGfxMeshDraw(pEraser->pMesh, AE_GFX_MDM_TRIANGLES);
+		AEGfxMeshDraw(pEraser->pMesh, AE_GFX_MDM_TRIANGLES);*/
 	}
 }
 
@@ -403,11 +417,9 @@ void Eraser::FreeEraser()
 void Eraser::UnloadEraser() 
 {
 
-	if (pEraser->pMesh)
-		AEGfxMeshFree(pEraser->pMesh);
-	if (pEraser->texture)
-		AEGfxTextureUnload(pEraser->texture);
-	printf("eraser DESTROY\n");
+		/*AEGfxTextureUnload(pEraser->texture);
+		AEGfxMeshFree(pEraser->pMesh);*/
+	EraserAnim.Anim_Unload(pEraser);
 }
 
 /******************************************************************************/
@@ -451,23 +463,23 @@ void Eraser::BoundingBox()
 	Eraser Getter & Setter Functions
 */
 /******************************************************************************/
-AABB Eraser::GetEraserBoundingBox(int i)
+AABB Eraser::GetEraserBoundingBox(int i)				//Allow other files to use eraser boundingbox without changing it.
 {
 	Eraser* Erasertemp = EraserArray + i;
 	return Erasertemp->boundingBox;
 }
-AEVec2 Eraser::GetEraserVelocity(int i)
+AEVec2 Eraser::GetEraserVelocity(int i)					//Allow other files to use eraser velocity without changing it.
 {
 	Eraser* Erasertemp = EraserArray + i;
 	return Erasertemp->vel;
 }
-AEVec2 Eraser::GetEraserPosition(int i)
+AEVec2 Eraser::GetEraserPosition(int i)					//Allow other files to use eraser position without changing it.
 {
 	Eraser* Erasertemp = EraserArray + i;
 	return Erasertemp->pos;
 }
 
-void Eraser::SetEraserPosition(int i, AEVec2 NewPos)
+void Eraser::SetEraserPosition(int i, AEVec2 NewPos)	//Allow other files to set the eraser position. [This is used for level design]
 {
 	Eraser* Erasertemp = EraserArray + i;
 	Erasertemp->pos = NewPos;
@@ -478,11 +490,11 @@ void Eraser::SetEraserPosition(int i, AEVec2 NewPos)
 	Eraser External Functions
 */
 /******************************************************************************/
-int GetEraserNum()
+int GetEraserNum()				//Allow other files to run through a loop of all the eraser. [E.g. to detect collision of all eraser]
 {
 	return EraserNum;
 }
-void SetEraserNum(int Num)
+void SetEraserNum(int Num)		//Set the number of eraser object to be created. [This is used for level design]
 {
 	EraserNum = Num;
 }

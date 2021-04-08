@@ -9,8 +9,12 @@ Margaret Teo Boon See	Teo.b@digipen.edu
 Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 \date 22/01/2021
-\brief This file is done by Felicia. In this file, it contains the different movement a player
-has and the collision with different objects. 
+\brief 
+This file contains all the functions that is required for our object player.
+The player is able to push sharpeners & erasers around.
+The player is able to jump on top of sharpeners & erasers.
+The player can walk through doors to enter other areas of the map.
+The player can jump to reach the end point to win.
 
 
 Copyright (C) 2021 DigiPen Institute of Technology.
@@ -30,14 +34,9 @@ Technology is prohibited.
 #include "Menu.h"
 #include <math.h>
 #include "HowToPlay2.h"
+#include "Animation.h"
 
-
-/******************************************************************************/
-/*!
-	Game Object
-*/
-/******************************************************************************/
-
+//Initialization
 const int Player_Gravity = 8;
 bool Gravity = true;
 float GROUND = 0.f;
@@ -46,7 +45,7 @@ float CameraPosX = 0;
 float CameraPosY = 0;
 AEVec2 WinPos;
 Wall* wall_player;
-
+Sprite idle;
 
 /******************************************************************************/
 /*!
@@ -57,26 +56,27 @@ void Player::Player_Load() //drawing of character
 {
 
 	pPlayer = sGameObjList + sGameObjNum++;
-	pPlayer->type = TYPE_PLAYER;
+	//pPlayer->type = TYPE_PLAYER;
 
-	pPlayer->texture = AEGfxTextureLoad("Resources/Player.png");
-	AE_ASSERT_MESG(pPlayer->texture, "Failed to load Player!");
+	//pPlayer->texture = AEGfxTextureLoad("Resources/Player.png");
+	//AE_ASSERT_MESG(pPlayer->texture, "Failed to load Player!");
 
 
-	//Drawing of Player
-	AEGfxMeshStart();
-	AEGfxTriAdd(
-		-0.5f, -0.5f, 0x00000000, 0.0f, 1.0f,
-		0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
-		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
+	////Drawing of Player
+	//AEGfxMeshStart();
+	//AEGfxTriAdd(
+	//	-0.5f, -0.5f, 0x00000000, 0.0f, 1.0f,
+	//	0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
+	//	-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 
-	AEGfxTriAdd(
-		0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
-		0.5f, 0.5f, 0x00000000, 1.0f, 0.0f,
-		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
-	pPlayer->pMesh = AEGfxMeshEnd();
-	AE_ASSERT_MESG(pPlayer->pMesh, "fail to create object!!");
-	printf("player LOAD\n");
+	//AEGfxTriAdd(
+	//	0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
+	//	0.5f, 0.5f, 0x00000000, 1.0f, 0.0f,
+	//	-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
+	//pPlayer->pMesh = AEGfxMeshEnd();
+	//AE_ASSERT_MESG(pPlayer->pMesh, "fail to create object!!");
+
+	idle.Anim_Load(pPlayer, "Resources/idle sprite sheet 1800 x 600 72dpi.png", 1.f/3.f , TYPE_PLAYER);
 }
 
 /******************************************************************************/
@@ -93,7 +93,8 @@ void Player::Player_Init()
 
 	if (gGameStateCurr == GS_RESTART)
 		AEVec2Set(&(player.pos), -100.0f, 30.f);
-	printf("player INIT\n");
+
+	idle.Anim_Init(3, 0.2f);
 }
 
 /******************************************************************************/
@@ -103,15 +104,14 @@ void Player::Player_Init()
 /******************************************************************************/
 void Player::Player_Update()
 {
-	CheckPause = false;
-
 	//FAKE GROUND
 	GROUND = -1000; //For Player To Fall
-	/******************************************************************************/
-	/*!
+	/*===============================================================================
 		INPUTS
-	*/
-	/******************************************************************************/
+	=================================================================================*/
+	/*----------------------------------
+		LEFT
+	----------------------------------*/
 	if (AEInputCheckCurr(AEVK_LEFT))
 	{
 		for (int i = 0; i < Get_NumWalls(); i++)
@@ -125,8 +125,10 @@ void Player::Player_Update()
 			else
 				player.vel.x = -SPEED;
 		}
-
 	}
+	/*----------------------------------
+		RIGHT
+	----------------------------------*/
 	else if (AEInputCheckCurr(AEVK_RIGHT))
 	{
 		
@@ -136,14 +138,16 @@ void Player::Player_Update()
 	{
 		player.vel.x = 0.f;
 	}
-
+	/*----------------------------------
+		UP
+	----------------------------------*/
 	if (AEInputCheckTriggered(AEVK_SPACE) && CanJump == true)
 	{
 		printf("jump \n");
 		//printf("jumping \n");
 		CanJump = false;
 		//Position.y += Velocity.y * 4;
-		float g = 68.f * g_dt;
+		float g = 65.f * g_dt;
 		player.vel.y = static_cast<double>((2 * g) * (140 - 0));
 		//printf("PosY: %f, %f\n", pos.x, pos.y);
 	}
@@ -156,31 +160,16 @@ void Player::Player_Update()
 	}
 		SetGravity();
 
-
-	//MAIN BUTTONS
-		if (AEInputCheckCurr(AEVK_ESCAPE))
-			gGameStateNext = GS_QUIT;
-
-		if (AEInputCheckCurr(AEVK_B))
-			gGameStateNext = GS_MENU;
-
-		//if (AEInputCheckCurr(AEVK_P))
-		//{
-		//	CheckPause = true;
-		//	gGameStateNext = GS_PAUSE;
-		//}
-			
-
 	BoundingBox();
-	/******************************************************************************/
-	/*!
-		SHARPENERS
-	*/
-	/******************************************************************************/
+	/*===============================================================================
+		SHARPENER
+	=================================================================================*/
 	for (int i = 0; i < GetSharpenerNum(); i++)
 	{
 		Sharpener* Sharpenertemp = SharpenerArray + i;
-		//BoundingBox();
+		/*----------------------------------
+			STANDING ON SHARPENER
+		----------------------------------*/
 		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Sharpenertemp->GetSharpenerBoundingBox(i), Sharpenertemp->GetSharpenerVelocity(i)))
 		{
 			if (player.pos.y >= Sharpenertemp->GetSharpenerBoundingBox(i).max.y + (Scale / 6) && player.vel.y < 0)
@@ -190,17 +179,17 @@ void Player::Player_Update()
 				CanJump = true;
 			}
 		}
-		
 	}//End of Sharpener for loop
 
-	/******************************************************************************/
-	/*!
+	/*===============================================================================
 		ERASERS
-	*/
-	/******************************************************************************/
+	=================================================================================*/
 	for (int i = 0; i < GetSharpenerNum(); i++)
 	{
 		Eraser* Erasertemp = EraserArray + i;
+		/*----------------------------------
+			STANDING ON ERASER
+		----------------------------------*/
 		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Erasertemp->GetEraserBoundingBox(i), Erasertemp->GetEraserVelocity(i)))
 		{
 			if (player.pos.y >= Erasertemp->GetEraserBoundingBox(i).max.y + (Scale / 6) && player.vel.y < 0)
@@ -213,11 +202,9 @@ void Player::Player_Update()
 
 	}//End of Sharpener for loop
 
-	/******************************************************************************/
-	/*!
-		DOORS
-	*/
-	/******************************************************************************/
+	/*===============================================================================
+		DOOR
+	=================================================================================*/
 	for (int i = 0; i < GetDoorNum(); i++)
 	{
 		Door* Doortemp = DoorArray + i;
@@ -236,9 +223,7 @@ void Player::Player_Update()
 				{
 					CameraPosX = (Doortemp->GetDoorPosition(i + 1).x + WinPos.x) / 2;
 					CameraPosY = (Doortemp->GetDoorPosition(i + 1).y + WinPos.y) / 2;
-					//AEGfxSetCamPosition(player.pos.x, player.pos.y);
 				}
-
 			}
 			else
 			{
@@ -255,16 +240,14 @@ void Player::Player_Update()
 					CameraPosY = player.pos.y;
 				}
 			}
-				AEGfxSetCamPosition(CameraPosX, CameraPosY);
+				AEGfxSetCamPosition(CameraPosX, CameraPosY); //SET CAMERA TO NEXT PLAY BOX
 		}
 
 	}//End of Door for loop
 
-	/******************************************************************************/
-	/*!
+	/*===============================================================================
 		PENCIL
-	*/
-	/******************************************************************************/
+	=================================================================================*/
 	for (int i =0; i< GetPencilNum(); i++)
 	{
 		Pencil* Penciltemp = PencilArray + i;
@@ -281,12 +264,9 @@ void Player::Player_Update()
 		}
 	}
 
-
-	/******************************************************************************/
-	/*!
-		WALLS
-	*/
-	/******************************************************************************/
+	/*===============================================================================
+		WALLS/PLATFORM/CEILING
+	=================================================================================*/
 	for (int i = 0; i < Get_NumWalls(); i++)
 	{
 		Wall* Walltemp = Get_WallArr() + i;
@@ -294,50 +274,67 @@ void Player::Player_Update()
 		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Walltemp->GetWallBoundingBox(i), { 0,0 }))
 		{	
 			WallCollision = true;
+			/*----------------------------------
+				WALLS
+			----------------------------------*/
 			if (Walltemp->GetType(i) == WALL)
 			{
+				/*----------------------------------
+					PUSHED FROM THE RIGHT
+				----------------------------------*/
 				if (player.pos.x >= Walltemp->GetWallBoundingBox(i).min.x)
 				{
 					player.pos.x = (Walltemp->GetWallBoundingBox(i).max.x + Scale / 3 );
 				}
+				/*----------------------------------
+					PUSHED FROM THE LEFT
+				----------------------------------*/
 				else if (player.pos.x <= Walltemp->GetWallBoundingBox(i).max.x)
 				{
 					player.pos.x = (Walltemp->GetWallBoundingBox(i).min.x - player.Scale / 3);
 				}
 			}
+			/*----------------------------------
+				PLATFORM
+			----------------------------------*/
 			else if (Walltemp->GetType(i) == PLATFORM)
 			{
-
 				if (player.pos.y >= Walltemp->GetWallBoundingBox(i).max.y + player.Scale/2 - 10 && player.vel.y < 0)
 				{
-					//GROUND = 
 					player.vel.y = 0;
 					player.pos.y = Walltemp->GetWallBoundingBox(i).max.y + player.Scale / 2 - 10;
 					CanJump = true;
 				}
 			}
+			/*----------------------------------
+				CEILING
+			----------------------------------*/
 			else if (Walltemp->GetType(i) == CEILING)
 			{
+				/*----------------------------------
+					JUMPING UP
+				----------------------------------*/
 				if (player.pos.y < Walltemp->GetWallBoundingBox(i).max.y)
 				{
 					vel.y -= 50.f * g_dt;
 					player.pos.y = Walltemp->GetWallBoundingBox(i).min.y - player.Scale / 2;
 				}
+				/*----------------------------------
+					FALLING DOWN
+				----------------------------------*/
 				else if(player.pos.y >= Walltemp->GetWallBoundingBox(i).max.y + player.Scale / 2 - 10 && player.vel.y < 0)
 				{
 					player.vel.y = 0;
 					player.pos.y = Walltemp->GetWallBoundingBox(i).max.y + player.Scale / 2 - 10;
 					CanJump = true;
 				}
-		
 			}
 		}
 	}//End of Wall for loop
-	/******************************************************************************/
-	/*!
+
+	/*===============================================================================
 		WIN CHECK
-	*/
-	/******************************************************************************/
+	=================================================================================*/
 	if (CollisionIntersection_PointRect(WinPos, {0,0}, player.boundingBox, player.vel))
 	{
 		gGameStateNext = GS_WIN;
@@ -355,7 +352,7 @@ void Player::Player_Update()
 /******************************************************************************/
 void Player::Player_Draw()
 {
-	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
+	/*AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 
 	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 	AEGfxSetPosition(pos.x, pos.y);
@@ -364,7 +361,9 @@ void Player::Player_Draw()
 	AEGfxSetTransform(Transform.m);
 	
 	AEGfxSetTransparency(1.0f);
-	AEGfxMeshDraw(pPlayer->pMesh, AE_GFX_MDM_TRIANGLES);
+	AEGfxMeshDraw(pPlayer->pMesh, AE_GFX_MDM_TRIANGLES);*/
+
+	idle.Anim_Update(pPlayer, Transform);
 
 }
 
@@ -375,7 +374,6 @@ void Player::Player_Draw()
 /******************************************************************************/
 void Player::Player_Free()
 {
-
 		
 }
 
@@ -386,23 +384,10 @@ void Player::Player_Free()
 /******************************************************************************/
 void Player::Player_Unload()
 {
-	// potentially more memory leak
-	if (AEInputCheckCurr(AEVK_P))
-	{
-		gGameStateNext = GS_PAUSE;
-	}
-	else
-	{
-		if (pPlayer->pMesh)
-			AEGfxMeshFree(pPlayer->pMesh);
-		if (pPlayer->texture)
-			AEGfxTextureUnload(pPlayer->texture);
-		printf("player DESTROY\n");
-	}
-		
+		/*AEGfxTextureUnload(pPlayer->texture);
+		AEGfxMeshFree(pPlayer->pMesh);*/
+		idle.Anim_Unload(pPlayer);
 }
-
-
 
 /******************************************************************************/
 /*!
@@ -437,32 +422,32 @@ void Player::BoundingBox()
 	Player Getter & Setter Functions
 */
 /******************************************************************************/
-AABB Player::GetBoundingBoxPlayer() const
+AABB Player::GetBoundingBoxPlayer() const	//Allow other files to use player boundingbox without changing it.
 {
 	return player.boundingBox;
 }
 
-AEVec2 Player::GetVelPlayer() const
+AEVec2 Player::GetVelPlayer() const		//Allow other files to use player velocity without changing it.
 {
 	return player.vel;
 }
 
-const Player* Player::GetPlayerObj() const
+const Player* Player::GetPlayerObj() const	//Allow other files to use player position without changing it.
 {
 	return this;
 }
 
-AEVec2 Player::GetPosPlayer() const
+AEVec2 Player::GetPosPlayer() const		//Allow other files to set the player position. [This is used for level design]
 {
 	return player.pos;
 }
 
-bool Player::GetCanJump()
+bool Player::GetCanJump()	//Check if player jumped
 {
 	return true;
 }
 
-void SetWin(AEVec2 Pos)
+void SetWin(AEVec2 Pos)	//Set win position
 {
 	WinPos = Pos;
 }

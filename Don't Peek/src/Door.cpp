@@ -22,8 +22,11 @@ Technology is prohibited.
 
 #include "GameState_DontPeek.h"
 #include "Door.h"
+#include "Animation.h"
 
+//Initialization
 Door DoorArray[MAX];
+Sprite DoorAnim;
 static int DoorNum = 0;
 
 /******************************************************************************/
@@ -34,7 +37,7 @@ static int DoorNum = 0;
 void Door::LoadDoor()
 {
 	pDoor = sGameObjList + sGameObjNum++ ;
-	pDoor->type = TYPE_DOOR;
+	/*pDoor->type = TYPE_DOOR;
 
 	AEGfxMeshStart();
 	AEGfxTriAdd(
@@ -49,9 +52,11 @@ void Door::LoadDoor()
 	pDoor->pMesh = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pDoor->pMesh, "fail to create object!!");
 
-	pDoor->texture = AEGfxTextureLoad("Resources/Door.png");
-	AE_ASSERT_MESG(pDoor->texture, "Failed to create texture1!!");
-	printf("door LOAD\n");
+	pDoor->texture = AEGfxTextureLoad("Resources/door sprite sheet 1800 x 600 72dpi.png");
+	AE_ASSERT_MESG(pDoor->texture, "Failed to create texture1!!");*/
+
+	DoorAnim.Anim_Load(pDoor, "Resources/door sprite sheet 1800 x 600 72dpi.png", 1.f / 3.f, TYPE_DOOR);
+
 }
 
 /******************************************************************************/
@@ -61,7 +66,6 @@ void Door::LoadDoor()
 /******************************************************************************/
 void Door::InitDoor()
 {	
-	
 	Scale = 100.0f;
 	for (int i = 0; i < DoorNum; i++)
 	{
@@ -69,7 +73,7 @@ void Door::InitDoor()
 		Doortemp->flag = FLAG_ACTIVE;
 		Doortemp->vel = {0,0};
 	}
-	printf("door INIT\n");
+	DoorAnim.Anim_Init(3, 2.f);
 }
 
 /******************************************************************************/
@@ -89,18 +93,20 @@ void Door::UpdateDoor()
 /******************************************************************************/
 void Door::DrawDoor()
 {
-	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
+	/*AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 	AEGfxSetTransparency(1.0f);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
-	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
+	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);*/
 	for (int i = 0; i < DoorNum; i++)
 	{
 
 		Door* Doortemp = DoorArray + i;
-		AEGfxSetPosition(Doortemp->pos.x, Doortemp->pos.y);
+
+		DoorAnim.Anim_Update(pDoor, Doortemp->Transform);
+		/*AEGfxSetPosition(Doortemp->pos.x, Doortemp->pos.y);
 		AEGfxTextureSet(pDoor->texture, 0, 0);
 		AEGfxSetTransform(Doortemp->Transform.m);
-		AEGfxMeshDraw(pDoor->pMesh, AE_GFX_MDM_TRIANGLES);
+		AEGfxMeshDraw(pDoor->pMesh, AE_GFX_MDM_TRIANGLES);*/
 	}
 }
 
@@ -121,11 +127,9 @@ void Door::FreeDoor()
 /******************************************************************************/
 void Door::UnloadDoor()
 {
-	if (pDoor->pMesh)
-		AEGfxMeshFree(pDoor->pMesh);
-	if(pDoor->texture)
-		AEGfxTextureUnload(pDoor->texture);
-	printf("door DESTROY\n");
+	DoorAnim.Anim_Unload(pDoor);
+	/*AEGfxMeshFree(pDoor->pMesh);
+	AEGfxTextureUnload(pDoor->texture);*/
 }
 
 /******************************************************************************/
@@ -155,22 +159,22 @@ void Door::BoundingBox()
 	Door Getter & Setter Functions
 */
 /******************************************************************************/
-AABB Door::GetDoorBoundingBox(int i)
+AABB Door::GetDoorBoundingBox(int i)	//Allow other files to use door boundingbox without changing it.
 {
 	Door* Doortemp = DoorArray + i;
 	return Doortemp->boundingBox;
 }
-AEVec2 Door::GetDoorVelocity(int i)
+AEVec2 Door::GetDoorVelocity(int i)		//Allow other files to use door velocity without changing it.
 {
 	Door* Doortemp = DoorArray + i;
 	return Doortemp->vel;
 }
-AEVec2 Door::GetDoorPosition(int i)
+AEVec2 Door::GetDoorPosition(int i)		//Allow other files to use door position without changing it.
 {
 	Door* Doortemp = DoorArray + i;
 	return Doortemp->pos;
 }
-void Door::SetDoorPosition(int i, AEVec2 NewPos)
+void Door::SetDoorPosition(int i, AEVec2 NewPos)	//Allow other files to set the door position. [This is used for level design]
 {
 	Door* Doortemp = DoorArray + i;
 	Doortemp->pos = NewPos;
@@ -181,11 +185,11 @@ void Door::SetDoorPosition(int i, AEVec2 NewPos)
 	Door External Functions
 */
 /******************************************************************************/
-int GetDoorNum()
+int GetDoorNum()	//Allow other files to run through a loop of all the door. [E.g. to detect collision of all door]
 {
 	return DoorNum;
 }
-void SetDoorNum(int Num)
+void SetDoorNum(int Num)		//Set the number of eraser object to be created. [This is used for level design]
 {
 	DoorNum = Num;
 }

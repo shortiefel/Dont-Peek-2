@@ -10,8 +10,10 @@ Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 
 \date 22/01/2021
-\brief  This file is done by Felicia. In this file, it contains the declaration of what 
-player.cpp contains
+\brief  
+In this file, it contains the declaration of
+functions found in Player.cpp
+
 
 Copyright (C) 2021 DigiPen Institute of Technology.
 Reproduction or disclosure of this file or its contents
@@ -24,7 +26,6 @@ Technology is prohibited.
 #include "AEVec2.h"
 #include "AEInput.h"
 #include "Math.h"
-
 
 class Player
 {

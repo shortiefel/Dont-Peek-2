@@ -10,7 +10,10 @@ Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 
 \date 22/01/2021
-\brief <give a brief description of this file>
+\brief 
+This file contains all the functions that is required for our object highlighter.
+When a sharpener/eraser collide into the highlighter, they will auto move either left or right. [Based on the pushing direction]
+The object will not be able to stop in between the highlighter.
 
 
 Copyright (C) 2021 DigiPen Institute of Technology.
@@ -22,10 +25,12 @@ Technology is prohibited.
 #include "GameStateMgr.h"
 #include "GameState_DontPeek.h"
 #include "Highlighter.h"
+#include "Animation.h"
 
-
+//Initialization
 Highlighter HighlighterArray[MAX];
 static int HighlighterNum = 0;
+Sprite HighlighterAnim;
 
 /******************************************************************************/
 /*!
@@ -35,7 +40,7 @@ static int HighlighterNum = 0;
 void Highlighter::LoadHighlighter() 
 {
 	pHighlighter = sGameObjList + sGameObjNum++;
-	pHighlighter->type = TYPE_HIGHLIGHTER;
+	/*pHighlighter->type = TYPE_HIGHLIGHTER;
 
 	AEGfxMeshStart();
 	AEGfxTriAdd(
@@ -49,8 +54,9 @@ void Highlighter::LoadHighlighter()
 		-0.5f, 0.5f, 0x00FFFF00, 0.0f, 0.0f);
 
 	pHighlighter->pMesh = AEGfxMeshEnd();
-	AE_ASSERT_MESG(pHighlighter->pMesh, "Failed to create highlighter!!");
-	printf("highlighter LOAD\n");
+	AE_ASSERT_MESG(pHighlighter->pMesh, "Failed to create highlighter!!");*/
+	HighlighterAnim.Anim_Load(pHighlighter, "Resources/highlighter sprite sheet 4800 x 600 72dpi.png", 1.f / 8.f, TYPE_HIGHLIGHTER);
+
 }
 
 /******************************************************************************/
@@ -60,8 +66,8 @@ void Highlighter::LoadHighlighter()
 /******************************************************************************/
 void Highlighter::InitHighlighter() {
 
-	scaleX = 150.0f;
-	scaleY = 50.0f;
+	scaleX = 100.0f;
+	scaleY = 60.0f;
 	for (int i = 0; i < HighlighterNum; i++)
 	{
 		Highlighter* Highlightertemp = HighlighterArray + i;
@@ -69,7 +75,7 @@ void Highlighter::InitHighlighter() {
 		Highlightertemp->flag = FLAG_ACTIVE;
 		Highlightertemp->vel = {0,0};
 	}
-	printf("highlighter INIT\n");
+	HighlighterAnim.Anim_Init(8, 1.f);
 }
 
 /******************************************************************************/
@@ -89,19 +95,19 @@ void Highlighter::UpdateHighlighter()
 /******************************************************************************/
 void Highlighter::DrawHighlighter() 
 {
-	
+	/*AEGfxSetBlendMode(AE_GFX_BM_NONE);
+	AEGfxSetBlendColor(0.0f, 0.f, 0.f, 0.f);
+	AEGfxSetTransparency(1.0f);
+	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
+	AEGfxSetRenderMode(AE_GFX_RM_COLOR);*/
 	for (int i = 0; i < HighlighterNum; i++)
 	{
 		Highlighter* Highlightertemp = HighlighterArray + i;
-		AEGfxSetBlendMode(AE_GFX_BM_NONE);
-		//AEGfxSetBlendColor(0.0f, 0.f, 0.f, 0.f);
-		AEGfxSetTransparency(1.0f);
-		AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
-		AEGfxSetRenderMode(AE_GFX_RM_COLOR);
-		AEGfxSetPosition(Highlightertemp->pos.x, Highlightertemp->pos.y);
-		AEGfxSetTransform(Highlightertemp->Transform.m);
-		//AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
-		AEGfxMeshDraw(pHighlighter->pMesh, AE_GFX_MDM_TRIANGLES);
+		HighlighterAnim.Anim_Update(pHighlighter, Highlightertemp->Transform);
+		//AEGfxSetPosition(Highlightertemp->pos.x, Highlightertemp->pos.y);
+		//AEGfxSetTransform(Highlightertemp->Transform.m);
+		////AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
+		//AEGfxMeshDraw(pHighlighter->pMesh, AE_GFX_MDM_TRIANGLES);
 	}
 }
 
@@ -122,12 +128,12 @@ void Highlighter::FreeHighlighter()
 /******************************************************************************/
 void Highlighter::UnloadHighlighter()
 {
-	if (pHighlighter->pMesh)
+	/*if (pHighlighter->pMesh)
 		AEGfxMeshFree(pHighlighter->pMesh);
 
 	if (pHighlighter->texture)
-		AEGfxTextureUnload(pHighlighter->texture);
-	printf("highlighter DESTROY\n");
+		AEGfxTextureUnload(pHighlighter->texture);*/
+	HighlighterAnim.Anim_Unload(pHighlighter);
 }
 
 /******************************************************************************/
@@ -157,25 +163,25 @@ void Highlighter::BoundingBox()
 	Highlighter Getter & Setter Functions
 */
 /******************************************************************************/
-AABB Highlighter::GetHighlighterBoundingBox(int i)
+AABB Highlighter::GetHighlighterBoundingBox(int i)	//Allow other files to use highlighter boundingbox without changing it.
 {
 	Highlighter* Highlightertemp = HighlighterArray + i;
 	return Highlightertemp->boundingBox;
 }
 
-AEVec2 Highlighter::GetHighlighterVelocity(int i)
+AEVec2 Highlighter::GetHighlighterVelocity(int i)	//Allow other files to use highlighter velocity without changing it.
 {
 	Highlighter* Highlightertemp = HighlighterArray + i;
 	return Highlightertemp->vel;
 }
 
-AEVec2 Highlighter::GetHighlighterPosition(int i)
+AEVec2 Highlighter::GetHighlighterPosition(int i)	//Allow other files to use highlighter position without changing it.
 {
 	Highlighter* Highlightertemp = HighlighterArray + i;
 	return Highlightertemp->pos;
 }
 
-void Highlighter::SetHighlighterPosition(int i, AEVec2 NewPos)
+void Highlighter::SetHighlighterPosition(int i, AEVec2 NewPos)	//Allow other files to set the highlighter position. [This is used for level design]
 {
 	Highlighter* Highlightertemp = HighlighterArray + i;
 	Highlightertemp->pos = NewPos;
@@ -186,14 +192,12 @@ void Highlighter::SetHighlighterPosition(int i, AEVec2 NewPos)
 	Highlighter External Functions
 */
 /******************************************************************************/
-int GetHighlighterNum()
+int GetHighlighterNum()	//Allow other files to run through a loop of all the highlighter. [E.g. to detect collision of all highlighter]
 {
 	return HighlighterNum;
 }
-void SetHighlighterNum(int Num)
+void SetHighlighterNum(int Num)	//Set the number of highlighter object to be created. [This is used for level design]
 {
 	HighlighterNum = Num;
 }
 
-//set pos scale type
-//remove scale in init

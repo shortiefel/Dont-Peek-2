@@ -9,7 +9,12 @@ Margaret Teo Boon See	Teo.b@digipen.edu
 Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 \date 22/01/2021
-\brief <give a brief description of this file>
+\brief 
+This file contains all the functions that is required for our object sharpener.
+The sharpener is an object that can be pushed around by the player. 
+Player can also jump on top of the object.
+
+
 Copyright (C) 2021 DigiPen Institute of Technology.
 Reproduction or disclosure of this file or its contents
 without the prior written consent of DigiPen Institute of
@@ -27,12 +32,15 @@ Technology is prohibited.
 #include "Player.h"
 #include "Pencil.h"
 #include "Wall.h"
+#include "Animation.h"
 
-Sharpener SharpenerArray[MAX];
+//Initialization
+Sharpener SharpenerArray[MAX]; //Array is global as all other files need to use the information inside the array.
 static int SharpenerNum;
 static int right, left;
 const int Sharpener_Gravity = 8;
 float SGROUND = 0.f;
+Sprite SharpenerAnim;
 
 /******************************************************************************/
 /*!
@@ -42,7 +50,7 @@ float SGROUND = 0.f;
 void Sharpener::LoadSharpener()
 {
 	pSharpener = sGameObjList + sGameObjNum++;
-	pSharpener->type = TYPE_SHARPENER;
+	/*pSharpener->type = TYPE_SHARPENER;
 
 	pSharpener->texture = AEGfxTextureLoad("Resources/Sharpener_Animation.png");
 	AE_ASSERT_MESG(pSharpener->texture, "Failed to load sharpener!!");
@@ -59,8 +67,9 @@ void Sharpener::LoadSharpener()
 		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 
 	pSharpener->pMesh = AEGfxMeshEnd();
-	AE_ASSERT_MESG(pSharpener->pMesh, "Failed to create sharpener!!");
-	printf("sharpener LOAD\n");
+	AE_ASSERT_MESG(pSharpener->pMesh, "Failed to create sharpener!!");*/
+	SharpenerAnim.Anim_Load(pSharpener, "Resources/sharpener sprite sheet 1800 x 600 72dpi.png", 1.f / 3.f, TYPE_SHARPENER);
+
 }
 
 /******************************************************************************/
@@ -78,7 +87,7 @@ void Sharpener::InitSharpener()
 		Sharpenertemp->flag = FLAG_ACTIVE;
 		AEVec2Set(&(Sharpenertemp->vel), 0, 0);
 	}
-	printf("sharpener INIT\n");
+	SharpenerAnim.Anim_Init(3, 0.5f);
 }
 
 /******************************************************************************/
@@ -104,11 +113,9 @@ void Sharpener::UpdateSharpener()
 
 		SetGravity();
 
-		/******************************************************************************/
-		/*!
+		/*===============================================================================
 			PLAYER
-		*/
-		/******************************************************************************/
+		=================================================================================*/
 		if (CollisionIntersection_RectRect(player.GetBoundingBoxPlayer(), player.GetVelPlayer(), Sharpenertemp->boundingBox, Sharpenertemp->vel))
 		{
 			/*======================================
@@ -214,11 +221,9 @@ void Sharpener::UpdateSharpener()
 		}//End of Player for loop
 
 
-		/******************************************************************************/
-		/*!
+		/*===============================================================================
 			ERASER
-		*/
-		/******************************************************************************/
+		=================================================================================*/
 
 		for (int j = 0; j < GetEraserNum(); j++)
 		{
@@ -257,11 +262,9 @@ void Sharpener::UpdateSharpener()
 
 		}//End of Eraser loop
 
-		/******************************************************************************/
-		/*!
+		/*===============================================================================
 			PENCIL
-		*/
-		/******************************************************************************/
+		=================================================================================*/
 		for (int j = 0; j < GetPencilNum(); j++)
 		{
 			Pencil* Penciltemp = PencilArray + j;
@@ -272,11 +275,9 @@ void Sharpener::UpdateSharpener()
 		}//End of Pencil for loop
 
 
-		/******************************************************************************/
-		/*!
+		/*===============================================================================
 			HIGHLIGHTER
-		*/
-		/******************************************************************************/
+		=================================================================================*/
 		for (int x = 0; x < GetHighlighterNum(); x++)
 		{
 			Highlighter* highlightertemp = HighlighterArray + x;
@@ -312,11 +313,9 @@ void Sharpener::UpdateSharpener()
 
 
 
-		/******************************************************************************/
-		/*!
+		/*===============================================================================
 			DOOR
-		*/
-		/******************************************************************************/
+		=================================================================================*/
 		for (int j = 0; j < GetDoorNum(); j++)
 		{
 			Door* Doortemp = DoorArray + j;
@@ -342,11 +341,9 @@ void Sharpener::UpdateSharpener()
 			}
 		}//End of Door for loop
 
-		/******************************************************************************/
-		/*!
-			WALLS
-		*/
-		/******************************************************************************/
+		/*===============================================================================
+			WALLS/PLATFORM/CEILING
+		=================================================================================*/
 		for (int j = 0; j < Get_NumWalls(); j++)
 		{
 			Wall* Walltemp = Get_WallArr() + j;
@@ -356,18 +353,29 @@ void Sharpener::UpdateSharpener()
 			{
 				WallCollision = true;
 				Sharpenertemp->vel.y = 0.f;
-
+				/*----------------------------------
+					WALLS
+				----------------------------------*/
 				if (Walltemp->GetType(j) == WALL)
 				{
+					/*----------------------------------
+						PUSHED FROM THE RIGHT
+					----------------------------------*/
 					if (Sharpenertemp->pos.x >= Walltemp->GetWallBoundingBox(j).min.x)
 					{
 						Sharpenertemp->pos.x = (Walltemp->GetWallBoundingBox(j).max.x + Scale / 3);
 					}
+					/*----------------------------------
+						PUSHED FROM THE LEFT
+					----------------------------------*/
 					else if (Sharpenertemp->pos.x <= Walltemp->GetWallBoundingBox(j).max.x)
 					{
 						Sharpenertemp->pos.x = (Walltemp->GetWallBoundingBox(j).min.x - Scale / 3);
 					}
 				}
+				/*----------------------------------
+					PLATFORM
+				----------------------------------*/
 				else if (Walltemp->GetType(j) == PLATFORM)
 				{
 					if (Sharpenertemp->pos.y >= Walltemp->GetWallBoundingBox(j).max.y + 40 && Sharpenertemp->vel.y < 0)
@@ -392,17 +400,18 @@ void Sharpener::UpdateSharpener()
 /******************************************************************************/
 void Sharpener::DrawSharpener()
 {
-	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
+	/*AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 	AEGfxSetTransparency(1.0f);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
-	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
+	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);*/
 	for (int i = 0; i < SharpenerNum; i++)
 	{
 		Sharpener* Sharpenertemp = SharpenerArray + i;
-		AEGfxSetPosition(Sharpenertemp->pos.x, Sharpenertemp->pos.y);
+		SharpenerAnim.Anim_Update(pSharpener, Sharpenertemp->Transform);
+		/*AEGfxSetPosition(Sharpenertemp->pos.x, Sharpenertemp->pos.y);
 		AEGfxTextureSet(pSharpener->texture, 0, 0);
 		AEGfxSetTransform(Sharpenertemp->Transform.m);
-		AEGfxMeshDraw(pSharpener->pMesh, AE_GFX_MDM_TRIANGLES);
+		AEGfxMeshDraw(pSharpener->pMesh, AE_GFX_MDM_TRIANGLES);*/
 	}
 }
 
@@ -421,14 +430,11 @@ void Sharpener::FreeSharpener()
 	Sharpener Unload
 */
 /******************************************************************************/
-void Sharpener::UnloadSharpener() 
-{
-	if(pSharpener->pMesh)
-		AEGfxMeshFree(pSharpener->pMesh);
-	if (pSharpener->texture)
-		AEGfxTextureUnload(pSharpener->texture);
-	printf("sharpener DESTROY\n");
+void Sharpener::UnloadSharpener() {
 
+		/*AEGfxMeshFree(pSharpener->pMesh);
+		AEGfxTextureUnload(pSharpener->texture);*/
+	SharpenerAnim.Anim_Unload(pSharpener);
 }
 
 /******************************************************************************/
@@ -472,22 +478,22 @@ void Sharpener::BoundingBox()
 	Sharpener Getter & Setter Functions
 */
 /******************************************************************************/
-AABB Sharpener::GetSharpenerBoundingBox(int i)
+AABB Sharpener::GetSharpenerBoundingBox(int i)	//Allow other files to use sharpener boundingbox without changing it.
 {
 	Sharpener* Sharpenertemp = SharpenerArray + i;
 	return Sharpenertemp->boundingBox;
 }
-AEVec2 Sharpener::GetSharpenerVelocity(int i)
+AEVec2 Sharpener::GetSharpenerVelocity(int i)	//Allow other files to use sharpener velocity without changing it.
 {
 	Sharpener* Sharpenertemp = SharpenerArray + i;
 	return Sharpenertemp->vel;
 }
-AEVec2 Sharpener::GetSharpenerPosition(int i)
+AEVec2 Sharpener::GetSharpenerPosition(int i)	//Allow other files to use sharpener position without changing it.
 {
 	Sharpener* Sharpenertemp = SharpenerArray + i;
 	return Sharpenertemp->pos;
 }
-void Sharpener::SetSharpenerPosition(int i, AEVec2 NewPos)
+void Sharpener::SetSharpenerPosition(int i, AEVec2 NewPos)	//Allow other files to set the sharpener position. [This is used for level design]
 {
 	Sharpener* Sharpenertemp = SharpenerArray + i;
 	Sharpenertemp->pos = NewPos;
@@ -498,11 +504,11 @@ void Sharpener::SetSharpenerPosition(int i, AEVec2 NewPos)
 	Sharpener External Functions
 */
 /******************************************************************************/
-int GetSharpenerNum()
+int GetSharpenerNum()	//Allow other files to run through a loop of all the sharpener. [E.g. to detect collision of all sharpener]
 {
 	return SharpenerNum;
 }
-void SetSharpenerNum(int Num)
+void SetSharpenerNum(int Num)	//Set the number of sharpener object to be created. [This is used for level design]
 {
 	SharpenerNum = Num;
 }

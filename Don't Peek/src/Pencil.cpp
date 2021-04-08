@@ -9,8 +9,11 @@ Margaret Teo Boon See	Teo.b@digipen.edu
 Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 \date 22/01/2021
+\brief 
+This file contains all the functions that is required for our object pencil.
+The pencil is a temporary wall that can be removed when eraser collides with it.
 
-\brief <give a brief description of this file>
+
 Copyright (C) 2021 DigiPen Institute of Technology.
 Reproduction or disclosure of this file or its contents
 without the prior written consent of DigiPen Institute of
@@ -23,6 +26,7 @@ Technology is prohibited.
 #include "Pencil.h"
 #include "Eraser.h"
 
+//Initialization
 Pencil PencilArray[MAX];
 static int PencilNum = 0;
 
@@ -84,11 +88,9 @@ void Pencil::UpdatePencil()
 	{
 		Pencil* Penciltemp = PencilArray + i;
 
-		/******************************************************************************/
-		/*!
+		/*===============================================================================
 			ERASER
-		*/
-		/******************************************************************************/
+		=================================================================================*/
 		for (int j = 0; j < GetEraserNum(); j++)
 		{
 			Eraser* Erasertemp = EraserArray + j;
@@ -189,24 +191,24 @@ void Pencil::BoundingBox()
 	Pencil Getter & Setter Functions
 */
 /******************************************************************************/
-AABB Pencil::GetPencilBoundingBox(int i)
+AABB Pencil::GetPencilBoundingBox(int i)	//Allow other files to use pencil boundingbox without changing it.
 {
 	Pencil* Penciltemp = PencilArray + i;
 	return Penciltemp->boundingBox;
 }
 
-AEVec2 Pencil::GetPencilVelocity(int i)
+AEVec2 Pencil::GetPencilVelocity(int i)		//Allow other files to use pencil velocity without changing it.
 {
 	Pencil* Penciltemp = PencilArray + i;
 	return Penciltemp->vel;
 }
 
-AEVec2 Pencil::GetPencilPosition(int i)
+AEVec2 Pencil::GetPencilPosition(int i)		//Allow other files to use pencil position without changing it.
 {
 	Pencil* Penciltemp = PencilArray + i;
 	return Penciltemp->pos;
 }
-void Pencil::SetPencil(int i, AEVec2 NewPos, float scale_X, float scale_Y)
+void Pencil::SetPencil(int i, AEVec2 NewPos, float scale_X, float scale_Y)	//Allow other files to set the pencil position. [This is used for level design]
 {
 	Pencil* Penciltemp = PencilArray + i;
 	Penciltemp->pos = NewPos;
@@ -219,11 +221,11 @@ void Pencil::SetPencil(int i, AEVec2 NewPos, float scale_X, float scale_Y)
 	Pencil External Functions
 */
 /******************************************************************************/
-int GetPencilNum()
+int GetPencilNum()	//Allow other files to run through a loop of all the pencil. [E.g. to detect collision of all pencil]
 {
 	return PencilNum;
 }
-void SetPencilNum(int Num)
+void SetPencilNum(int Num)	//Set the number of pencil object to be created. [This is used for level design]
 {
 	PencilNum = Num;
 }

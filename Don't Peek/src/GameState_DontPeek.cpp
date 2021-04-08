@@ -10,7 +10,9 @@ Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 
 \date 22/01/2021
-\brief <give a brief description of this file>
+\brief 
+This file contains all the functions that is required for our level 1 game state.
+It will call each individual objects that is required to build the level 1.
 
 
 Copyright (C) 2021 DigiPen Institute of Technology.
@@ -29,11 +31,11 @@ Technology is prohibited.
 #include "Highlighter.h"
 #include "Pencil.h"
 #include "Wall.h"
-#include "Tutorial.h"
 #include "Level 1.h"
 #include "Win.h"
 #include "Music.h"
 #include "Pause.h"
+#include "Animation.h"
 
 
 /******************************************************************************/
@@ -57,7 +59,7 @@ Eraser eraser;
 Pencil pencil;
 Highlighter highlighter;
 Wall wall;
-
+Sprite anim;
 
 
 /******************************************************************************/
@@ -71,7 +73,6 @@ void GameStateDontPeekLoad(void)
 	// No game objects (shapes) at this point
 	sGameObjNum = 0;
 
-	//Tutorial_Load();
 	Level1_Load();
 	wall.LoadWall();
 	sharpener.LoadSharpener();
@@ -109,6 +110,7 @@ void GameStateDontPeekInit(void)
 /******************************************************************************/
 void GameStateDontPeekUpdate(void)
 {
+	//For our pause state
 	if (AEInputCheckCurr(AEVK_P))
 	{
 		CheckPause = true;
@@ -130,7 +132,6 @@ void GameStateDontPeekUpdate(void)
 		player.Player_Update();
 	}
 
-
 }
 
 
@@ -141,6 +142,7 @@ void GameStateDontPeekUpdate(void)
 /******************************************************************************/
 void GameStateDontPeekDraw(void)
 {
+	//For our pause state
 	if (CheckPause == true)
 	{
 		PauseDraw();
@@ -183,7 +185,6 @@ void GameStateDontPeekFree(void)
 /******************************************************************************/
 void GameStateDontPeekUnload(void)
 {
-	
 	Level1_Unload();
 	sharpener.UnloadSharpener();
 	eraser.UnloadEraser();

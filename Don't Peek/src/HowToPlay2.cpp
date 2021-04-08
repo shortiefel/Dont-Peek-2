@@ -9,7 +9,10 @@ Margaret Teo Boon See	Teo.b@digipen.edu
 Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 \date 22/01/2021
-\brief <give a brief description of this file>
+\brief 
+This file contains all the functions that is required for our Tutorial game state.
+It will call each individual objects that is required to build the Tutorial.
+
 
 Copyright (C) 2021 DigiPen Institute of Technology.
 Reproduction or disclosure of this file or its contents
@@ -31,6 +34,11 @@ Technology is prohibited.
 #include "Pause.h"
 #include "Music.h"
 
+/******************************************************************************/
+/*!
+	"LOAD" FUNCTION OF THE STATE
+*/
+/******************************************************************************/
 void HowtoplayLoad(void)
 {
 	PauseLoad();
@@ -44,6 +52,11 @@ void HowtoplayLoad(void)
 	player.Player_Load();
 }
 
+/******************************************************************************/
+/*!
+	"INIT" FUNCTION OF THE STATE
+*/
+/******************************************************************************/
 void HowtoplayInit(void)
 {
 	SoundSystem_Init();
@@ -58,8 +71,14 @@ void HowtoplayInit(void)
 	player.Player_Init();
 }
 
+/******************************************************************************/
+/*!
+	"UPDATE" FUNCTION OF THE STATE
+*/
+/******************************************************************************/
 void HowtoplayUpdate(void)
 {
+	//For our pause state
 	if (AEInputCheckCurr(AEVK_P))
 	{
 		CheckPause = true;
@@ -82,8 +101,14 @@ void HowtoplayUpdate(void)
 	}
 }
 
+/******************************************************************************/
+/*!
+	"DRAW" FUNCTION OF THE STATE
+*/
+/******************************************************************************/
 void HowtoplayDraw(void)
 {
+	//For our pause state
 	if (CheckPause == true)
 	{
 		PauseDraw();
@@ -101,6 +126,11 @@ void HowtoplayDraw(void)
 	}
 }
 
+/******************************************************************************/
+/*!
+	"FREE" FUNCTION OF THE STATE
+*/
+/******************************************************************************/
 void HowtoplayFree(void)
 {
 	SoundSystem_Destroy();
@@ -116,6 +146,11 @@ void HowtoplayFree(void)
 	
 }
 
+/******************************************************************************/
+/*!
+	"UNLOAD" FUNCTION OF THE STATE
+*/
+/******************************************************************************/
 void HowtoplayUnload(void)
 {
 	
