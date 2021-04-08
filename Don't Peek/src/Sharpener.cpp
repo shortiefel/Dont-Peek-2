@@ -342,7 +342,7 @@ void Sharpener::UpdateSharpener()
 		}//End of Door for loop
 
 		/*===============================================================================
-			WALLS
+			WALLS/PLATFORM/CEILING
 		=================================================================================*/
 		for (int j = 0; j < Get_NumWalls(); j++)
 		{
@@ -353,18 +353,29 @@ void Sharpener::UpdateSharpener()
 			{
 				WallCollision = true;
 				Sharpenertemp->vel.y = 0.f;
-
+				/*----------------------------------
+					WALLS
+				----------------------------------*/
 				if (Walltemp->GetType(j) == WALL)
 				{
+					/*----------------------------------
+						PUSHED FROM THE RIGHT
+					----------------------------------*/
 					if (Sharpenertemp->pos.x >= Walltemp->GetWallBoundingBox(j).min.x)
 					{
 						Sharpenertemp->pos.x = (Walltemp->GetWallBoundingBox(j).max.x + Scale / 3);
 					}
+					/*----------------------------------
+						PUSHED FROM THE LEFT
+					----------------------------------*/
 					else if (Sharpenertemp->pos.x <= Walltemp->GetWallBoundingBox(j).max.x)
 					{
 						Sharpenertemp->pos.x = (Walltemp->GetWallBoundingBox(j).min.x - Scale / 3);
 					}
 				}
+				/*----------------------------------
+					PLATFORM
+				----------------------------------*/
 				else if (Walltemp->GetType(j) == PLATFORM)
 				{
 					if (Sharpenertemp->pos.y >= Walltemp->GetWallBoundingBox(j).max.y + 40 && Sharpenertemp->vel.y < 0)

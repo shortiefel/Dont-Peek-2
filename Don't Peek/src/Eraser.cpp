@@ -34,6 +34,7 @@ Technology is prohibited.
 #include "Eraser.h"
 #include "Animation.h"
 
+//Initialization
 Eraser EraserArray[MAX];
 static int EraserNum;
 static int right, left;
@@ -46,7 +47,6 @@ Sprite EraserAnim;
 	Eraser Load
 */
 /******************************************************************************/
-
 void Eraser::LoadEraser() {
 
 	pEraser = sGameObjList + sGameObjNum++;
@@ -271,6 +271,9 @@ void Eraser::UpdateEraser()
 			Highlighter* highlightertemp = HighlighterArray + j;
 			for (int s = 0; s < GetSharpenerNum(); s++)
 			{
+				/*----------------------------------
+					PUSHED FROM THE RIGHT
+				----------------------------------*/
 				if (right == 1) {
 					if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, highlightertemp->GetHighlighterBoundingBox(j), highlightertemp->GetHighlighterVelocity(j)))
 					{
@@ -280,6 +283,9 @@ void Eraser::UpdateEraser()
 						}
 					}
 				}
+				/*----------------------------------
+					PUSHED FROM THE LEFT
+				----------------------------------*/
 				else if (left == 1) {
 					if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, highlightertemp->GetHighlighterBoundingBox(j), highlightertemp->GetHighlighterVelocity(j)))
 					{
@@ -291,7 +297,6 @@ void Eraser::UpdateEraser()
 				}
 			}
 		}//End of Highlighter for loop
-
 
 		/*===============================================================================
 			DOOR
@@ -321,9 +326,8 @@ void Eraser::UpdateEraser()
 		}//End of Door for loop
 
 		/*===============================================================================
-			WALLS
+			WALLS/PLATFORM/CEILING
 		=================================================================================*/
-
 		for (int j = 0; j < Get_NumWalls(); j++)
 		{
 			Wall* Walltemp = Get_WallArr() + j;
@@ -333,18 +337,29 @@ void Eraser::UpdateEraser()
 			{
 				WallCollision = true;
 				Erasertemp->vel.y = 0.f;
-
+				/*----------------------------------
+					WALLS
+				----------------------------------*/
 				if (Walltemp->GetType(j) == WALL)
 				{
+					/*----------------------------------
+						PUSHED FROM THE RIGHT
+					----------------------------------*/
 					if (Erasertemp->pos.x >= Walltemp->GetWallBoundingBox(j).min.x)
 					{
 						Erasertemp->pos.x = (Walltemp->GetWallBoundingBox(j).max.x + Scale / 3);
 					}
+					/*----------------------------------
+						PUSHED FROM THE LEFT
+					----------------------------------*/
 					else if (Erasertemp->pos.x <= Walltemp->GetWallBoundingBox(j).max.x)
 					{
 						Erasertemp->pos.x = (Walltemp->GetWallBoundingBox(j).min.x - Scale / 3);
 					}
 				}
+				/*----------------------------------
+					PLATFORM
+				----------------------------------*/
 				else if (Walltemp->GetType(j) == PLATFORM)
 				{
 					if (Erasertemp->pos.y >= Walltemp->GetWallBoundingBox(j).max.y + 40 && Erasertemp->vel.y < 0)

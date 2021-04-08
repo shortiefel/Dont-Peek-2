@@ -9,8 +9,12 @@ Margaret Teo Boon See	Teo.b@digipen.edu
 Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 \date 22/01/2021
-\brief This file is done by Felicia. In this file, it contains the different movement a player
-has and the collision with different objects. 
+\brief 
+This file contains all the functions that is required for our object player.
+The player is able to push sharpeners & erasers around.
+The player is able to jump on top of sharpeners & erasers.
+The player can walk through doors to enter other areas of the map.
+The player can jump to reach the end point to win.
 
 
 Copyright (C) 2021 DigiPen Institute of Technology.
@@ -32,13 +36,7 @@ Technology is prohibited.
 #include "HowToPlay2.h"
 #include "Animation.h"
 
-
-/******************************************************************************/
-/*!
-	Game Object
-*/
-/******************************************************************************/
-
+//Initialization
 const int Player_Gravity = 8;
 bool Gravity = true;
 float GROUND = 0.f;
@@ -108,11 +106,12 @@ void Player::Player_Update()
 {
 	//FAKE GROUND
 	GROUND = -1000; //For Player To Fall
-	/******************************************************************************/
-	/*!
+	/*===============================================================================
 		INPUTS
-	*/
-	/******************************************************************************/
+	=================================================================================*/
+	/*----------------------------------
+		LEFT
+	----------------------------------*/
 	if (AEInputCheckCurr(AEVK_LEFT))
 	{
 		for (int i = 0; i < Get_NumWalls(); i++)
@@ -126,8 +125,10 @@ void Player::Player_Update()
 			else
 				player.vel.x = -SPEED;
 		}
-
 	}
+	/*----------------------------------
+		RIGHT
+	----------------------------------*/
 	else if (AEInputCheckCurr(AEVK_RIGHT))
 	{
 		
@@ -137,7 +138,9 @@ void Player::Player_Update()
 	{
 		player.vel.x = 0.f;
 	}
-
+	/*----------------------------------
+		UP
+	----------------------------------*/
 	if (AEInputCheckTriggered(AEVK_SPACE) && CanJump == true)
 	{
 		printf("jump \n");
@@ -157,27 +160,16 @@ void Player::Player_Update()
 	}
 		SetGravity();
 
-
-		if (AEInputCheckCurr(AEVK_B))
-			gGameStateNext = GS_MENU;
-
-		//if (AEInputCheckCurr(AEVK_P))
-		//{
-		//	CheckPause = true;
-		//	gGameStateNext = GS_PAUSE;
-		//}
-			
-
 	BoundingBox();
-	/******************************************************************************/
-	/*!
-		SHARPENERS
-	*/
-	/******************************************************************************/
+	/*===============================================================================
+		SHARPENER
+	=================================================================================*/
 	for (int i = 0; i < GetSharpenerNum(); i++)
 	{
 		Sharpener* Sharpenertemp = SharpenerArray + i;
-		//BoundingBox();
+		/*----------------------------------
+			STANDING ON SHARPENER
+		----------------------------------*/
 		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Sharpenertemp->GetSharpenerBoundingBox(i), Sharpenertemp->GetSharpenerVelocity(i)))
 		{
 			if (player.pos.y >= Sharpenertemp->GetSharpenerBoundingBox(i).max.y + (Scale / 6) && player.vel.y < 0)
@@ -187,17 +179,17 @@ void Player::Player_Update()
 				CanJump = true;
 			}
 		}
-		
 	}//End of Sharpener for loop
 
-	/******************************************************************************/
-	/*!
+	/*===============================================================================
 		ERASERS
-	*/
-	/******************************************************************************/
+	=================================================================================*/
 	for (int i = 0; i < GetSharpenerNum(); i++)
 	{
 		Eraser* Erasertemp = EraserArray + i;
+		/*----------------------------------
+			STANDING ON ERASER
+		----------------------------------*/
 		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Erasertemp->GetEraserBoundingBox(i), Erasertemp->GetEraserVelocity(i)))
 		{
 			if (player.pos.y >= Erasertemp->GetEraserBoundingBox(i).max.y + (Scale / 6) && player.vel.y < 0)
@@ -210,11 +202,9 @@ void Player::Player_Update()
 
 	}//End of Sharpener for loop
 
-	/******************************************************************************/
-	/*!
-		DOORS
-	*/
-	/******************************************************************************/
+	/*===============================================================================
+		DOOR
+	=================================================================================*/
 	for (int i = 0; i < GetDoorNum(); i++)
 	{
 		Door* Doortemp = DoorArray + i;
@@ -233,7 +223,6 @@ void Player::Player_Update()
 				{
 					CameraPosX = (Doortemp->GetDoorPosition(i + 1).x + WinPos.x) / 2;
 					CameraPosY = (Doortemp->GetDoorPosition(i + 1).y + WinPos.y) / 2;
-					//AEGfxSetCamPosition(player.pos.x, player.pos.y);
 				}
 			}
 			else
@@ -251,16 +240,14 @@ void Player::Player_Update()
 					CameraPosY = player.pos.y;
 				}
 			}
-				AEGfxSetCamPosition(CameraPosX, CameraPosY);
+				AEGfxSetCamPosition(CameraPosX, CameraPosY); //SET CAMERA TO NEXT PLAY BOX
 		}
 
 	}//End of Door for loop
 
-	/******************************************************************************/
-	/*!
+	/*===============================================================================
 		PENCIL
-	*/
-	/******************************************************************************/
+	=================================================================================*/
 	for (int i =0; i< GetPencilNum(); i++)
 	{
 		Pencil* Penciltemp = PencilArray + i;
@@ -277,12 +264,9 @@ void Player::Player_Update()
 		}
 	}
 
-
-	/******************************************************************************/
-	/*!
-		WALLS
-	*/
-	/******************************************************************************/
+	/*===============================================================================
+		WALLS/PLATFORM/CEILING
+	=================================================================================*/
 	for (int i = 0; i < Get_NumWalls(); i++)
 	{
 		Wall* Walltemp = Get_WallArr() + i;
@@ -290,50 +274,67 @@ void Player::Player_Update()
 		if (CollisionIntersection_RectRect(player.boundingBox, player.vel, Walltemp->GetWallBoundingBox(i), { 0,0 }))
 		{	
 			WallCollision = true;
+			/*----------------------------------
+				WALLS
+			----------------------------------*/
 			if (Walltemp->GetType(i) == WALL)
 			{
+				/*----------------------------------
+					PUSHED FROM THE RIGHT
+				----------------------------------*/
 				if (player.pos.x >= Walltemp->GetWallBoundingBox(i).min.x)
 				{
 					player.pos.x = (Walltemp->GetWallBoundingBox(i).max.x + Scale / 3 );
 				}
+				/*----------------------------------
+					PUSHED FROM THE LEFT
+				----------------------------------*/
 				else if (player.pos.x <= Walltemp->GetWallBoundingBox(i).max.x)
 				{
 					player.pos.x = (Walltemp->GetWallBoundingBox(i).min.x - player.Scale / 3);
 				}
 			}
+			/*----------------------------------
+				PLATFORM
+			----------------------------------*/
 			else if (Walltemp->GetType(i) == PLATFORM)
 			{
-
 				if (player.pos.y >= Walltemp->GetWallBoundingBox(i).max.y + player.Scale/2 - 10 && player.vel.y < 0)
 				{
-					//GROUND = 
 					player.vel.y = 0;
 					player.pos.y = Walltemp->GetWallBoundingBox(i).max.y + player.Scale / 2 - 10;
 					CanJump = true;
 				}
 			}
+			/*----------------------------------
+				CEILING
+			----------------------------------*/
 			else if (Walltemp->GetType(i) == CEILING)
 			{
+				/*----------------------------------
+					JUMPING UP
+				----------------------------------*/
 				if (player.pos.y < Walltemp->GetWallBoundingBox(i).max.y)
 				{
 					vel.y -= 50.f * g_dt;
 					player.pos.y = Walltemp->GetWallBoundingBox(i).min.y - player.Scale / 2;
 				}
+				/*----------------------------------
+					FALLING DOWN
+				----------------------------------*/
 				else if(player.pos.y >= Walltemp->GetWallBoundingBox(i).max.y + player.Scale / 2 - 10 && player.vel.y < 0)
 				{
 					player.vel.y = 0;
 					player.pos.y = Walltemp->GetWallBoundingBox(i).max.y + player.Scale / 2 - 10;
 					CanJump = true;
 				}
-		
 			}
 		}
 	}//End of Wall for loop
-	/******************************************************************************/
-	/*!
+
+	/*===============================================================================
 		WIN CHECK
-	*/
-	/******************************************************************************/
+	=================================================================================*/
 	if (CollisionIntersection_PointRect(WinPos, {0,0}, player.boundingBox, player.vel))
 	{
 		gGameStateNext = GS_WIN;
@@ -373,7 +374,6 @@ void Player::Player_Draw()
 /******************************************************************************/
 void Player::Player_Free()
 {
-
 		
 }
 
@@ -384,20 +384,10 @@ void Player::Player_Free()
 /******************************************************************************/
 void Player::Player_Unload()
 {
-	if (AEInputCheckCurr(AEVK_P))
-	{
-		gGameStateNext = GS_PAUSE;
-	}
-	else
-	{
 		/*AEGfxTextureUnload(pPlayer->texture);
 		AEGfxMeshFree(pPlayer->pMesh);*/
 		idle.Anim_Unload(pPlayer);
-	}
-		
 }
-
-
 
 /******************************************************************************/
 /*!
@@ -432,32 +422,32 @@ void Player::BoundingBox()
 	Player Getter & Setter Functions
 */
 /******************************************************************************/
-AABB Player::GetBoundingBoxPlayer() const
+AABB Player::GetBoundingBoxPlayer() const	//Allow other files to use player boundingbox without changing it.
 {
 	return player.boundingBox;
 }
 
-AEVec2 Player::GetVelPlayer() const
+AEVec2 Player::GetVelPlayer() const		//Allow other files to use player velocity without changing it.
 {
 	return player.vel;
 }
 
-const Player* Player::GetPlayerObj() const
+const Player* Player::GetPlayerObj() const	//Allow other files to use player position without changing it.
 {
 	return this;
 }
 
-AEVec2 Player::GetPosPlayer() const
+AEVec2 Player::GetPosPlayer() const		//Allow other files to set the player position. [This is used for level design]
 {
 	return player.pos;
 }
 
-bool Player::GetCanJump()
+bool Player::GetCanJump()	//Check if player jumped
 {
 	return true;
 }
 
-void SetWin(AEVec2 Pos)
+void SetWin(AEVec2 Pos)	//Set win position
 {
 	WinPos = Pos;
 }
