@@ -310,7 +310,7 @@ void CreditsFree()
 void CreditsUnload()
 {
 	
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 5; i++)
 	{
 		if (credit[i].pObj->pMesh)
 			AEGfxMeshFree(credit[i].pObj->pMesh);

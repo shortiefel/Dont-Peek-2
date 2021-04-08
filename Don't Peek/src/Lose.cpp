@@ -253,10 +253,10 @@ void LoseUnload()
 		if (Wbutton[i].pButton->texture)
 			AEGfxTextureUnload(Wbutton[i].pButton->texture);
 	}
-	if (win.pObj->pMesh)
-		AEGfxMeshFree(win.pObj->pMesh);
-	if(win.pObj->texture)
-		AEGfxTextureUnload(win.pObj->texture);
+	if (lose.pObj->pMesh)
+		AEGfxMeshFree(lose.pObj->pMesh);
+	if(lose.pObj->texture)
+		AEGfxTextureUnload(lose.pObj->texture);
 }
 
 /******************************************************************************/

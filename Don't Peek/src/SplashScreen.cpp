@@ -134,6 +134,4 @@ void SSUnload()
 
 	if (splashscreen.pObj->texture)
 		AEGfxTextureUnload(splashscreen.pObj->texture);
-	if (splashscreen.pObj->pMesh)
-		AEGfxMeshFree(splashscreen.pObj->pMesh);
 }
