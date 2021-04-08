@@ -134,12 +134,13 @@ void PauseLoad()
 
 		AEMtx33Concat(&(Pbtn[i].transform), &trans, &sc);
 	}
-
+	printf("pause LOAD\n");
 
 }
 
 void PauseInit()
 {
+	printf("pause INIT\n");
 }
 
 void PauseUpdate()

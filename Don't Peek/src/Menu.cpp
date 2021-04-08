@@ -169,12 +169,16 @@ void MenuLoad()
 
 		AEMtx33Concat(&(button[i].transform), &trans, &sc);
 	}
+	printf("menu LOAD\n");
 }
+
 void MenuInit()
 {
 	SoundSystem_Init();
 	SoundSystem_SFX();
+	printf("menu INIT\n");
 }
+
 void MenuUpdate()
 {
 	AEGfxSetCamPosition(0,0);

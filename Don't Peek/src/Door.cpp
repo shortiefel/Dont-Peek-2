@@ -51,7 +51,7 @@ void Door::LoadDoor()
 
 	pDoor->texture = AEGfxTextureLoad("Resources/Door.png");
 	AE_ASSERT_MESG(pDoor->texture, "Failed to create texture1!!");
-
+	printf("door LOAD\n");
 }
 
 /******************************************************************************/
@@ -69,6 +69,7 @@ void Door::InitDoor()
 		Doortemp->flag = FLAG_ACTIVE;
 		Doortemp->vel = {0,0};
 	}
+	printf("door INIT\n");
 }
 
 /******************************************************************************/

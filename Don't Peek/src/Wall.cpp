@@ -28,7 +28,8 @@ Technology is prohibited.
 
 static int numberWalls = 0;
 static Wall WallArr[1000];
-Wall *Walltemp = new Wall[1000];
+//Wall* Walltemp = new Wall[1000];
+Wall* Walltemp = nullptr;
 
 /******************************************************************************/
 /*!
@@ -37,6 +38,7 @@ Wall *Walltemp = new Wall[1000];
 /******************************************************************************/
 void Wall::LoadWall()
 {
+	
 	pWall = sGameObjList + sGameObjNum++;
 	pWall->type = TYPE_WALL;
 
@@ -52,7 +54,7 @@ void Wall::LoadWall()
 		-0.5f, 0.5f, 0x0000000, 0.0f, 0.0f);
 
 	pWall->pMesh = AEGfxMeshEnd();
-
+	printf("wall LOAD\n");
 }
 
 /******************************************************************************/
@@ -62,6 +64,7 @@ void Wall::LoadWall()
 /******************************************************************************/
 void Wall::InitWall()
 {
+	Walltemp = new Wall[1000];
 
 	for (int i = 0; i < numberWalls; i++)
 	{
@@ -81,7 +84,7 @@ void Wall::InitWall()
 		//printf("bounding box min x %f \n", Walltemp->boundingBox.min.x);
 	
 	}
-	
+	printf("wall INIT\n");
 }
 
 /******************************************************************************/
@@ -163,7 +166,12 @@ void Wall::UnloadWall()
 		if(pWall->texture)
 			AEGfxTextureUnload(pWall->texture);
 		printf("walls DESTROY\n");
+		
+		//if (Walltemp != NULL)
+			delete[] Walltemp;
+		
 	}
+
 	
 }
 

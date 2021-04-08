@@ -149,12 +149,14 @@ void CreditsLoad()
 	AEMtx33Trans(&trans, button.pos.x, button.pos.y);
 
 	AEMtx33Concat(&(button.transform), &trans, &sc);
+	printf("credit LOAD\n");
 }
 
 void CreditsInit()
 {
 	SoundSystem_Init();
 	SoundSystem_SFX();
+	printf("credit INIT\n");
 }
 
 void CreditsUpdate()

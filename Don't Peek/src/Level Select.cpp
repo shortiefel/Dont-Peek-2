@@ -100,13 +100,17 @@ void LevelSelectLoad()
 	AEMtx33Scale(&sc, button.scale.x, button.scale.y);
 	AEMtx33Trans(&trans, button.pos.x, button.pos.y);
 	AEMtx33Concat(&(button.transform), &trans, &sc);
+	printf("levelselect LOAD");
 }
+
 void LevelSelectInit()
 {
 	CurrentScreen = TUT;
 	SoundSystem_Init();
 	SoundSystem_SFX();
+	printf("levelselect INIT");
 }
+
 void LevelSelectUpdate()
 {
 	BoundingBox1();

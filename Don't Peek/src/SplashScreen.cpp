@@ -58,11 +58,13 @@ void SSLoad()
 	AEMtx33Trans(&trans, splashscreen.pos.x, splashscreen.pos.y);
 
 	AEMtx33Concat(&(splashscreen.transform), &trans, &sc);
+	printf("splashscreen LOAD\n");
 }
 
 void SSInit()
 {
 	splashscreentimer = 3;
+	printf("splashscreen INIT\n");
 }
 
 void SSUpdate()

@@ -76,6 +76,7 @@ void Player::Player_Load() //drawing of character
 		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 	pPlayer->pMesh = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pPlayer->pMesh, "fail to create object!!");
+	printf("player LOAD\n");
 }
 
 /******************************************************************************/
@@ -92,6 +93,7 @@ void Player::Player_Init()
 
 	if (gGameStateCurr == GS_RESTART)
 		AEVec2Set(&(player.pos), -100.0f, 30.f);
+	printf("player INIT\n");
 }
 
 /******************************************************************************/

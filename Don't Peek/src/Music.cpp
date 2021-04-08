@@ -44,7 +44,7 @@ void SoundSystem_Init()
     audio->createSound("Resources/BGMusic.wav", FMOD_LOOP_NORMAL, 0, &BGSound);
 
     audio->update();
-
+    printf("music INIT\n");
 }
 
 void SoundSystem_SFX()

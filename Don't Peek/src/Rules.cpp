@@ -54,12 +54,16 @@ void RulesLoad()
 	AEMtx33Trans(&trans, rule.pos.x, rule.pos.y);
 
 	AEMtx33Concat(&(rule.transform), &trans, &sc);
+	printf("rules LOAD\n");
 }
+
 void RulesInit()
 {
 	SoundSystem_Init();
 	SoundSystem_SFX();
+	printf("rules INIT\n");
 }
+
 void RulesUpdate()
 {
 	AEGfxSetCamPosition(0, 0);

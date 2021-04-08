@@ -63,8 +63,9 @@ void Level1_Load()
 	AEMtx33Trans(&trans, bg.Bgpos.x, bg.Bgpos.y);
 
 	AEMtx33Concat(&(bg.transform), &trans, &sc);
-
+	printf("level1 LOAD");
 }
+
 void Level1_Init()
 {
 	SetWin({ 1045, 260 });
@@ -143,6 +144,7 @@ void Level1_Init()
 	
 	//timer
 	timer = 150.f;
+	printf("level1 INIT\n");
 }
 void Level1_Update()
 {

@@ -60,7 +60,7 @@ void Sharpener::LoadSharpener()
 
 	pSharpener->pMesh = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pSharpener->pMesh, "Failed to create sharpener!!");
-
+	printf("sharpener LOAD\n");
 }
 
 /******************************************************************************/
@@ -78,6 +78,7 @@ void Sharpener::InitSharpener()
 		Sharpenertemp->flag = FLAG_ACTIVE;
 		AEVec2Set(&(Sharpenertemp->vel), 0, 0);
 	}
+	printf("sharpener INIT\n");
 }
 
 /******************************************************************************/

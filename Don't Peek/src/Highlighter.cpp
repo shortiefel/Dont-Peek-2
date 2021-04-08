@@ -50,7 +50,7 @@ void Highlighter::LoadHighlighter()
 
 	pHighlighter->pMesh = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pHighlighter->pMesh, "Failed to create highlighter!!");
-
+	printf("highlighter LOAD\n");
 }
 
 /******************************************************************************/
@@ -69,6 +69,7 @@ void Highlighter::InitHighlighter() {
 		Highlightertemp->flag = FLAG_ACTIVE;
 		Highlightertemp->vel = {0,0};
 	}
+	printf("highlighter INIT\n");
 }
 
 /******************************************************************************/

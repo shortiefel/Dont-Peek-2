@@ -112,10 +112,12 @@ void WinLoad()
 
 		AEMtx33Concat(&(Wbutton[i].transform), &trans, &sc);
 	}
+	printf("win LOAD\n");
 }
 
 void WinInit()
 {
+	printf("win INIT\n");
 }
 
 void WinUpdate()

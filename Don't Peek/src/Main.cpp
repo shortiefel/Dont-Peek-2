@@ -29,6 +29,7 @@ Technology is prohibited.
 #include "GameStateMgr.h"
 #include "Music.h"
 #include <memory>
+#include "Wall.h"
 
 //-----------GLOBALs-----------
 float g_dt;
@@ -49,11 +50,12 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	// Enable run-time memory check for debug builds.
 	  #if defined(DEBUG) | defined(_DEBUG)
 	  _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	  // int* pi = new int;
+
+	  AESysInit(instanceH, show, 1000, 700, 1, 60, false, NULL);
 	  #endif
-	 // int* pi = new int;
 
 	//------------INITILIZATION----------------
-	AESysInit(instanceH, show, 1000, 700, 1, 60, false, NULL);
 	AESysSetWindowTitle("Don't Peek");
 	AEGfxSetBackgroundColor(100.0f, 100.0f, 100.0f);
 	Fonts = AEGfxCreateFont("Resources/Arial Italic.ttf", 25);
@@ -113,7 +115,10 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 		gGameStatePrev = gGameStateCurr;
 		gGameStateCurr = gGameStateNext;
 	}
-	
+	//if(Walltemp != NULL)
+		//delete[] Walltemp;
+
+	AEGfxDestroyFont(Fonts);
 	//freeing the system
 	AESysExit();
 }

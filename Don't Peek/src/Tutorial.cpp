@@ -66,7 +66,9 @@ void Tutorial_Load()
 	AEMtx33Trans(&trans, bg.Bgpos.x, bg.Bgpos.y);
 
 	AEMtx33Concat(&(bg.transform), &trans, &sc);
+	printf("tutorial LOAD\n");
 }
+
 void Tutorial_Init()
 {
 	SetWin({ 1045, 260 });
@@ -161,6 +163,7 @@ void Tutorial_Init()
 
 	//timer
 	//timer = 50.f;
+	printf("tutorial INIT\n");
 }
 
 void Tutorial_Update()

@@ -53,11 +53,12 @@ void RestartLoad()
 	AEMtx33Trans(&trans, restart.pos.x, restart.pos.y);
 
 	AEMtx33Concat(&(restart.transform), &trans, &sc);
+	printf("restart LOAD\n");
 }
 
 void RestartInit()
 {
-
+	printf("restart INIT\n");
 }
 
 void RestartUpdate()

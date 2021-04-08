@@ -113,10 +113,12 @@ void LoseLoad()
 
 		AEMtx33Concat(&(Wbutton[i].transform), &trans, &sc);
 	}
+	printf("lose LOAD\n");
 }
 
 void LoseInit()
 {
+	printf("lose INIT\n");
 }
 
 void LoseUpdate()

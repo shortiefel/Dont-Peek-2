@@ -60,7 +60,7 @@ void Eraser::LoadEraser() {
 
 	pEraser->pMesh = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pEraser->pMesh, "Failed to create eraser!!");
-
+	printf("eraser LOAD\n");
 }
 
 
@@ -79,6 +79,7 @@ void Eraser::InitEraser()
 		Erasertemp->flag = FLAG_ACTIVE;
 		AEVec2Set(&(Erasertemp->vel), 0, 0);
 	}
+	printf("eraser INIT\n");
 }
 
 /******************************************************************************/
