@@ -172,8 +172,6 @@ void HowtoplayFree(void)
 	pencil.FreePencil();
 	door.FreeDoor();
 	player.Player_Free();
-	
-	
 }
 
 void HowtoplayUnload(void)
@@ -193,5 +191,4 @@ void HowtoplayUnload(void)
 	pencil.UnloadPencil();
 	door.UnloadDoor();
 	player.Player_Unload();
-	
 }

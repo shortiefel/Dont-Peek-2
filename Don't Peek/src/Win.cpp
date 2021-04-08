@@ -252,8 +252,10 @@ void WinUnload()
 	/*===============================================================================
 		UNLOAD WIN SCREEN
 	=================================================================================*/
-	AEGfxMeshFree(win.pObj->pMesh);
-	AEGfxTextureUnload(win.pObj->texture);
+	if (win.pObj->pMesh)
+		AEGfxMeshFree(win.pObj->pMesh);
+	if (win.pObj->texture)
+		AEGfxTextureUnload(win.pObj->texture);
 }
 
 /******************************************************************************/
