@@ -188,17 +188,17 @@ void MenuUpdate()
 			y *= -1;
 		}
 
-		if (AEInputCheckTriggered(AEVK_LBUTTON))
+		if (AEInputCheckCurr(AEVK_LBUTTON))
 		{
 			printf("Mouse: %d::%d\n", x, y);
 
 
 			if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[0].boundingBox, { 0,0 }))
 			{
-				if (AEInputUpdate)
+				//if (AEInputUpdate)
 				{
 					//SoundSystem_Destroy();
-					
+
 					gGameStateNext = GS_TUTORIAL;
 					printf("BUTTON PLAY \n");
 					printf("BBMin: %f::%f\n", button[0].boundingBox.min.x, button[0].boundingBox.min.y);
@@ -206,9 +206,9 @@ void MenuUpdate()
 				}
 
 			}
-			else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[1].boundingBox, { 0,0 }))
+			if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[1].boundingBox, { 0,0 }))
 			{
-				if (AEInputUpdate)
+				//if (AEInputUpdate)
 				{
 					printf("BUTTON LEVEL \n");
 					gGameStateNext = GS_LEVEL;
@@ -216,20 +216,18 @@ void MenuUpdate()
 
 			}
 
-
-
-			else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[2].boundingBox, { 0,0 }))
+			if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[2].boundingBox, { 0,0 }))
 			{
-				if (AEInputUpdate)
+				//if (AEInputUpdate)
 				{
 					gGameStateNext = GS_RULE;
 					printf("BUTTON HOW TO PLAY \n");
 				}
 
 			}
-			else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[3].boundingBox, { 0,0 }))
+			if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[3].boundingBox, { 0,0 }))
 			{
-				if (AEInputUpdate)
+				//if (AEInputUpdate)
 				{
 					gGameStateNext = GS_CREDITS;
 					printf("BUTTON CREDITS \n");

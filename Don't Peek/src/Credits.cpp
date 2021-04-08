@@ -188,13 +188,13 @@ void CreditsUpdate()
 			y -= SetHeightCursor;
 			y *= -1;
 		}
-		if (AEInputCheckTriggered(AEVK_LBUTTON))
+		if (AEInputCheckCurr(AEVK_LBUTTON))
 		{
 			printf("Mouse: %d::%d\n", x, y);
 
 			if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button.boundingBox, { 0,0 }))
 			{
-				if (AEInputUpdate)
+				//if (AEInputUpdate)
 				{
 					printf("BUTTON NEXT");
 					printf("BBMin: %f::%f\n", button.boundingBox.min.x, button.boundingBox.min.y);
