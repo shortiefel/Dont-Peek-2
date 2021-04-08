@@ -153,10 +153,9 @@ void HowtoplayFree(void)
 /******************************************************************************/
 void HowtoplayUnload(void)
 {
-	
-	PauseUnload();
 	//printf("TUT IS UNLOADING\n");
 	Tutorial_Unload();
+	PauseUnload();
 	wall.UnloadWall();
 	sharpener.UnloadSharpener();
 	eraser.UnloadEraser();

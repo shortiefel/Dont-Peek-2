@@ -74,6 +74,7 @@ void GameStateDontPeekLoad(void)
 	sGameObjNum = 0;
 
 	Level1_Load();
+	PauseLoad();
 	wall.LoadWall();
 	sharpener.LoadSharpener();
 	eraser.LoadEraser();
@@ -169,6 +170,7 @@ void GameStateDontPeekDraw(void)
 void GameStateDontPeekFree(void)
 {
 	SoundSystem_Destroy();
+	Level1_Free();
 	sharpener.FreeSharpener();
 	eraser.FreeEraser();
 	highlighter.FreeHighlighter();
@@ -186,6 +188,7 @@ void GameStateDontPeekFree(void)
 void GameStateDontPeekUnload(void)
 {
 	Level1_Unload();
+	PauseUnload();
 	sharpener.UnloadSharpener();
 	eraser.UnloadEraser();
 	highlighter.UnloadHighlighter();

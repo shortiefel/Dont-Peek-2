@@ -347,7 +347,7 @@ void Eraser::UpdateEraser()
 					----------------------------------*/
 					if (Erasertemp->pos.x >= Walltemp->GetWallBoundingBox(j).min.x)
 					{
-						Erasertemp->pos.x = (Walltemp->GetWallBoundingBox(j).max.x + Scale / 3);
+						Erasertemp->pos.x = (Walltemp->GetWallBoundingBox(j).max.x + Scale / 3 + 20);
 					}
 					/*----------------------------------
 						PUSHED FROM THE LEFT

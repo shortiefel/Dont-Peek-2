@@ -149,6 +149,8 @@ void Wall::DrawWall()
 void Wall::FreeWall()
 {
 	numberWalls = 0; 
+	if (Walltemp != NULL)
+		delete[] Walltemp;
 }
 
 /******************************************************************************/
@@ -171,8 +173,7 @@ void Wall::UnloadWall()
 			AEGfxTextureUnload(pWall->texture);
 		printf("walls DESTROY\n");
 		
-		//if (Walltemp != NULL)
-			delete[] Walltemp;
+
 		
 	}
 

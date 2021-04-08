@@ -204,6 +204,7 @@ void CreditsLoad()
 /******************************************************************************/
 void CreditsInit()
 {
+	element = 0;
 	SoundSystem_Init();
 	SoundSystem_SFX();
 }
