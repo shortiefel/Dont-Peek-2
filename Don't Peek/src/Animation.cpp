@@ -26,6 +26,14 @@ Technology is prohibited.
 /******************************************************************************/
 /*!
 	Animation Load
+	\brief Loads textures into the game based on their spritesheet
+	\param GameObj* txtObj
+		This pointer holds the texture and type of the object
+	\param const char* filename
+		This is the direction to the spritesheet in the folder
+	\param float spritesheetWidth
+		This is the width
+	\param TYPE type of object
 */
 /******************************************************************************/
 void Sprite::Anim_Load(GameObj* txtObj, const char* filename, float spritesheetWidth, TYPE type)
@@ -53,6 +61,11 @@ void Sprite::Anim_Load(GameObj* txtObj, const char* filename, float spritesheetW
 /******************************************************************************/
 /*!
 	Animation Init
+	\brief Initialises variables in the class
+	\param int maxframe
+		This holds the maximum number of frames
+	\param float time
+		This is the direction to the spritesheet in the folder
 */
 /******************************************************************************/
 void Sprite::Anim_Init(int maxframe, float time)
@@ -66,6 +79,11 @@ void Sprite::Anim_Init(int maxframe, float time)
 /******************************************************************************/
 /*!
 	Animation Update
+	\brief Updates frames based on a timer
+	\param GameObj* txtObj
+		This holds the textures
+	\param AEMtx33 transform
+		This holds the transform matrix
 */
 /******************************************************************************/
 void Sprite::Anim_Update(GameObj* txtObj, AEMtx33 transform)
@@ -110,6 +128,9 @@ void Sprite::Anim_Free()
 /******************************************************************************/
 /*!
 	Animation Unload
+	\brief Unloads textures
+	\param GameObj* txtObj
+		This holds the textures
 */
 /******************************************************************************/
 void Sprite::Anim_Unload(GameObj* txtObj)

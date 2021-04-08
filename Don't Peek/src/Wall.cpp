@@ -35,6 +35,7 @@ Wall* Walltemp = nullptr;
 /******************************************************************************/
 /*!
 	Wall Load
+	\brief Loads mesh for walls
 */
 /******************************************************************************/
 void Wall::LoadWall()
@@ -60,6 +61,7 @@ void Wall::LoadWall()
 /******************************************************************************/
 /*!
 	Wall Init
+	\brief Initialises bounding box for wall
 */
 /******************************************************************************/
 void Wall::InitWall()
@@ -99,6 +101,7 @@ void Wall::UpdateWall()
 /******************************************************************************/
 /*!
 	Wall Draw
+	\brief Draws walls to check position
 */
 /******************************************************************************/
 void Wall::DrawWall()
@@ -140,6 +143,7 @@ void Wall::DrawWall()
 /******************************************************************************/
 /*!
 	Wall Free
+	\brief Frees walls
 */
 /******************************************************************************/
 void Wall::FreeWall()
@@ -150,6 +154,7 @@ void Wall::FreeWall()
 /******************************************************************************/
 /*!
 	Wall Unload
+	\brief Unloads textures
 */
 /******************************************************************************/
 void Wall::UnloadWall()
@@ -177,6 +182,11 @@ void Wall::UnloadWall()
 /******************************************************************************/
 /*!
 	Wall CreateWall
+	\brief Creates a wall and stores position in wall array
+	\param AEVec2 pos
+	\param int number
+	\param float scale
+	\param wallType type
 */
 /******************************************************************************/
 void Wall::CreateWall(AEVec2 pos, AEVec2 dir, int number, float scale, wallType type)
