@@ -36,6 +36,7 @@ Technology is prohibited.
 #include "Music.h"
 #include "Pause.h"
 #include "Animation.h"
+#include "loading.h"
 
 
 /******************************************************************************/
@@ -45,6 +46,8 @@ Technology is prohibited.
 /******************************************************************************/
 GameObj				sGameObjList[GAME_OBJ_NUM_MAX];				// Each element in this array represents a unique game object (shape)
 unsigned long		sGameObjNum;
+float static	loadingTime = 2;
+float totaltime2;
 
 /******************************************************************************/
 /*!
@@ -60,6 +63,7 @@ Pencil pencil;
 Highlighter highlighter;
 Wall wall;
 Sprite anim;
+Loading loading1;
 
 
 /******************************************************************************/
@@ -72,6 +76,46 @@ void GameStateDontPeekLoad(void)
 	memset(sGameObjList, 0, sizeof(GameObj) * GAME_OBJ_NUM_MAX);
 	// No game objects (shapes) at this point
 	sGameObjNum = 0;
+
+
+	/******************************************************************************/
+	/*!
+		LOADING SCREEN
+	*/
+	/******************************************************************************/
+	loading1.pos = { 0, 0 };
+	loading1.scale = { 950.f,650.f };
+
+	loading1.pObj = sGameObjList + sGameObjNum++;
+	loading1.pObj->texture = AEGfxTextureLoad("Resources/loading.jpg");
+	AE_ASSERT_MESG(loading1.pObj->texture, "Failed to load SplashScreen!");
+
+	AEGfxMeshStart();
+	AEGfxTriAdd(
+		-0.5f, -0.5f, 0x00000000, 0.0f, 1.0f,
+		0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
+		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
+
+	AEGfxTriAdd(
+		0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
+		0.5f, 0.5f, 0x00000000, 1.0f, 0.0f,
+		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
+	loading1.pObj->pMesh = AEGfxMeshEnd();
+
+	AEMtx33	trans, sc;
+	// Compute the scaling matrix
+	AEMtx33Scale(&sc, loading1.scale.x, loading1.scale.y);
+	// Compute the translation matrix
+	AEMtx33Trans(&trans, loading1.pos.x, loading1.pos.y);
+
+	AEMtx33Concat(&(loading1.transform), &trans, &sc);
+
+	/******************************************************************************/
+	/*!
+		FUNCTIONS FOR LOADING
+	*/
+	/******************************************************************************/
+
 
 	Level1_Load();
 	PauseLoad();
@@ -111,7 +155,8 @@ void GameStateDontPeekInit(void)
 /******************************************************************************/
 void GameStateDontPeekUpdate(void)
 {
-	//For our pause state
+	totaltime2 += g_dt;
+
 	if (AEInputCheckCurr(AEVK_P))
 	{
 		CheckPause = true;
@@ -143,22 +188,36 @@ void GameStateDontPeekUpdate(void)
 /******************************************************************************/
 void GameStateDontPeekDraw(void)
 {
-	//For our pause state
-	if (CheckPause == true)
+	if (totaltime2 > loadingTime)
 	{
-		PauseDraw();
+		if (CheckPause == true)
+		{
+			PauseDraw();
+		}
+		else if (CheckPause == false)
+		{
+			Level1_Draw();
+			wall.DrawWall();
+			highlighter.DrawHighlighter();
+			pencil.DrawPencil();
+			sharpener.DrawSharpener();
+			eraser.DrawEraser();
+			door.DrawDoor();
+			player.Player_Draw();
+		}
 	}
-	else if (CheckPause == false)
+	else
 	{
-		Level1_Draw();
-		wall.DrawWall();
-		highlighter.DrawHighlighter();
-		pencil.DrawPencil();
-		sharpener.DrawSharpener();
-		eraser.DrawEraser();
-		door.DrawDoor();
-		player.Player_Draw();
+		AEGfxSetBlendMode(AE_GFX_BM_BLEND);
+		AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
+		AEGfxSetPosition(0, 0);
+		AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
+		AEGfxTextureSet(loading1.pObj->texture, 0, 0);
+		AEGfxSetTransform(loading1.transform.m);
+		AEGfxSetTransparency(1.0f);
+		AEGfxMeshDraw(loading1.pObj->pMesh, AE_GFX_MDM_TRIANGLES);
 	}
+	
 
 }
 

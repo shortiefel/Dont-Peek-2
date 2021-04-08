@@ -187,8 +187,8 @@ void PauseUpdate()
 		Py -= SetHeightCursorP;
 		Py *= -1;
 	}
-	//CHECK FOR MOUSE LEFT CLICK
-	if (AEInputCheckTriggered(AEVK_LBUTTON))
+
+	if (AEInputCheckCurr(AEVK_LBUTTON))
 	{
 		//printf("Mouse: %d::%d\n", Px, Py);	//USED TO CHECK FOR MOUSE POSITION
 
@@ -199,7 +199,7 @@ void PauseUpdate()
 		{
 			if (gGameStateCurr == GS_TUTORIAL) //If statement can be removed if required.
 			{
-				if (AEInputUpdate)
+				//if (AEInputUpdate)
 				{
 					CheckPause = false;
 					AEGfxSetCamPosition(player.GetPosPlayer().x, player.GetPosPlayer().y); //Return camera position to player position.	
@@ -209,7 +209,7 @@ void PauseUpdate()
 			}
 			else if (gGameStateCurr == GS_DONT_PEEK)	//If statement can be removed if required.
 			{
-				if (AEInputUpdate)
+				//if (AEInputUpdate)
 				{
 					CheckPause = false;
 					AEGfxSetCamPosition(player.GetPosPlayer().x, player.GetPosPlayer().y); //Return camera position to player position.	
@@ -222,7 +222,7 @@ void PauseUpdate()
 		=================================================================================*/
 		else if (CollisionIntersection_PointRect({ static_cast<float>(Px), static_cast<float>(Py) }, { 0,0 }, Pbtn[1].boundingBox, { 0,0 }))
 		{
-				if (AEInputUpdate)
+				//if (AEInputUpdate)
 				{
 					CheckPause = false;
 					gGameStateNext = GS_RESTART;
@@ -234,7 +234,7 @@ void PauseUpdate()
 		=================================================================================*/
 		else if (CollisionIntersection_PointRect({ static_cast<float>(Px), static_cast<float>(Py) }, { 0,0 }, Pbtn[2].boundingBox, { 0,0 }))
 		{
-			if (AEInputUpdate)
+			//if (AEInputUpdate)
 			{
 				gGameStateNext = GS_MENU;
 				printf("BUTTON MAIN MENU \n");

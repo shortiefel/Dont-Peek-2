@@ -210,11 +210,7 @@ void MenuUpdate()
 	{
 		//printf("Mouse: %d::%d\n", x, y);	//USED TO CHECK FOR MOUSE POSITION
 
-		/*===============================================================================
-			PLAY BUTTON
-		=================================================================================*/
-		if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[0].boundingBox, { 0,0 }))
-		{
+	
 			if (AEInputUpdate)
 			{
 				//SoundSystem_Destroy();
@@ -225,7 +221,6 @@ void MenuUpdate()
 				printf("BBMax: %f::%f\n", button[0].boundingBox.max.x, button[0].boundingBox.max.y);
 			}
 
-		}
 		/*===============================================================================
 			LEVEL SELECT BUTTON
 		=================================================================================*/
@@ -245,8 +240,12 @@ void MenuUpdate()
 		{
 			if (AEInputUpdate)
 			{
-				gGameStateNext = GS_RULE;
-				printf("BUTTON HOW TO PLAY \n");
+				//if (AEInputUpdate)
+				{
+					gGameStateNext = GS_RULE;
+					printf("BUTTON HOW TO PLAY \n");
+				}
+
 			}
 
 		}
@@ -257,8 +256,11 @@ void MenuUpdate()
 		{
 			if (AEInputUpdate)
 			{
-				gGameStateNext = GS_CREDITS;
-				printf("BUTTON CREDITS \n");
+				//if (AEInputUpdate)
+				{
+					gGameStateNext = GS_CREDITS;
+					printf("BUTTON CREDITS \n");
+				}
 			}
 		}
 	}
