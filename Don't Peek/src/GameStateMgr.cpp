@@ -26,6 +26,7 @@ unsigned int	gGameStateCurr;
 unsigned int	gGameStatePrev;
 unsigned int	gGameStateNext;
 
+
 // pointer to functions for game state life cycles functions
 void (*GameStateLoad)() = 0;
 void (*GameStateInit)() = 0;
@@ -74,6 +75,7 @@ void GameStateMgrUpdate()
 		GameStateFree = SSFree;
 		GameStateUnload = SSUnload;
 		break;
+
 	case GS_MENU:
 		GameStateLoad = MenuLoad;
 		GameStateInit = MenuInit;

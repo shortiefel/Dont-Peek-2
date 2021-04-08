@@ -29,9 +29,53 @@ Technology is prohibited.
 #include "Win.h"
 #include "Pause.h"
 #include "Music.h"
+#include "loading.h"
+
+float totaltime;
+Loading loading;
+
+float static loadingTime = 2;
 
 void HowtoplayLoad(void)
 {
+	/******************************************************************************/
+	/*!
+		LOADING SCREEN
+	*/
+	/******************************************************************************/
+	loading.pos = { 0, 0 };
+	loading.scale = { 950.f,650.f };
+
+	loading.pObj = sGameObjList + sGameObjNum++;
+	loading.pObj->texture = AEGfxTextureLoad("Resources/loading.jpg");
+	AE_ASSERT_MESG(loading.pObj->texture, "Failed to load SplashScreen!");
+
+	AEGfxMeshStart();
+	AEGfxTriAdd(
+		-0.5f, -0.5f, 0x00000000, 0.0f, 1.0f,
+		0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
+		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
+
+	AEGfxTriAdd(
+		0.5f, -0.5f, 0x00000000, 1.0f, 1.0f,
+		0.5f, 0.5f, 0x00000000, 1.0f, 0.0f,
+		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
+	loading.pObj->pMesh = AEGfxMeshEnd();
+
+	AEMtx33	trans, sc;
+	// Compute the scaling matrix
+	AEMtx33Scale(&sc, loading.scale.x, loading.scale.y);
+	// Compute the translation matrix
+	AEMtx33Trans(&trans, loading.pos.x, loading.pos.y);
+
+	AEMtx33Concat(&(loading.transform), &trans, &sc);
+
+	/******************************************************************************/
+	/*!
+		FUNCTIONS FOR LOADING
+	*/
+	/******************************************************************************/
+
 	PauseLoad();
 	Tutorial_Load();
 	wall.LoadWall();
@@ -59,6 +103,8 @@ void HowtoplayInit(void)
 
 void HowtoplayUpdate(void)
 {
+	totaltime += g_dt;
+	
 	if (AEInputCheckCurr(AEVK_P))
 	{
 		CheckPause = true;
@@ -83,20 +129,34 @@ void HowtoplayUpdate(void)
 
 void HowtoplayDraw(void)
 {
-	if (CheckPause == true)
+	if (totaltime > loadingTime)
 	{
-		PauseDraw();
+		if (CheckPause == true)
+		{
+			PauseDraw();
+		}
+		else if (CheckPause == false)
+		{
+			Tutorial_Draw();
+			wall.DrawWall();
+			highlighter.DrawHighlighter();
+			pencil.DrawPencil();
+			sharpener.DrawSharpener();
+			eraser.DrawEraser();
+			door.DrawDoor();
+			player.Player_Draw();
+		}
 	}
-	else if (CheckPause == false)
+	else
 	{
-		Tutorial_Draw();
-		wall.DrawWall();
-		highlighter.DrawHighlighter();
-		pencil.DrawPencil();
-		sharpener.DrawSharpener();
-		eraser.DrawEraser();
-		door.DrawDoor();
-		player.Player_Draw();
+		AEGfxSetBlendMode(AE_GFX_BM_BLEND);
+		AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
+		AEGfxSetPosition(0, 0);
+		AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
+		AEGfxTextureSet(loading.pObj->texture, 0, 0);
+		AEGfxSetTransform(loading.transform.m);
+		AEGfxSetTransparency(1.0f);
+		AEGfxMeshDraw(loading.pObj->pMesh, AE_GFX_MDM_TRIANGLES);
 	}
 }
 
@@ -115,6 +175,9 @@ void HowtoplayFree(void)
 
 void HowtoplayUnload(void)
 {
+	if (loading.pObj->texture)
+		AEGfxTextureUnload(loading.pObj->texture);
+
 	PauseUnload();
 	printf("TUT IS UNLOADING\n");
 	sharpener.UnloadSharpener();
