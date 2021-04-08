@@ -1,15 +1,16 @@
 /* Start Header ************************************************************************/
 /*!
 \file Menu.cpp
-\team name Don't Peak
-\software name I don't want to do homework
+\team name Don't Peek
+\software name I Don't Wanna Do My Homework
 \authors
 Tan Wei Ling Felicia	weilingfelicia.tan@digipen.edu
 Margaret Teo Boon See	Teo.b@digipen.edu
 Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 \date 22/01/2021
-\brief <give a brief description of this file>
+\brief
+In this file, it contains the main menu screen, and 4 different buttons.
 Copyright (C) 2021 DigiPen Institute of Technology.
 Reproduction or disclosure of this file or its contents
 without the prior written consent of DigiPen Institute of
@@ -21,6 +22,7 @@ Technology is prohibited.
 #include "Menu.h"
 #include "Music.h"
 
+//Initalization
 static Menu menu;
 static Button button[4];
 static int x, y;
@@ -29,10 +31,9 @@ static int SetHeightCursor = 700 / 2;
 
 /******************************************************************************/
 /*!
-	MENU
+	Menu Load
 */
 /******************************************************************************/
-
 void MenuLoad()
 {
 	/*===============================================================================
@@ -70,11 +71,9 @@ void MenuLoad()
 	AEMtx33Concat(&(menu.transform), &trans, &sc);
 
 
-	/******************************************************************************/
-	/*!
+	/*===============================================================================
 		PLAY BUTTON
-	*/
-	/******************************************************************************/
+	=================================================================================*/
 	button[0].pos = { -150.f, -100.f };
 	button[0].scale = { 200.f,80.f };
 	button[0].pButton = sGameObjList + sGameObjNum++;
@@ -116,11 +115,9 @@ void MenuLoad()
 		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 	button[1].pButton->pMesh = AEGfxMeshEnd();
 
-	/******************************************************************************/
-	/*!
+	/*===============================================================================
 		OPTIONS BUTTON
-	*/
-	/******************************************************************************/
+	=================================================================================*/
 	button[2].pos = { -150.f, -200.f };
 	button[2].scale = { 200.f,80.f };
 	button[2].pButton = sGameObjList + sGameObjNum++;
@@ -140,11 +137,9 @@ void MenuLoad()
 		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 	button[2].pButton->pMesh = AEGfxMeshEnd();
 
-	/******************************************************************************/
-	/*!
+	/*===============================================================================
 		CREDITS BUTTON
-	*/
-	/******************************************************************************/
+	=================================================================================*/
 	button[3].pos = { 150.f, -200.f };
 	button[3].scale = { 200.f,80.f };
 	button[3].pButton = sGameObjList + sGameObjNum++;
@@ -194,13 +189,11 @@ void MenuInit()
 /******************************************************************************/
 void MenuUpdate()
 {
-	AEGfxSetCamPosition(0, 0);
+	AEGfxSetCamPosition(0, 0);	//Set camera back to 0,0
 	BoundingBox();
-
 	//IN ORDER TO USE BOUNDING BOX FOR BUTTON, HAVE TO CHANGE MOUSE POSITION VALUE TO BOUNDING BOX POSITION.
 	//AEInputGetCursorPosition gets the value of 0,0 at the top left of the window.
 	//This if function changes the 0,0 position to the center of the window.
-
 	AEInputGetCursorPosition(&x, &y);
 	if (x >= 0 && y >= 0)
 	{
@@ -208,15 +201,17 @@ void MenuUpdate()
 		y -= SetHeightCursor;
 		y *= -1;
 	}
-
-	if (AEInputCheckCurr(AEVK_LBUTTON))
+	//CHECK FOR MOUSE LEFT CLICK
+	if (AEInputCheckTriggered(AEVK_LBUTTON))
 	{
-		printf("Mouse: %d::%d\n", x, y);
+		//printf("Mouse: %d::%d\n", x, y);	//USED TO CHECK FOR MOUSE POSITION
 
-
+		/*===============================================================================
+			PLAY BUTTON
+		=================================================================================*/
 		if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[0].boundingBox, { 0,0 }))
 		{
-			//if (AEInputUpdate)
+			if (AEInputUpdate)
 			{
 				//SoundSystem_Destroy();
 
@@ -226,29 +221,25 @@ void MenuUpdate()
 				printf("BBMax: %f::%f\n", button[0].boundingBox.max.x, button[0].boundingBox.max.y);
 			}
 
-
-
 		}
 		/*===============================================================================
 			LEVEL SELECT BUTTON
 		=================================================================================*/
 		else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[1].boundingBox, { 0,0 }))
 		{
-			//if (AEInputUpdate)
+			if (AEInputUpdate)
 			{
 				printf("BUTTON LEVEL \n");
 				gGameStateNext = GS_LEVEL;
 			}
 
 		}
-
-
 		/*===============================================================================
 			OPTIONS BUTTON
 		=================================================================================*/
 		else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[2].boundingBox, { 0,0 }))
 		{
-			//if (AEInputUpdate)
+			if (AEInputUpdate)
 			{
 				gGameStateNext = GS_RULE;
 				printf("BUTTON HOW TO PLAY \n");
@@ -260,7 +251,7 @@ void MenuUpdate()
 		=================================================================================*/
 		else if (CollisionIntersection_PointRect({ static_cast<float>(x), static_cast<float>(y) }, { 0,0 }, button[3].boundingBox, { 0,0 }))
 		{
-			//if (AEInputUpdate)
+			if (AEInputUpdate)
 			{
 				gGameStateNext = GS_CREDITS;
 				printf("BUTTON CREDITS \n");
@@ -268,13 +259,11 @@ void MenuUpdate()
 		}
 	}
 
-	//MAIN BUTTONS
-	if (AEInputCheckCurr(AEVK_ESCAPE))
+	if (AEInputCheckCurr(AEVK_ESCAPE))	//Close the game
 		gGameStateNext = GS_QUIT;
 
-	if (AEInputCheckCurr(AEVK_B))
+	if (AEInputCheckCurr(AEVK_B))		//Goes back to main menu
 		gGameStateNext = GS_MENU;
-
 }
 void MenuDraw()
 {
@@ -301,29 +290,43 @@ void MenuDraw()
 		AEGfxMeshDraw(button[i].pButton->pMesh, AE_GFX_MDM_TRIANGLES);
 	}
 }
+
+/******************************************************************************/
+/*!
+	Menu Free
+*/
+/******************************************************************************/
 void MenuFree()
 {
-	for (int i = 0; i < 2; i++)
+	SoundSystem_Destroy();
+}
+
+/******************************************************************************/
+/*!
+	Menu Unload
+*/
+/******************************************************************************/
+void MenuUnload()
+{
+	for (int i = 0; i < 4; i++)
 	{
 		if (button[i].pButton->pMesh)
 			AEGfxMeshFree(button[i].pButton->pMesh);
-	}
-	if (menu.pObj->pMesh)
-		AEGfxMeshFree(menu.pObj->pMesh);
-}
-void MenuUnload()
-{
-	SoundSystem_Destroy();
-
-	for (int i = 0; i < 2; i++)
-	{
 		if (button[i].pButton->texture)
 			AEGfxTextureUnload(button[i].pButton->texture);
 	}
+
+	if (menu.pObj->pMesh)
+		AEGfxMeshFree(menu.pObj->pMesh);
 	if (menu.pObj->texture)
 		AEGfxTextureUnload(menu.pObj->texture);
-
 }
+
+/******************************************************************************/
+/*!
+	Button Bounding Box
+*/
+/******************************************************************************/
 void BoundingBox()
 {
 	for (int i = 0; i < 4; i++)

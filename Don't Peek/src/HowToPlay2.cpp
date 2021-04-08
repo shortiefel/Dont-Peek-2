@@ -91,6 +91,7 @@ void HowtoplayInit(void)
 {
 	SoundSystem_Init();
 	SoundSystem_SFX();
+	CheckPause = false;
 	Tutorial_Init();
 	wall.InitWall();
 	sharpener.InitSharpener();
@@ -162,29 +163,35 @@ void HowtoplayDraw(void)
 
 void HowtoplayFree(void)
 {
-	printf("TUT IS FREEING\n");
+	SoundSystem_Destroy();
+	Tutorial_Free();
+	wall.FreeWall();
 	sharpener.FreeSharpener();
 	eraser.FreeEraser();
 	highlighter.FreeHighlighter();
 	pencil.FreePencil();
 	door.FreeDoor();
 	player.Player_Free();
-	wall.FreeWall();
-	SoundSystem_Destroy();
+	
+	
 }
 
 void HowtoplayUnload(void)
 {
+
+	if (loading.pObj->pMesh)
+		AEGfxMeshFree(loading.pObj->pMesh);
 	if (loading.pObj->texture)
 		AEGfxTextureUnload(loading.pObj->texture);
-
+		
+	Tutorial_Unload();
 	PauseUnload();
-	printf("TUT IS UNLOADING\n");
+	wall.UnloadWall();
 	sharpener.UnloadSharpener();
 	eraser.UnloadEraser();
 	highlighter.UnloadHighlighter();
 	pencil.UnloadPencil();
 	door.UnloadDoor();
 	player.Player_Unload();
-	wall.UnloadWall();
+	
 }

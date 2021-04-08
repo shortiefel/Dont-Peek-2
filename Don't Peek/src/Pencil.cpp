@@ -151,7 +151,6 @@ void Pencil::UnloadPencil()
 
 	if (pPencil->texture)
 		AEGfxTextureUnload(pPencil->texture);
-	printf("pencil DESTROY\n");
 }
 
 /******************************************************************************/

@@ -277,6 +277,7 @@ void Level1_Free()
 /******************************************************************************/
 void Level1_Unload()
 {
+
 	if (bg.pBg->pMesh)
 		AEGfxMeshFree(bg.pBg->pMesh);
 	if (bg.pBg->texture)

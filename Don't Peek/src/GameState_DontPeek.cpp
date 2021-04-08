@@ -46,8 +46,8 @@ Technology is prohibited.
 /******************************************************************************/
 GameObj				sGameObjList[GAME_OBJ_NUM_MAX];				// Each element in this array represents a unique game object (shape)
 unsigned long		sGameObjNum;
-float static	loadingTime = 2;
-float totaltime2;
+float static		loadingTime = 2;
+float				totaltime2;
 
 /******************************************************************************/
 /*!
@@ -115,7 +115,6 @@ void GameStateDontPeekLoad(void)
 		FUNCTIONS FOR LOADING
 	*/
 	/******************************************************************************/
-
 
 	Level1_Load();
 	PauseLoad();
@@ -246,6 +245,13 @@ void GameStateDontPeekFree(void)
 /******************************************************************************/
 void GameStateDontPeekUnload(void)
 {
+
+	if (loading1.pObj->pMesh)
+		AEGfxMeshFree(loading1.pObj->pMesh);
+	if (loading1.pObj->texture)
+		AEGfxTextureUnload(loading1.pObj->texture);
+
+
 	Level1_Unload();
 	PauseUnload();
 	sharpener.UnloadSharpener();
