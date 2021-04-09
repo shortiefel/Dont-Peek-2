@@ -135,7 +135,8 @@ void Eraser::UpdateEraser()
 					(player.GetBoundingBoxPlayer().max.x < (Erasertemp->boundingBox.min.x + 40.0f)))
 				{
 					Erasertemp->vel.x = SPEED;
-					right = 1;
+					Erasertemp->Left = false;
+					right = 1;	
 					left = 0;
 				}
 				if ((AEInputCheckCurr(AEVK_LSHIFT) && AEInputCheckCurr(AEVK_LEFT)) &&
@@ -143,6 +144,7 @@ void Eraser::UpdateEraser()
 					(player.GetBoundingBoxPlayer().min.x < (Erasertemp->boundingBox.max.x + 15.0f)))
 				{
 					Erasertemp->vel.x = -SPEED;
+					Erasertemp->Left = true;
 					left = 1;
 					right = 0;
 				}
@@ -171,6 +173,7 @@ void Eraser::UpdateEraser()
 							(player.GetBoundingBoxPlayer().max.x < (Erasertemp->boundingBox.min.x + 40.0f)))
 						{
 							Erasertemp->vel.x = SPEED;
+							Erasertemp->Left = false;
 							right = 1;
 							left = 0;
 						}
@@ -179,6 +182,7 @@ void Eraser::UpdateEraser()
 							(player.GetBoundingBoxPlayer().min.x < (Erasertemp->boundingBox.max.x + 15.0f)))
 						{
 							Erasertemp->vel.x = -SPEED;
+							Erasertemp->Left = true;
 							left = 1;
 							right = 0;
 						}
@@ -201,6 +205,7 @@ void Eraser::UpdateEraser()
 							&& (player.GetBoundingBoxPlayer().max.x < (Erasertemp->boundingBox.min.x + 40.0f)))
 						{
 							Erasertemp->vel.x = SPEED;
+							Erasertemp->Left = false;
 							right = 1;
 							left = 0;
 						}
@@ -211,6 +216,7 @@ void Eraser::UpdateEraser()
 							&& (player.GetBoundingBoxPlayer().min.x < (Erasertemp->boundingBox.max.x + 15.0f)))
 						{
 							Erasertemp->vel.x = -SPEED;
+							Erasertemp->Left = true;
 							left = 1;
 							right = 0;
 						}
@@ -274,7 +280,8 @@ void Eraser::UpdateEraser()
 				/*----------------------------------
 					PUSHED FROM THE RIGHT
 				----------------------------------*/
-				if (right == 1) {
+				if (right == 1) 
+				{
 					if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, highlightertemp->GetHighlighterBoundingBox(j), highlightertemp->GetHighlighterVelocity(j)))
 					{
 						if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, sharpener.GetSharpenerBoundingBox(s), sharpener.GetSharpenerVelocity(s)) == 0)
@@ -447,9 +454,19 @@ void Eraser::BoundingBox()
 	for (int i = 0; i < EraserNum; i++)
 	{
 		Eraser* Erasertemp = EraserArray + i;
-		AEMtx33Scale(&Size, Scale, Scale);
-		AEMtx33Trans(&Transform2, Erasertemp->pos.x, Erasertemp->pos.y);
-		AEMtx33Concat(&(Erasertemp->Transform), &Transform2, &Size);
+		if (Erasertemp->Left == true)
+		{
+			AEMtx33Scale(&Size, Scale, Scale);
+			AEMtx33Trans(&Transform2, Erasertemp->pos.x, Erasertemp->pos.y);
+			AEMtx33Concat(&(Erasertemp->Transform), &Transform2, &Size);
+		}
+		else
+		{
+			AEMtx33Scale(&Size, -Scale, Scale);
+			AEMtx33Trans(&Transform2, Erasertemp->pos.x, Erasertemp->pos.y);
+			AEMtx33Concat(&(Erasertemp->Transform), &Transform2, &Size);
+		}
+		
 
 		Erasertemp->boundingBox.min.x = Erasertemp->pos.x - Scale / 2;
 		Erasertemp->boundingBox.min.y = Erasertemp->pos.y - Scale / 2;

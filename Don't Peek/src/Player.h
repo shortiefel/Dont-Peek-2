@@ -38,6 +38,7 @@ private:
 	bool CanJump = false;
 	bool SharpenerCollision = false;
 	bool WallCollision = false;
+	bool Left = false;
 	float Scale;
 	AEMtx33	Transform;
 
