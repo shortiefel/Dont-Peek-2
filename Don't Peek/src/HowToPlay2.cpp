@@ -1,15 +1,17 @@
 /* Start Header************************************************************************ /
 /*!
-\file Howtoplay.cpp
-\team name Don't Peak
-\software name I don't want to do homework
+\file HowToPlay2.cpp
+\team name Don't Peek
+\software name I Don't Wanna Do My Homework
 \authors
 Tan Wei Ling Felicia	weilingfelicia.tan@digipen.edu
 Margaret Teo Boon See	Teo.b@digipen.edu
 Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 \date 22/01/2021
-\brief <give a brief description of this file>
+\brief
+This file contains all the functions that is required for our Tutorial game state.
+It will call each individual objects that is required to build the Tutorial.
 Copyright (C) 2021 DigiPen Institute of Technology.
 Reproduction or disclosure of this file or its contents
 without the prior written consent of DigiPen Institute of
@@ -92,13 +94,18 @@ void HowtoplayLoad(void)
 	player.Player_Load();
 }
 
+/******************************************************************************/
+/*!
+	"INIT" FUNCTION OF THE STATE
+*/
+/******************************************************************************/
 void HowtoplayInit(void)
 {
 	CheckPause = false;
 	loadingTimer = 2;
 	SoundSystem_Init();
 	SoundSystem_SFX();
-	CheckPause = false;
+
 	Tutorial_Init();
 	wall.InitWall();
 	sharpener.InitSharpener();
@@ -109,10 +116,14 @@ void HowtoplayInit(void)
 	player.Player_Init();
 }
 
+/******************************************************************************/
+/*!
+	"UPDATE" FUNCTION OF THE STATE
+*/
+/******************************************************************************/
 void HowtoplayUpdate(void)
 {
-	totaltime += g_dt;
-
+	//For our pause state
 	if (AEInputCheckCurr(AEVK_P))
 	{
 		CheckPause = true;
@@ -136,6 +147,11 @@ void HowtoplayUpdate(void)
 	}
 }
 
+/******************************************************************************/
+/*!
+	"DRAW" FUNCTION OF THE STATE
+*/
+/******************************************************************************/
 void HowtoplayDraw(void)
 {
 	if (Time > loadingTimer)
@@ -179,9 +195,15 @@ void HowtoplayDraw(void)
 	}
 }
 
+/******************************************************************************/
+/*!
+	"FREE" FUNCTION OF THE STATE
+*/
+/******************************************************************************/
 void HowtoplayFree(void)
 {
 	SoundSystem_Destroy();
+
 	Tutorial_Free();
 	wall.FreeWall();
 	sharpener.FreeSharpener();
@@ -192,6 +214,11 @@ void HowtoplayFree(void)
 	player.Player_Free();
 }
 
+/******************************************************************************/
+/*!
+	"UNLOAD" FUNCTION OF THE STATE
+*/
+/******************************************************************************/
 void HowtoplayUnload(void)
 {
 	/*===============================================================================

@@ -1,3 +1,10 @@
-﻿  Menu.cpp
-D:\CSD 1450\Dont-Peek-2\Don't Peek\src\fmod_errors.h(20,20): warning C4505: 'FMOD_ErrorString': unreferenced local function has been removed
-  DontPeek.vcxproj -> D:\CSD 1450\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe
+﻿  HowToPlay2.cpp
+C:\Users\65964\Desktop\Dont-Peek-2\Don't Peek\src\fmod_errors.h(20,20): warning C4505: 'FMOD_ErrorString': unreferenced local function has been removed
+  Level 1.cpp
+C:\Users\65964\Desktop\Dont-Peek-2\Don't Peek\src\Level 1.cpp(43,21): warning C4211: nonstandard extension used: redefined extern to static
+C:\Users\65964\Desktop\Dont-Peek-2\Don't Peek\src\fmod_errors.h(20,20): warning C4505: 'FMOD_ErrorString': unreferenced local function has been removed
+  Win.cpp
+C:\Users\65964\Desktop\Dont-Peek-2\Don't Peek\src\Win.cpp(169,8): warning C4551: function call missing argument list
+C:\Users\65964\Desktop\Dont-Peek-2\Don't Peek\src\Win.cpp(178,8): warning C4551: function call missing argument list
+  Generating Code...
+  DontPeek.vcxproj -> C:\Users\65964\Desktop\Dont-Peek-2\Don't Peek\bin\Debug-x64\DontPeek.exe
