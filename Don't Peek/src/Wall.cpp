@@ -171,10 +171,7 @@ void Wall::UnloadWall()
 			AEGfxMeshFree(pWall->pMesh);
 		if(pWall->texture)
 			AEGfxTextureUnload(pWall->texture);
-		printf("walls DESTROY\n");
-		
-
-		
+		//printf("walls DESTROY\n");
 	}
 
 	

@@ -29,20 +29,25 @@ Technology is prohibited.
 #include "Win.h"
 #include "Pause.h"
 #include "Music.h"
-#include "loading.h"
+#include "Loading.h"
 
-float totaltime;
-Loading loading;
-
-float static loadingTime = 2;
-
+static float		loadingTimer;
+static float		Time;
+static Loading loading;
+/******************************************************************************/
+/*!
+	"LOAD" FUNCTION OF THE STATE
+*/
+/******************************************************************************/
 void HowtoplayLoad(void)
 {
-	/******************************************************************************/
-	/*!
+	memset(sGameObjList, 0, sizeof(GameObj) * GAME_OBJ_NUM_MAX);
+	// No game objects (shapes) at this point
+	sGameObjNum = 0;
+
+	/*===============================================================================
 		LOADING SCREEN
-	*/
-	/******************************************************************************/
+	=================================================================================*/
 	loading.pos = { 0, 0 };
 	loading.scale = { 950.f,650.f };
 
@@ -62,6 +67,9 @@ void HowtoplayLoad(void)
 		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 	loading.pObj->pMesh = AEGfxMeshEnd();
 
+	/*===============================================================================
+		SCALING/TRANSFORMATION/CONCAT FOR LOADING SCREEN
+	=================================================================================*/
 	AEMtx33	trans, sc;
 	// Compute the scaling matrix
 	AEMtx33Scale(&sc, loading.scale.x, loading.scale.y);
@@ -70,14 +78,11 @@ void HowtoplayLoad(void)
 
 	AEMtx33Concat(&(loading.transform), &trans, &sc);
 
-	/******************************************************************************/
-	/*!
-		FUNCTIONS FOR LOADING
-	*/
-	/******************************************************************************/
-
-	PauseLoad();
+	/*===============================================================================
+		OBJECT FUNCTIONS
+	=================================================================================*/
 	Tutorial_Load();
+	PauseLoad();
 	wall.LoadWall();
 	sharpener.LoadSharpener();
 	eraser.LoadEraser();
@@ -89,6 +94,8 @@ void HowtoplayLoad(void)
 
 void HowtoplayInit(void)
 {
+	CheckPause = false;
+	loadingTimer = 2;
 	SoundSystem_Init();
 	SoundSystem_SFX();
 	CheckPause = false;
@@ -117,6 +124,7 @@ void HowtoplayUpdate(void)
 	}
 	else if (CheckPause == false)
 	{
+		Time += g_dt;
 		Tutorial_Update();
 		wall.UpdateWall();
 		sharpener.UpdateSharpener();
@@ -130,26 +138,36 @@ void HowtoplayUpdate(void)
 
 void HowtoplayDraw(void)
 {
-	if (totaltime > loadingTime)
+	if (Time > loadingTimer)
 	{
+		//For our pause state
 		if (CheckPause == true)
 		{
+			/*===============================================================================
+				DRAW PAUSE SCREEN
+			=================================================================================*/
 			PauseDraw();
 		}
 		else if (CheckPause == false)
 		{
+			/*===============================================================================
+				DRAW GAME LEVEL & OBJECT
+			=================================================================================*/
 			Tutorial_Draw();
 			wall.DrawWall();
-			highlighter.DrawHighlighter();
-			pencil.DrawPencil();
 			sharpener.DrawSharpener();
 			eraser.DrawEraser();
+			highlighter.DrawHighlighter();
+			pencil.DrawPencil();
 			door.DrawDoor();
 			player.Player_Draw();
 		}
 	}
 	else
 	{
+		/*===============================================================================
+			DRAW LOADING SCREEN
+		=================================================================================*/
 		AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 		AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 		AEGfxSetPosition(0, 0);
@@ -176,14 +194,20 @@ void HowtoplayFree(void)
 
 void HowtoplayUnload(void)
 {
-
+	/*===============================================================================
+		UNLOAD LOADING TEXTURE & MESH
+	=================================================================================*/
 	if (loading.pObj->pMesh)
 		AEGfxMeshFree(loading.pObj->pMesh);
 	if (loading.pObj->texture)
 		AEGfxTextureUnload(loading.pObj->texture);
-		
+
+	/*===============================================================================
+		UNLOAD LEVEL & OBJECT TEXTURE & MESH
+	=================================================================================*/
 	Tutorial_Unload();
 	PauseUnload();
+
 	wall.UnloadWall();
 	sharpener.UnloadSharpener();
 	eraser.UnloadEraser();

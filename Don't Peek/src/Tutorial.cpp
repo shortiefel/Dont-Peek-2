@@ -10,7 +10,11 @@ Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 
 \date 22/01/2021
-\brief <give a brief description of this file>
+\brief 
+This file contains all the functions that is required for creating Tutorial.
+It determines the number of object  to be create.
+It also determine the position of each objects.
+It draws the Tutorial background as well.
 
 
 Copyright (C) 2021 DigiPen Institute of Technology.
@@ -30,7 +34,7 @@ Technology is prohibited.
 #include "Music.h"
 #include "Player.h"
 
-background bg;
+static background bg;
 //static float timer = 0;
 
 /******************************************************************************/
@@ -41,11 +45,9 @@ background bg;
 /******************************************************************************/
 void Tutorial_Load()
 {
-	/******************************************************************************/
-	/*!
-		BACKGROUND
-	*/
-	/******************************************************************************/
+	/*===============================================================================
+		TUTORIAL BACKGROUND SCREEN
+	=================================================================================*/
 	bg.Bgpos= {350.f,-200.f };
 	bg.Bgscale = { 1.2 * 1760.f, 1.2* 1090.f };
 
@@ -65,6 +67,9 @@ void Tutorial_Load()
 		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 	bg.pBg->pMesh = AEGfxMeshEnd();
 
+	/*===============================================================================
+		SCALING/TRANSFORMATION/CONCAT FOR TUTORIAL BACKGROUND SCREEN
+	=================================================================================*/
 	AEMtx33	trans, sc;
 	// Compute the scaling matrix
 	AEMtx33Scale(&sc, bg.Bgscale.x, bg.Bgscale.y);
@@ -82,23 +87,22 @@ void Tutorial_Load()
 /******************************************************************************/
 void Tutorial_Init()
 {
+	/*===============================================================================
+		LEVEL 1 WIN POINT
+	=================================================================================*/
 	SetWin({ 1045, 260 });
-	//timer = 50.f;
+	/*===============================================================================
+		NUMBER OF OBJECTS TO BE CREATED
+	=================================================================================*/
 	SetDoorNum(8);
-	//Highlighter
 	SetHighlighterNum(2);
-	//Sharperner
 	SetSharpenerNum(2);
-	//eraser
 	SetEraserNum(1);
-	//pencil
 	SetPencilNum(2);
-	/******************************************************************************/
-	/*!
-		FIRST BOX
-	*/
-	/******************************************************************************/
 
+	/*===============================================================================
+		FIRST BOX BORDERS AND PLATFORM
+	=================================================================================*/
 	wall.CreateWall({ -390,-90 }, { 1,0 }, 20, 30.f, PLATFORM); //floor
 	wall.CreateWall({ -390,320 }, { 1,0 }, 20, 30.f, CEILING); // top wall
 
@@ -108,49 +112,63 @@ void Tutorial_Init()
 	wall.CreateWall({ 50,80 }, { 1,0 }, 5, 30.f, CEILING); //platform
 	wall.CreateWall({ 20,60 }, { 0,-1 }, 6, 30.f, WALL); //inside wall
 
-	sharpener.SetSharpenerPosition(0, { -250,-20 });
-
+	/*===============================================================================
+		FIRST BOX DOORS
+	=================================================================================*/
 	door.SetDoorPosition(0, { 120 , 150 });
 
-	/******************************************************************************/
-	/*!
-		SECOND BOX
-	*/
-	/******************************************************************************/
-	door.SetDoorPosition(1, { -40 , -315 });
-	door.SetDoorPosition(2, { 150 , -650 });
+	/*===============================================================================
+		FIRST BOX SHARPENER
+	=================================================================================*/
+	sharpener.SetSharpenerPosition(0, { -250,-20 });
+
+	/*===============================================================================
+		SECOND BOX BORDERS AND PLATFORM
+	=================================================================================*/
+	
 	wall.CreateWall({ -105,-720 }, { 1,0 }, 11, 30.f, PLATFORM); //floor
 	wall.CreateWall({ -105,-210 }, { 1,0 }, 11, 30.f, CEILING); // top wall
 	wall.CreateWall({ -135,-210 }, { 0,-1 }, 18, 30.f, WALL); // left wall
 	wall.CreateWall({ 210,-210 }, { 0,-1 }, 18, 30.f, WALL); // right wall
 	wall.CreateWall({ -125,-385 }, { 1,0 }, 6, 30.f, CEILING); //platform
 
+	/*===============================================================================
+		SECOND BOX DOORS
+	=================================================================================*/
+	door.SetDoorPosition(1, { -40 , -315 });
+	door.SetDoorPosition(2, { 150 , -650 });
+
+	/*===============================================================================
+		SECOND BOX SHARPENER
+	=================================================================================*/
 	sharpener.SetSharpenerPosition(1, { 10,-610 });
 
-	/******************************************************************************/
-	/*!
-		THIRD BOX
-	*/
-	/******************************************************************************/
-	door.SetDoorPosition(3, { 560 , -750 });
-	door.SetDoorPosition(4, { 1130 , -535-40 });
+	/*===============================================================================
+		THIRD BOX BORDERS AND PLATFORM
+	=================================================================================*/
+	
 	wall.CreateWall({ 520,-820 }, { 1,0 }, 24, 30.f, PLATFORM); //floor
 	wall.CreateWall({ 520,-368 }, { 1,0 }, 24, 30.f, CEILING); // top wall
 	wall.CreateWall({ 490,-368 }, { 0,-1 }, 16, 30.f, WALL); // left wall
 	wall.CreateWall({ 1210,-368 }, { 0,-1 }, 16, 30.f, WALL); // right wall
 	wall.CreateWall({ 1060,-640 }, { 1,0 }, 6, 30.f, PLATFORM); //platform right
 
+	/*===============================================================================
+		THIRD BOX DOORS
+	=================================================================================*/
+	door.SetDoorPosition(3, { 560 , -750 });
+	door.SetDoorPosition(4, { 1130 , -535-40 });
 
+	/*===============================================================================
+		THIRD BOX HIGHLIGHTER
+	=================================================================================*/
 	highlighter.SetHighlighterPosition(0, { 850, -770 });
 	highlighter.SetHighlighterPosition(1, { 950, -770 });
 
-	/******************************************************************************/
-	/*!
-		FOURTH BOX
-	*/
-	/******************************************************************************/
-	door.SetDoorPosition(5, { 570 , 180 });
-	door.SetDoorPosition(6, { 800 , -135 });
+	/*===============================================================================
+		FORTH BOX BORDERS AND PLATFORM
+	=================================================================================*/
+	
 	wall.CreateWall({ 540,-205 }, { 1,0 }, 11, 30.f, PLATFORM); //floor
 	wall.CreateWall({ 540, 115 }, { 1,0 }, 5, 30.f, PLATFORM); //below door
 	wall.CreateWall({ 540,310 }, { 1,0 }, 11, 30.f, CEILING); //top wall
@@ -158,21 +176,33 @@ void Tutorial_Init()
 	wall.CreateWall({ 870,310 }, { 0,-1 }, 18, 30.f, WALL); //right wall
 	wall.CreateWall({ 730,-40 }, { 1,0 }, 15, 10.f, PLATFORM); //Pencil Line
 
+	/*===============================================================================
+		FORTH BOX DOORS
+	=================================================================================*/
+	door.SetDoorPosition(5, { 570 , 180 });
+	door.SetDoorPosition(6, { 800 , -135 });
 	eraser.SetEraserPosition(0, {650, -80 });
+
+	/*===============================================================================
+		FORTH BOX PENCIL
+	=================================================================================*/
 	//pencil not showing
 	pencil.SetPencil(0, { 730, -130 }, 20, 130);
 	pencil.SetPencil(1, { 780, -50 }, 120, 20);
 
-	/******************************************************************************/
-	/*!
-		FIFTH BOX
-	*/
-	/******************************************************************************/
-	door.SetDoorPosition(7, { 990 , 110 });
+	/*===============================================================================
+		FIFTH BOX BORDERS AND PLATFORM
+	=================================================================================*/
+	
 	wall.CreateWall({ 950,35 }, { 1,0 }, 8, 30.f, PLATFORM); //floor
 	wall.CreateWall({ 950,280 }, { 1,0 }, 3, 30.f, CEILING); //ceiling
 	wall.CreateWall({ 920,280 }, { 0,-1 }, 9, 30.f, WALL); //left wall
 	wall.CreateWall({ 1190,280 }, { 0,-1 }, 9, 30.f, WALL); //left wall
+
+	/*===============================================================================
+		FIFTH BOX DOORS
+	=================================================================================*/
+	door.SetDoorPosition(7, { 990 , 110 });
 
 	//timer
 	//timer = 50.f;
@@ -196,6 +226,9 @@ void Tutorial_Update()
 /******************************************************************************/
 void Tutorial_Draw()
 {
+	/*===============================================================================
+		DRAW TUTORIAL BACKGROUND SCREEN
+	=================================================================================*/
 	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 	AEGfxSetPosition(0, 0);
@@ -204,6 +237,7 @@ void Tutorial_Draw()
 	AEGfxSetTransform(bg.transform.m);
 	AEGfxSetTransparency(1.0f);
 	AEGfxMeshDraw(bg.pBg->pMesh, AE_GFX_MDM_TRIANGLES);
+	AEGfxSetTransparency(0.0f);
 }
 
 /******************************************************************************/
@@ -224,6 +258,9 @@ void Tutorial_Free()
 /******************************************************************************/
 void Tutorial_Unload()
 {
+	/*===============================================================================
+		UNLOAD TUTORIAL TEXTURE & MESH
+	=================================================================================*/
 	if (bg.pBg->pMesh)
 		AEGfxMeshFree(bg.pBg->pMesh);
 	if (bg.pBg->texture)

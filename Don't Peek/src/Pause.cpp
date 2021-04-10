@@ -220,12 +220,12 @@ void PauseUpdate()
 		=================================================================================*/
 		else if (CollisionIntersection_PointRect({ static_cast<float>(Px), static_cast<float>(Py) }, { 0,0 }, Pbtn[1].boundingBox, { 0,0 }))
 		{
-			if (AEInputUpdate)
-			{
-				CheckPause = false;
-				gGameStateNext = GS_RESTART;
-				printf("Restarting \n");
-			}
+				if (AEInputUpdate)
+				{
+					CheckPause = false;
+					gGameStateNext = GS_RESTART;
+					//printf("Restarting \n");
+				}
 		}
 		/*===============================================================================
 			MAIN MENU BUTTON
@@ -235,9 +235,9 @@ void PauseUpdate()
 			if (AEInputUpdate)
 			{
 				gGameStateNext = GS_MENU;
-				printf("BUTTON MAIN MENU \n");
-				printf("BBMin: %f::%f\n", Pbtn[2].boundingBox.min.x, Pbtn[2].boundingBox.min.y);
-				printf("BBMax: %f::%f\n", Pbtn[2].boundingBox.max.x, Pbtn[2].boundingBox.max.y);
+				//printf("BUTTON MAIN MENU \n");
+				//printf("BBMin: %f::%f\n", Pbtn[2].boundingBox.min.x, Pbtn[2].boundingBox.min.y);
+				//printf("BBMax: %f::%f\n", Pbtn[2].boundingBox.max.x, Pbtn[2].boundingBox.max.y);
 			}
 		}
 	}

@@ -45,81 +45,77 @@ bool CheckPause;
 /******************************************************************************/
 int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_line, int show)
 {
-	UNREFERENCED_PARAMETER(prevInstanceH);
-	UNREFERENCED_PARAMETER(command_line);
+    UNREFERENCED_PARAMETER(prevInstanceH);
+    UNREFERENCED_PARAMETER(command_line);
 
-	// Enable run-time memory check for debug builds.
-	  #if defined(DEBUG) | defined(_DEBUG)
-	  _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	  // int* pi = new int;
+    // Enable run-time memory check for debug builds.
+#if defined(DEBUG) | defined(_DEBUG)
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+#endif
+    // int* pi = new int;
 
-	  AESysInit(instanceH, show, 1000, 700, 1, 60, false, NULL);
-	  #endif
+   //------------INITILIZATION----------------
+    AESysInit(instanceH, show, 1000, 700, 1, 60, false, NULL);
+    AESysSetWindowTitle("Don't Peek");
+    AEGfxSetBackgroundColor(100.0f, 100.0f, 100.0f);
+    Fonts = AEGfxCreateFont("Resources/Arial Italic.ttf", 25);
+    //SoundSystem_Init();
 
-	//------------INITILIZATION----------------
-	AESysSetWindowTitle("Don't Peek");
-	AEGfxSetBackgroundColor(100.0f, 100.0f, 100.0f);
-	Fonts = AEGfxCreateFont("Resources/Arial Italic.ttf", 25);
-	//SoundSystem_Init();
-
-	//MISSING GAME TIME LOOP----
+    //MISSING GAME TIME LOOP----
 
 
-	GameStateMgrInit(GS_SPLASH); //for now its level one, once menu is done change it
+    GameStateMgrInit(GS_SPLASH); //for now its level one, once menu is done change it
 
-	//GameStateMgrInit(GS_PAUSE); //for now its level one, once menu is done change it
+    //GameStateMgrInit(GS_PAUSE); //for now its level one, once menu is done change it
 
-		//Fonts = AEGfxCreateFont("Resources/Arial Italic.ttf", 25);
-	while (gGameStateCurr != GS_QUIT)
-	{
+    Fonts = AEGfxCreateFont("Resources/Arial Italic.ttf", 25);
+    while (gGameStateCurr != GS_QUIT)
+    {
 
-		//reset system modules
-		AESysReset();
+        //reset system modules
+        AESysReset();
 
-		//if game is not restarting, load gamestate
-		if (gGameStateCurr != GS_RESTART)
-		{
-			
-			GameStateMgrUpdate();
-			GameStateLoad();
-		}
-		else
-			gGameStateNext = gGameStateCurr = gGameStatePrev;
+        //if game is not restarting, load gamestate
+        if (gGameStateCurr != GS_RESTART)
+        {
 
-		//Initialize gamestate
-		GameStateInit();
+            GameStateMgrUpdate();
+            GameStateLoad();
+        }
+        else
+            gGameStateNext = gGameStateCurr = gGameStatePrev;
 
-		while (gGameStateCurr == gGameStateNext)
-		{
-			AESysFrameStart();
-			AEInputUpdate();
-			GameStateUpdate();
-			GameStateDraw();
-			AESysFrameEnd();
+        //Initialize gamestate
+        GameStateInit();
 
-			//checking if application is being forced to quit
-			if ((AESysDoesWindowExist() == false))
-			{
-				gGameStateNext = GS_QUIT;
-			}
+        while (gGameStateCurr == gGameStateNext)
+        {
+            AESysFrameStart();
+            AEInputUpdate();
+            GameStateUpdate();
+            GameStateDraw();
+            AESysFrameEnd();
 
-			g_dt = (f32)AEFrameRateControllerGetFrameTime();
-			g_appTime += g_dt;
-		}
+            //checking if application is being forced to quit
+            if ((AESysDoesWindowExist() == false))
+            {
+                gGameStateNext = GS_QUIT;
+            }
 
-		//SoundSystem_Destroy();
-		GameStateFree();
+            g_dt = (f32)AEFrameRateControllerGetFrameTime();
+            g_appTime += g_dt;
+        }
 
-		if (gGameStateNext != GS_RESTART)
-			GameStateUnload();
+        //SoundSystem_Destroy();
+        GameStateFree();
 
-		gGameStatePrev = gGameStateCurr;
-		gGameStateCurr = gGameStateNext;
-	}
-	//if(Walltemp != NULL)
-		//delete[] Walltemp;
+        if (gGameStateNext != GS_RESTART)
+            GameStateUnload();
 
-	AEGfxDestroyFont(Fonts);
-	//freeing the system
-	AESysExit();
+        gGameStatePrev = gGameStateCurr;
+        gGameStateCurr = gGameStateNext;
+    }
+
+    //freeing the system
+    AESysExit();
 }

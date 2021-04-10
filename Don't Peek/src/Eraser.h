@@ -36,6 +36,7 @@ private:
 	AEVec2 vel;
 	AABB boundingBox;
 	bool WallCollision = false;
+	bool Left = false;
 
 public:
 	void LoadEraser();

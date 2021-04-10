@@ -114,6 +114,7 @@ void Player::Player_Update()
 	----------------------------------*/
 	if (AEInputCheckCurr(AEVK_LEFT))
 	{
+		Left = true;
 		for (int i = 0; i < Get_NumWalls(); i++)
 		{
 			Wall* Walltemp = Get_WallArr() + i;
@@ -131,7 +132,7 @@ void Player::Player_Update()
 	----------------------------------*/
 	else if (AEInputCheckCurr(AEVK_RIGHT))
 	{
-		
+		Left = false;
 		player.vel.x = SPEED;
 	}
 	else
@@ -143,7 +144,7 @@ void Player::Player_Update()
 	----------------------------------*/
 	if (AEInputCheckTriggered(AEVK_SPACE) && CanJump == true)
 	{
-		printf("jump \n");
+		//printf("jump \n");
 		//printf("jumping \n");
 		CanJump = false;
 		//Position.y += Velocity.y * 4;
@@ -153,7 +154,7 @@ void Player::Player_Update()
 	}
 	else if (player.pos.y < GROUND)
 	{
-		printf("ground \n");
+		//printf("ground \n");
 		player.pos.y = GROUND;
 		CanJump = true;
 		player.vel.y = 0;
@@ -407,10 +408,19 @@ void Player::SetGravity()
 void Player::BoundingBox()
 {
 	AEMtx33 Transform2, Size;
-	AEMtx33Scale(&Size, Scale, Scale);
-	AEMtx33Trans(&Transform2, pos.x, pos.y);
-	AEMtx33Concat(&(player.Transform), &Transform2, &Size);
-
+	if (Left == true)
+	{
+		AEMtx33Scale(&Size, -Scale, Scale);
+		AEMtx33Trans(&Transform2, pos.x, pos.y);
+		AEMtx33Concat(&(player.Transform), &Transform2, &Size);
+	}
+	else
+	{
+		AEMtx33Scale(&Size, Scale, Scale);
+		AEMtx33Trans(&Transform2, pos.x, pos.y);
+		AEMtx33Concat(&(player.Transform), &Transform2, &Size);
+	}
+	
 	player.boundingBox.min.x = player.pos.x - Scale / 4;// 5;
 	player.boundingBox.min.y = player.pos.y - Scale / 2;
 	player.boundingBox.max.x = player.pos.x + Scale / 4;// 5;
