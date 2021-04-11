@@ -55,7 +55,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
     // int* pi = new int;
 
    //------------INITILIZATION----------------
-    AESysInit(instanceH, show, 1000, 700, 1, 60, false, NULL);
+    AESysInit(instanceH, show, 1000, 700, 1, 60, true, NULL);
     AESysSetWindowTitle("Don't Peek");
     AEGfxSetBackgroundColor(100.0f, 100.0f, 100.0f);
     Fonts = AEGfxCreateFont("Resources/Arial Italic.ttf", 25);
