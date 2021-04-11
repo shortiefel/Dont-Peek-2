@@ -1,8 +1,8 @@
 /* Start Header ************************************************************************/
 /*!
 \file Rules.cpp
-\team name Don't Peak
-\software name I don't want to do homework
+\team name Don't Peek
+\software name I Don't Wanna Do My Homework
 \authors
 Tan Wei Ling Felicia	weilingfelicia.tan@digipen.edu
 Margaret Teo Boon See	Teo.b@digipen.edu
@@ -55,11 +55,13 @@ void RulesLoad()
 
 	AEMtx33Concat(&(rule.transform), &trans, &sc);
 }
+
 void RulesInit()
 {
 	SoundSystem_Init();
 	SoundSystem_SFX();
 }
+
 void RulesUpdate()
 {
 	AEGfxSetCamPosition(0, 0);
@@ -86,8 +88,10 @@ void RulesFree()
 {
 	SoundSystem_Destroy();
 }
+
 void RulesUnload()
 {
+	
 	if (rule.pObj->pMesh)
 		AEGfxMeshFree(rule.pObj->pMesh);
 	if (rule.pObj->texture)

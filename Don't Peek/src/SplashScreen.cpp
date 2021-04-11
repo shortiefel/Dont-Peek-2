@@ -1,8 +1,8 @@
 /* Start Header ************************************************************************/
 /*!
 \file SplashScreen.cpp
-\team name Don't Peak
-\software name I don't want to do homework
+\team name Don't Peek
+\software name I Don't Wanna Do My Homework
 \authors
 Tan Wei Ling Felicia	weilingfelicia.tan@digipen.edu
 Margaret Teo Boon See	Teo.b@digipen.edu
@@ -10,7 +10,9 @@ Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 
 \date 22/01/2021
-\brief <give a brief description of this file>
+\brief 
+This file contains all the functions that is required for our Splash Screen.
+It includes the short timer before changing states to main menu.
 
 
 Copyright (C) 2021 DigiPen Institute of Technology.
@@ -19,19 +21,23 @@ without the prior written consent of DigiPen Institute of
 Technology is prohibited.
 */
 /* End Header **************************************************************************/
-#include "main.h"
+
 #include "GameStateMgr.h"
 #include "SplashScreen.h"
 
-SplashScreen splashscreen;
+static SplashScreen splashscreen;
 static float splashscreentimer = 0;
+
+/******************************************************************************/
+/*!
+	Splash Screen Load
+*/
+/******************************************************************************/
 void SSLoad()
 {
-	/******************************************************************************/
-	/*!
-		SPLASH SCREEN
-	*/
-	/******************************************************************************/
+	/*===============================================================================
+		SPLASH SCREEN [DIGIPEN LOGO]
+	=================================================================================*/
 	splashscreen.pos = { 0, 0 };
 	splashscreen.scale = { 1000.f,700.f };
 
@@ -51,6 +57,9 @@ void SSLoad()
 		-0.5f, 0.5f, 0x00000000, 0.0f, 0.0f);
 	splashscreen.pObj->pMesh = AEGfxMeshEnd();
 
+	/*===============================================================================
+		SCALING/TRANSFORMATION/CONCAT FOR SPLASH SCREEN [DIGIPEN LOGO]
+	=================================================================================*/
 	AEMtx33	trans, sc;
 	// Compute the scaling matrix
 	AEMtx33Scale(&sc, splashscreen.scale.x, splashscreen.scale.y);
@@ -60,21 +69,40 @@ void SSLoad()
 	AEMtx33Concat(&(splashscreen.transform), &trans, &sc);
 }
 
+/******************************************************************************/
+/*!
+	Splash Screen Initalization
+*/
+/******************************************************************************/
 void SSInit()
 {
 	splashscreentimer = 3;
 }
 
+/******************************************************************************/
+/*!
+	Splash Screen Update
+*/
+/******************************************************************************/
 void SSUpdate()
 {
+	//Timer count down before changing to main menu
 	if (splashscreentimer > 0)
 		splashscreentimer -= g_dt;
 	else
 		gGameStateNext = GS_MENU;
 }
 
+/******************************************************************************/
+/*!
+	Splash Screen Draw
+*/
+/******************************************************************************/
 void SSDraw()
 {
+	/*===============================================================================
+		DRAW SPLASH SCREEN SCREEN
+	=================================================================================*/
 	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 	AEGfxSetPosition(0, 0);
@@ -85,16 +113,25 @@ void SSDraw()
 	AEGfxMeshDraw(splashscreen.pObj->pMesh, AE_GFX_MDM_TRIANGLES);
 }
 
+/******************************************************************************/
+/*!
+	Splash Screen Free
+*/
+/******************************************************************************/
 void SSFree()
+{
+}
+
+/******************************************************************************/
+/*!
+	Splash Screen Unload
+*/
+/******************************************************************************/
+void SSUnload()
 {
 	if (splashscreen.pObj->pMesh)
 		AEGfxMeshFree(splashscreen.pObj->pMesh);
 
-}
-
-void SSUnload()
-{
 	if (splashscreen.pObj->texture)
 		AEGfxTextureUnload(splashscreen.pObj->texture);
-
 }

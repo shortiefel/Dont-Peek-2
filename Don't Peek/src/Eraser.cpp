@@ -1,15 +1,21 @@
 /* Start Header ************************************************************************/
 /*!
-\file Sharpener.cpp
-\team name Don't Peak
-\software name I don't want to do homework
+\file Eraser.cpp
+\team name Don't Peek
+\software name I Don't Wanna Do My Homework
 \authors
 Tan Wei Ling Felicia	weilingfelicia.tan@digipen.edu
 Margaret Teo Boon See	Teo.b@digipen.edu
 Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 \date 22/01/2021
-\brief <give a brief description of this file>
+\brief 
+This file contains all the functions that is required for our object eraser.
+The eraser is an object that can be pushed around by the player.
+Player can also jump on top of the object.
+The eraser can also remove temporary wall [Pencil] when they collide.
+
+
 Copyright (C) 2021 DigiPen Institute of Technology.
 Reproduction or disclosure of this file or its contents
 without the prior written consent of DigiPen Institute of
@@ -28,6 +34,7 @@ Technology is prohibited.
 #include "Eraser.h"
 #include "Animation.h"
 
+//Initialization
 Eraser EraserArray[MAX];
 static int EraserNum;
 static int right, left;
@@ -40,7 +47,6 @@ Sprite EraserAnim;
 	Eraser Load
 */
 /******************************************************************************/
-
 void Eraser::LoadEraser() {
 
 	pEraser = sGameObjList + sGameObjNum++;
@@ -109,11 +115,9 @@ void Eraser::UpdateEraser()
 
 		SetGravity();
 
-		/******************************************************************************/
-		/*!
+		/*===============================================================================
 			PLAYER
-		*/
-		/******************************************************************************/
+		=================================================================================*/
 		if (CollisionIntersection_RectRect(player.GetBoundingBoxPlayer(), player.GetVelPlayer(), Erasertemp->boundingBox, Erasertemp->vel))
 		{
 			/*======================================
@@ -131,7 +135,8 @@ void Eraser::UpdateEraser()
 					(player.GetBoundingBoxPlayer().max.x < (Erasertemp->boundingBox.min.x + 40.0f)))
 				{
 					Erasertemp->vel.x = SPEED;
-					right = 1;
+					Erasertemp->Left = false;
+					right = 1;	
 					left = 0;
 				}
 				if ((AEInputCheckCurr(AEVK_LSHIFT) && AEInputCheckCurr(AEVK_LEFT)) &&
@@ -139,6 +144,7 @@ void Eraser::UpdateEraser()
 					(player.GetBoundingBoxPlayer().min.x < (Erasertemp->boundingBox.max.x + 15.0f)))
 				{
 					Erasertemp->vel.x = -SPEED;
+					Erasertemp->Left = true;
 					left = 1;
 					right = 0;
 				}
@@ -167,6 +173,7 @@ void Eraser::UpdateEraser()
 							(player.GetBoundingBoxPlayer().max.x < (Erasertemp->boundingBox.min.x + 40.0f)))
 						{
 							Erasertemp->vel.x = SPEED;
+							Erasertemp->Left = false;
 							right = 1;
 							left = 0;
 						}
@@ -175,6 +182,7 @@ void Eraser::UpdateEraser()
 							(player.GetBoundingBoxPlayer().min.x < (Erasertemp->boundingBox.max.x + 15.0f)))
 						{
 							Erasertemp->vel.x = -SPEED;
+							Erasertemp->Left = true;
 							left = 1;
 							right = 0;
 						}
@@ -197,6 +205,7 @@ void Eraser::UpdateEraser()
 							&& (player.GetBoundingBoxPlayer().max.x < (Erasertemp->boundingBox.min.x + 40.0f)))
 						{
 							Erasertemp->vel.x = SPEED;
+							Erasertemp->Left = false;
 							right = 1;
 							left = 0;
 						}
@@ -207,6 +216,7 @@ void Eraser::UpdateEraser()
 							&& (player.GetBoundingBoxPlayer().min.x < (Erasertemp->boundingBox.max.x + 15.0f)))
 						{
 							Erasertemp->vel.x = -SPEED;
+							Erasertemp->Left = true;
 							left = 1;
 							right = 0;
 						}
@@ -220,11 +230,9 @@ void Eraser::UpdateEraser()
 			}
 		}//End of Player for loop
 
-		/******************************************************************************/
-		/*!
+		/*===============================================================================
 			SHARPENER
-		*/
-		/******************************************************************************/
+		=================================================================================*/
 		for (int j = 0; j < GetSharpenerNum(); j++)
 		{
 			Sharpener* Sharpenertemp = SharpenerArray + j;
@@ -261,17 +269,19 @@ void Eraser::UpdateEraser()
 
 		}//End of Sharpener for loop
 
-		/******************************************************************************/
-		/*!
+		/*===============================================================================
 			HIGHLIGHTER
-		*/
-		/******************************************************************************/
+		=================================================================================*/
 		for (int j = 0; j < GetHighlighterNum(); j++)
 		{
 			Highlighter* highlightertemp = HighlighterArray + j;
 			for (int s = 0; s < GetSharpenerNum(); s++)
 			{
-				if (right == 1) {
+				/*----------------------------------
+					PUSHED FROM THE RIGHT
+				----------------------------------*/
+				if (right == 1) 
+				{
 					if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, highlightertemp->GetHighlighterBoundingBox(j), highlightertemp->GetHighlighterVelocity(j)))
 					{
 						if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, sharpener.GetSharpenerBoundingBox(s), sharpener.GetSharpenerVelocity(s)) == 0)
@@ -280,6 +290,9 @@ void Eraser::UpdateEraser()
 						}
 					}
 				}
+				/*----------------------------------
+					PUSHED FROM THE LEFT
+				----------------------------------*/
 				else if (left == 1) {
 					if (CollisionIntersection_RectRect(Erasertemp->boundingBox, Erasertemp->vel, highlightertemp->GetHighlighterBoundingBox(j), highlightertemp->GetHighlighterVelocity(j)))
 					{
@@ -292,12 +305,9 @@ void Eraser::UpdateEraser()
 			}
 		}//End of Highlighter for loop
 
-
-		/******************************************************************************/
-		/*!
+		/*===============================================================================
 			DOOR
-		*/
-		/******************************************************************************/
+		=================================================================================*/
 		for (int j = 0; j < GetDoorNum(); j++)
 		{
 			Door* Doortemp = DoorArray + j;
@@ -322,12 +332,9 @@ void Eraser::UpdateEraser()
 			}
 		}//End of Door for loop
 
-		/******************************************************************************/
-		/*!
-			WALLS
-		*/
-		/******************************************************************************/
-
+		/*===============================================================================
+			WALLS/PLATFORM/CEILING
+		=================================================================================*/
 		for (int j = 0; j < Get_NumWalls(); j++)
 		{
 			Wall* Walltemp = Get_WallArr() + j;
@@ -337,18 +344,29 @@ void Eraser::UpdateEraser()
 			{
 				WallCollision = true;
 				Erasertemp->vel.y = 0.f;
-
+				/*----------------------------------
+					WALLS
+				----------------------------------*/
 				if (Walltemp->GetType(j) == WALL)
 				{
+					/*----------------------------------
+						PUSHED FROM THE RIGHT
+					----------------------------------*/
 					if (Erasertemp->pos.x >= Walltemp->GetWallBoundingBox(j).min.x)
 					{
-						Erasertemp->pos.x = (Walltemp->GetWallBoundingBox(j).max.x + Scale / 3);
+						Erasertemp->pos.x = (Walltemp->GetWallBoundingBox(j).max.x + Scale / 3 + 20);
 					}
+					/*----------------------------------
+						PUSHED FROM THE LEFT
+					----------------------------------*/
 					else if (Erasertemp->pos.x <= Walltemp->GetWallBoundingBox(j).max.x)
 					{
 						Erasertemp->pos.x = (Walltemp->GetWallBoundingBox(j).min.x - Scale / 3);
 					}
 				}
+				/*----------------------------------
+					PLATFORM
+				----------------------------------*/
 				else if (Walltemp->GetType(j) == PLATFORM)
 				{
 					if (Erasertemp->pos.y >= Walltemp->GetWallBoundingBox(j).max.y + 40 && Erasertemp->vel.y < 0)
@@ -395,7 +413,7 @@ void Eraser::DrawEraser()
 /******************************************************************************/
 void Eraser::FreeEraser()
 {
-	
+	EraserNum = 0;
 }
 
 /******************************************************************************/
@@ -403,13 +421,12 @@ void Eraser::FreeEraser()
 	Eraser Unload
 */
 /******************************************************************************/
-void Eraser::UnloadEraser() {
-
+void Eraser::UnloadEraser() 
+{
 
 		/*AEGfxTextureUnload(pEraser->texture);
 		AEGfxMeshFree(pEraser->pMesh);*/
 	EraserAnim.Anim_Unload(pEraser);
-		EraserNum = 0;
 }
 
 /******************************************************************************/
@@ -437,9 +454,19 @@ void Eraser::BoundingBox()
 	for (int i = 0; i < EraserNum; i++)
 	{
 		Eraser* Erasertemp = EraserArray + i;
-		AEMtx33Scale(&Size, Scale, Scale);
-		AEMtx33Trans(&Transform2, Erasertemp->pos.x, Erasertemp->pos.y);
-		AEMtx33Concat(&(Erasertemp->Transform), &Transform2, &Size);
+		if (Erasertemp->Left == true)
+		{
+			AEMtx33Scale(&Size, Scale, Scale);
+			AEMtx33Trans(&Transform2, Erasertemp->pos.x, Erasertemp->pos.y);
+			AEMtx33Concat(&(Erasertemp->Transform), &Transform2, &Size);
+		}
+		else
+		{
+			AEMtx33Scale(&Size, -Scale, Scale);
+			AEMtx33Trans(&Transform2, Erasertemp->pos.x, Erasertemp->pos.y);
+			AEMtx33Concat(&(Erasertemp->Transform), &Transform2, &Size);
+		}
+		
 
 		Erasertemp->boundingBox.min.x = Erasertemp->pos.x - Scale / 2;
 		Erasertemp->boundingBox.min.y = Erasertemp->pos.y - Scale / 2;
@@ -453,23 +480,23 @@ void Eraser::BoundingBox()
 	Eraser Getter & Setter Functions
 */
 /******************************************************************************/
-AABB Eraser::GetEraserBoundingBox(int i)
+AABB Eraser::GetEraserBoundingBox(int i)				//Allow other files to use eraser boundingbox without changing it.
 {
 	Eraser* Erasertemp = EraserArray + i;
 	return Erasertemp->boundingBox;
 }
-AEVec2 Eraser::GetEraserVelocity(int i)
+AEVec2 Eraser::GetEraserVelocity(int i)					//Allow other files to use eraser velocity without changing it.
 {
 	Eraser* Erasertemp = EraserArray + i;
 	return Erasertemp->vel;
 }
-AEVec2 Eraser::GetEraserPosition(int i)
+AEVec2 Eraser::GetEraserPosition(int i)					//Allow other files to use eraser position without changing it.
 {
 	Eraser* Erasertemp = EraserArray + i;
 	return Erasertemp->pos;
 }
 
-void Eraser::SetEraserPosition(int i, AEVec2 NewPos)
+void Eraser::SetEraserPosition(int i, AEVec2 NewPos)	//Allow other files to set the eraser position. [This is used for level design]
 {
 	Eraser* Erasertemp = EraserArray + i;
 	Erasertemp->pos = NewPos;
@@ -480,11 +507,11 @@ void Eraser::SetEraserPosition(int i, AEVec2 NewPos)
 	Eraser External Functions
 */
 /******************************************************************************/
-int GetEraserNum()
+int GetEraserNum()				//Allow other files to run through a loop of all the eraser. [E.g. to detect collision of all eraser]
 {
 	return EraserNum;
 }
-void SetEraserNum(int Num)
+void SetEraserNum(int Num)		//Set the number of eraser object to be created. [This is used for level design]
 {
 	EraserNum = Num;
 }

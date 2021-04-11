@@ -1,8 +1,8 @@
 /* Start Header ************************************************************************/
 /*!
 \file Highlighter.cpp
-\team name Don't Peak
-\software name I don't want to do homework
+\team name Don't Peek
+\software name I Don't Wanna Do My Homework
 \authors
 Tan Wei Ling Felicia	weilingfelicia.tan@digipen.edu
 Margaret Teo Boon See	Teo.b@digipen.edu
@@ -10,7 +10,10 @@ Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 
 \date 22/01/2021
-\brief <give a brief description of this file>
+\brief 
+This file contains all the functions that is required for our object highlighter.
+When a sharpener/eraser collide into the highlighter, they will auto move either left or right. [Based on the pushing direction]
+The object will not be able to stop in between the highlighter.
 
 
 Copyright (C) 2021 DigiPen Institute of Technology.
@@ -24,7 +27,7 @@ Technology is prohibited.
 #include "Highlighter.h"
 #include "Animation.h"
 
-
+//Initialization
 Highlighter HighlighterArray[MAX];
 static int HighlighterNum = 0;
 Sprite HighlighterAnim;
@@ -123,10 +126,11 @@ void Highlighter::FreeHighlighter()
 	Highlighter Unload
 */
 /******************************************************************************/
-void Highlighter::UnloadHighlighter() 
+void Highlighter::UnloadHighlighter()
 {
 	/*if (pHighlighter->pMesh)
 		AEGfxMeshFree(pHighlighter->pMesh);
+
 	if (pHighlighter->texture)
 		AEGfxTextureUnload(pHighlighter->texture);*/
 	HighlighterAnim.Anim_Unload(pHighlighter);
@@ -159,25 +163,25 @@ void Highlighter::BoundingBox()
 	Highlighter Getter & Setter Functions
 */
 /******************************************************************************/
-AABB Highlighter::GetHighlighterBoundingBox(int i)
+AABB Highlighter::GetHighlighterBoundingBox(int i)	//Allow other files to use highlighter boundingbox without changing it.
 {
 	Highlighter* Highlightertemp = HighlighterArray + i;
 	return Highlightertemp->boundingBox;
 }
 
-AEVec2 Highlighter::GetHighlighterVelocity(int i)
+AEVec2 Highlighter::GetHighlighterVelocity(int i)	//Allow other files to use highlighter velocity without changing it.
 {
 	Highlighter* Highlightertemp = HighlighterArray + i;
 	return Highlightertemp->vel;
 }
 
-AEVec2 Highlighter::GetHighlighterPosition(int i)
+AEVec2 Highlighter::GetHighlighterPosition(int i)	//Allow other files to use highlighter position without changing it.
 {
 	Highlighter* Highlightertemp = HighlighterArray + i;
 	return Highlightertemp->pos;
 }
 
-void Highlighter::SetHighlighterPosition(int i, AEVec2 NewPos)
+void Highlighter::SetHighlighterPosition(int i, AEVec2 NewPos)	//Allow other files to set the highlighter position. [This is used for level design]
 {
 	Highlighter* Highlightertemp = HighlighterArray + i;
 	Highlightertemp->pos = NewPos;
@@ -188,14 +192,12 @@ void Highlighter::SetHighlighterPosition(int i, AEVec2 NewPos)
 	Highlighter External Functions
 */
 /******************************************************************************/
-int GetHighlighterNum()
+int GetHighlighterNum()	//Allow other files to run through a loop of all the highlighter. [E.g. to detect collision of all highlighter]
 {
 	return HighlighterNum;
 }
-void SetHighlighterNum(int Num)
+void SetHighlighterNum(int Num)	//Set the number of highlighter object to be created. [This is used for level design]
 {
 	HighlighterNum = Num;
 }
 
-//set pos scale type
-//remove scale in init

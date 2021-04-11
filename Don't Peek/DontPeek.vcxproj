@@ -140,6 +140,7 @@
     <ClInclude Include="src\HowToPlay2.h" />
     <ClInclude Include="src\Level 1.h" />
     <ClInclude Include="src\Level Select.h" />
+    <ClInclude Include="src\loading.h" />
     <ClInclude Include="src\Lose.h" />
     <ClInclude Include="src\Menu.h" />
     <ClInclude Include="src\Music.h" />

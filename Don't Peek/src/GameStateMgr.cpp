@@ -1,3 +1,25 @@
+/* Start Header ************************************************************************/
+/*!
+\file GameStateMgr.cpp
+\team name Don't Peek
+\software name I Don't Wanna Do My Homework
+\authors
+Tan Wei Ling Felicia	weilingfelicia.tan@digipen.edu
+Margaret Teo Boon See	Teo.b@digipen.edu
+Loh Yun Yi Tessa	tessa.loh@digipen.edu
+Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
+
+\date 22/02/2021
+\brief
+This file contains all the functions that is required to manage our game state.
+
+
+Copyright (C) 2021 DigiPen Institute of Technology.
+Reproduction or disclosure of this file or its contents
+without the prior written consent of DigiPen Institute of
+Technology is prohibited.
+*/
+/* End Header **************************************************************************/
 #include "GameStateMgr.h"
 #include "SplashScreen.h"
 #include "Menu.h"
@@ -25,6 +47,7 @@ unsigned int	gGameStateInit;
 unsigned int	gGameStateCurr;
 unsigned int	gGameStatePrev;
 unsigned int	gGameStateNext;
+
 
 // pointer to functions for game state life cycles functions
 void (*GameStateLoad)() = 0;
@@ -74,6 +97,7 @@ void GameStateMgrUpdate()
 		GameStateFree = SSFree;
 		GameStateUnload = SSUnload;
 		break;
+
 	case GS_MENU:
 		GameStateLoad = MenuLoad;
 		GameStateInit = MenuInit;
@@ -178,6 +202,4 @@ void GameStateMgrUpdate()
 	default:
 		AE_FATAL_ERROR("invalid state!!");
 	}
-
-
 }

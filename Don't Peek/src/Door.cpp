@@ -1,8 +1,8 @@
 /* Start Header ************************************************************************/
 /*!
 \file Door.cpp
-\team name Don't Peak
-\software name I don't want to do homework
+\team name Don't Peek
+\software name I Don't Wanna Do My Homework
 \authors
 Tan Wei Ling Felicia	weilingfelicia.tan@digipen.edu
 Margaret Teo Boon See	Teo.b@digipen.edu
@@ -24,6 +24,7 @@ Technology is prohibited.
 #include "Door.h"
 #include "Animation.h"
 
+//Initialization
 Door DoorArray[MAX];
 Sprite DoorAnim;
 static int DoorNum = 0;
@@ -65,7 +66,6 @@ void Door::LoadDoor()
 /******************************************************************************/
 void Door::InitDoor()
 {	
-	
 	Scale = 100.0f;
 	for (int i = 0; i < DoorNum; i++)
 	{
@@ -117,7 +117,7 @@ void Door::DrawDoor()
 /******************************************************************************/
 void Door::FreeDoor()
 {
-	
+	DoorNum = 0;
 }
 
 /******************************************************************************/
@@ -130,7 +130,6 @@ void Door::UnloadDoor()
 	DoorAnim.Anim_Unload(pDoor);
 	/*AEGfxMeshFree(pDoor->pMesh);
 	AEGfxTextureUnload(pDoor->texture);*/
-	DoorNum = 0;
 }
 
 /******************************************************************************/
@@ -160,22 +159,22 @@ void Door::BoundingBox()
 	Door Getter & Setter Functions
 */
 /******************************************************************************/
-AABB Door::GetDoorBoundingBox(int i)
+AABB Door::GetDoorBoundingBox(int i)	//Allow other files to use door boundingbox without changing it.
 {
 	Door* Doortemp = DoorArray + i;
 	return Doortemp->boundingBox;
 }
-AEVec2 Door::GetDoorVelocity(int i)
+AEVec2 Door::GetDoorVelocity(int i)		//Allow other files to use door velocity without changing it.
 {
 	Door* Doortemp = DoorArray + i;
 	return Doortemp->vel;
 }
-AEVec2 Door::GetDoorPosition(int i)
+AEVec2 Door::GetDoorPosition(int i)		//Allow other files to use door position without changing it.
 {
 	Door* Doortemp = DoorArray + i;
 	return Doortemp->pos;
 }
-void Door::SetDoorPosition(int i, AEVec2 NewPos)
+void Door::SetDoorPosition(int i, AEVec2 NewPos)	//Allow other files to set the door position. [This is used for level design]
 {
 	Door* Doortemp = DoorArray + i;
 	Doortemp->pos = NewPos;
@@ -186,11 +185,11 @@ void Door::SetDoorPosition(int i, AEVec2 NewPos)
 	Door External Functions
 */
 /******************************************************************************/
-int GetDoorNum()
+int GetDoorNum()	//Allow other files to run through a loop of all the door. [E.g. to detect collision of all door]
 {
 	return DoorNum;
 }
-void SetDoorNum(int Num)
+void SetDoorNum(int Num)		//Set the number of eraser object to be created. [This is used for level design]
 {
 	DoorNum = Num;
 }

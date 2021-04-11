@@ -1,8 +1,8 @@
 /* Start Header ************************************************************************/
 /*!
 \file Player.h
-\team name Don't Peak
-\software name I don't want to do homework
+\team name Don't Peek
+\software name I Don't Wanna Do My Homework
 \authors
 Tan Wei Ling Felicia	weilingfelicia.tan@digipen.edu
 Margaret Teo Boon See	Teo.b@digipen.edu
@@ -10,8 +10,10 @@ Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 
 \date 22/01/2021
-\brief  This file is done by Felicia. In this file, it contains the declaration of what 
-player.cpp contains
+\brief  
+In this file, it contains the declaration of
+functions found in Player.cpp
+
 
 Copyright (C) 2021 DigiPen Institute of Technology.
 Reproduction or disclosure of this file or its contents
@@ -25,7 +27,6 @@ Technology is prohibited.
 #include "AEInput.h"
 #include "Math.h"
 
-
 class Player
 {
 private:
@@ -37,6 +38,7 @@ private:
 	bool CanJump = false;
 	bool SharpenerCollision = false;
 	bool WallCollision = false;
+	bool Left = false;
 	float Scale;
 	AEMtx33	Transform;
 

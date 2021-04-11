@@ -1,8 +1,8 @@
 /* Start Header ************************************************************************/
 /*!
 \file Wall.cpp
-\team name Don't Peak
-\software name I don't want to do homework
+\team name Don't Peek
+\software name I Don't Wanna Do My Homework
 \authors
 Tan Wei Ling Felicia	weilingfelicia.tan@digipen.edu
 Margaret Teo Boon See	Teo.b@digipen.edu
@@ -10,16 +10,18 @@ Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 
 \date 22/01/2021
-\brief <give a brief description of this file>
+\brief 
+This file contains all the functions that is required for our wall/ceiling/platform object.
 
 
-Copyright (C) 20xx DigiPen Institute of Technology.
+Copyright (C) 2021 DigiPen Institute of Technology.
 Reproduction or disclosure of this file or its contents
 without the prior written consent of DigiPen Institute of
 Technology is prohibited.
 */
 /* End Header **************************************************************************/
 
+//Initalization
 #include "Wall.h"
 #include "Collision.h"
 #include "Player.h"
@@ -28,15 +30,17 @@ Technology is prohibited.
 
 static int numberWalls = 0;
 static Wall WallArr[1000];
-Wall *Walltemp = new Wall[1000];
+Wall* Walltemp = nullptr;
 
 /******************************************************************************/
 /*!
 	Wall Load
+	\brief Loads mesh for walls
 */
 /******************************************************************************/
 void Wall::LoadWall()
 {
+	
 	pWall = sGameObjList + sGameObjNum++;
 	pWall->type = TYPE_WALL;
 
@@ -52,16 +56,17 @@ void Wall::LoadWall()
 		-0.5f, 0.5f, 0x0000000, 0.0f, 0.0f);
 
 	pWall->pMesh = AEGfxMeshEnd();
-
 }
 
 /******************************************************************************/
 /*!
 	Wall Init
+	\brief Initialises bounding box for wall
 */
 /******************************************************************************/
 void Wall::InitWall()
 {
+	Walltemp = new Wall[1000];
 
 	for (int i = 0; i < numberWalls; i++)
 	{
@@ -81,7 +86,6 @@ void Wall::InitWall()
 		//printf("bounding box min x %f \n", Walltemp->boundingBox.min.x);
 	
 	}
-	
 }
 
 /******************************************************************************/
@@ -97,6 +101,7 @@ void Wall::UpdateWall()
 /******************************************************************************/
 /*!
 	Wall Draw
+	\brief Draws walls to check position
 */
 /******************************************************************************/
 void Wall::DrawWall()
@@ -138,16 +143,20 @@ void Wall::DrawWall()
 /******************************************************************************/
 /*!
 	Wall Free
+	\brief Frees walls
 */
 /******************************************************************************/
 void Wall::FreeWall()
 {
-	numberWalls = 0; //DONE BY FELICIA< JARELL< JER AND SOLVED BY US 
+	numberWalls = 0; 
+	if (Walltemp != NULL)
+		delete[] Walltemp;
 }
 
 /******************************************************************************/
 /*!
 	Wall Unload
+	\brief Unloads textures
 */
 /******************************************************************************/
 void Wall::UnloadWall()
@@ -158,16 +167,24 @@ void Wall::UnloadWall()
 	}
 	else
 	{
-		AEGfxMeshFree(pWall->pMesh);
-		//numberWalls = 0; //DONE BY FELICIA< JARELL< JER AND SOLVED BY US 
-		printf("free!");
+		if(pWall->pMesh)
+			AEGfxMeshFree(pWall->pMesh);
+		if(pWall->texture)
+			AEGfxTextureUnload(pWall->texture);
+		//printf("walls DESTROY\n");
 	}
+
 	
 }
 
 /******************************************************************************/
 /*!
 	Wall CreateWall
+	\brief Creates a wall and stores position in wall array
+	\param AEVec2 pos
+	\param int number
+	\param float scale
+	\param wallType type
 */
 /******************************************************************************/
 void Wall::CreateWall(AEVec2 pos, AEVec2 dir, int number, float scale, wallType type)
@@ -200,13 +217,13 @@ void Wall::CreateWall(AEVec2 pos, AEVec2 dir, int number, float scale, wallType 
 	Wall Getter & Setter Functions
 */
 /******************************************************************************/
-AABB Wall::GetWallBoundingBox(int i)
+AABB Wall::GetWallBoundingBox(int i)	//Allow other files to use wall boundingbox without changing it.
 {
 	Wall* Walltemp = WallArr + i;
 	return Walltemp->boundingBox;
 }
 
-wallType Wall::GetType(int i)
+wallType Wall::GetType(int i)		//Allow other files to check wall type without changing it.
 {
 	Wall* Walltemp = WallArr + i;
 	return Walltemp->Walltype;
@@ -217,12 +234,12 @@ wallType Wall::GetType(int i)
 	Wall External Functions
 */
 /******************************************************************************/
-int Get_NumWalls()
+int Get_NumWalls()	//Allow other files to run through a loop of all the walls. [E.g. to detect collision of all walls]
 {
 	return numberWalls;
 }
 
-Wall* Get_WallArr()
+Wall* Get_WallArr()	//Set the number of wall object to be created. [This is used for level design]
 {
 	return WallArr;
 }

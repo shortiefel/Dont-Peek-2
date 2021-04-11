@@ -1,55 +1,64 @@
-language,filename,blank,comment,code,"github.com/AlDanial/cloc v 1.88  T=2.02 s (26.2 files/s, 4196.4 lines/s)"
-C/C++ Header,fmod_common.h,73,34,747,
-C/C++ Header,fmod_dsp_effects.h,80,16,441,
-C/C++ Header,fmod.h,111,163,394,
-C/C++ Header,fmod_dsp.h,46,26,342,
-C++,sharpener.cpp,41,100,316,jj
-C++,player.cpp,53,112,291,fel
-C++,eraser.cpp,39,95,289,jj
-C++,menu.cpp,40,50,206,mar
-C++,pause.cpp,50,26,192,fel
-C++,credits.cpp,39,27,176,mar
-C++,win.cpp,35,26,158,fel
-C++,lose.cpp,34,24,157,fel
-C++,pencil.cpp,25,69,132,jj
-C++,tutorial.cpp,24,59,115,tes
-C++,gamestatemgr.cpp,22,22,110,fel
-C++,level 1.cpp,29,29,105,tes
-C++,door.cpp,24,63,103,mar
-C++,highlighter.cpp,25,66,102,jj
-C/C++ Header,fmod_errors.h,4,10,96,
-C++,wall.cpp,33,101,93,tes
-C/C++ Header,fmod_output.h,10,27,92,
-C++,gamestate_dontpeek.cpp,24,63,91,fel
-C++,howtoplay2.cpp,8,18,76,Mar
-C++,collision.cpp,36,42,71,mar
-C++,splashscreen.cpp,16,25,59,mar
-C/C++ Header,fmod_codec.h,12,27,58,
-C++,main.cpp,21,18,52,fel
-C/C++ Header,gamestate_dontpeek.h,15,19,48,fel
-C++,music.cpp,16,0,36,fel
-C/C++ Header,player.h,13,19,34,fel
-C/C++ Header,menu.h,7,20,33,mar
-C/C++ Header,pencil.h,8,18,33,jj
-C/C++ Header,wall.h,11,20,33,mar
-C/C++ Header,highlighter.h,11,18,31,jj
-C/C++ Header,door.h,13,18,30,mar
-C/C++ Header,eraser.h,14,18,30,jj
-C/C++ Header,sharpener.h,13,18,30,jj
-C++,test aabb.cpp,4,4,26,
-C/C++ Header,credits.h,8,18,25,mar
-C/C++ Header,pause.h,7,18,25,fel
-C/C++ Header,win.h,8,18,25,fel
-C/C++ Header,tutorial.h,4,19,18,tes
-C/C++ Header,gamestatelist.h,4,3,17,fel
-C/C++ Header,gamestatemgr.h,10,6,16,fel
-C/C++ Header,splashscreen.h,5,19,16,mar
-C/C++ Header,music.h,4,0,14,fel
-C/C++ Header,collision.h,10,21,11,mar
-C/C++ Header,level 1.h,4,26,11,tes
-C/C++ Header,main.h,8,3,11,fel
-C/C++ Header,lose.h,4,0,10,fel
-C/C++ Header,howtoplay2.h,1,18,9,Mar
-C/C++ Header,test aabb.h,1,0,6,
-C/C++ Header,fmod_android.h,0,1,0,
-SUM,,1157,1680,5642,
+language,filename,blank,comment,code,"github.com/AlDanial/cloc v 1.88  T=0.13 s (494.6 files/s, 85803.8 lines/s)"
+C/C++ Header,fmod_common.h,73,34,747
+C/C++ Header,fmod_dsp_effects.h,80,16,441
+C/C++ Header,fmod.h,111,163,394
+C/C++ Header,fmod_dsp.h,46,26,342
+C++,eraser.cpp,43,160,314
+C++,sharpener.cpp,46,156,313
+C++,player.cpp,42,157,264
+C++,menu.cpp,37,104,198
+C++,credits.cpp,46,98,195
+C++,pause.cpp,35,106,187
+C++,level select.cpp,32,103,180
+C++,gamestate_dontpeek.cpp,23,89,157
+C++,lose.cpp,30,96,150
+C++,win.cpp,30,96,149
+C++,howtoplay2.cpp,19,79,147
+C++,gamestatemgr.cpp,29,39,137
+C++,pencil.cpp,26,72,133
+C++,level 1.cpp,32,130,125
+C++,tutorial.cpp,36,124,108
+C++,wall.cpp,34,113,98
+C/C++ Header,fmod_errors.h,4,10,96
+C/C++ Header,fmod_output.h,10,27,92
+C++,highlighter.cpp,25,92,86
+C++,door.cpp,22,88,85
+C++,collision.cpp,35,50,71
+C++,rules.cpp,15,22,62
+C++,animation.cpp,15,67,58
+C/C++ Header,fmod_codec.h,12,27,58
+C++,splashscreen.cpp,17,62,58
+C++,restart.cpp,13,20,57
+C++,main.cpp,28,38,55
+C/C++ Header,gamestate_dontpeek.h,18,37,48
+C++,music.cpp,19,42,35
+C/C++ Header,player.h,12,21,35
+C/C++ Header,wall.h,9,72,34
+C/C++ Header,menu.h,7,20,33
+C/C++ Header,pencil.h,10,20,33
+C/C++ Header,eraser.h,14,20,31
+C/C++ Header,highlighter.h,11,20,31
+C/C++ Header,door.h,13,20,30
+C/C++ Header,sharpener.h,13,20,30
+C++,test aabb.cpp,4,4,26
+C/C++ Header,credits.h,8,18,25
+C/C++ Header,pause.h,10,20,25
+C/C++ Header,win.h,8,22,25
+C/C++ Header,animation.h,4,66,19
+C/C++ Header,gamestatelist.h,8,22,18
+C/C++ Header,tutorial.h,4,55,18
+C/C++ Header,level select.h,6,18,17
+C/C++ Header,gamestatemgr.h,15,25,16
+C/C++ Header,restart.h,3,18,16
+C/C++ Header,rules.h,7,19,16
+C/C++ Header,splashscreen.h,5,20,16
+C/C++ Header,music.h,8,21,14
+C/C++ Header,main.h,11,23,12
+C/C++ Header,collision.h,6,19,11
+C/C++ Header,level 1.h,3,62,11
+C/C++ Header,loading.h,1,18,10
+C/C++ Header,lose.h,6,20,10
+C/C++ Header,howtoplay2.h,3,18,9
+C/C++ Header,test aabb.h,1,0,6
+C/C++ Header,fmod_android.h,0,1,0
+SUM,,1293,3245,6217

@@ -1,8 +1,8 @@
 /* Start Header ************************************************************************/
 /*!
 \file Highlighter.h
-\team name Don't Peak
-\software name I don't want to do homework
+\team name Don't Peek
+\software name I Don't Wanna Do My Homework
 \authors
 Tan Wei Ling Felicia	weilingfelicia.tan@digipen.edu
 Margaret Teo Boon See	Teo.b@digipen.edu
@@ -10,7 +10,9 @@ Loh Yun Yi Tessa	tessa.loh@digipen.edu
 Tan Jiajia, Amelia	t.jiajiaamelia@digipen.edu
 
 \date 22/01/2021
-\brief <give a brief description of this file>
+\brief 
+In this file, it contains the declaration of
+functions found in Highlighter.cpp
 
 
 Copyright (C) 2021 DigiPen Institute of Technology.

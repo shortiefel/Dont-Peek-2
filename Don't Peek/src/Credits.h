@@ -1,8 +1,8 @@
 /* Start Header ************************************************************************/
 /*!
 \file Credits.h
-\team name Don't Peak
-\software name I don't want to do homework
+\team name Don't Peek
+\software name I Don't Wanna Do My Homework
 \authors
 Tan Wei Ling Felicia	weilingfelicia.tan@digipen.edu
 Margaret Teo Boon See	Teo.b@digipen.edu
@@ -29,7 +29,7 @@ struct Credits
 	AEVec2 pos;
 	AEVec2 scale;
 	AEMtx33 transform; //object transformation matrix
-	GameObj* pObj;
+	GameObj* pObj;// = 0;
 };
 
 struct Button1
