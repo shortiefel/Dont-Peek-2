@@ -17,7 +17,7 @@ To complete the game, get to the flag. Press Esc to quit game, Press B to go to 
 
 
 Installation Instructions:
-MISSING
+To install please select I Don't Wanna Do My Homework.exe
 
 Credits: 
 Instructors: Cheng Ding Xiang, Tomas Arce
