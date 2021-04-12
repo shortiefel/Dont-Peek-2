@@ -48,14 +48,18 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
     UNREFERENCED_PARAMETER(prevInstanceH);
     UNREFERENCED_PARAMETER(command_line);
 
-    // Enable run-time memory check for debug builds.
 #if defined(DEBUG) | defined(_DEBUG)
+    // Enable run-time memory check for debug builds.
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-#endif
-    // int* pi = new int;
+    //int* pi = new int;
 
+    AESysInit(instanceH, show, 1000, 700, 1, 60, false, NULL);
+
+#else
+    AESysInit(instanceH, show, 1000, 700, 0, 60, false, NULL);
+#endif
    //------------INITILIZATION----------------
-    AESysInit(instanceH, show, 1000, 700, 1, 60, true, NULL);
+
     AESysSetWindowTitle("Don't Peek");
     AEGfxSetBackgroundColor(100.0f, 100.0f, 100.0f);
     Fonts = AEGfxCreateFont("Resources/Arial Italic.ttf", 25);

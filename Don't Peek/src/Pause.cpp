@@ -287,7 +287,7 @@ void PauseDraw()
 /******************************************************************************/
 void PauseFree()
 {
-
+	
 }
 
 /******************************************************************************/
@@ -308,6 +308,7 @@ void PauseUnload()
 		AEGfxMeshFree(pause.pObj->pMesh);
 	if (pause.pObj->texture)
 		AEGfxTextureUnload(pause.pObj->texture);
+
 
 }
 
